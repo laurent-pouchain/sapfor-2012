@@ -50,7 +50,6 @@
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/slf4j-api-1.5.10.jar"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/slf4j-log4j12-1.5.10.jar"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/velocity-1.6.2.jar"/>
-	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/WHICH_JARS"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/wsdl4j-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/wss4j-1.5.8.jar"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/wstx-asl-3.2.9.jar"/>
@@ -73,7 +72,6 @@
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.jms-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.orm-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.oxm-3.0.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.spring-library-3.0.0.RELEASE.libd"/>
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.test-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.transaction-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.web-3.0.0.RELEASE.jar"/>

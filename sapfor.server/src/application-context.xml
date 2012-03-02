@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:simple="http://cxf.apache.org/simple"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-http-binding.xml" />
+
+
+
+	<bean id="sharedDataStore" class="istic.sapfor.server.datastore.impl.FakeDataStoreImpl"></bean>
+
+
+	<bean id="wsServiceAgent" class="istic.sapfor.service.impl.ServiceAgentImpl">
+		<property name="dataStore" ref="sharedDataStore"></property>
+	</bean>
+
+
+	<simple:server id="wsServiceAgentWeb" serviceClass="istic.sapfor.api.service.ServiceAgent"
+		address="http://0.0.0.0:9085/ws/ServiceAgent">
+		<simple:serviceBean>
+			<ref bean="wsServiceAgent" />
+		</simple:serviceBean>
+		<simple:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</simple:dataBinding>
+	</simple:server>
+
+
+
+
+	<bean id="wsServiceSession" class="istic.sapfor.service.impl.ServiceSessionImpl">
+		<property name="dataStore" ref="sharedDataStore"></property>
+	</bean>
+
+
+	<simple:server id="wsServiceSessionWeb" serviceClass="istic.sapfor.api.service.ServiceSession"
+		address="http://0.0.0.0:9086/ws/ServiceSession">
+		<simple:serviceBean>
+			<ref bean="wsServiceSession" />
+		</simple:serviceBean>
+		<simple:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</simple:dataBinding>
+	</simple:server>
+
+
+
+
+
+
+
+	<!-- <jaxws:endpoint id="dateService" implementor="service.impl.DateServiceImpl" 
+		address="http://0.0.0.0:9085/ws/DateService" implementorClass="service.impl.DateServiceImpl" 
+		bindingUri="http://apache.org/cxf/binding/http"> <jaxws:serviceFactory> <bean 
+		class="org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"> <property name="wrapped" 
+		value="true" /> </bean> </jaxws:serviceFactory> </jaxws:endpoint> -->
+
+	<!-- <jaxws:endpoint id="stageService" implementor="service.impl.StageServiceImpl" 
+		address="http://0.0.0.0:9085/ws/StageService"> </jaxws:endpoint> -->
+
+</beans>
