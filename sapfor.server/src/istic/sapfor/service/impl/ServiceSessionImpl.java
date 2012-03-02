@@ -21,25 +21,13 @@ public class ServiceSessionImpl implements ServiceSession {
 
 	@Override
 	public SessionDTO login(String user, String password) {
-		// TODO Auto-generated method stub
-		if(dataStore.getSessionsMap().containsKey(Long.parseLong(user))){
-			if (dataStore.getSessionsMap().get(Long.parseLong(user)).equals(password)){
-				SessionDTO mySession = new SessionDTO();
-				mySession.setIdAgent(Long.parseLong(user));
-				return mySession;
-			}
-		}
-		return null;
+		return dataStore.login(user, password);
 	}
 
 	@Override
 	public boolean logout(SessionDTO session) {
-		// TODO Auto-generated method stub
-		if (dataStore.getSessionsMap().containsKey(session.getIdAgent())) {
-			return true;
+		return true;
 		// TODO cleanup open connections		
-		}
-		return false;
 	}
 	
 }

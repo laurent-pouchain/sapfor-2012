@@ -21,11 +21,7 @@ public class ServiceUvImpl implements ServiceUv {
 	
 	@Override
 	public UvDTO getUv(long id) {
-		// TODO Auto-generated method stub
-		if(dataStore.getUvMap().containsKey(id)){
-			return dataStore.getUvMap().get(id);
-		}
-		return null;
+		return dataStore.getUv(id);
 	}
 
 }

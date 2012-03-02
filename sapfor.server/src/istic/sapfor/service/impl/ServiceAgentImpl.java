@@ -21,11 +21,7 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public AgentDTO getAgent(long id) {
-		// TODO Auto-generated method stub
-		if(dataStore.getAgentsMap().containsKey(id)){
-			return dataStore.getAgentsMap().get(id);
-		}
-		return null;
+			return dataStore.getAgent(id);
 	}
 
 }

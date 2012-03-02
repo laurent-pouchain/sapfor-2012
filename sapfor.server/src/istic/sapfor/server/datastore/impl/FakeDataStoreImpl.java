@@ -1,8 +1,6 @@
 package istic.sapfor.server.datastore.impl;
 
-import istic.sapfor.api.dto.AgentDTO;
-import istic.sapfor.api.dto.SessionDTO;
-import istic.sapfor.api.dto.UvDTO;
+import istic.sapfor.api.dto.*;
 import istic.sapfor.server.datastore.DataStore;
 
 import java.util.HashMap;
@@ -23,20 +21,45 @@ public class FakeDataStoreImpl implements DataStore {
 	private Map<Long,AgentDTO> agentsMap = new HashMap<Long,AgentDTO>();
 	private Map<Long,String> sessionsMap = new HashMap<Long,String>();
 	private Map<Long,UvDTO> uvMap = new HashMap<Long,UvDTO>();
+	private Map<Long,StageDTO> stageMap = new HashMap<Long,StageDTO>();
 
 	
-	public Map<Long, AgentDTO> getAgentsMap() {
-		return agentsMap;
+	public AgentDTO getAgent(Long id) {
+		if(this.agentsMap.containsKey(id)){
+			return this.agentsMap.get(id);
+		}
+		return null;
 	}
 	
-	public Map<Long, String> getSessionsMap() {
-		return sessionsMap;
+	public SessionDTO login(String user, String password) {
+		// TODO Auto-generated method stub
+		if(this.sessionsMap.containsKey(Long.parseLong(user))){
+			if (this.sessionsMap.get(Long.parseLong(user)).equals(password)){
+				SessionDTO mySession = new SessionDTO();
+				mySession.setIdAgent(Long.parseLong(user));
+				return mySession;
+			}
+		}
+		return null;
 	}
 
 
-	public Map<Long, UvDTO> getUvMap() {
-		return uvMap;
-	}	
+	
+	public UvDTO getUv(Long id) {
+		if(this.uvMap.containsKey(id)){
+			return this.uvMap.get(id);
+		}
+		return null;
+	}
+	
+	
+	public StageDTO getStage(Long id) {
+		if(this.stageMap.containsKey(id)){
+			return this.stageMap.get(id);
+		}
+		return null;
+	}
+
 	
 	
 }
