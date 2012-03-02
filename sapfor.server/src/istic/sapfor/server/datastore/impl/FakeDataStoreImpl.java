@@ -13,15 +13,16 @@ public class FakeDataStoreImpl implements DataStore {
 	Logger logger = Logger.getLogger(this.getClass());
 	
 	public FakeDataStoreImpl(){
+
 		System.out.println("Build data store ...");
 		logger.info("Hello");
-		
 	}
 	
-	private Map<Long,AgentDTO> agentsMap = new HashMap<Long,AgentDTO>();
 	private Map<Long,String> sessionsMap = new HashMap<Long,String>();
+	private Map<Long,AgentDTO> agentsMap = new HashMap<Long,AgentDTO>();
 	private Map<Long,UvDTO> uvMap = new HashMap<Long,UvDTO>();
 	private Map<Long,StageDTO> stageMap = new HashMap<Long,StageDTO>();
+	private Map<Long,TypeUvDTO> typeUvMap = new HashMap<Long,TypeUvDTO>();
 
 	
 	public AgentDTO getAgent(Long id) {
@@ -32,7 +33,6 @@ public class FakeDataStoreImpl implements DataStore {
 	}
 	
 	public SessionDTO login(String user, String password) {
-		// TODO Auto-generated method stub
 		if(this.sessionsMap.containsKey(Long.parseLong(user))){
 			if (this.sessionsMap.get(Long.parseLong(user)).equals(password)){
 				SessionDTO mySession = new SessionDTO();
@@ -56,6 +56,14 @@ public class FakeDataStoreImpl implements DataStore {
 	public StageDTO getStage(Long id) {
 		if(this.stageMap.containsKey(id)){
 			return this.stageMap.get(id);
+		}
+		return null;
+	}
+
+	@Override
+	public TypeUvDTO getTypeUv(Long id) {
+		if(this.typeUvMap.containsKey(id)){
+			return this.typeUvMap.get(id);
 		}
 		return null;
 	}

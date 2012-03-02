@@ -84,6 +84,20 @@
 	</simple:server>
 
 
+	<bean id="wsServiceTypeUv" class="istic.sapfor.service.impl.ServiceTypeUvImpl">
+		<property name="dataStore" ref="sharedDataStore"></property>
+	</bean>
+
+
+	<simple:server id="wsServiceTypeUvWeb" serviceClass="istic.sapfor.api.service.ServiceTypeUv"
+		address="http://0.0.0.0:9088/ws/ServiceTypeUv">
+		<simple:serviceBean>
+			<ref bean="wsServiceTypeUv" />
+		</simple:serviceBean>
+		<simple:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</simple:dataBinding>
+	</simple:server>
 
 
 

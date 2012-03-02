@@ -9,7 +9,7 @@ public class App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Server launching
 
 		System.out.println("SapFor Server starting ..");
 		ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");

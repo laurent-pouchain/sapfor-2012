@@ -5,6 +5,7 @@ import java.util.Collection;
 public class TypeUvDTO {
 
 	private long idTypeUv;
+	private String title;
 	private Collection<Long> listIdUvPrereq;
 	private int effectifMax;
 	private int effectifMin;
@@ -15,6 +16,12 @@ public class TypeUvDTO {
 	}
 	public void setIdTypeUv(long idTypeUv) {
 		this.idTypeUv = idTypeUv;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public Collection<Long> getListIdUvPrereq() {
 		return listIdUvPrereq;
