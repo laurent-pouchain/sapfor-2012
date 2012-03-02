@@ -1,0 +1,1235 @@
+format 76
+"SapFor" // SapFor
+  revision 20
+  modified_by 21 "ED M2CCI"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  classview 128021 "Debut"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    classdiagram 128021 "Debut"
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition yes show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 128021 "Agent"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 128021 "login"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128149 "passwd"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128661 // <association>
+	relation_ref 128277 // <association>
+      end
+
+      classrelation 128917 // <association>
+	relation_ref 128405 // <association>
+      end
+
+      classrelation 129045 // <association>
+	relation 128533 ----
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129045 // <association>
+	  b role_name "directeur" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129173 // directeur (<association>)
+      end
+
+      attribute 171797 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171925 "prénom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 134549 "UV"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128149 // <aggregation>
+	relation_ref 128021 // <aggregation>
+      end
+
+      classrelation 128277 // prérequis ()
+	relation 128149 ---- name ""
+	  a role_name "prérequis" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128277 // prérequis ()
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128405 // ()
+      end
+
+      classrelation 128405 // ()
+	relation_ref 128149 // 
+      end
+
+      classrelation 128533 // <association>
+	relation 128277 ----
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128533 // <association>
+	  b role_name "UV_détenues" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128661 // <association>
+      end
+
+      classrelation 128789 // candidats (<association>)
+	relation 128405 ----
+	  a role_name "candidats" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128789 // candidats (<association>)
+	  b role_name "candidatures" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128917 // <association>
+	  association_type class_ref 134933 // Etat
+      end
+
+      attribute 134933 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 156053 "lieu"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135061 "dateLimite"
+	private type class_ref 135061 // Date
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134805 "dates"
+	private type class_ref 135061 // Date
+	stereotype "set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142741 "effectifMaxLAttente"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135189 "candidaturesCloses"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 149269 "candidaturesValidées"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172053 "aEutLieu"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 129941 // <association>
+	relation_ref 128917 // <association>
+      end
+    end
+
+    class 134677 "Stage"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129173 // directeur (<association>)
+	relation_ref 128533 // <association>
+      end
+
+      classrelation 128021 // UV_proposées (<aggregation>)
+	relation 128021 o---
+	  a role_name "UV_proposées" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128021 // UV_proposées (<aggregation>)
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128149 // <aggregation>
+      end
+
+      attribute 171669 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171541 "lieu"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 134805 "Etat_Candidature"
+      visibility package stereotype "enum"
+      cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+      java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+      php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+      python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+      idl_decl "${comment}enum ${name} {
+${items}};
+"
+      explicit_switch_type ""
+      
+      attribute 135445 "retenue"
+	public type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135573 "annulée"
+	public type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135701 "déposée"
+	public type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135829 "liste_d_attente"
+	public type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135957 "non_retenue"
+	public type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 134933 "Etat"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 134677 "etat"
+	private type class_ref 134805 // Etat_Candidature
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 135061 "Date"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 135189 "TypeUV"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 135317 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 129557 // prérequis (<association>)
+	relation 128789 ----
+	  a role_name "prérequis" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129557 // prérequis (<association>)
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129685 // <association>
+      end
+
+      classrelation 129685 // <association>
+	relation_ref 128789 // <association>
+      end
+
+      classrelation 129813 // <association>
+	relation 128917 ----
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129813 // <association>
+	  b role_name "type" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129941 // <association>
+      end
+
+      attribute 134538 "effectifMax"
+	private explicit_type "integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134666 "effectifMin"
+	private explicit_type "integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+  end
+
+  usecaseview 128021 "Analyse"
+    //use case diagram settings
+    package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 134538 "Client"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    classinstance 134538 ""
+      type class_ref 134538 // Client
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 134666 "Serveur"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    classinstance 134666 ""
+      type class_ref 134666 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 134794 "Utilisateur"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    classinstance 134794 ""
+      type class_ref 134794 // Utilisateur
+      attributes
+        end
+      relations
+        end
+    end
+
+    sequencediagram 148245 "connexion_a"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 148373 "deposer_candidature_a"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 148501 "retirer_candidature_a"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 148629 "clore_candidature_a"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 148757 "classer_candidature_a"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+  end
+
+  classview 134549 "Interfaces Serveur"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 141717 "Connexion"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 134805 "login"
+	public return_type class_ref 155669 // SessionDTO
+	nparams 2
+	  param in name "user" explicit_type "string"
+	  param in name "password" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134933 "logout"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141845 "CandidatureAgent"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 135189 "getAgent"
+	public return_type class_ref 155413 // AgentDTO
+	nparams 1
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156437 "getIdStagesPossibles"
+	public explicit_return_type "<<list>>long"
+	nparams 1
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135317 "getStage"
+	public return_type class_ref 155541 // StageDTO
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdStage" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149909 "getUv"
+	public return_type class_ref 155157 // UvDTO
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdUV" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135445 "getTypeUv"
+	public return_type class_ref 155285 // TypeUvDTO
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdUV" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135573 "deposerCandidature"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdUv" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135957 "retirerCandidature"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdUv" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141973 "ClassementCandidature"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 136341 "getIdStagesGeres"
+	public explicit_return_type "<<list>>long"
+	nparams 1
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136469 "getStageGere"
+	public return_type class_ref 155541 // StageDTO
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdStage" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136213 "cloreCandidature"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdStage" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136597 "setEtatCandidature"
+	public return_type class_ref 155541 // StageDTO
+	nparams 4
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "nouvelEtat" type class_ref 134805 // Etat_Candidature
+	  param in name "idUv" explicit_type "long"
+	  param in name "idCandidat" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143253 "cloreClassement"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "Session" type class_ref 155669 // SessionDTO
+	  param in name "IdUv" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 148501 "Client"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 148629 "Serveur"
+      visibility package stereotype "implementationClass"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136725 // <realization>
+	relation 135573 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136725 // <realization>
+	  b parent class_ref 141717 // Connexion
+      end
+
+      classrelation 136853 // <realization>
+	relation 135701 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136853 // <realization>
+	  b parent class_ref 141845 // CandidatureAgent
+      end
+
+      classrelation 150293 // <realization>
+	relation 149141 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150293 // <realization>
+	  b parent class_ref 141973 // ClassementCandidature
+      end
+    end
+
+    classdiagram 134549 "Client-Serveur"
+      draw_all_relations default hide_attributes default hide_operations no hide_getset_operations default show_members_full_definition yes show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name yes package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+  end
+
+  usecaseview 134549 "Conception"
+    //use case diagram settings
+    package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    sequencediagram 141717 "connexion"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134538 "deposer_candidature"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134666 "retirer_candidature"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134794 "clore_candidatures"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134922 "classer_candidature"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    classinstance 128021 ""
+      type class_ref 134666 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128149 ""
+      type class_ref 134666 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
+  end
+
+  classview 141077 "Classes DTO"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 155413 "AgentDTO"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 162837 "idAgent"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 162965 "idTypeAgent"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 162581 "firstName"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 162709 "name"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163093 "listIdUvOwned"
+	private explicit_type "long"
+	stereotype "list"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+    end
+
+    class 155669 "SessionDTO"
+      visibility protected 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 163221 "idAgent"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 155541 "StageDTO"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 163349 "idStage"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163477 "listIdUv"
+	private explicit_type "long"
+	stereotype "list"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163733 "title"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163605 "locality"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 155285 "TypeUvDTO"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 164117 "idTypeUv"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 164245 "listIdUvPrereq"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163861 "effectifMax"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 163989 "effectifMin"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 155157 "UvDTO"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 164629 "idUv"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 164373 "dates"
+	private type class_ref 135061 // Date
+	stereotype "list"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 164501 "idTypeUv"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 164757 "title"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 164885 "locality"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 165013 "dateLimite"
+	private type class_ref 135061 // Date
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+  end
+end

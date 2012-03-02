@@ -1,0 +1,51 @@
+format 76
+
+classinstancecanvas 128138 classinstance_ref 134538 // 
+  xyz 435 11 2000 life_line_z 2000
+end
+classinstancecanvas 131722 classinstance_ref 134794 // 
+  xyz 93 7 2005 life_line_z 2000
+end
+durationcanvas 128021 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 115 2010 11 32
+end
+durationcanvas 128277 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 175 2010 11 32
+end
+durationcanvas 128405 classinstance_ref 128138 // :Client
+  xyzwh 454 188 2010 11 44
+end
+durationcanvas 128661 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 210 2010 11 36
+end
+durationcanvas 136586 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 84 2010 11 30
+end
+durationcanvas 136714 classinstance_ref 128138 // :Client
+  xyzwh 454 94 2010 11 44
+end
+msg 128149 synchronous
+  from durationcanvas_ref 136714
+  to durationcanvas_ref 128021
+  yz 122 2015 explicitmsg "affiche la page d'accueil personnalisée"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 198 108
+msg 128533 synchronous
+  from durationcanvas_ref 128277
+  to durationcanvas_ref 128405
+  yz 190 2015 explicitmsg "clique sur \"logout\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 246 176
+msg 128789 synchronous
+  from durationcanvas_ref 128405
+  to durationcanvas_ref 128661
+  yz 221 2015 explicitmsg "affiche la page de login"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 231 207
+msg 136842 synchronous
+  from durationcanvas_ref 136586
+  to durationcanvas_ref 136714
+  yz 98 2015 explicitmsg "fournit login et mot de passe"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 226 84
+end

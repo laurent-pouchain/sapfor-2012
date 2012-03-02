@@ -1,0 +1,108 @@
+format 76
+
+classinstancecanvas 128138 classinstance_ref 134538 // 
+  xyz 367 7 2000 life_line_z 2000
+end
+classinstancecanvas 128917 classinstance_ref 128021 // 
+  xyz 666 4 2000 life_line_z 2000
+end
+classinstancecanvas 131722 classinstance_ref 134794 // 
+  xyz 93 7 2005 life_line_z 2000
+end
+durationcanvas 128021 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 115 2010 11 125
+end
+durationcanvas 128277 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 264 2010 11 32
+end
+durationcanvas 128405 classinstance_ref 128138 // :Client
+  xyzwh 386 274 2010 11 58
+  overlappingdurationcanvas 130069
+    xyzwh 392 301 2020 11 25
+  end
+end
+durationcanvas 128661 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 299 2010 11 36
+end
+durationcanvas 129045 classinstance_ref 128917 // :Serveur
+  xyzwh 687 111 2010 11 36
+end
+durationcanvas 129557 classinstance_ref 128917 // :Serveur
+  xyzwh 687 285 2010 11 35
+end
+durationcanvas 130325 classinstance_ref 128917 // :Serveur
+  xyzwh 687 170 2010 11 48
+end
+durationcanvas 136586 classinstance_ref 131722 // :Utilisateur
+  xyzwh 114 84 2010 11 66
+end
+durationcanvas 136714 classinstance_ref 128138 // :Client
+  xyzwh 386 97 2010 11 143
+  overlappingdurationcanvas 129301
+    xyzwh 392 127 2020 11 25
+  end
+  overlappingdurationcanvas 130581
+    xyzwh 392 199 2020 11 25
+  end
+end
+msg 128149 synchronous
+  from durationcanvas_ref 136714
+  to durationcanvas_ref 128021
+  yz 222 2015 explicitmsg "affiche la page d'accueil personnalisée"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 164 208
+msg 128533 synchronous
+  from durationcanvas_ref 128277
+  to durationcanvas_ref 128405
+  yz 278 2015 explicitmsg "clique sur \"logout\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 212 264
+msg 128789 synchronous
+  from durationcanvas_ref 128405
+  to durationcanvas_ref 128661
+  yz 314 2015 explicitmsg "affiche la page de login"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 197 300
+msg 129173 synchronous
+  from durationcanvas_ref 136714
+  to durationcanvas_ref 129045
+  yz 111 2020 explicitmsg "login(user,password)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 484 97
+msg 129429 synchronous
+  from durationcanvas_ref 129045
+  to durationcanvas_ref 129301
+  yz 134 2025 explicitmsg "Session:Session"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 495 121
+msg 129685 synchronous
+  from durationcanvas_ref 128405
+  to durationcanvas_ref 129557
+  yz 285 2020 explicitmsg "logout(Session)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 504 271
+msg 130197 synchronous
+  from durationcanvas_ref 129557
+  to durationcanvas_ref 130069
+  yz 309 2025 explicitmsg "logout:bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 512 295
+msg 130453 synchronous
+  from durationcanvas_ref 136714
+  to durationcanvas_ref 130325
+  yz 173 2015 explicitmsg "getInfoAgent(Session)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 488 159
+msg 130709 synchronous
+  from durationcanvas_ref 130325
+  to durationcanvas_ref 130581
+  yz 203 2025 explicitmsg "inf_agent:InfoAgent"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 498 189
+msg 136842 synchronous
+  from durationcanvas_ref 136586
+  to durationcanvas_ref 136714
+  yz 101 2015 explicitmsg "fournit login et mot de passe"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 192 87
+end

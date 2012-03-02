@@ -1,0 +1,108 @@
+format 76
+
+classinstancecanvas 128138 classinstance_ref 134538 // 
+  xyz 506 10 2000 life_line_z 2000
+end
+classinstancecanvas 128266 classinstance_ref 134794 // 
+  xyz 139 16 2005 life_line_z 2000
+end
+note 129674 "//utilisateur : directeur d'au moins un stage"
+  xyzwh 33 10 2000 103 65
+note 133258 "liste des inscrits seulement"
+  xyzwh 25 391 2010 87 59
+note 133386 "liste des inscrits + liste des retenues
+liste d'attente, non retenues"
+  xyzwh 13 520 2000 127 75
+durationcanvas 128021 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 189 2010 11 32
+end
+durationcanvas 128277 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 308 2010 11 30
+end
+durationcanvas 128533 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 557 2010 11 42
+end
+durationcanvas 129685 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 378 2010 11 40
+end
+durationcanvas 129802 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 129 2010 11 40
+end
+durationcanvas 129813 classinstance_ref 128138 // :Client
+  xyzwh 525 380 2010 11 77
+end
+durationcanvas 129930 classinstance_ref 128138 // :Client
+  xyzwh 525 129 2010 11 88
+end
+durationcanvas 130069 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 434 2010 11 25
+end
+durationcanvas 130954 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 255 2010 11 40
+end
+durationcanvas 131082 classinstance_ref 128138 // :Client
+  xyzwh 525 260 2010 11 71
+end
+durationcanvas 132106 classinstance_ref 128266 // :Utilisateur
+  xyzwh 160 493 2010 11 52
+end
+durationcanvas 132234 classinstance_ref 128138 // :Client
+  xyzwh 525 511 2010 11 76
+  overlappingdurationcanvas 128789
+    xyzwh 531 545 2020 11 25
+  end
+end
+msg 128149 synchronous
+  from durationcanvas_ref 129930
+  to durationcanvas_ref 128021
+  yz 196 2015 explicitmsg "affiche la page des stages gérés"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 261 182
+msg 128405 synchronous
+  from durationcanvas_ref 131082
+  to durationcanvas_ref 128277
+  yz 313 2015 explicitmsg "affiche la page du stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 271 299
+msg 128661 synchronous
+  from durationcanvas_ref 132234
+  to durationcanvas_ref 128533
+  yz 575 2015 explicitmsg "affiche la page de \"Tri candidatures\" de l'UV correspondante"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 208 562
+reflexivemsg 128917 synchronous
+  to durationcanvas_ref 128789
+  yz 545 2025 explicitmsg "clot les inscriptions de l'UV"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 565 544
+msg 129941 synchronous
+  from durationcanvas_ref 129685
+  to durationcanvas_ref 129813
+  yz 391 2015 explicitmsg "selectionne une UV et clique sur \"Gestion UV\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 237 377
+msg 130058 synchronous
+  from durationcanvas_ref 129802
+  to durationcanvas_ref 129930
+  yz 129 2015 explicitmsg "clique sur \"Stages gérés\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 278 115
+msg 130197 synchronous
+  from durationcanvas_ref 129813
+  to durationcanvas_ref 130069
+  yz 434 2015 explicitmsg "affiche la page de gestion de l'UV"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 267 420
+msg 131210 asynchronous
+  from durationcanvas_ref 130954
+  to durationcanvas_ref 131082
+  yz 267 2015 explicitmsg "clique sur \"Info\" après avoir sélectionné un stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 215 253
+msg 132362 asynchronous
+  from durationcanvas_ref 132106
+  to durationcanvas_ref 132234
+  yz 511 2015 explicitmsg "clique sur \"Clore les candidatures\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 254 497
+end

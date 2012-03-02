@@ -1,0 +1,215 @@
+format 76
+
+classinstancecanvas 128010 classinstance_ref 134538 // 
+  xyz 487 14 2000 life_line_z 2000
+end
+note 128138 "//utilisateur : directeur d'au moins un stage"
+  xyzwh 109 13 2000 103 65
+note 128266 "valider ssi la liste des candidatures à traiter est vide"
+  xyzwh 55 556 2000 127 75
+classinstancecanvas 128394 classinstance_ref 134794 // 
+  xyz 222 14 2005 life_line_z 2000
+end
+classinstancecanvas 128522 classinstance_ref 134666 // 
+  xyz 748 13 2000 life_line_z 2000
+end
+note 128650 "liste des inscrits seulement"
+  xyzwh 132 294 2010 87 59
+note 134410 "pré : candidaturesCloses == true;"
+  xyzwh 47 387 2000 185 63
+durationcanvas 128021 classinstance_ref 128522 // :Serveur
+  xyzwh 769 435 2010 11 57
+end
+durationcanvas 128277 classinstance_ref 128010 // :Client
+  xyzwh 506 463 2010 11 33
+end
+durationcanvas 128533 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 454 2010 11 46
+end
+durationcanvas 128778 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 136 2010 11 25
+end
+durationcanvas 128906 classinstance_ref 128010 // :Client
+  xyzwh 506 187 2010 11 28
+end
+durationcanvas 129034 classinstance_ref 128010 // :Client
+  xyzwh 506 228 2010 11 25
+end
+durationcanvas 129162 classinstance_ref 128010 // :Client
+  xyzwh 506 555 2010 11 28
+end
+durationcanvas 129290 classinstance_ref 128010 // :Client
+  xyzwh 506 588 2010 11 29
+end
+durationcanvas 129418 classinstance_ref 128010 // :Client
+  xyzwh 506 288 2010 11 29
+end
+durationcanvas 129546 classinstance_ref 128010 // :Client
+  xyzwh 506 332 2010 11 28
+end
+durationcanvas 129674 classinstance_ref 128010 // :Client
+  xyzwh 506 89 2010 11 25
+end
+durationcanvas 129802 classinstance_ref 128010 // :Client
+  xyzwh 506 120 2010 11 35
+end
+durationcanvas 129930 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 187 2010 11 40
+end
+durationcanvas 130058 classinstance_ref 128522 // :Serveur
+  xyzwh 769 204 2010 11 42
+end
+durationcanvas 130186 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 555 2010 11 40
+end
+durationcanvas 130314 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 242 2010 11 25
+end
+durationcanvas 130442 classinstance_ref 128522 // :Serveur
+  xyzwh 769 572 2010 11 35
+end
+durationcanvas 130570 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 288 2010 11 40
+end
+durationcanvas 130698 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 606 2010 11 25
+end
+durationcanvas 130826 classinstance_ref 128522 // :Serveur
+  xyzwh 769 306 2010 11 39
+end
+durationcanvas 130954 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 89 2010 11 40
+end
+durationcanvas 131082 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 349 2010 11 25
+end
+durationcanvas 131210 classinstance_ref 128522 // :Serveur
+  xyzwh 769 101 2010 11 40
+end
+durationcanvas 133386 classinstance_ref 128394 // :Utilisateur
+  xyzwh 243 382 2010 11 45
+end
+durationcanvas 133514 classinstance_ref 128010 // :Client
+  xyzwh 506 393 2010 11 58
+end
+msg 128149 asynchronous
+  from durationcanvas_ref 133514
+  to durationcanvas_ref 128021
+  yz 435 2015 explicitmsg "setEtatCandidature(IdCandidat,IdStage,NouvelEtat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 522 421
+msg 128405 synchronous
+  from durationcanvas_ref 128021
+  to durationcanvas_ref 128277
+  yz 471 2015 explicitmsg "infoStage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 620 457
+msg 128661 asynchronous
+  from durationcanvas_ref 128277
+  to durationcanvas_ref 128533
+  yz 475 2015 explicitmsg "afficher page de gestion du stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 299 461
+msg 131338 asynchronous
+  from durationcanvas_ref 129034
+  to durationcanvas_ref 130314
+  yz 242 2015 explicitmsg "afficher page de gestion stages"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 305 228
+msg 131466 asynchronous
+  from durationcanvas_ref 130442
+  to durationcanvas_ref 129290
+  yz 596 2020 explicitmsg "maj info stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 575 582
+msg 131594 asynchronous
+  from durationcanvas_ref 130058
+  to durationcanvas_ref 129034
+  yz 235 2020 explicitmsg "collection(infos stages)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 579 221
+msg 131722 asynchronous
+  from durationcanvas_ref 129162
+  to durationcanvas_ref 130442
+  yz 572 2015 explicitmsg "setCandidatureValidées(true)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 539 558
+msg 131850 asynchronous
+  from durationcanvas_ref 128906
+  to durationcanvas_ref 130058
+  yz 204 2015 explicitmsg "getStagesGérés(id)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 588 190
+msg 131978 asynchronous
+  from durationcanvas_ref 130186
+  to durationcanvas_ref 129162
+  yz 557 2015 explicitmsg "valider stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 311 543
+msg 132106 asynchronous
+  from durationcanvas_ref 130954
+  to durationcanvas_ref 129674
+  yz 89 2015 explicitmsg "login, mdp"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 353 75
+msg 132234 asynchronous
+  from durationcanvas_ref 129930
+  to durationcanvas_ref 128906
+  yz 187 2015 explicitmsg "envoyer gérer stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 333 173
+msg 132362 asynchronous
+  from durationcanvas_ref 129546
+  to durationcanvas_ref 131082
+  yz 349 2015 explicitmsg "afficher page de gestion du stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 301 335
+msg 132490 asynchronous
+  from durationcanvas_ref 129290
+  to durationcanvas_ref 130698
+  yz 606 2015 explicitmsg "afficher page de validation du stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 300 592
+msg 132618 asynchronous
+  from durationcanvas_ref 129802
+  to durationcanvas_ref 128778
+  yz 138 2015 explicitmsg "afficher message de bienvenue"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 297 124
+msg 132746 asynchronous
+  from durationcanvas_ref 130826
+  to durationcanvas_ref 129546
+  yz 332 2015 explicitmsg "infoStage(ndinscrit, nbMax, ...)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 561 318
+msg 132874 asynchronous
+  from durationcanvas_ref 131210
+  to durationcanvas_ref 129802
+  yz 126 2015 explicitmsg "id(nom, prénom, qualité)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 593 116
+msg 133002 asynchronous
+  from durationcanvas_ref 129418
+  to durationcanvas_ref 130826
+  yz 306 2015 explicitmsg "getstageGestion(ids)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 585 292
+msg 133130 asynchronous
+  from durationcanvas_ref 129674
+  to durationcanvas_ref 131210
+  yz 101 2015 explicitmsg "connect(login, mdp)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 588 87
+msg 133258 asynchronous
+  from durationcanvas_ref 130570
+  to durationcanvas_ref 129418
+  yz 288 2015 explicitmsg "sélectionner un stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 330 274
+msg 133642 asynchronous
+  from durationcanvas_ref 133386
+  to durationcanvas_ref 133514
+  yz 400 2015 explicitmsg "tri d'une candidature"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 340 386
+end

@@ -1,0 +1,146 @@
+format 76
+
+classinstancecanvas 128394 classinstance_ref 134794 // 
+  xyz 50 23 2005 life_line_z 2000
+end
+classinstancecanvas 128522 classinstance_ref 134666 // 
+  xyz 566 21 2000 life_line_z 2000
+end
+classinstancecanvas 128650 classinstance_ref 134538 // 
+  xyz 315 25 2000 life_line_z 2000
+end
+durationcanvas 128778 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 136 2010 11 25
+end
+durationcanvas 128906 classinstance_ref 128650 // :Client
+  xyzwh 334 120 2010 11 35
+end
+durationcanvas 129034 classinstance_ref 128522 // :Serveur
+  xyzwh 587 101 2010 11 40
+end
+durationcanvas 129162 classinstance_ref 128650 // :Client
+  xyzwh 334 89 2010 11 25
+end
+durationcanvas 129290 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 89 2010 11 40
+end
+durationcanvas 129930 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 188 2010 11 40
+end
+durationcanvas 130058 classinstance_ref 128650 // :Client
+  xyzwh 334 188 2010 11 25
+end
+durationcanvas 130314 classinstance_ref 128522 // :Serveur
+  xyzwh 587 199 2010 11 56
+end
+durationcanvas 130570 classinstance_ref 128650 // :Client
+  xyzwh 334 221 2010 11 36
+end
+durationcanvas 130826 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 243 2010 11 25
+end
+durationcanvas 131082 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 243 2010 11 111
+  overlappingdurationcanvas 131722
+    xyzwh 77 308 2020 11 40
+  end
+end
+durationcanvas 131210 classinstance_ref 128650 // :Client
+  xyzwh 334 282 2010 11 48
+end
+durationcanvas 132234 classinstance_ref 128650 // :Client
+  xyzwh 334 336 2010 11 25
+end
+durationcanvas 132490 classinstance_ref 128522 // :Serveur
+  xyzwh 587 344 2010 11 48
+end
+durationcanvas 132746 classinstance_ref 128650 // :Client
+  xyzwh 334 375 2010 11 30
+end
+durationcanvas 133002 classinstance_ref 128394 // :Utilisateur
+  xyzwh 71 384 2010 11 25
+end
+msg 129418 asynchronous
+  from durationcanvas_ref 128906
+  to durationcanvas_ref 128778
+  yz 138 2015 explicitmsg "afficher message de bienvenue"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 130 124
+msg 129546 asynchronous
+  from durationcanvas_ref 129034
+  to durationcanvas_ref 128906
+  yz 126 2015 explicitmsg "id(nom, prénom, qualité)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 426 116
+msg 129674 asynchronous
+  from durationcanvas_ref 129162
+  to durationcanvas_ref 129034
+  yz 101 2015 explicitmsg "connect(login, mdp)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 421 87
+msg 129802 asynchronous
+  from durationcanvas_ref 129290
+  to durationcanvas_ref 129162
+  yz 89 2015 explicitmsg "login, mdp"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 186 75
+msg 130186 asynchronous
+  from durationcanvas_ref 129930
+  to durationcanvas_ref 130058
+  yz 188 2015 explicitmsg "demander la liste des stages inscrits"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 121 174
+msg 130442 asynchronous
+  from durationcanvas_ref 130058
+  to durationcanvas_ref 130314
+  yz 199 2020 explicitmsg "getSatgesIns(id)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 425 185
+msg 130698 asynchronous
+  from durationcanvas_ref 130314
+  to durationcanvas_ref 130570
+  yz 230 2025 explicitmsg "collection(ids, nom, etat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 407 216
+msg 130954 asynchronous
+  from durationcanvas_ref 130570
+  to durationcanvas_ref 130826
+  yz 243 2030 explicitmsg "afficher la liste des stages inscrits"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 126 229
+msg 131338 asynchronous
+  from durationcanvas_ref 131082
+  to durationcanvas_ref 131210
+  yz 282 2015 explicitmsg "enoyer supprimer stage(ids)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 141 268
+msg 131850 asynchronous
+  from durationcanvas_ref 131210
+  to durationcanvas_ref 131722
+  yz 308 2025 explicitmsg "confirmation ?"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 181 294
+msg 132362 asynchronous
+  from durationcanvas_ref 131722
+  to durationcanvas_ref 132234
+  yz 336 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default show_context_mode default
+msg 132618 asynchronous
+  from durationcanvas_ref 132234
+  to durationcanvas_ref 132490
+  yz 344 2030 explicitmsg "setEtat(ids, id annulé)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 413 330
+msg 132874 asynchronous
+  from durationcanvas_ref 132490
+  to durationcanvas_ref 132746
+  yz 375 2035 explicitmsg "annulé"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 449 361
+msg 133130 asynchronous
+  from durationcanvas_ref 132746
+  to durationcanvas_ref 133002
+  yz 384 2040 explicitmsg "afficher confirmation"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 159 370
+end

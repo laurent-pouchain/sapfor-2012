@@ -1,0 +1,92 @@
+format 76
+
+classinstancecanvas 128138 classinstance_ref 134538 // 
+  xyz 427 4 2000 life_line_z 2000
+end
+classinstancecanvas 131722 classinstance_ref 134794 // 
+  xyz 44 4 2005 life_line_z 2000
+end
+durationcanvas 128021 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 142 2010 11 35
+end
+durationcanvas 128277 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 269 2010 11 38
+end
+durationcanvas 128533 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 472 2010 11 42
+end
+durationcanvas 129045 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 356 2010 11 40
+end
+durationcanvas 129173 classinstance_ref 128138 // :Client
+  xyzwh 446 358 2010 11 30
+end
+durationcanvas 134410 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 206 2010 11 45
+end
+durationcanvas 134538 classinstance_ref 128138 // :Client
+  xyzwh 446 205 2010 11 97
+end
+durationcanvas 137738 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 86 2010 11 40
+end
+durationcanvas 137866 classinstance_ref 128138 // :Client
+  xyzwh 446 81 2010 11 94
+end
+durationcanvas 139786 classinstance_ref 131722 // :Utilisateur
+  xyzwh 65 416 2010 11 44
+end
+durationcanvas 139914 classinstance_ref 128138 // :Client
+  xyzwh 446 424 2010 11 86
+  overlappingdurationcanvas 128789
+    xyzwh 452 451 2020 11 25
+  end
+end
+msg 128149 synchronous
+  from durationcanvas_ref 137866
+  to durationcanvas_ref 128021
+  yz 157 2015 explicitmsg "affiche la page des Stages disponibles"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 152 142
+msg 128405 synchronous
+  from durationcanvas_ref 134538
+  to durationcanvas_ref 128277
+  yz 278 2015 explicitmsg "affiche la page du Stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 202 264
+msg 128661 synchronous
+  from durationcanvas_ref 139914
+  to durationcanvas_ref 128533
+  yz 481 2015 explicitmsg "affiche la page de confirmation"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 187 467
+reflexivemsg 128917 synchronous
+  to durationcanvas_ref 128789
+  yz 451 2025 explicitmsg "inscrit l'utilisateur au stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 486 448
+msg 129301 synchronous
+  from durationcanvas_ref 129045
+  to durationcanvas_ref 129173
+  yz 363 2015 explicitmsg "choisit ses UV"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 226 349
+msg 134666 synchronous
+  from durationcanvas_ref 134410
+  to durationcanvas_ref 134538
+  yz 225 2015 explicitmsg "clique sur \"Info stage\" après avoir sélectionné un stage"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 131 211
+msg 137994 synchronous
+  from durationcanvas_ref 137738
+  to durationcanvas_ref 137866
+  yz 102 2015 explicitmsg "clique sur \"Stages diponibles\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 173 88
+msg 140042 synchronous
+  from durationcanvas_ref 139786
+  to durationcanvas_ref 139914
+  yz 435 2015 explicitmsg "clique sur \"Inscription\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 203 421
+end

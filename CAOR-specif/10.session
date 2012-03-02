@@ -1,0 +1,19 @@
+window_sizes 1600 838 375 1125 600 82
+diagrams
+  classdiagram_ref 128021 // Debut
+    1124 642 100 4 0 0
+  sequencediagram_ref 134666 // retirer_candidature
+    895 513 100 4 0 0
+  sequencediagram_ref 134794 // clore_candidatures
+    895 513 100 4 0 0
+  sequencediagram_ref 134922 // classer_candidature
+    895 513 100 4 0 0
+  active  sequencediagram_ref 134538 // deposer_candidature
+    1219 682 100 4 0 0
+end
+show_stereotypes
+selected sequencediagram_ref 134794 // clore_candidatures
+open
+  usecaseview_ref 128021 // Cas d'usage
+end
+end
