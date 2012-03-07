@@ -28,6 +28,11 @@ public class FakeDataStoreImpl implements DataStore {
 	private Map<Long,UvDTO> uvMap = new HashMap<Long,UvDTO>();
 	private Map<Long,StageDTO> stageMap = new HashMap<Long,StageDTO>();
 	private Map<Long,TypeUvDTO> typeUvMap = new HashMap<Long,TypeUvDTO>();
+	
+	private long keyUv = 0;
+	private long keyAgent = 0;
+	private long keyTypeUv = 0;
+	private long keyStage = 0;
 
 	
 	public AgentDTO getAgent(Long id) {
@@ -202,7 +207,9 @@ public class FakeDataStoreImpl implements DataStore {
 		agent.setFirstName(firstname);
 		
 		agentsMap.put(agent.getIdAgent(),agent);
-	
+		
+		keyAgent++;
+		
 	}
 	
 	private void addUv(int id, int idType, String title, String locality, Collection<Date> dates, Date dateLim ) {
@@ -217,6 +224,7 @@ public class FakeDataStoreImpl implements DataStore {
 		
 		uvMap.put(uv.getIdUv(), uv);
 		
+		keyUv++;
     }
 	
 	private void addStage(int id, Collection<Long> idUv, String title, String locality) {
@@ -229,6 +237,7 @@ public class FakeDataStoreImpl implements DataStore {
 		
 		stageMap.put(stage.getIdStage(), stage);
 		
+		keyStage++;
 	}
 	
 	private void addTypeUv(int id, String title, Collection<Long> typesUvPre) {
@@ -241,6 +250,80 @@ public class FakeDataStoreImpl implements DataStore {
 		typeUv.setEffectifMin(0);
 		
 		typeUvMap.put(typeUv.getIdTypeUv(), typeUv);
+		
+		keyTypeUv++;
+	}
+	
+	public boolean addUv(UvDTO uv){
+		uv.setIdUv(keyUv);
+		uvMap.put(keyUv,uv);
+		keyUv++;
+		return true;
+	}
+
+	@Override
+	public boolean addAgent(AgentDTO agent) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addTypeUv(TypeUvDTO typeUv) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addStage(StageDTO stage) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int nbUvs() {
+		return uvMap.size();
+	}
+
+	@Override
+	public int nbAgents() {
+		// TODO Auto-generated method stub
+		return agentsMap.size();
+	}
+
+	@Override
+	public int nbTypeUvs() {
+		// TODO Auto-generated method stub
+		return typeUvMap.size();
+	}
+
+	@Override
+	public int nbStages() {
+		// TODO Auto-generated method stub
+		return stageMap.size();
+	}
+
+	@Override
+	public boolean delUv(long id) {
+		uvMap.remove(id);
+		return true;
+	}
+
+	@Override
+	public boolean delAgent(long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delTypeUv(long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delStage(long id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -41,8 +41,8 @@
 	</bean>
 
 
-	<simple:server id="wsServiceSessionWeb" serviceClass="istic.sapfor.api.service.ServiceSession"
-		address="http://0.0.0.0:9086/ws/ServiceSession">
+	<simple:server id="wsServiceSessionWeb"
+		serviceClass="istic.sapfor.api.service.ServiceSession" address="http://0.0.0.0:9086/ws/ServiceSession">
 		<simple:serviceBean>
 			<ref bean="wsServiceSession" />
 		</simple:serviceBean>
@@ -89,8 +89,8 @@
 	</bean>
 
 
-	<simple:server id="wsServiceTypeUvWeb" serviceClass="istic.sapfor.api.service.ServiceTypeUv"
-		address="http://0.0.0.0:9088/ws/ServiceTypeUv">
+	<simple:server id="wsServiceTypeUvWeb"
+		serviceClass="istic.sapfor.api.service.ServiceTypeUv" address="http://0.0.0.0:9088/ws/ServiceTypeUv">
 		<simple:serviceBean>
 			<ref bean="wsServiceTypeUv" />
 		</simple:serviceBean>
@@ -100,6 +100,11 @@
 	</simple:server>
 
 
+
+
+	<bean id="dataStoreTester" class="istic.sapfor.server.tester.ClientTester">
+		<property name="dataStore" ref="sharedDataStore"></property>
+	</bean>
 
 
 
