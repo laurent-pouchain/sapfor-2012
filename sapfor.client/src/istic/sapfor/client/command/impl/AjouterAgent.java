@@ -19,7 +19,7 @@ public class AjouterAgent implements ICommand {
 	public Boolean execute() {
 		
 		List<String> l= ihm.addAgent();
-        client.ajout(l);
+//        client.ajout(l);
 	  //créer un agent
 		/*AgentDTO agt= new AgentDTO ();
 		agt.setFirstName(l.get(0));

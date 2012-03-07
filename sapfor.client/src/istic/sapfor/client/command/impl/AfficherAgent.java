@@ -23,7 +23,9 @@ public class AfficherAgent implements ICommand {
 		
 		List<AgentDTO> l = new LinkedList<AgentDTO>();
 		for (int i=0;i<3;i++){
-		AgentDTO agt = client.getAgent(i);
+	    System.out.println("dans la boucle avant le getAgent");
+		AgentDTO agt = client.getAgent((long)i);
+		System.out.println("dans la boucle après le getAgent");
 	     l.add(agt);
 		}
 	 

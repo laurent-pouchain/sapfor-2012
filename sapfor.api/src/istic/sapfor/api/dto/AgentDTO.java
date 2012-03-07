@@ -3,9 +3,10 @@
 
 package istic.sapfor.api.dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class AgentDTO {
+public class AgentDTO implements Serializable {
 
 private long idAgent;
 private long idTypeAgent;
