@@ -7,6 +7,6 @@ import javax.jws.WebService;
 @WebService
 public interface ServiceAgent {
 
-	AgentDTO getAgent(long id);
+	AgentDTO getAgent(Long id);
 	//TO DO add, remove
 }

@@ -8,6 +8,10 @@ import java.util.Collection;
 
 public class AgentDTO implements Serializable {
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private long idAgent;
 private long idTypeAgent;
 private Collection<Long> listIdUvOwned;

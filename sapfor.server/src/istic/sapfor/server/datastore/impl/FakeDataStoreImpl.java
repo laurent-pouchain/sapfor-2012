@@ -92,9 +92,9 @@ public class FakeDataStoreImpl implements DataStore {
 		idOwnedU2.add((long)4);
 		idOwnedU2.add((long)6);
 
-		addAgent(92668751,0,idOwnedJD,"Doe","John");
-		addAgent(-1419698740,1,idOwnedU1,"Dupont","Jean");
-		addAgent(-1419698739,1,idOwnedU2,"Dupond","Jeanne");
+		addAgent(0,0,idOwnedJD,"Doe","John");
+		addAgent(1,1,idOwnedU1,"Dupont","Jean");
+		addAgent(2,1,idOwnedU2,"Dupond","Jeanne");
 
 		Collection<Date> datesUv0 = new Vector<Date>();
 		datesUv0.add(new Date(111,12,9));
@@ -263,20 +263,26 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean addAgent(AgentDTO agent) {
-		// TODO Auto-generated method stub
-		return false;
+		agent.setIdAgent(keyAgent);
+		agentsMap.put(keyAgent,agent);
+		keyAgent++;
+		return true;
 	}
 
 	@Override
 	public boolean addTypeUv(TypeUvDTO typeUv) {
-		// TODO Auto-generated method stub
-		return false;
+		typeUv.setIdTypeUv(keyTypeUv);
+		typeUvMap.put(keyTypeUv,typeUv);
+		keyTypeUv++;
+		return true;
 	}
 
 	@Override
 	public boolean addStage(StageDTO stage) {
-		// TODO Auto-generated method stub
-		return false;
+		stage.setIdStage(keyStage);
+		stageMap.put(keyStage,stage);
+		keyStage++;
+		return true;
 	}
 
 	@Override

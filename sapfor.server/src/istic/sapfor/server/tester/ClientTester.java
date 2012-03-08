@@ -2,12 +2,15 @@ package istic.sapfor.server.tester;
 
 import java.util.Collection;
 import java.util.Date;
+
 import java.util.Vector;
 
 import org.springframework.beans.factory.InitializingBean;
 
 import istic.sapfor.api.dto.*;
+
 import istic.sapfor.server.datastore.DataStore;
+
 
 public class ClientTester implements InitializingBean {
 
@@ -84,7 +87,6 @@ public class ClientTester implements InitializingBean {
 			  System.out.println("");
 			}
 		}
-		
 		
 		
 	}

@@ -37,7 +37,7 @@ l.add(ag2);
 }
 
 @Override
-public AgentDTO getAgent(long id) {
+public AgentDTO getAgent(Long id) {
 	// TODO Auto-generated method stub
 	boolean find=false;
 	AgentDTO aux=null;

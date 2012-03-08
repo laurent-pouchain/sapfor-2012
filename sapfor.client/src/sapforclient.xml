@@ -12,26 +12,28 @@
 <!-- START SNIPPET: beans -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:simple="http://cxf.apache.org/simple"
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
+http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
 http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 
- 
-<!--  	<bean id="ServiceAgentClient" class="istic.sapfor.api.service.ServiceAgent"
+<!--  
+  	<bean id="ServiceAgentClient" class="istic.sapfor.api.service.ServiceAgent"
 		factory-bean="ServiceAgentFactory" factory-method="create" />
 
 	<bean id="ServiceAgentFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
 		<property name="serviceClass" value="istic.sapfor.api.service.ServiceAgent" />
 		<property name="address" value="http://0.0.0.0:9085/ws/ServiceAgent" />
 	</bean>
- -->
  
-    <simple:client id="ServiceAgentClient" address="http://0.0.0.0:9085/ws/ServiceAgent" serviceClass="istic.sapfor.api.service.ServiceAgent" />
+    <bean id="ServiceAgentClient" class="istic.sapfor.client.tester.ServiceAgentStub" />-->
 
-<!--<bean id="ServiceAgentClient" class="istic.sapfor.client.tester.ServiceAgentStub" />-->
+
+    <simple:client id="ServiceAgentClient" address="http://0.0.0.0:9085/ws/ServiceAgent" serviceClass="istic.sapfor.api.service.ServiceAgent" />
 
 
 	<bean id="ui" class="istic.sapfor.client.gui.MainContainer"></bean>

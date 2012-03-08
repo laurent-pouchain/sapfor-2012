@@ -162,18 +162,21 @@ public class MainContainer extends JFrame implements IHM{
 	@Override
 	public void displayAgent(List<AgentDTO> agentlist) {
 		
-		for (int i=0; i<agentlist.size();i++){
-			System.out.println(agentlist.get(i).getName());
+		for (AgentDTO a : agentlist ){
+			if (a !=null){
+			System.out.println(a.getName());
 			String temp ="";
 			
-			temp=agentlist.get(i).getName();
+			temp=a.getName();
 			temp+=" ";
-			temp+=agentlist.get(i).getFirstName();
+			temp+=a.getFirstName();
 			temp+="\n";
 			
 			txt.setText(temp);									
 			System.out.println("Essai sans serveur ni BD");
-		
+			}
+			else {System.out.println("Agent null");}
+			
 		}
 	}
 	@Override
