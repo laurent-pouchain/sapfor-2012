@@ -24,7 +24,7 @@ import javax.swing.UIManager;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-public class MainContainer extends JFrame implements IHM{
+public class MainContainer implements IHM{
 
 	private ClassPathXmlApplicationContext context = null;
 	private JTextArea txt;
@@ -35,12 +35,7 @@ public class MainContainer extends JFrame implements IHM{
 	public void showUI(ClassPathXmlApplicationContext ctx) {
 		context = ctx;
 		/* Init default close operation */
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-        //pack();
-		setSize(800, 400);
-		setPreferredSize(getSize());
-        setResizable(false);
+		SapforJFrame frame= new SapforJFrame("premiere page");
 
         
         //bouton
@@ -52,15 +47,16 @@ public class MainContainer extends JFrame implements IHM{
 		JLabel labeln = new JLabel("nom");
 		nom = new JTextField();
 	
-		txt= new JTextArea("Liste d'Agents");
+		txt= new SapforJTextArea("Liste d'Agents");
 		txt.setEditable(true);
-		
+		frame.add(prenom);
+		frame.add(txt);
 		
 		JButton btAdd = new JButton("Pull");
 		JButton btAgent = new JButton("Affiche");
 	    
 		
-		    JPanel pane = new JPanel();
+		   JPanel pane = new JPanel();
 		    pane.setLayout(new GridBagLayout());
 		    GridBagConstraints gbc = new GridBagConstraints();
 		    gbc.weightx = 1;
@@ -122,7 +118,7 @@ public class MainContainer extends JFrame implements IHM{
 		    gbc.fill = GridBagConstraints.NONE;
 		    pane.add(btAgent,gbc);
 
-		    this.add(pane,BorderLayout.CENTER);  
+		    frame.add(pane,BorderLayout.CENTER);  
 		    
 
 
@@ -156,7 +152,7 @@ public class MainContainer extends JFrame implements IHM{
 				
 			
 		});
-		    setVisible(true);
+		    frame.setVisible(true);
 	}
 	
 	@Override
