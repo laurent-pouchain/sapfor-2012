@@ -29,6 +29,14 @@ public class FakeDataStoreImpl implements DataStore {
 	private Map<Long,StageDTO> stageMap = new HashMap<Long,StageDTO>();
 	private Map<Long,TypeUvDTO> typeUvMap = new HashMap<Long,TypeUvDTO>();
 	
+	
+	// modif JCG 09/03/2012
+	/* 
+	 * Map qui relie un Agent directeur avec les stages dont il a la gestion
+	 */
+	private Map<Long,Collection<Long>> stagesDirMap = new HashMap<Long,Collection<Long>>();	
+
+	
 	private long keyUv = 0;
 	private long keyAgent = 0;
 	private long keyTypeUv = 0;
@@ -337,5 +345,51 @@ public class FakeDataStoreImpl implements DataStore {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	// modif JCG 09/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages diriges par un Agent directeur
+	 */
+	public Collection<Long> getIdStageDir(Long idAgent){
+		if(this.stagesDirMap.containsKey(idAgent)){
+			return stagesDirMap.get(idAgent);
+		}
+		return null;
+	}
+	/* 
+	 * Methode qui renvoie la liste des UVs contenues dans un Stage
+	 */
+	public Collection<Long> getIdUvStageDir(Long idStage){
+		if(this.stageMap.containsKey(idStage)){
+			return this.stageMap.get(idStage).getListIdUv();
+		}
+		return null;		
+	}
+	/* 
+	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
+	 */	
+	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
+		Collection<Long> listeUvPossible = new Vector<Long>();
+		Collection<Long> listeUvDispo; // UVs du stage
+		Collection<Long> listeUvOwned; // UVs de l'Agent
+		Collection<Long> listeTypeUvOwned = new Vector<Long>(); // types des UVs owned
+		Collection<Long> listeTypeUvPrereq; // types des UVs prerequises
+		listeUvDispo = this.stageMap.get(idStage).getListIdUv(); 
+		listeUvOwned = this.agentsMap.get(idAgent).getListIdUvOwned();
+		for (Long idUvOwned : listeUvOwned) {
+			listeTypeUvOwned.add(this.getUv(idUvOwned).getIdTypeUv());
+		}
+		for (Long idUv : listeUvDispo) {
+			listeTypeUvPrereq = this.typeUvMap.get(idUv).getListIdUvPrereq();
+			if (listeTypeUvOwned.containsAll(listeTypeUvPrereq)) {
+				listeUvPossible.add(idUv);
+			}
+		}
+		return listeUvPossible;
+	}
+
+
+
 
 }

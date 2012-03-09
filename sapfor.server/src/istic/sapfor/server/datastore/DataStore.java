@@ -1,6 +1,8 @@
 package istic.sapfor.server.datastore;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import istic.sapfor.api.dto.*;
 
@@ -28,5 +30,22 @@ public interface DataStore {
     public boolean delAgent(long id);
     public boolean delTypeUv(long id);
     public boolean delStage(long id);
+    
+    
+	// modif JCG 09/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages diriges par un Agent directeur
+	 */
+    public Collection<Long> getIdStageDir(Long idAgent);
+	/* 
+	 * Methode qui renvoie la liste des UVs contenues dans un Stage
+	 */
+    public Collection<Long> getIdUvStageDir(Long idStage);    
+	/* 
+	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
+	 */
+	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage);
+
+	// modif JCG 09/03/2012
 	
 }

@@ -36,8 +36,7 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdUvStageDispo(idAgent, idStage);
 	}
 
 	@Override
@@ -48,14 +47,12 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public Collection<Long> getIdStageDir(Long idAgent) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdStageDir(idAgent);
 	}
 
 	@Override
 	public Collection<Long> getIdUvStageDir(Long idStage) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdUvStageDir(idStage);
 	}
 
 	@Override
@@ -66,7 +63,7 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public boolean setStatut(Long idUv, Long idCandidat,
-			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		// TODO Auto-generated method stub
 		return false;
 	}
