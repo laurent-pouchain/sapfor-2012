@@ -28,5 +28,9 @@ public interface DataStore {
     public boolean delAgent(long id);
     public boolean delTypeUv(long id);
     public boolean delStage(long id);
+	public boolean addInscrip(Long idAgent, Collection<Long> idsUv);
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
+
 	
 }
