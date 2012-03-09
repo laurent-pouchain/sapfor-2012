@@ -21,7 +21,7 @@ http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
 http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 
-<!--  
+ 
   	<bean id="ServiceAgentClient" class="istic.sapfor.api.service.ServiceAgent"
 		factory-bean="ServiceAgentFactory" factory-method="create" />
 
@@ -29,12 +29,9 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="serviceClass" value="istic.sapfor.api.service.ServiceAgent" />
 		<property name="address" value="http://0.0.0.0:9085/ws/ServiceAgent" />
 	</bean>
- 
+
+<!--  
     <bean id="ServiceAgentClient" class="istic.sapfor.client.tester.ServiceAgentStub" />-->
-
-
-    <simple:client id="ServiceAgentClient" address="http://0.0.0.0:9085/ws/ServiceAgent" serviceClass="istic.sapfor.api.service.ServiceAgent" />
-
 
 	<bean id="ui" class="istic.sapfor.client.gui.MainContainer"></bean>
 

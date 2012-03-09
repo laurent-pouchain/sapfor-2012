@@ -1,9 +1,11 @@
 package istic.sapfor.client.tester;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import istic.sapfor.api.dto.AgentDTO;
+import istic.sapfor.api.dto.EtatCandidatureDTO;
 
 public class ServiceAgentStub implements istic.sapfor.api.service.ServiceAgent {
 
@@ -55,6 +57,48 @@ public void ajout(List<String> l) {
 	System.out.println(agt.getFirstName());
 	System.out.println(" ");
 	System.out.println(agt.getName());
+}
+
+@Override
+public Collection<Long> getIdStageDispo(Long idAgent) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean addInscrip(Long idAgent, Collection<Long> idsUv) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public Collection<Long> getIdStageDir(Long idAgent) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public Collection<Long> getIdUvStageDir(Long idStage) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public Collection<Long> getIdCandidat(Long idUv) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO etat) {
+	// TODO Auto-generated method stub
+	return false;
 }
 
 }

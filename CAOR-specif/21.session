@@ -1,8 +1,5 @@
-window_sizes 1366 706 333 1027 553 79
+window_sizes 1575 918 393 1172 654 168
 show_stereotypes
-selected classview_ref 141077 // Classes DTO
-open
-  
-  package_ref 128021 // SapFor
-end
+selected 
+package_ref 129 // CAOR-specif
 end
