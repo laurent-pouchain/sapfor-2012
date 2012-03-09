@@ -44,5 +44,15 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="ihm" ref="ui" />
 		<property name="client" ref="ServiceAgentClient" />
 	</bean>
+	
+	<bean id="cmdDisplayStagesDispo" class="istic.sapfor.client.command.impl.AfficherStageDispo">
+		<property name="ihm" ref="ui" />
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
+	<bean id="cmdDisplayUvDispo" class="istic.sapfor.client.command.impl.AfficherUvStage">
+		<property name="ihm" ref="ui" />
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
 </beans>
 <!-- END SNIPPET: beans -->
