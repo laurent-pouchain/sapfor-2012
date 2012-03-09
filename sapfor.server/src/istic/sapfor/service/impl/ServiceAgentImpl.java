@@ -41,8 +41,7 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public boolean addInscrip(Long idAgent, Collection<Long> idsUv) {
-		// TODO Auto-generated method stub
-		return false;
+		return dataStore.addInscrip(idAgent,idsUv);
 	}
 
 	@Override
@@ -56,16 +55,15 @@ public class ServiceAgentImpl implements ServiceAgent {
 	}
 
 	@Override
-	public Collection<Long> getIdCandidat(Long idUv) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
+        return dataStore.getIdCandidat(idUv, etat);
 	}
 
 	@Override
 	public boolean setStatut(Long idUv, Long idCandidat,
 		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
+    }
+
 
 }

@@ -36,6 +36,13 @@ public class FakeDataStoreImpl implements DataStore {
 	 */
 	private Map<Long,Collection<Long>> stagesDirMap = new HashMap<Long,Collection<Long>>();	
 
+
+	private Map<Long,Collection<Long>> inscritMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> retenuMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> listeAttenteMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> nonRetenuMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> annuleMap = new HashMap<Long,Collection<Long>>();
+
 	
 	private long keyUv = 0;
 	private long keyAgent = 0;
@@ -230,6 +237,12 @@ public class FakeDataStoreImpl implements DataStore {
 		uv.setDates(dates);
 		uv.setDateLimite(dateLim);
 		
+		inscritMap.put((long)id, new Vector<Long>());
+		retenuMap.put((long)id, new Vector<Long>());
+		nonRetenuMap.put((long)id, new Vector<Long>());
+		listeAttenteMap.put((long)id, new Vector<Long>());
+		annuleMap.put((long)id, new Vector<Long>());
+		
 		uvMap.put(uv.getIdUv(), uv);
 		
 		keyUv++;
@@ -265,6 +278,11 @@ public class FakeDataStoreImpl implements DataStore {
 	public boolean addUv(UvDTO uv){
 		uv.setIdUv(keyUv);
 		uvMap.put(keyUv,uv);
+		inscritMap.put(keyUv, new Vector<Long>());
+		retenuMap.put(keyUv, new Vector<Long>());
+		nonRetenuMap.put(keyUv, new Vector<Long>());
+		listeAttenteMap.put(keyUv, new Vector<Long>());
+		annuleMap.put(keyUv, new Vector<Long>());
 		keyUv++;
 		return true;
 	}
@@ -342,8 +360,43 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<Long> listIdCandidat = null;
+		switch (etat) {
+	    case inscrit : listIdCandidat=inscritMap.get(idUv); break;
+	    case retenu : listIdCandidat=retenuMap.get(idUv); break;
+	    case nonRetenu : listIdCandidat=nonRetenuMap.get(idUv); break;
+	    case listeAttente : listIdCandidat=listeAttenteMap.get(idUv); break;
+	    default : break;
+	}
+		return listIdCandidat;
+	}
+
+	@Override
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+		switch (ancienEtat) {
+		    case inscrit : inscritMap.get(idUv).remove(idCandidat); break;
+		    case retenu : retenuMap.get(idUv).remove(idCandidat); break;
+		    case nonRetenu : nonRetenuMap.get(idUv).remove(idCandidat); break;
+		    case listeAttente : listeAttenteMap.get(idUv).remove(idCandidat); break;
+		    default : return false;
+		}
+		switch (nouvelEtat) {
+	        case inscrit : inscritMap.get(idUv).add(idCandidat); break;
+	        case retenu : retenuMap.get(idUv).add(idCandidat); break;
+	        case nonRetenu : nonRetenuMap.get(idUv).add(idCandidat); break;
+	        case listeAttente : listeAttenteMap.get(idUv).add(idCandidat); break;
+	        default : return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean addInscrip(Long idAgent, Collection<Long> idsUv) {
+		for (Long idUv : idsUv){
+		inscritMap.get(idUv).add(idAgent);
+		}
+		return true;
 	}
 	
 	

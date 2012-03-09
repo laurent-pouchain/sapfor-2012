@@ -22,7 +22,7 @@ public interface ServiceAgent {
 	
 	Collection<Long> getIdUvStageDir(Long idStage);
 	
-	Collection<Long> getIdCandidat(Long idUv);
+	Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat);
 	
 	boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
 	

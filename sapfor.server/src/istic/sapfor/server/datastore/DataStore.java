@@ -30,6 +30,7 @@ public interface DataStore {
     public boolean delAgent(long id);
     public boolean delTypeUv(long id);
     public boolean delStage(long id);
+
     
     
 	// modif JCG 09/03/2012
@@ -47,5 +48,11 @@ public interface DataStore {
 	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage);
 
 	// modif JCG 09/03/2012
+
+	public boolean addInscrip(Long idAgent, Collection<Long> idsUv);
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
+
+
 	
 }
