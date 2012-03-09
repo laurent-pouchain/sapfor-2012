@@ -161,13 +161,13 @@ public class MainContainer extends JFrame implements IHM{
 	
 	@Override
 	public void displayAgent(List<AgentDTO> agentlist) {
-		
+		String temp ="";
 		for (AgentDTO a : agentlist ){
 			if (a !=null){
 			System.out.println(a.getName());
-			String temp ="";
 			
-			temp=a.getName();
+			
+			temp+=a.getName();
 			temp+=" ";
 			temp+=a.getFirstName();
 			temp+="\n";
