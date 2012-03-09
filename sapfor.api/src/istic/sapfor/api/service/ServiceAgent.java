@@ -24,6 +24,6 @@ public interface ServiceAgent {
 	
 	Collection<Long> getIdCandidat(Long idUv);
 	
-	boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO etat);
+	boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
 	
 }

@@ -1,7 +1,5 @@
 package istic.sapfor.server.app;
 
-import istic.sapfor.api.dto.*;
-import istic.sapfor.server.datastore.DataStore;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

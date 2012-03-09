@@ -1,5 +1,7 @@
 package istic.sapfor.server.datastore;
 
+import java.util.Collection;
+
 import istic.sapfor.api.dto.*;
 
 public interface DataStore {
@@ -9,6 +11,8 @@ public interface DataStore {
 	public UvDTO getUv(Long id); 	
 	public StageDTO getStage(Long id); 	
     public TypeUvDTO getTypeUv(Long id);
+    
+    public Collection<Long> getIdCandidat(Long idUv,EtatCandidatureDTO etat);
     
     public int nbUvs();
     public int nbAgents();

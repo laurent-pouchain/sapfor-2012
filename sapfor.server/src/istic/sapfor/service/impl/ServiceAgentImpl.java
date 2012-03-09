@@ -65,7 +65,8 @@ public class ServiceAgentImpl implements ServiceAgent {
 	}
 
 	@Override
-	public boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO etat) {
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		// TODO Auto-generated method stub
 		return false;
 	}

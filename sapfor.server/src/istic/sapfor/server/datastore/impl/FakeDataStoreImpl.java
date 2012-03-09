@@ -332,4 +332,10 @@ public class FakeDataStoreImpl implements DataStore {
 		return false;
 	}
 
+	@Override
+	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
