@@ -36,7 +36,6 @@ public class FakeDataStoreImpl implements DataStore {
 	 */
 	private Map<Long,Collection<Long>> stagesDirMap = new HashMap<Long,Collection<Long>>();	
 
-
 	private Map<Long,Collection<Long>> inscritMap = new HashMap<Long,Collection<Long>>();
 	private Map<Long,Collection<Long>> retenuMap = new HashMap<Long,Collection<Long>>();
 	private Map<Long,Collection<Long>> listeAttenteMap = new HashMap<Long,Collection<Long>>();
@@ -210,8 +209,26 @@ public class FakeDataStoreImpl implements DataStore {
 		addTypeUv(3, "Sap-PS1", typesUvPre3);
 		addTypeUv(4, "Sap-PS2", typesUvPre4);		
 		
+		addDirector((long)0,(long)0);
+		addDirector((long)0,(long)1);
+		addDirector((long)0,(long)2);
+		addDirector((long)0,(long)3);
+		addDirector((long)0,(long)4);
+		addDirector((long)0,(long)5);
+		addDirector((long)0,(long)6);
+		addDirector((long)0,(long)7);
+		addDirector((long)0,(long)8);
+		addDirector((long)0,(long)9);
+		
 	}
 	
+	public void addDirector(long idAgent, long idStage) {
+		if(!this.stagesDirMap.containsKey(idAgent)){
+			stagesDirMap.put(idAgent, new Vector<Long>());
+		}
+		stagesDirMap.get(idAgent).add(idStage);
+	}
+
 	private void addAgent(int id, int idType, Collection<Long> idOwned, String name, String firstname) {
 		AgentDTO agent = new AgentDTO();
 		
@@ -374,6 +391,8 @@ public class FakeDataStoreImpl implements DataStore {
 	@Override
 	public boolean setStatut(Long idUv, Long idCandidat,
 			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+		
+		
 		switch (ancienEtat) {
 		    case inscrit : inscritMap.get(idUv).remove(idCandidat); break;
 		    case retenu : retenuMap.get(idUv).remove(idCandidat); break;
@@ -442,6 +461,7 @@ public class FakeDataStoreImpl implements DataStore {
 		return listeUvPossible;
 	}
 
+	
 
 
 
