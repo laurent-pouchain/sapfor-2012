@@ -453,8 +453,8 @@ public class FakeDataStoreImpl implements DataStore {
 			listeTypeUvOwned.add(this.getUv(idUvOwned).getIdTypeUv());
 		}
 		for (Long idUv : listeUvDispo) {
-			listeTypeUvPrereq = this.typeUvMap.get(idUv).getListIdUvPrereq();
-			if (listeTypeUvOwned.containsAll(listeTypeUvPrereq)) {
+			listeTypeUvPrereq = this.typeUvMap.get(uvMap.get(idUv).getIdTypeUv()).getListIdUvPrereq();
+			if (listeTypeUvOwned.containsAll(listeTypeUvPrereq) & !listeTypeUvOwned.contains(uvMap.get(idUv).getIdTypeUv())) {
 				listeUvPossible.add(idUv);
 			}
 		}
