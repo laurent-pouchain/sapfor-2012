@@ -461,7 +461,22 @@ public class FakeDataStoreImpl implements DataStore {
 		return listeUvPossible;
 	}
 
-	
+	// modif KD 12/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages possibles pour un agent donne
+	 */
+	public Collection<Long> getIdStageDispo(Long idAgent){
+		Collection<Long> listIdStageDispo = new Vector<Long>(); // stages possibles
+		// TODO tester si keySet supporte la Collection, sinon passer en Set<Long>
+		Collection<Long> listIdStages; // stages crees
+		listIdStages = this.stageMap.keySet();
+		for (Long idStage : listIdStages){
+			if (this.getIdUvStageDispo(idAgent, idStage) != null){ // si ce stage a au moins 1 UV possible pour cet agent
+				listIdStageDispo.add(idStage); // ajouter ce stage a la liste des stages possibles
+			}
+		}
+		return listIdStageDispo;
+	}
 
 
 

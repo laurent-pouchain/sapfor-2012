@@ -30,8 +30,7 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public Collection<Long> getIdStageDispo(Long idAgent) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdStageDispo(idAgent);
 	}
 
 	@Override

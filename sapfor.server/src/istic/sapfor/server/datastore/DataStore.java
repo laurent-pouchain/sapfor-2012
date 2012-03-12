@@ -39,7 +39,7 @@ public interface DataStore {
 	/* 
 	 * Methode qui renvoie la liste des UVs contenues dans un Stage
 	 */
-    public Collection<Long> getIdUvStageDir(Long idStage);    
+    public Collection<Long> getIdUvStageDir(Long idStage);
 	/* 
 	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
 	 */
@@ -51,6 +51,10 @@ public interface DataStore {
 	public boolean setStatut(Long idUv, Long idCandidat,
 			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
 
-
+	// modif KD 12/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages possibles pour un agent donne
+	 */
+	public Collection<Long> getIdStageDispo(Long idAgent);
 	
 }
