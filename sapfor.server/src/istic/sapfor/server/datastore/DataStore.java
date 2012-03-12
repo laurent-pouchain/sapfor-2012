@@ -39,11 +39,22 @@ public interface DataStore {
 	/* 
 	 * Methode qui renvoie la liste des UVs contenues dans un Stage
 	 */
-    public Collection<Long> getIdUvStageDir(Long idStage);
+    public Collection<Long> getIdUvStageDir(Long idStage);    
 	/* 
 	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
 	 */
 	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage);
+
+	/** 
+	 * Methode qui renvoie la liste des stages auxquelles est inscrit un agent 
+	 */	
+	public Collection<Long> getIdStageInscrit(Long idAgent);
+	
+	/** 
+	 * Methode qui renvoie la liste des UVs auquelles est inscrit un agent et pour un stage donne
+	 * L'etat de la candidature peut etre : inscrit, retenu, non retenu ou liste d'attente
+	 */	
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage);
 
 	// modif JCG 09/03/2012
 
@@ -56,5 +67,6 @@ public interface DataStore {
 	 * Methode qui renvoie la liste des stages possibles pour un agent donne
 	 */
 	public Collection<Long> getIdStageDispo(Long idAgent);
+
 	
 }

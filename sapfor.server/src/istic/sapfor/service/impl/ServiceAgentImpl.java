@@ -63,6 +63,17 @@ public class ServiceAgentImpl implements ServiceAgent {
 		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
     }
+	
+	@Override
+	public Collection<Long> getIdStageInscrit(Long idAgent) {
+		return dataStore.getIdStageInscrit(idAgent);
+	}
+
+	@Override
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
+		return dataStore.getIdUvStageInscrit(idAgent, idStage);
+	}
+
 
 
 }

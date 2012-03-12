@@ -147,7 +147,7 @@ public class FakeDataStoreImpl implements DataStore {
 		addUv(2,1,"FF1-F-07.01.12", "Fougères", datesUv2, new Date(111,12,15));
 		addUv(3,0,"Basics-R-06.02.15", "Rennes", datesUv3, new Date(111,1,15));
 		addUv(4,1,"FF1-R-07.02.12", "Rennes", datesUv4, new Date(111,1,15));
-		addUv(5,0,"Basics-R-06.02.15", "Bain-de-Bretagne", datesUv5, new Date(111,1,21));
+		addUv(5,0,"Basics-R-06.09.15", "Bain-de-Bretagne", datesUv5, new Date(111,1,21));
 		addUv(6,3,"PS1-R-15.03.12", "Rennes", datesUv6, new Date(111,3,1));
 		addUv(7,0,"Basics-F-06.05.12", "Fougères", datesUv7, new Date(111,5,1));
 		addUv(8,3,"PS1-F-07.05.12", "Fougères", datesUv8, new Date(111,5,1));
@@ -179,15 +179,15 @@ public class FakeDataStoreImpl implements DataStore {
 		uvStage8.add((long)10);
 		uvStage9.add((long)11);
 		
-		addStage(0,uvStage0,"Stage de Base","Monfort");
+		addStage(0,uvStage0,"Stage de Base 1","Monfort");
 		addStage(1,uvStage1,"Feux de Forêt 1","Fougères");
-		addStage(2,uvStage2,"Feux de Forêt 1","Fougères");
+		addStage(2,uvStage2,"Feux de Forêt 1 + accidents","Fougères");
 		addStage(3,uvStage3,"Base et Feux de Forêt 1","Rennes");
-		addStage(4,uvStage4,"Stage de Base","Monfort");		
+		addStage(4,uvStage4,"Stage de Base 2","Monfort");		
 		addStage(5,uvStage5,"Premiers Secours 1","Rennes");
 		addStage(6,uvStage6,"Base et Premiers Secours 1","Fougères");
 		addStage(7,uvStage7,"Feux de Forêt 2","Rennes");
-		addStage(8,uvStage8,"Feux de Forêt 2","Monfort");
+		addStage(8,uvStage8,"Feux de Forêt 2 + accidents","Monfort");
 		addStage(9,uvStage9,"Premiers Secours 2","Monfort");
 		
 		Collection<Long> typesUvPre0 = new Vector<Long>();
@@ -463,6 +463,9 @@ public class FakeDataStoreImpl implements DataStore {
 
 	// modif KD 12/03/2012
 	/* 
+
+
+
 	 * Methode qui renvoie la liste des stages possibles pour un agent donne
 	 */
 	public Collection<Long> getIdStageDispo(Long idAgent){
@@ -478,6 +481,56 @@ public class FakeDataStoreImpl implements DataStore {
 		return listIdStageDispo;
 	}
 
+	
+	/** 
+	 * Methode qui renvoie la liste des stages auxquelles est inscrit un agent 
+	 */	
+	public Collection<Long> getIdStageInscrit(Long idAgent) {
+		Collection<Long> listeStageInscrit = new Vector<Long>();
+
+		for (StageDTO stage : this.stageMap.values()) {
+			if (!getIdUvStageInscrit(idAgent, stage.getIdStage()).isEmpty()) {
+				listeStageInscrit.add(stage.getIdStage());
+			}	
+		}
+		return listeStageInscrit;
+	}
+	
+	/** 
+	 * Methode qui renvoie la liste des UVs auxquelles est inscrit un agent et pour un stage donne
+	 * L'etat de la candidature peut etre : inscrit, retenu, non retenu ou liste d'attente
+	 */	
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
+		Collection<Long> listeUvInscrit = new Vector<Long>();
+		Collection<Long> listeUvPossible;
+		listeUvPossible = getIdUvStageDispo(idAgent, idStage);
+
+		for (Long idUv : listeUvPossible) {
+			if (this.inscritMap.containsKey(idUv)) {
+				if (this.inscritMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		for (Long idUv : listeUvPossible) {
+			if (this.retenuMap.containsKey(idUv)) {
+				if (this.retenuMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		for (Long idUv : listeUvPossible) {
+			if (this.listeAttenteMap.containsKey(idUv)) {
+				if (this.listeAttenteMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		return listeUvInscrit;
+	}
 
 
 }

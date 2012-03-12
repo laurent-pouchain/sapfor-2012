@@ -26,44 +26,44 @@ public class ClientTester implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		//TODO TESTS
-		System.out.println("DataStore Injected = "+dataStore);
-		
+		// TODO TESTS
+		System.out.println("DataStore Injected = " + dataStore);
+
 		DataStore fDS = dataStore;
-		
-		for (int i = 0; i < fDS.nbStages(); i++ ) {
-		    StageDTO s = fDS.getStage((long)i);
-		    System.out.print("Nom du Stage : ");
-			System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
+
+		for (int i = 0; i < fDS.nbStages(); i++) {
+			StageDTO s = fDS.getStage((long) i);
+			System.out.print("Nom du Stage : ");
+			System.out.println(s.getTitle() + " (à " + s.getLocality() + ")");
 			System.out.println("Composé des Uvs suivantes : ");
 			for (Long idUv : s.getListIdUv()) {
 				System.out.println(fDS.getUv(idUv).getTitle());
 			}
 			System.out.println("");
-	    }
-		
-		for (int i = 0; i < fDS.nbUvs(); i++ ) {
-			UvDTO u = fDS.getUv((long)i);
-		    System.out.print("Nom de l'UV : ");
-			System.out.println(u.getTitle()+" (à "+u.getLocality()+")");
+		}
+
+		for (int i = 0; i < fDS.nbUvs(); i++) {
+			UvDTO u = fDS.getUv((long) i);
+			System.out.print("Nom de l'UV : ");
+			System.out.println(u.getTitle() + " (à " + u.getLocality() + ")");
 			System.out.println("");
-	    }
-		
+		}
+
 		System.out.println("-------Ajout d'une UV------------");
-		
+
 		UvDTO uv = new UvDTO();
-		
+
 		uv.setIdTypeUv(1);
 		uv.setTitle("Basics-Essai-Entrée");
 		uv.setLocality("Paris");
 		Collection<Date> dates = new Vector<Date>();
 		uv.setDates(dates);
 		uv.setDateLimite(new Date());
-		
+
 		fDS.addUv(uv);
-		
-        System.out.println("Id de l'uv : "+uv.getIdUv()+" ");
-        System.out.println("taille de la map : "+fDS.nbUvs()+" ");
+
+		System.out.println("Id de l'uv : " + uv.getIdUv() + " ");
+		System.out.println("taille de la map : " + fDS.nbUvs() + " ");
 
 
 		for (int i = 0; i < 100; i++ ) {
@@ -226,10 +226,98 @@ public class ClientTester implements InitializingBean {
 			System.out.print(fDS.getAgent(ic).getFirstName()+" "+fDS.getAgent(ic).getName());
 		}
 		System.out.println();
+		System.out.println();
+		System.out.println();
 		
+		/**
+		 * Rajout de tests par JCG 12/03/2012
+		 */
+				
+		System.out.println("--------------------Tests rajoutés par JCG le 12/03/2012--------------------");
+		System.out.println();
+		System.out.println("-----------Liste des stages auxquels sont inscrits les candidats------------");
+
+		for (int i = 0; i < 10; ++i) {
+			fDS.setStatut((long) i, (long) 0, EtatCandidatureDTO.retenu, EtatCandidatureDTO.inscrit);
+			fDS.setStatut((long) i, (long) 1, EtatCandidatureDTO.retenu, EtatCandidatureDTO.inscrit);
+			fDS.setStatut((long) i, (long) 2, EtatCandidatureDTO.listeAttente, EtatCandidatureDTO.inscrit);
+		}
+
+		for (int i = 0; i < 100; i++) {
+			if (fDS.getAgent((long) i) != null) {
+				AgentDTO a = fDS.getAgent((long) i);
+				System.out.print("L'agent ");
+				System.out.print(a.getFirstName() + " " + a.getName());
+				System.out.print(" est inscrit aux stages suivants : \n");
+				for (Long idStage : fDS.getIdStageInscrit(a.getIdAgent())) {
+					System.out.println("\t - " + fDS.getStage(idStage).getTitle());
+				}
+				System.out.println("");
+			}
+		}
+
+		System.out.println("-----------Liste des UVs auxquelles sont inscrits les candidats------------");
+
+		for (int i = 0; i < 100; i++) {
+			if (fDS.getAgent((long) i) != null) {
+				AgentDTO a = fDS.getAgent((long) i);
+				System.out.print("L'agent ");
+				System.out.print(a.getFirstName() + " " + a.getName());
+				System.out.print(" est inscrit aux UVs suivantes : \n");
+				for (int h = 0; h < 10; ++h) {
+					for (Long idUv : fDS.getIdUvStageInscrit(a.getIdAgent(), (long) h)) {
+						System.out.println("\t - " + fDS.getUv(idUv).getTitle());
+					}
+				}
+				System.out.println("");
+			}
+		}
+
+		
+		
+
+		System.out.println("-----------Liste des stages auxquels sont inscrits les candidats------------");
+		System.out.println("--------------------------après quelques annulations------------------------");
+
+		fDS.setStatut((long) 5, (long) 0, EtatCandidatureDTO.annulé, EtatCandidatureDTO.retenu);
+		fDS.setStatut((long) 9, (long) 2, EtatCandidatureDTO.annulé, EtatCandidatureDTO.listeAttente);		
+		
+		for (int i = 0; i < 100; i++) {
+			if (fDS.getAgent((long) i) != null) {
+				AgentDTO a = fDS.getAgent((long) i);
+				System.out.print("L'agent ");
+				System.out.print(a.getFirstName() + " " + a.getName());
+				System.out.print(" est inscrit aux stages suivants : \n");
+				for (Long idStage : fDS.getIdStageInscrit(a.getIdAgent())) {
+					System.out.println("\t - " + fDS.getStage(idStage).getTitle());
+				}
+				System.out.println("");
+			}
+		}
+
+		System.out.println("-------------Liste des UVs auxquelles sont inscrits les candidats------------");
+		System.out.println("--------------------------après quelques annulations-------------------------");
+
+		for (int i = 0; i < 100; i++) {
+			if (fDS.getAgent((long) i) != null) {
+				AgentDTO a = fDS.getAgent((long) i);
+				System.out.print("L'agent ");
+				System.out.print(a.getFirstName() + " " + a.getName());
+				System.out.print(" est inscrit aux UVs suivantes : \n");
+				for (int h = 0; h < 10; ++h) {
+					for (Long idUv : fDS.getIdUvStageInscrit(a.getIdAgent(),(long) h)) {
+						System.out.println("\t - " + fDS.getUv(idUv).getTitle());
+					}
+				}
+				System.out.println("");
+			}
+		}
+
+		System.out.println("----------------Fin des Tests rajoutés par JCG le 12/03/2012-----------------");
+		System.out.println();
+
+	
 	}
-	
-	
 	
 	
 }

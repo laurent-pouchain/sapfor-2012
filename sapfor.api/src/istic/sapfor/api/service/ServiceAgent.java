@@ -25,5 +25,17 @@ public interface ServiceAgent {
 	Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat);
 	
 	boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
+
+	/**
+	 *  12/03/2012 JCG
+	 * Methodes rajoutees pour permettre l'annulation de candidature par un agent
+	 * @param idAgent
+	 * @return
+	 */
+	Collection<Long> getIdStageInscrit(Long idAgent);
+	
+	Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage);
+	
+	
 	
 }
