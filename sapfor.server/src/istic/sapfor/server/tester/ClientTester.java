@@ -316,6 +316,22 @@ public class ClientTester implements InitializingBean {
 		System.out.println("----------------Fin des Tests rajoutés par JCG le 12/03/2012-----------------");
 		System.out.println();
 
+		System.out.println("----------------Tests rajoutés par Laurent le 12/03/2012-----------------");
+		System.out.println();
+		
+		for (int i = 0; i < 100; i++) {
+			if (fDS.getAgent((long) i) != null) {
+				AgentDTO a = fDS.getAgent((long) i);
+				System.out.print("L'agent ");
+				System.out.print(a.getFirstName() + " " + a.getName());
+				System.out.print(" peut postuler aux stages suivants : \n");
+				Collection<Long> ls = fDS.getIdStageDispo(a.getIdAgent());
+				for (Long idS : ls){
+					System.out.println("\t - " + fDS.getStage(idS).getTitle());
+				}
+				System.out.println("");
+			}
+		}
 	
 	}
 	

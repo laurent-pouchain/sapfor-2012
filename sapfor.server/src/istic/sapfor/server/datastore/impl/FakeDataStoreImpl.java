@@ -474,7 +474,7 @@ public class FakeDataStoreImpl implements DataStore {
 		Collection<Long> listIdStages; // stages crees
 		listIdStages = this.stageMap.keySet();
 		for (Long idStage : listIdStages){
-			if (this.getIdUvStageDispo(idAgent, idStage) != null){ // si ce stage a au moins 1 UV possible pour cet agent
+			if (!this.getIdUvStageDispo(idAgent, idStage).isEmpty()){ // si ce stage a au moins 1 UV possible pour cet agent
 				listIdStageDispo.add(idStage); // ajouter ce stage a la liste des stages possibles
 			}
 		}
