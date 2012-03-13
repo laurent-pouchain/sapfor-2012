@@ -28,5 +28,45 @@ public interface DataStore {
     public boolean delAgent(long id);
     public boolean delTypeUv(long id);
     public boolean delStage(long id);
+
+    
+    
+	// modif JCG 09/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages diriges par un Agent directeur
+	 */
+    public Collection<Long> getIdStageDir(Long idAgent);
+	/* 
+	 * Methode qui renvoie la liste des UVs contenues dans un Stage
+	 */
+    public Collection<Long> getIdUvStageDir(Long idStage);    
+	/* 
+	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
+	 */
+	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage);
+
+	/** 
+	 * Methode qui renvoie la liste des stages auxquelles est inscrit un agent 
+	 */	
+	public Collection<Long> getIdStageInscrit(Long idAgent);
+	
+	/** 
+	 * Methode qui renvoie la liste des UVs auquelles est inscrit un agent et pour un stage donne
+	 * L'etat de la candidature peut etre : inscrit, retenu, non retenu ou liste d'attente
+	 */	
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage);
+
+	// modif JCG 09/03/2012
+
+	public boolean addInscrip(Long idAgent, Collection<Long> idsUv);
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
+
+	// modif KD 12/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages possibles pour un agent donne
+	 */
+	public Collection<Long> getIdStageDispo(Long idAgent);
+
 	
 }

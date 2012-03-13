@@ -3,6 +3,8 @@ package istic.sapfor.server.datastore.impl;
 import istic.sapfor.api.dto.*;
 import istic.sapfor.server.datastore.DataStore;
 
+import java.io.*;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ public class FakeDataStoreImpl implements DataStore {
 		System.out.println("Build data store ...");
 		remplir();
 		System.out.println("Data store fully build");
+		remplir_fichier("fakedata.txt");
 	
 	}
 	
@@ -28,6 +31,20 @@ public class FakeDataStoreImpl implements DataStore {
 	private Map<Long,UvDTO> uvMap = new HashMap<Long,UvDTO>();
 	private Map<Long,StageDTO> stageMap = new HashMap<Long,StageDTO>();
 	private Map<Long,TypeUvDTO> typeUvMap = new HashMap<Long,TypeUvDTO>();
+	
+	
+	// modif JCG 09/03/2012
+	/* 
+	 * Map qui relie un Agent directeur avec les stages dont il a la gestion
+	 */
+	private Map<Long,Collection<Long>> stagesDirMap = new HashMap<Long,Collection<Long>>();	
+
+	private Map<Long,Collection<Long>> inscritMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> retenuMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> listeAttenteMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> nonRetenuMap = new HashMap<Long,Collection<Long>>();
+	private Map<Long,Collection<Long>> annuleMap = new HashMap<Long,Collection<Long>>();
+
 	
 	private long keyUv = 0;
 	private long keyAgent = 0;
@@ -92,9 +109,9 @@ public class FakeDataStoreImpl implements DataStore {
 		idOwnedU2.add((long)4);
 		idOwnedU2.add((long)6);
 
-		addAgent(0,0,idOwnedJD,"Doe","John");
-		addAgent(1,1,idOwnedU1,"Dupont","Jean");
-		addAgent(2,1,idOwnedU2,"Dupond","Jeanne");
+		addAgent(0,idOwnedJD,"Doe","John");
+		addAgent(1,idOwnedU1,"Dupont","Jean");
+		addAgent(1,idOwnedU2,"Dupond","Jeanne");
 
 		Collection<Date> datesUv0 = new Vector<Date>();
 		datesUv0.add(new Date(111,12,9));
@@ -128,18 +145,18 @@ public class FakeDataStoreImpl implements DataStore {
 		datesUv11.add(new Date(112,6,1));
 		datesUv11.add(new Date(112,6,2));
 		
-		addUv(0,0,"Basics-M-09.12.11", "Monfort", datesUv0, new Date(111,12,1));
-		addUv(1,1,"FF1-F-01.01.12", "Fougères", datesUv1, new Date(111,12,15));
-		addUv(2,1,"FF1-F-07.01.12", "Fougères", datesUv2, new Date(111,12,15));
-		addUv(3,0,"Basics-R-06.02.15", "Rennes", datesUv3, new Date(111,1,15));
-		addUv(4,1,"FF1-R-07.02.12", "Rennes", datesUv4, new Date(111,1,15));
-		addUv(5,0,"Basics-R-06.02.15", "Bain-de-Bretagne", datesUv5, new Date(111,1,21));
-		addUv(6,3,"PS1-R-15.03.12", "Rennes", datesUv6, new Date(111,3,1));
-		addUv(7,0,"Basics-F-06.05.12", "Fougères", datesUv7, new Date(111,5,1));
-		addUv(8,3,"PS1-F-07.05.12", "Fougères", datesUv8, new Date(111,5,1));
-		addUv(9,2,"FF2-M-07.05.12", "Monfort", datesUv9, new Date(112,5,1));
-		addUv(10,2,"FF2-R-14.05.12", "Rennes", datesUv10, new Date(111,1,15));
-		addUv(11,4,"PS2-BB-01.06.12", "Bain-de-Bretagne", datesUv11, new Date(111,5,15));
+		addUv(0,"Basics-M-09.12.11", "Monfort", datesUv0, new Date(111,12,1));
+		addUv(1,"FF1-F-01.01.12", "Fougères", datesUv1, new Date(111,12,15));
+		addUv(1,"FF1-F-07.01.12", "Fougères", datesUv2, new Date(111,12,15));
+		addUv(0,"Basics-R-06.02.15", "Rennes", datesUv3, new Date(111,1,15));
+		addUv(1,"FF1-R-07.02.12", "Rennes", datesUv4, new Date(111,1,15));
+		addUv(0,"Basics-R-06.09.15", "Bain-de-Bretagne", datesUv5, new Date(111,1,21));
+		addUv(3,"PS1-R-15.03.12", "Rennes", datesUv6, new Date(111,3,1));
+		addUv(0,"Basics-F-06.05.12", "Fougères", datesUv7, new Date(111,5,1));
+		addUv(3,"PS1-F-07.05.12", "Fougères", datesUv8, new Date(111,5,1));
+		addUv(2,"FF2-M-07.05.12", "Monfort", datesUv9, new Date(112,5,1));
+		addUv(2,"FF2-R-14.05.12", "Rennes", datesUv10, new Date(111,1,15));
+		addUv(4,"PS2-BB-01.06.12", "Bain-de-Bretagne", datesUv11, new Date(111,5,15));
 		
 		Collection<Long> uvStage0 = new Vector<Long>();
 		Collection<Long> uvStage1 = new Vector<Long>();
@@ -165,16 +182,16 @@ public class FakeDataStoreImpl implements DataStore {
 		uvStage8.add((long)10);
 		uvStage9.add((long)11);
 		
-		addStage(0,uvStage0,"Stage de Base","Monfort");
-		addStage(1,uvStage1,"Feux de Forêt 1","Fougères");
-		addStage(2,uvStage2,"Feux de Forêt 1","Fougères");
-		addStage(3,uvStage3,"Base et Feux de Forêt 1","Rennes");
-		addStage(4,uvStage4,"Stage de Base","Monfort");		
-		addStage(5,uvStage5,"Premiers Secours 1","Rennes");
-		addStage(6,uvStage6,"Base et Premiers Secours 1","Fougères");
-		addStage(7,uvStage7,"Feux de Forêt 2","Rennes");
-		addStage(8,uvStage8,"Feux de Forêt 2","Monfort");
-		addStage(9,uvStage9,"Premiers Secours 2","Monfort");
+		addStage(uvStage0,"Stage de Base 1","Monfort");
+		addStage(uvStage1,"Feux de Forêt 1","Fougères");
+		addStage(uvStage2,"Feux de Forêt 1 + accidents","Fougères");
+		addStage(uvStage3,"Base et Feux de Forêt 1","Rennes");
+		addStage(uvStage4,"Stage de Base 2","Monfort");		
+		addStage(uvStage5,"Premiers Secours 1","Rennes");
+		addStage(uvStage6,"Base et Premiers Secours 1","Fougères");
+		addStage(uvStage7,"Feux de Forêt 2","Rennes");
+		addStage(uvStage8,"Feux de Forêt 2 + accidents","Monfort");
+		addStage(uvStage9,"Premiers Secours 2","Monfort");
 		
 		Collection<Long> typesUvPre0 = new Vector<Long>();
 		Collection<Long> typesUvPre1 = new Vector<Long>();
@@ -189,18 +206,36 @@ public class FakeDataStoreImpl implements DataStore {
 		typesUvPre4.add((long)0);
 		typesUvPre4.add((long)3);
 		
-		addTypeUv(0, "Stage de Base", typesUvPre0);
-		addTypeUv(1, "Sap-FF1", typesUvPre1);
-		addTypeUv(2, "Sap-FF2", typesUvPre2);
-		addTypeUv(3, "Sap-PS1", typesUvPre3);
-		addTypeUv(4, "Sap-PS2", typesUvPre4);		
+		addTypeUv("Stage de Base", typesUvPre0);
+		addTypeUv("Sap-FF1", typesUvPre1);
+		addTypeUv("Sap-FF2", typesUvPre2);
+		addTypeUv("Sap-PS1", typesUvPre3);
+		addTypeUv("Sap-PS2", typesUvPre4);		
+		
+		addDirector((long)0,(long)0);
+		addDirector((long)0,(long)1);
+		addDirector((long)0,(long)2);
+		addDirector((long)0,(long)3);
+		addDirector((long)0,(long)4);
+		addDirector((long)0,(long)5);
+		addDirector((long)0,(long)6);
+		addDirector((long)0,(long)7);
+		addDirector((long)0,(long)8);
+		addDirector((long)0,(long)9);
 		
 	}
 	
-	private void addAgent(int id, int idType, Collection<Long> idOwned, String name, String firstname) {
+	public void addDirector(long idAgent, long idStage) {
+		if(!this.stagesDirMap.containsKey(idAgent)){
+			stagesDirMap.put(idAgent, new Vector<Long>());
+		}
+		stagesDirMap.get(idAgent).add(idStage);
+	}
+
+	private void addAgent(int idType, Collection<Long> idOwned, String name, String firstname) {
 		AgentDTO agent = new AgentDTO();
 		
-		agent.setIdAgent(id);
+		agent.setIdAgent(keyAgent);
 		agent.setIdTypeAgent(idType);
 		agent.setListIdUvOwned(idOwned);
 		agent.setName(name);
@@ -212,25 +247,31 @@ public class FakeDataStoreImpl implements DataStore {
 		
 	}
 	
-	private void addUv(int id, int idType, String title, String locality, Collection<Date> dates, Date dateLim ) {
+	private void addUv(int idType, String title, String locality, Collection<Date> dates, Date dateLim ) {
 		UvDTO uv = new UvDTO();
 		
-		uv.setIdUv(id);
+		uv.setIdUv(keyUv);
 		uv.setIdTypeUv(idType);
 		uv.setTitle(title);
 		uv.setLocality(locality);
 		uv.setDates(dates);
 		uv.setDateLimite(dateLim);
 		
+		inscritMap.put(keyUv, new Vector<Long>());
+		retenuMap.put(keyUv, new Vector<Long>());
+		nonRetenuMap.put(keyUv, new Vector<Long>());
+		listeAttenteMap.put(keyUv, new Vector<Long>());
+		annuleMap.put(keyUv, new Vector<Long>());
+		
 		uvMap.put(uv.getIdUv(), uv);
 		
 		keyUv++;
     }
 	
-	private void addStage(int id, Collection<Long> idUv, String title, String locality) {
+	private void addStage(Collection<Long> idUv, String title, String locality) {
 		StageDTO stage = new StageDTO();
 		
-		stage.setIdStage(id);
+		stage.setIdStage(keyStage);
 		stage.setTitle(title);
 		stage.setLocality(locality);
 		stage.setListIdUv(idUv);
@@ -240,10 +281,10 @@ public class FakeDataStoreImpl implements DataStore {
 		keyStage++;
 	}
 	
-	private void addTypeUv(int id, String title, Collection<Long> typesUvPre) {
+	private void addTypeUv(String title, Collection<Long> typesUvPre) {
 		TypeUvDTO typeUv = new TypeUvDTO();
 		
-		typeUv.setIdTypeUv(id);
+		typeUv.setIdTypeUv(keyTypeUv);
 		typeUv.setTitle(title);
 		typeUv.setListIdUvPrereq(typesUvPre);
 		typeUv.setEffectifMax(20);
@@ -257,6 +298,11 @@ public class FakeDataStoreImpl implements DataStore {
 	public boolean addUv(UvDTO uv){
 		uv.setIdUv(keyUv);
 		uvMap.put(keyUv,uv);
+		inscritMap.put(keyUv, new Vector<Long>());
+		retenuMap.put(keyUv, new Vector<Long>());
+		nonRetenuMap.put(keyUv, new Vector<Long>());
+		listeAttenteMap.put(keyUv, new Vector<Long>());
+		annuleMap.put(keyUv, new Vector<Long>());
 		keyUv++;
 		return true;
 	}
@@ -292,19 +338,16 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public int nbAgents() {
-		// TODO Auto-generated method stub
 		return agentsMap.size();
 	}
 
 	@Override
 	public int nbTypeUvs() {
-		// TODO Auto-generated method stub
 		return typeUvMap.size();
 	}
 
 	@Override
 	public int nbStages() {
-		// TODO Auto-generated method stub
 		return stageMap.size();
 	}
 
@@ -334,8 +377,228 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
-		// TODO Auto-generated method stub
+		Collection<Long> listIdCandidat = null;
+		switch (etat) {
+	    case inscrit : listIdCandidat=inscritMap.get(idUv); break;
+	    case retenu : listIdCandidat=retenuMap.get(idUv); break;
+	    case nonRetenu : listIdCandidat=nonRetenuMap.get(idUv); break;
+	    case listeAttente : listIdCandidat=listeAttenteMap.get(idUv); break;
+	    default : break;
+	}
+		return listIdCandidat;
+	}
+
+	@Override
+	public boolean setStatut(Long idUv, Long idCandidat,
+			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+		
+		
+		switch (ancienEtat) {
+		    case inscrit : inscritMap.get(idUv).remove(idCandidat); break;
+		    case retenu : retenuMap.get(idUv).remove(idCandidat); break;
+		    case nonRetenu : nonRetenuMap.get(idUv).remove(idCandidat); break;
+		    case listeAttente : listeAttenteMap.get(idUv).remove(idCandidat); break;
+		    default : return false;
+		}
+		switch (nouvelEtat) {
+	        case inscrit : inscritMap.get(idUv).add(idCandidat); break;
+	        case retenu : retenuMap.get(idUv).add(idCandidat); break;
+	        case nonRetenu : nonRetenuMap.get(idUv).add(idCandidat); break;
+	        case listeAttente : listeAttenteMap.get(idUv).add(idCandidat); break;
+	        default : return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean addInscrip(Long idAgent, Collection<Long> idsUv) {
+		for (Long idUv : idsUv){
+		inscritMap.get(idUv).add(idAgent);
+		}
+		return true;
+	}
+	
+	
+	// modif JCG 09/03/2012
+	/* 
+	 * Methode qui renvoie la liste des stages diriges par un Agent directeur
+	 */
+	public Collection<Long> getIdStageDir(Long idAgent){
+		if(this.stagesDirMap.containsKey(idAgent)){
+			return stagesDirMap.get(idAgent);
+		}
 		return null;
 	}
+	/* 
+	 * Methode qui renvoie la liste des UVs contenues dans un Stage
+	 */
+	public Collection<Long> getIdUvStageDir(Long idStage){
+		if(this.stageMap.containsKey(idStage)){
+			return this.stageMap.get(idStage).getListIdUv();
+		}
+		return null;		
+	}
+	/* 
+	 * Methode qui renvoie la liste des UVs possibles pour un agent et pour un stage donne
+	 */	
+	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
+		Collection<Long> listeUvPossible = new Vector<Long>();
+		Collection<Long> listeUvDispo; // UVs du stage
+		Collection<Long> listeUvOwned; // UVs de l'Agent
+		Collection<Long> listeTypeUvOwned = new Vector<Long>(); // types des UVs owned
+		Collection<Long> listeTypeUvPrereq; // types des UVs prerequises
+		listeUvDispo = this.stageMap.get(idStage).getListIdUv(); 
+		listeUvOwned = this.agentsMap.get(idAgent).getListIdUvOwned();
+		for (Long idUvOwned : listeUvOwned) {
+			listeTypeUvOwned.add(this.getUv(idUvOwned).getIdTypeUv());
+		}
+		for (Long idUv : listeUvDispo) {
+			listeTypeUvPrereq = this.typeUvMap.get(uvMap.get(idUv).getIdTypeUv()).getListIdUvPrereq();
+			if (listeTypeUvOwned.containsAll(listeTypeUvPrereq) & !listeTypeUvOwned.contains(uvMap.get(idUv).getIdTypeUv())) {
+				listeUvPossible.add(idUv);
+			}
+		}
+		return listeUvPossible;
+	}
+
+	// modif KD 12/03/2012
+	/* 
+
+
+
+	 * Methode qui renvoie la liste des stages possibles pour un agent donne
+	 */
+	public Collection<Long> getIdStageDispo(Long idAgent){
+		Collection<Long> listIdStageDispo = new Vector<Long>(); // stages possibles
+		// TODO tester si keySet supporte la Collection, sinon passer en Set<Long>
+		Collection<Long> listIdStages; // stages crees
+		listIdStages = this.stageMap.keySet();
+		for (Long idStage : listIdStages){
+			if (!this.getIdUvStageDispo(idAgent, idStage).isEmpty()){ // si ce stage a au moins 1 UV possible pour cet agent
+				listIdStageDispo.add(idStage); // ajouter ce stage a la liste des stages possibles
+			}
+		}
+		return listIdStageDispo;
+	}
+
+	
+	/** 
+	 * Methode qui renvoie la liste des stages auxquelles est inscrit un agent 
+	 */	
+	public Collection<Long> getIdStageInscrit(Long idAgent) {
+		Collection<Long> listeStageInscrit = new Vector<Long>();
+
+		for (StageDTO stage : this.stageMap.values()) {
+			if (!this.getIdUvStageInscrit(idAgent, stage.getIdStage()).isEmpty()) {
+				if (!listeStageInscrit.contains(stage.getIdStage())) {
+					listeStageInscrit.add(stage.getIdStage());
+				}
+			}	
+		}
+		return listeStageInscrit;
+	}
+	
+	/** 
+	 * Methode qui renvoie la liste des UVs auxquelles est inscrit un agent et pour un stage donne
+	 * L'etat de la candidature peut etre : inscrit, retenu, non retenu ou liste d'attente
+	 */	
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
+		Collection<Long> listeUvInscrit = new Vector<Long>();
+		Collection<Long> listeUvPossible;
+		listeUvPossible = getIdUvStageDispo(idAgent, idStage);
+
+		for (Long idUv : listeUvPossible) {
+			if (this.inscritMap.containsKey(idUv)) {
+				if (this.inscritMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		for (Long idUv : listeUvPossible) {
+			if (this.retenuMap.containsKey(idUv)) {
+				if (this.retenuMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		for (Long idUv : listeUvPossible) {
+			if (this.listeAttenteMap.containsKey(idUv)) {
+				if (this.listeAttenteMap.get(idUv).contains(idAgent)){
+					listeUvInscrit.add(idUv);
+				}
+			}
+		}
+		
+		return listeUvInscrit;
+	}
+	
+	private void remplir_fichier(String f) {
+		try {
+			InputStream ips = new FileInputStream(f);			
+			InputStreamReader ipsr=new InputStreamReader(ips);
+			BufferedReader br=new BufferedReader(ipsr);
+			String ligne;
+			while ((ligne=br.readLine())!=null){
+				int pt = 0;
+				switch (ligne.charAt(0)){
+				case 'A' : 
+					pt = 2;
+					String name ="";
+					String firstName ="";
+					Collection<Long> idsUv = new Vector<Long>();
+					String long_ch = "";
+					Integer idTypeAgent;
+					Long idUv_l;
+					
+					while (ligne.charAt(pt)!= ' '){
+						name = name+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
+					while (ligne.charAt(pt)!= ' '){
+						firstName = firstName+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
+					while (ligne.charAt(pt)!= ' '){
+					   long_ch = long_ch + ligne.charAt(pt);
+					   pt++;
+					}
+					idTypeAgent = Integer.parseInt(long_ch);
+					pt++;
+					while (ligne.charAt(pt)!= '$'){
+						while (ligne.charAt(pt)!= ','){
+						   long_ch = long_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						idUv_l = Long.parseLong(long_ch);
+						long_ch = "";
+						idsUv.add(idUv_l);
+						pt++;
+					}
+					System.out.println("Ajout de l'agent "+firstName+" "+name+" de type "+idTypeAgent);
+					System.out.print("Possédant les Uv N° : ");
+					for (Long idUv : idsUv){
+						System.out.print(" "+idUv);
+					}
+					System.out.println();
+					addAgent(idTypeAgent, idsUv, name, firstName);
+					break;
+					
+				case 'U' : break;
+				case 'S' : break;
+				case 'T' : break;
+				default : break;
+				}
+				
+			}
+			br.close();
+		}
+		catch (FileNotFoundException e) {e.printStackTrace();}
+		catch (IOException e) {e.printStackTrace();}
+	}
+
 
 }

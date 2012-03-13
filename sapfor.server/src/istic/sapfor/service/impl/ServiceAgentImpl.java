@@ -30,45 +30,50 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 	@Override
 	public Collection<Long> getIdStageDispo(Long idAgent) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdStageDispo(idAgent);
 	}
 
 	@Override
 	public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdUvStageDispo(idAgent, idStage);
 	}
 
 	@Override
 	public boolean addInscrip(Long idAgent, Collection<Long> idsUv) {
-		// TODO Auto-generated method stub
-		return false;
+		return dataStore.addInscrip(idAgent,idsUv);
 	}
 
 	@Override
 	public Collection<Long> getIdStageDir(Long idAgent) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdStageDir(idAgent);
 	}
 
 	@Override
 	public Collection<Long> getIdUvStageDir(Long idStage) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.getIdUvStageDir(idStage);
 	}
 
 	@Override
-	public Collection<Long> getIdCandidat(Long idUv) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
+        return dataStore.getIdCandidat(idUv, etat);
 	}
 
 	@Override
 	public boolean setStatut(Long idUv, Long idCandidat,
-			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
-		// TODO Auto-generated method stub
-		return false;
+		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+		return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
+    }
+	
+	@Override
+	public Collection<Long> getIdStageInscrit(Long idAgent) {
+		return dataStore.getIdStageInscrit(idAgent);
 	}
+
+	@Override
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
+		return dataStore.getIdUvStageInscrit(idAgent, idStage);
+	}
+
+
 
 }
