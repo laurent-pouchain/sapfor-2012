@@ -14,24 +14,24 @@ import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDispo implements ICommand {
 	
-	private ServiceStage client;
-	private ServiceAgent clientA;
+	private ServiceStage clientS;
+	private ServiceAgent client;
 	private IHMGStage ihmgstage ;
 	
-	public ServiceStage getClient() {
+	public ServiceStage getClientS() {
+		return clientS;
+	}
+
+	public void setClientS(ServiceStage client) {
+		this.clientS = client;
+	}
+
+	public ServiceAgent getClient() {
 		return client;
 	}
 
-	public void setClient(ServiceStage client) {
+	public void setClient(ServiceAgent client) {
 		this.client = client;
-	}
-
-	public ServiceAgent getClientA() {
-		return clientA;
-	}
-
-	public void setClientA(ServiceAgent clientA) {
-		this.clientA = clientA;
 	}
 
 	public IHMGStage getIhmgstage() {
@@ -47,16 +47,16 @@ public class AfficherStageDispo implements ICommand {
 		//creer la liste
 		
 		//TODO recuperer l'id de l'agent (suite à sa connexion) pour pouvoir obtenir la liste des stages disponibles pour cet agent
-		long idAgent = (long)0;			//à modifier
+		//long idAgent = (long)0;			//à modifier
 		
-		Collection<Long> stDispo = clientA.getIdStageDispo((long) 0);
+		Collection<Long> stDispo = client.getIdStageDispo((long) 0);
+		System.out.println(stDispo);
 		HashMap<Long,String> st= new HashMap<Long,String>();
 		for (long id : stDispo ){
-			StageDTO s= client.getStage(id);
+			System.out.println(id);
+			StageDTO s= clientS.getStage(id);
 			st.put(id, s.getTitle());
 			System.out.println(s.getTitle());
-	 
-	   
 								}
 		//afficher (implémentée dans mainContaineur)
 		

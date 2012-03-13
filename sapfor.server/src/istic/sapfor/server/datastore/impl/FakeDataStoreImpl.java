@@ -79,7 +79,7 @@ public class FakeDataStoreImpl implements DataStore {
 		return null;
 	}
 	
-	
+	//ou içi
 	public StageDTO getStage(Long id) {
 		if(this.stageMap.containsKey(id)){
 			return this.stageMap.get(id);

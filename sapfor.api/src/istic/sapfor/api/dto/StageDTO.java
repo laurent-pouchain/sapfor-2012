@@ -1,8 +1,9 @@
 package istic.sapfor.api.dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class StageDTO {
+public class StageDTO implements Serializable {
 	
 	private long idStage;
 	private Collection<Long> listIdUv;

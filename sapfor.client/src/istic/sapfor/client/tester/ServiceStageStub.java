@@ -130,17 +130,30 @@ public class ServiceStageStub implements istic.sapfor.api.service.ServiceAgent, 
 		return null;
 	}
 
-	@Override
-	public Collection<Long> getIdCandidat(Long idUv) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public boolean setStatut(Long idUv, Long idCandidat,
 			EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Long> getIdStageInscrit(Long idAgent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
