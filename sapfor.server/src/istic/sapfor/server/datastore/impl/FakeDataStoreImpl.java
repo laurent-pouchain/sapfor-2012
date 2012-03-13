@@ -489,8 +489,10 @@ public class FakeDataStoreImpl implements DataStore {
 		Collection<Long> listeStageInscrit = new Vector<Long>();
 
 		for (StageDTO stage : this.stageMap.values()) {
-			if (!getIdUvStageInscrit(idAgent, stage.getIdStage()).isEmpty()) {
-				listeStageInscrit.add(stage.getIdStage());
+			if (!this.getIdUvStageInscrit(idAgent, stage.getIdStage()).isEmpty()) {
+				if (!listeStageInscrit.contains(stage.getIdStage())) {
+					listeStageInscrit.add(stage.getIdStage());
+				}
 			}	
 		}
 		return listeStageInscrit;
