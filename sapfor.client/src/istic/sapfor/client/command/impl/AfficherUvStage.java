@@ -4,12 +4,13 @@ import java.util.Collection;
 
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.client.command.ICommand;
-import istic.sapfor.client.gui.IHM;
+import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherUvStage implements ICommand{
 	
 	private ServiceAgent client;
-	private IHM ihm ;
+	private IHMGStage ihmgstage ;
+	
 	public Boolean execute(long idStage) {
 		// TODO Auto-generated method stub
 		long idAgent = (long)0;

@@ -6,10 +6,12 @@ import java.util.List;
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.dto.EtatCandidatureDTO;
+import istic.sapfor.api.dto.StageDTO;
 
 public class ServiceAgentStub implements istic.sapfor.api.service.ServiceAgent {
 
 private List<AgentDTO> l;
+
 
 public List<AgentDTO> getL() {
 	return l;
@@ -36,6 +38,7 @@ ag2.setIdAgent(2);
 l.add(agt);
 l.add(ag1);
 l.add(ag2);
+
 }
 
 @Override
@@ -50,6 +53,8 @@ public AgentDTO getAgent(Long id) {
 	return aux;
 								}
 
+
+
 public void ajout(List<String> l) {
 	AgentDTO agt= new AgentDTO ();
 	agt.setFirstName(l.get(0));
@@ -60,6 +65,7 @@ public void ajout(List<String> l) {
 }
 
 @Override
+//a implémenter pour les tests
 public Collection<Long> getIdStageDispo(Long idAgent) {
 	// TODO Auto-generated method stub
 	return null;
@@ -95,10 +101,18 @@ public Collection<Long> getIdCandidat(Long idUv) {
 	return null;
 }
 
-@Override
 public boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO etat) {
 	// TODO Auto-generated method stub
 	return false;
 }
+
+@Override
+public boolean setStatut(Long idUv, Long idCandidat,
+		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
 
 }

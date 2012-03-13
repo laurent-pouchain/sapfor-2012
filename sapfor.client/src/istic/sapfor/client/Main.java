@@ -1,6 +1,7 @@
 package istic.sapfor.client;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.gui.ContainerGestionStage;
 import istic.sapfor.client.gui.MainContainer;
 
 import java.awt.BorderLayout;
@@ -30,7 +31,7 @@ public class Main {
 final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"sapforclient.xml"});
 
 		
-MainContainer rootUI = (MainContainer) context.getBean("ui");
+ContainerGestionStage rootUI = (ContainerGestionStage) context.getBean("ui1");
 rootUI.showUI(context);
 
 		

@@ -36,7 +36,7 @@ public class MainContainer implements IHM{
 		context = ctx;
 		/* Init default close operation */
 		SapforJFrame frame= new SapforJFrame("premiere page");
-
+		
         
         //bouton
 		JLabel label = new JLabel("Ajouter un agent");
