@@ -38,9 +38,14 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="address" value="http://0.0.0.0:9088/ws/ServiceStage" />
 	</bean>
  
-<!--     <bean id="ServiceAgentClient" class="istic.sapfor.client.tester.ServiceAgentStub" />
-    <bean id="ServiceStageClient" class="istic.sapfor.client.tester.ServiceStageStub" />
- -->
+ 	<bean id="ServiceUvClient" class="istic.sapfor.api.service.ServiceUv"
+		factory-bean="ServiceUvFactory" factory-method="create" />
+		
+	<bean id="ServiceUvFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceUv" />
+		<property name="address" value="http://0.0.0.0:9087/ws/ServiceUv" />
+	</bean>
+	
 	<bean id="ui" class="istic.sapfor.client.gui.MainContainer"></bean>
 	
  	<bean id="ui1" class="istic.sapfor.client.gui.ContainerGestionStage"></bean>
@@ -61,9 +66,11 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="client" ref="ServiceAgentClient" />
 	</bean>
 	
-<!-- 	<bean id="cmdDisplayUvDispo" class="istic.sapfor.client.command.impl.AfficherUvStage">
-		<property name="ihm" ref="ui" />
+	<bean id="cmdDisplayUvDispo" class="istic.sapfor.client.command.impl.AfficherUvStage">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="clientU" ref="ServiceUvClient" />
 		<property name="client" ref="ServiceAgentClient" />
-	</bean> -->
+		
+	</bean>
 </beans>
 <!-- END SNIPPET: beans -->

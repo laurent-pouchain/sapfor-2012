@@ -7,6 +7,6 @@ public interface IHMGStage {
 
 	
 public void displayStageDispo(HashMap<Long, String> st);
-public void displayUvDispo(Collection<Long> uvDispo);
+public void displayUvDispo(HashMap<Long, String> uv);
 
 }

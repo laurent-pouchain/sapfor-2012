@@ -10,10 +10,9 @@ public class SapforJFrame extends JFrame{
 	public SapforJFrame(String titre) throws HeadlessException {
 		super();
 setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
         pack();
         //this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-		setSize(800,600);
+		setSize(1200,1200);
         setPreferredSize(getSize());
         setResizable(false);
         setTitle(titre);

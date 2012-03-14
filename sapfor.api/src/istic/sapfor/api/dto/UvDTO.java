@@ -1,9 +1,10 @@
 package istic.sapfor.api.dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-public class UvDTO {
+public class UvDTO implements Serializable {
 	
 	private long idUv;
 	private String title;
