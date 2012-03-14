@@ -332,7 +332,24 @@ public class ClientTester implements InitializingBean {
 				System.out.println("");
 			}
 		}
-	
+		
+		System.out.println("----------------Tests de Session-----------------");
+		System.out.println();
+		
+		SessionDTO session = null;
+		
+		session = fDS.login("agent","motdepasse");
+		
+		if (session!=null) {
+			AgentDTO a1 = fDS.getAgent(session.getIdAgent());
+			if (a1!=null) {
+				System.out.print("L'agent ");
+				System.out.print(a1.getFirstName() + " " + a1.getName());
+				System.out.println(" est connecté");
+			}
+			else {System.out.println("L'agent n'existe pas");}
+		}
+		else {System.out.println("Mauvais login ou mot de passe");}
 	}
 	
 	
