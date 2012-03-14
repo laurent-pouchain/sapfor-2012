@@ -5,6 +5,7 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -29,16 +31,19 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	context = ctx;	
 	frameLogin=new SapforJFrame("Login");
 	SapforButton log= new SapforButton("Connexion");
+	log.setPreferredSize(new Dimension(125,25));
 	SapforLabel name = new SapforLabel("nom:");
 	SapforLabel pwd = new SapforLabel("password:");
-	final SapforJTextArea fname = new SapforJTextArea("");
-	final SapforJTextArea fpwd = new SapforJTextArea("");
-
-	frameLogin.add(name);
-	frameLogin.add(fname);
-	frameLogin.add(pwd);
-	frameLogin.add(fpwd);
-	frameLogin.add(log);
+	final SapforJTextArea fname = new SapforJTextArea("	");
+	final SapforJTextArea fpwd = new SapforJTextArea("	");
+	JPanel pane = new JPanel();
+	
+	pane.add(name);
+	pane.add(fname);
+	pane.add(pwd);
+	pane.add(fpwd);
+	pane.add(log);
+	frameLogin.add(pane);
 	frameLogin.setVisible(true);
 	
 	log.addMouseListener(new MouseAdapter() {
@@ -47,9 +52,16 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdLogin");
 			DefaultCommandContext ctx = new DefaultCommandContext();
-			String logpwd = fname.getText()+"*"+fpwd.getText();
+			List<String> login=new LinkedList<String>();
+			System.out.println(fname.getText());
+			System.out.println(fpwd.getText());
+			String log = fname.getText();
+			String pwd= fpwd.getText();
+			login.add(log);
+			login.add(pwd);
+			
 		
-			ctx.put(ICommandContextKey.Key_login, logpwd);
+			ctx.put(ICommandContextKey.Key_login, login);
 		
 			
 			cmd.execute(ctx);

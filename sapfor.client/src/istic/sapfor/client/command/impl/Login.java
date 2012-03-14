@@ -2,6 +2,7 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 
 import istic.sapfor.api.dto.AgentDTO;
@@ -41,18 +42,20 @@ public class Login implements ICommand {
 	public Boolean execute(ICommandContext ctx) {
 		long idAgent = (long)0;
 		
-		String idLog=ctx.get(ICommandContextKey.Key_login);
+		List<String> idLog=ctx.getList(ICommandContextKey.Key_login);
+		System.out.println(idLog);
 		
-		String[] result = idLog.split("*");
-		String log=result[0];
-		String pwd=result[1];
-		
+		String log=idLog.get(0);
+		String pwd=idLog.get(1);
+		System.out.println(log+" "+pwd);
 		SessionDTO session = clientS.login(log, pwd);
-		System.out.println(session);
+		System.out.println("Session: " +session);
 		long idA = session.getIdAgent();
+		System.out.print(idA+" ");
 		AgentDTO ag = client.getAgent(idA);
 		String nameA=ag.getName();
 		String fNameA=ag.getFirstName();
+		System.out.println(nameA+" "+fNameA);
 		ihmgstage.displayAccueilAgent(nameA,fNameA,idA);
 		return true;
 	}

@@ -83,8 +83,8 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="client" ref="ServiceAgentClient" />
 	</bean>
 	<bean id="cmdLogin" class="istic.sapfor.client.command.impl.Login">
-		<property name="clientS" ref="ServicSessionClient" />
-		<property name="client" ref="ServicAgentClient" />
+		<property name="clientS" ref="ServiceSessionClient" />
+		<property name="client" ref="ServiceAgentClient" />
 		<property name="ihmgstage" ref="ui1" />
 		
 	</bean>
