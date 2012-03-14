@@ -477,6 +477,7 @@ public class FakeDataStoreImpl implements DataStore {
 			if (!this.getIdUvStageDispo(idAgent, idStage).isEmpty()){ // si ce stage a au moins 1 UV possible pour cet agent
 				listIdStageDispo.add(idStage); // ajouter ce stage a la liste des stages possibles
 			}
+			
 		}
 		return listIdStageDispo;
 	}

@@ -50,6 +50,11 @@ public class AfficherStageDispo implements ICommand {
 		//long idAgent = (long)0;			//à modifier
 		
 		Collection<Long> stDispo = client.getIdStageDispo((long) 0);
+		if (client.getIdStageDispo((long)0).isEmpty()==true){ 
+			ihmgstage.displayStageDispo(null);
+			return true;
+									}
+		else{
 		System.out.println(stDispo);
 		HashMap<Long,String> st= new HashMap<Long,String>();
 		for (long id : stDispo ){
@@ -58,13 +63,11 @@ public class AfficherStageDispo implements ICommand {
 			st.put(id, s.getTitle());
 			System.out.println(s.getTitle());
 								}
-		//afficher (implémentée dans mainContaineur)
 		
-		//D"commenter la ligne du dessous quand displayStageDispo sera opérationnelle
 		ihmgstage.displayStageDispo(st);
 		
 		return true;
 
 
-}
+}}
 }

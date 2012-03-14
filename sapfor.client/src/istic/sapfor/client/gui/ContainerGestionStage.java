@@ -21,7 +21,8 @@ private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frame;
 private SapforButton bts;
 private SapforJPanelUV infoStageUv;
-	
+
+
 public void showUI(ClassPathXmlApplicationContext ctx) {
 	context = ctx;	
 	
@@ -29,6 +30,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	bts= new SapforButton("stage dispo");
 	frame.add(bts);
     frame.setVisible(true);
+    //cadre pour afficher les uv
     infoStageUv= new SapforJPanelUV();
 	infoStageUv.setVisible(false);
 	frame.add(infoStageUv);
@@ -57,35 +59,47 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		// TODO Auto-generated method stub
 		
 		int x=50,y=50;
+		
+		if (st==null){
+			    SapforListeStage s=new SapforListeStage ("Pas de stage disponible");
+			    s.setBounds(x,y,200,50);
+			    s.getBtu().setVisible(false);
+			    
+			   y=y+120;
+			    frame.add(s);		
+		}
+												
+			else {
 		for(Entry<Long, String> entry : st.entrySet()) {
-		    Long cle = entry.getKey();
-		    String valeur = entry.getValue();
-		    SapforListeStage s=new SapforListeStage (valeur);
-		    s.setBounds(x,y,200,50);
+		    	Long cle = entry.getKey();
+		    	String valeur = entry.getValue();
+		    	SapforListeStage s=new SapforListeStage (valeur);
+		    	
+		    	s.setBounds(x,y,200,50);
+		    	y=y+120;
+		    	frame.add(s);
 		    
-		   y=y+120;
-		    frame.add(s);
+		        
 		    s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					
+			
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
 					cmd.execute();
+					
 					//problème pour récuperer l'id du stage!!!
-					System.out.println("OK2");
-					
-			
-					
+					System.out.println("OK2");	
 				}
 			});
 		    // traitements
+		}
 		}
 	
 			bts.setVisible(false);
 
 			System.out.println("Essai sans serveur ni BD");
-			}
 			
+}
 			
 		
 
