@@ -11,6 +11,12 @@ A agent9 Kiddo Beatrix 1 $
 A agent10 Black Sirius 1 $
 A agent11 Covert Harry 1 $
 *
+T  Stage de Base$
+T 0, Sap-FF1$
+T 0,1, Sap-FF2$
+T 0, Sap-PS1$
+T 0,3, Sap-PS2$
+*
 U 0 Basics-M-09.12.11 Monfort 1/12/2011 9/12/2011,$
 U 1 FF1-F-01.01.12 Fougères 15/12/2011 1/1/2012,2/1/2012,$
 U 1 FF1-F-07.01.12 Fougères 15/12/2011 7/1/2012,8/1/2012,$
@@ -23,3 +29,10 @@ U 3 PS1-F-07.05.12 Fougères 1/5/2012 7/5/2012,8/5/2012,$
 U 2 FF2-M-07.05.12 Monfort 1/5/2012 7/5/2012,8/5/2012,$
 U 2 FF2-R-14.05.12 Rennes 1/5/2012 14/5/2012,15/5/2012,$
 U 4 PS2-BB-01.06.12 Bain-de-Bretagne 15/5/2012 1/6/2012,2/6/2012,$
+*
+S 7,8, Fougères Base et Premiers Secours 1$
+S 9, Monfort Feux de Forêt 2$
+S 10, Rennes Feux de Forêt niveau 2$
+S 11, Bain-de-Bretagne Premiers Secours niveau 2$
+*
+D 0 0,1,2,3,$

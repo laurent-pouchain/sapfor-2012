@@ -264,7 +264,7 @@ public class ClientTester implements InitializingBean {
 				System.out.print("L'agent ");
 				System.out.print(a.getFirstName() + " " + a.getName());
 				System.out.print(" est inscrit aux UVs suivantes : \n");
-				for (int h = 0; h < 10; ++h) {
+				for (int h = 0; h < fDS.nbStages(); ++h) {
 					for (Long idUv : fDS.getIdUvStageInscrit(a.getIdAgent(), (long) h)) {
 						System.out.println("\t - " + fDS.getUv(idUv).getTitle());
 					}
@@ -304,7 +304,7 @@ public class ClientTester implements InitializingBean {
 				System.out.print("L'agent ");
 				System.out.print(a.getFirstName() + " " + a.getName());
 				System.out.print(" est inscrit aux UVs suivantes : \n");
-				for (int h = 0; h < 10; ++h) {
+				for (int h = 0; h < fDS.nbStages(); ++h) {
 					for (Long idUv : fDS.getIdUvStageInscrit(a.getIdAgent(),(long) h)) {
 						System.out.println("\t - " + fDS.getUv(idUv).getTitle());
 					}

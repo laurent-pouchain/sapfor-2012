@@ -20,9 +20,8 @@ public class FakeDataStoreImpl implements DataStore {
 	public FakeDataStoreImpl(){
 
 		System.out.println("Build data store ...");
-		remplir();
-		System.out.println("Data store fully build");
 		remplir_fichier("fakedata.txt");
+		System.out.println("Data store fully build");
 	
 	}
 	
@@ -97,77 +96,6 @@ public class FakeDataStoreImpl implements DataStore {
 			return this.typeUvMap.get(id);
 		}
 		return null;
-	}
-
-	@SuppressWarnings("deprecation")
-	private void remplir() {
-	
-		
-		Collection<Long> uvStage0 = new Vector<Long>();
-		Collection<Long> uvStage1 = new Vector<Long>();
-		Collection<Long> uvStage2 = new Vector<Long>();
-		Collection<Long> uvStage3 = new Vector<Long>();
-		Collection<Long> uvStage4 = new Vector<Long>();
-		Collection<Long> uvStage5 = new Vector<Long>();
-		Collection<Long> uvStage6 = new Vector<Long>();
-		Collection<Long> uvStage7 = new Vector<Long>();
-		Collection<Long> uvStage8 = new Vector<Long>();
-		Collection<Long> uvStage9 = new Vector<Long>();
-		
-		uvStage0.add((long)0);
-		uvStage1.add((long)1);
-		uvStage2.add((long)2);
-		uvStage3.add((long)3);
-		uvStage3.add((long)4);
-		uvStage4.add((long)5);
-		uvStage5.add((long)6);
-		uvStage6.add((long)7);
-		uvStage6.add((long)8);
-		uvStage7.add((long)9);
-		uvStage8.add((long)10);
-		uvStage9.add((long)11);
-		
-		addStage(uvStage0,"Stage de Base 1","Monfort");
-		addStage(uvStage1,"Feux de Forêt 1","Fougères");
-		addStage(uvStage2,"Feux de Forêt 1 + accidents","Fougères");
-		addStage(uvStage3,"Base et Feux de Forêt 1","Rennes");
-		addStage(uvStage4,"Stage de Base 2","Monfort");		
-		addStage(uvStage5,"Premiers Secours 1","Rennes");
-		addStage(uvStage6,"Base et Premiers Secours 1","Fougères");
-		addStage(uvStage7,"Feux de Forêt 2","Rennes");
-		addStage(uvStage8,"Feux de Forêt 2 + accidents","Monfort");
-		addStage(uvStage9,"Premiers Secours 2","Monfort");
-		
-		Collection<Long> typesUvPre0 = new Vector<Long>();
-		Collection<Long> typesUvPre1 = new Vector<Long>();
-		Collection<Long> typesUvPre2 = new Vector<Long>();
-		Collection<Long> typesUvPre3 = new Vector<Long>();
-		Collection<Long> typesUvPre4 = new Vector<Long>();
-		
-		typesUvPre1.add((long)0);
-		typesUvPre2.add((long)0);
-		typesUvPre2.add((long)1);
-		typesUvPre3.add((long)0);
-		typesUvPre4.add((long)0);
-		typesUvPre4.add((long)3);
-		
-		addTypeUv("Stage de Base", typesUvPre0);
-		addTypeUv("Sap-FF1", typesUvPre1);
-		addTypeUv("Sap-FF2", typesUvPre2);
-		addTypeUv("Sap-PS1", typesUvPre3);
-		addTypeUv("Sap-PS2", typesUvPre4);		
-		
-		addDirector((long)0,(long)0);
-		addDirector((long)0,(long)1);
-		addDirector((long)0,(long)2);
-		addDirector((long)0,(long)3);
-		addDirector((long)0,(long)4);
-		addDirector((long)0,(long)5);
-		addDirector((long)0,(long)6);
-		addDirector((long)0,(long)7);
-		addDirector((long)0,(long)8);
-		addDirector((long)0,(long)9);
-		
 	}
 	
 	public void addDirector(long idAgent, long idStage) {
@@ -491,16 +419,19 @@ public class FakeDataStoreImpl implements DataStore {
 			BufferedReader br=new BufferedReader(ipsr);
 			String ligne;
 			while ((ligne=br.readLine())!=null){
+				String login ="";
+				String name ="";
+				String firstName ="";
+				String title="";
+				String locality="";
 				String nb_ch = "";
+				Long idAgent,idS, idTUv;
+				Collection<Long> idsUv = new Vector<Long>();
+				Integer idTypeAgent;
 				int pt = 0;
 				switch (ligne.charAt(0)){
 				case 'A' : 
 					pt = 2;
-					String login ="";
-					String name ="";
-					String firstName ="";
-					Collection<Long> idsUv = new Vector<Long>();
-					Integer idTypeAgent;
 					Long idUv_l;
 					
 					while (ligne.charAt(pt)!= ' '){
@@ -548,8 +479,6 @@ public class FakeDataStoreImpl implements DataStore {
 				case 'U' : 
 					pt = 2;
 					int idType=0;
-					String title="";
-					String locality="";
 					int jour;
 					int mois;
 					int annee;
@@ -633,9 +562,76 @@ public class FakeDataStoreImpl implements DataStore {
 					addUv(idType,title,locality,dates,dateLim);
 					break;
 				case 'S' : 
+					pt = 2;
+					while (ligne.charAt(pt)!= ' '){
+						while (ligne.charAt(pt)!= ','){
+						   nb_ch = nb_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						idUv_l = Long.parseLong(nb_ch);
+						nb_ch = "";
+						idsUv.add(idUv_l);
+						pt++;
+					}
+					pt++;
+
+					while (ligne.charAt(pt)!= ' '){
+						locality = locality+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
+					
+					while (ligne.charAt(pt)!= '$'){
+						title = title+ligne.charAt(pt);
+						pt++;
+					}
+					
+					addStage(idsUv, title, locality);
+					break;
+				case 'T' : 
+					pt = 2;
+					Collection<Long> idsTUv = new Vector<Long>();
+					while (ligne.charAt(pt)!= ' '){
+						while (ligne.charAt(pt)!= ','){
+						   nb_ch = nb_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						idTUv = Long.parseLong(nb_ch);
+						nb_ch="";
+						idsTUv.add(idTUv);
+						pt++;
+					}
+					pt++;
+					
+					while (ligne.charAt(pt)!= '$'){
+						title = title+ligne.charAt(pt);
+						pt++;
+					}
+					
+					addTypeUv(title,idsTUv);
 					
 					break;
-				case 'T' : break;
+				case 'D' : 
+					pt = 2;
+					while (ligne.charAt(pt)!= ' '){
+					   nb_ch = nb_ch + ligne.charAt(pt);
+					   pt++;
+					}
+					idAgent = Long.parseLong(nb_ch);
+					nb_ch="";
+					pt++;
+
+					while (ligne.charAt(pt)!= '$'){
+						while (ligne.charAt(pt)!= ','){
+						   nb_ch = nb_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						idS = Long.parseLong(nb_ch);
+						nb_ch="";
+						addDirector(idAgent,idS);
+						pt++;
+					}
+					break;
 				default : break;
 				}
 				
