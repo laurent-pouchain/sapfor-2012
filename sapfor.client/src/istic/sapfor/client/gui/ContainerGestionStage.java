@@ -179,7 +179,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	frameGBC.gridwidth = 1;
 	frameGBC.gridheight = 1;
 	frameGBC.gridy = 0;
-	frameGBC.fill = GridBagConstraints.VERTICAL;
+	frameGBC.fill = GridBagConstraints.BOTH;
 	frameGBC.anchor = GridBagConstraints.WEST;
 	frame.add(paneWestInfoAgent,frameGBC);
 	 
