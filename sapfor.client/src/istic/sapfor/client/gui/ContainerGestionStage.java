@@ -1,5 +1,6 @@
 package istic.sapfor.client.gui;
 
+import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
@@ -15,18 +16,50 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ContainerGestionStage implements IHMGStage {
 
 private ClassPathXmlApplicationContext context = null;
-private SapforJFrame frame;
+private SapforJFrame frame,frameLogin;
 private SapforButton bts;
 private SapforJPanelUV infoStageUv;
-
+private SapforLabel accueilLabel;
 
 public void showUI(ClassPathXmlApplicationContext ctx) {
 	context = ctx;	
+	frameLogin=new SapforJFrame("Login");
+	SapforButton log= new SapforButton("Connexion");
+	SapforLabel name = new SapforLabel("nom:");
+	SapforLabel pwd = new SapforLabel("password:");
+	final SapforJTextArea fname = new SapforJTextArea("");
+	final SapforJTextArea fpwd = new SapforJTextArea("");
+
+	frameLogin.add(name);
+	frameLogin.add(fname);
+	frameLogin.add(pwd);
+	frameLogin.add(fpwd);
+	frameLogin.add(log);
+	frameLogin.setVisible(true);
+	
+	log.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+			ICommand cmd = (ICommand) context.getBean("cmdLogin");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			String logpwd = fname.getText()+"*"+fpwd.getText();
+		
+			ctx.put(ICommandContextKey.Key_login, logpwd);
+		
+			
+			cmd.execute(ctx);
+	
+			
+		}
+	});
 	
 	frame= new SapforJFrame("page stage dispo");
 	bts= new SapforButton("stage dispo");
+	accueilLabel= new SapforLabel();
 	frame.add(bts);
-    frame.setVisible(true);
+    frame.setVisible(false);
+    frame.add(accueilLabel);
     //cadre pour afficher les uv
     infoStageUv= new SapforJPanelUV();
 	infoStageUv.setVisible(false);
@@ -157,6 +190,14 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 	
 	
+	}
+
+	@Override
+	public void displayAccueilAgent(String nameA, String fNameA, long idA) {
+		// TODO Auto-generated method stub
+		frame.setVisible(true);
+		frameLogin.setVisible(false);
+		accueilLabel.setText("Bonjour "+ nameA+" "+ fNameA);
 	}
 	
 	
