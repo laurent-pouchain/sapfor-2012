@@ -63,8 +63,12 @@ public class FakeDataStoreImpl implements DataStore {
 		if(this.sessionsMap.containsKey((long)user.hashCode())){
 			if (this.sessionsMap.get((long)user.hashCode()).equals(password)){
 				SessionDTO mySession = new SessionDTO();
-				mySession.setIdAgent((long)user.hashCode());
-				return mySession;
+				for (AgentDTO a : agentsMap.values() ){
+				   if (a.getLogin().equals(user)){
+					  mySession.setIdAgent(a.getIdAgent());
+					  return mySession;
+				   }
+				}
 			}
 		}
 		return null;
@@ -109,9 +113,9 @@ public class FakeDataStoreImpl implements DataStore {
 		idOwnedU2.add((long)4);
 		idOwnedU2.add((long)6);
 
-		addAgent(0,idOwnedJD,"Doe","John");
-		addAgent(1,idOwnedU1,"Dupont","Jean");
-		addAgent(1,idOwnedU2,"Dupond","Jeanne");
+		addAgent("admin",0,idOwnedJD,"Doe","John");
+		addAgent("agent1",1,idOwnedU1,"Dupont","Jean");
+		addAgent("agent2",1,idOwnedU2,"Dupond","Jeanne");
 
 		Collection<Date> datesUv0 = new Vector<Date>();
 		datesUv0.add(new Date(111,12,9));
@@ -232,14 +236,16 @@ public class FakeDataStoreImpl implements DataStore {
 		stagesDirMap.get(idAgent).add(idStage);
 	}
 
-	private void addAgent(int idType, Collection<Long> idOwned, String name, String firstname) {
+	private void addAgent(String login,int idType, Collection<Long> idOwned, String name, String firstname) {
 		AgentDTO agent = new AgentDTO();
 		
+		agent.setLogin(login);
 		agent.setIdAgent(keyAgent);
 		agent.setIdTypeAgent(idType);
 		agent.setListIdUvOwned(idOwned);
 		agent.setName(name);
 		agent.setFirstName(firstname);
+		sessionsMap.put((long)agent.getLogin().hashCode(),"motdepasse");
 		
 		agentsMap.put(agent.getIdAgent(),agent);
 		
@@ -311,6 +317,7 @@ public class FakeDataStoreImpl implements DataStore {
 	public boolean addAgent(AgentDTO agent) {
 		agent.setIdAgent(keyAgent);
 		agentsMap.put(keyAgent,agent);
+		sessionsMap.put((long)agent.getLogin().hashCode(),"motdepasse");
 		keyAgent++;
 		return true;
 	}
@@ -545,12 +552,19 @@ public class FakeDataStoreImpl implements DataStore {
 				switch (ligne.charAt(0)){
 				case 'A' : 
 					pt = 2;
+					String login ="";
 					String name ="";
 					String firstName ="";
 					Collection<Long> idsUv = new Vector<Long>();
 					String long_ch = "";
 					Integer idTypeAgent;
 					Long idUv_l;
+					
+					while (ligne.charAt(pt)!= ' '){
+						login = login+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
 					
 					while (ligne.charAt(pt)!= ' '){
 						name = name+ligne.charAt(pt);
@@ -584,7 +598,7 @@ public class FakeDataStoreImpl implements DataStore {
 						System.out.print(" "+idUv);
 					}
 					System.out.println();
-					addAgent(idTypeAgent, idsUv, name, firstName);
+					addAgent(login,idTypeAgent, idsUv, name, firstName);
 					break;
 					
 				case 'U' : break;

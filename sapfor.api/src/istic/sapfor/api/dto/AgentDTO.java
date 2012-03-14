@@ -12,6 +12,7 @@ public class AgentDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+private String login;
 private long idAgent;
 private long idTypeAgent;
 private Collection<Long> listIdUvOwned;
@@ -20,6 +21,12 @@ private String firstName;
 
 
 
+public String getLogin() {
+	return login;
+}
+public void setLogin(String login) {
+	this.login = login;
+}
 public long getIdAgent() {
 	return idAgent;
 }

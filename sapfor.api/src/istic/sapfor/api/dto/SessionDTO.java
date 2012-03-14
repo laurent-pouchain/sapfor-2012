@@ -1,6 +1,8 @@
 package istic.sapfor.api.dto;
 
-public class SessionDTO {
+import java.io.Serializable;
+
+public class SessionDTO implements Serializable{
 
 
 	private long idAgent;
