@@ -1,12 +1,8 @@
 package istic.sapfor.client.gui;
 
-import java.awt.BorderLayout;
 import java.awt.LayoutManager;
-
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-
-import com.sun.codemodel.JLabel;
 
 public class SapforJPanelUV extends JPanel {
 
