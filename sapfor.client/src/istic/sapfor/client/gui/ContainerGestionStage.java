@@ -60,10 +60,11 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		for(Entry<Long, String> entry : st.entrySet()) {
 		    Long cle = entry.getKey();
 		    String valeur = entry.getValue();
+		    System.out.print(valeur+" - ");
 		    SapforListeStage s=new SapforListeStage (valeur);
-		    s.setBounds(x,y,200,50);
-		    
-		   y=y+120;
+		    s.setBounds(x,y,250,50);
+		    System.out.println(x+" "+y);
+		    y=y+100;
 		    frame.add(s);
 		    s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
