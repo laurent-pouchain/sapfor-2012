@@ -70,7 +70,10 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="ihmgstage" ref="ui1" />
 		<property name="clientU" ref="ServiceUvClient" />
 		<property name="client" ref="ServiceAgentClient" />
-		
+	</bean>
+	<bean id="cmdAddInscrition" class="istic.sapfor.client.command.impl.AddInscription">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="client" ref="ServiceAgentClient" />
 	</bean>
 </beans>
 <!-- END SNIPPET: beans -->

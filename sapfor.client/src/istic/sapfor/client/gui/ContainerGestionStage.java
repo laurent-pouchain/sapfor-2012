@@ -6,7 +6,11 @@ import istic.sapfor.client.command.impl.DefaultCommandContext;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
 
@@ -106,17 +110,18 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	@Override
 	public void displayUvDispo(final HashMap<Long, String> uv) {
-		
-		int x=50,y=50;
+		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
+		int x=50,y=50; Integer i=0;
 		for(Entry<Long, String> entry : uv.entrySet()) {
 		    Long cle = entry.getKey();
 		    String valeur = entry.getValue();
-		    
 			SapforLabel nuv= new SapforLabel (valeur);
 			String nom=cle.toString();
 			JCheckBox rad= new JCheckBox ();
-		
 			rad.setName(nom);
+			//keyset
+			lstbox.put(i, rad);
+			i++;
 		    infoStageUv.add(nuv);
 		    infoStageUv.add(rad);
 		    
@@ -134,16 +139,17 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				for(Entry<Long, String> entry : uv.entrySet()) {
-				    Long cle = entry.getKey();
+				List<String> idUv=new LinkedList<String>();
+				for (int i=0;i<lstbox.size();i++){
+					if (lstbox.get(i).isSelected()==true){
+						idUv.add(lstbox.get(i).getName());
+					}
 				   
-					
-				// pas fini
 		  
 				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
 				DefaultCommandContext ctx = new DefaultCommandContext();
 				
-				ctx.put(ICommandContextKey.Key_Stage, cle.toString());
+				ctx.put(ICommandContextKey.Key_Insct, idUv);
 				
 				cmd.execute(ctx);
 				
