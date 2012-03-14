@@ -1,16 +1,13 @@
 package istic.sapfor.client.gui;
 
-import istic.sapfor.api.dto.AgentDTO;
-import istic.sapfor.api.dto.StageDTO;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.command.ICommandContextKey;
+import istic.sapfor.client.command.impl.DefaultCommandContext;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
-
 import javax.swing.JCheckBox;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,7 +38,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		public void mouseClicked(MouseEvent e) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
-			cmd.execute();
+			cmd.execute(new DefaultCommandContext());
 			
 			System.out.println("OK");
 			
@@ -71,27 +68,31 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 												
 			else {
 		for(Entry<Long, String> entry : st.entrySet()) {
-		    	Long cle = entry.getKey();
+
+		    	final Long cle = entry.getKey();
 		    	String valeur = entry.getValue();
 		    	SapforListeStage s=new SapforListeStage (valeur);
-		    	
+		 
 		    	s.setBounds(x,y,200,50);
 		    	y=y+120;
 		    	frame.add(s);
-		    
-		        
-		    s.getBtu().addMouseListener(new MouseAdapter() {
+		    	//clique sur le bouton pour afficher les stages disponibles
+		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 			
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
-					cmd.execute();
+					DefaultCommandContext ctx = new DefaultCommandContext();
 					
-					//problème pour récuperer l'id du stage!!!
+					ctx.put(ICommandContextKey.Key_Stage, cle.toString());
+					
+					cmd.execute(ctx);
+					
+				
 					System.out.println("OK2");	
 				}
 			});
-		    // traitements
+	    	
 		}
 		}
 	
@@ -104,7 +105,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 
 	@Override
-	public void displayUvDispo(HashMap<Long, String> uv) {
+	public void displayUvDispo(final HashMap<Long, String> uv) {
 		
 		int x=50,y=50;
 		for(Entry<Long, String> entry : uv.entrySet()) {
@@ -112,20 +113,51 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    String valeur = entry.getValue();
 		    
 			SapforLabel nuv= new SapforLabel (valeur);
-			String nom="rad"+cle;
+			String nom=cle.toString();
 			JCheckBox rad= new JCheckBox ();
+		
 			rad.setName(nom);
 		    infoStageUv.add(nuv);
 		    infoStageUv.add(rad);
 		    
-		    
 		   y=y+120;
 	 
-		
+	
 		// TODO Auto-generated method stub
 		
 	}
+		SapforButton inscr= new SapforButton("s'inscrire");
+		infoStageUv.add(inscr);
 		infoStageUv.setVisible(true);
-	}
+	// quand on appuis sur submit on regarde dans toute les set box si state = 	cb.isSelected(); on fait une collection
+		//clique sur les UVs à choisir
+		inscr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				for(Entry<Long, String> entry : uv.entrySet()) {
+				    Long cle = entry.getKey();
+				   
+					
+				// pas fini
+		  
+				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
+				DefaultCommandContext ctx = new DefaultCommandContext();
+				
+				ctx.put(ICommandContextKey.Key_Stage, cle.toString());
+				
+				cmd.execute(ctx);
+				
+			
+				System.out.println("OK2");	
+			}
+			}});
+		
+	
 
+		
+	
+	
 	}
+	
+	
+}

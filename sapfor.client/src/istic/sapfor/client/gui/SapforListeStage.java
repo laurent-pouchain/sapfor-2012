@@ -15,7 +15,7 @@ public class SapforListeStage extends JPanel {
 	
 	public SapforListeStage(String titre) {
 		super();   
-		 stage=new SapforLabel(titre);
+		stage=new SapforLabel(titre);
 		btu= new SapforButton("liste UV");
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -38,6 +38,7 @@ public class SapforListeStage extends JPanel {
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		this.add(stage);
 		this.add(btu);
+		System.out.println(titre+" - SapforListeStage");
 		// TODO Auto-generated constructor stub
 	}
 	

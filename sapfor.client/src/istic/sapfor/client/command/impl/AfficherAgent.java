@@ -7,6 +7,7 @@ import java.util.List;
 
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.gui.IHM;
 
 public class AfficherAgent implements ICommand {
@@ -16,7 +17,7 @@ public class AfficherAgent implements ICommand {
 	private IHM ihm ;
 	
 	@Override
-	public Boolean execute() {
+	public Boolean execute(ICommandContext ctx) {
 		//creer la liste
 		
 		
