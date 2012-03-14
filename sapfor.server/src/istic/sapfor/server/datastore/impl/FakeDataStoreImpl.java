@@ -101,52 +101,7 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@SuppressWarnings("deprecation")
 	private void remplir() {
-		
-
-		Collection<Date> datesUv0 = new Vector<Date>();
-		datesUv0.add(new Date(111,12,9));
-		Collection<Date> datesUv1 = new Vector<Date>();
-		datesUv1.add(new Date(112,1,1));
-		datesUv1.add(new Date(112,1,2));
-		Collection<Date> datesUv2 = new Vector<Date>();
-		datesUv2.add(new Date(112,1,7));
-		datesUv2.add(new Date(112,1,8));
-		Collection<Date> datesUv3 = new Vector<Date>();
-		datesUv3.add(new Date(112,2,6));
-		Collection<Date> datesUv4 = new Vector<Date>();
-		datesUv4.add(new Date(112,2,7));
-		datesUv4.add(new Date(112,2,8));
-		Collection<Date> datesUv5 = new Vector<Date>();
-		datesUv5.add(new Date(112,3,7));
-		Collection<Date> datesUv6 = new Vector<Date>();
-		datesUv6.add(new Date(112,3,15));
-		Collection<Date> datesUv7 = new Vector<Date>();
-		datesUv7.add(new Date(112,5,6));
-		Collection<Date> datesUv8 = new Vector<Date>();
-		datesUv8.add(new Date(112,5,7));
-		datesUv8.add(new Date(112,5,8));		
-		Collection<Date> datesUv9 = new Vector<Date>();
-		datesUv9.add(new Date(112,5,7));
-		datesUv9.add(new Date(112,5,8));	
-		Collection<Date> datesUv10 = new Vector<Date>();
-		datesUv10.add(new Date(112,5,14));
-		datesUv10.add(new Date(112,5,15));	
-		Collection<Date> datesUv11 = new Vector<Date>();
-		datesUv11.add(new Date(112,6,1));
-		datesUv11.add(new Date(112,6,2));
-		
-		addUv(0,"Basics-M-09.12.11", "Monfort", datesUv0, new Date(111,12,1));
-		addUv(1,"FF1-F-01.01.12", "Fougères", datesUv1, new Date(111,12,15));
-		addUv(1,"FF1-F-07.01.12", "Fougères", datesUv2, new Date(111,12,15));
-		addUv(0,"Basics-R-06.02.15", "Rennes", datesUv3, new Date(111,1,15));
-		addUv(1,"FF1-R-07.02.12", "Rennes", datesUv4, new Date(111,1,15));
-		addUv(0,"Basics-R-06.09.15", "Bain-de-Bretagne", datesUv5, new Date(111,1,21));
-		addUv(3,"PS1-R-15.03.12", "Rennes", datesUv6, new Date(111,3,1));
-		addUv(0,"Basics-F-06.05.12", "Fougères", datesUv7, new Date(111,5,1));
-		addUv(3,"PS1-F-07.05.12", "Fougères", datesUv8, new Date(111,5,1));
-		addUv(2,"FF2-M-07.05.12", "Monfort", datesUv9, new Date(112,5,1));
-		addUv(2,"FF2-R-14.05.12", "Rennes", datesUv10, new Date(111,1,15));
-		addUv(4,"PS2-BB-01.06.12", "Bain-de-Bretagne", datesUv11, new Date(111,5,15));
+	
 		
 		Collection<Long> uvStage0 = new Vector<Long>();
 		Collection<Long> uvStage1 = new Vector<Long>();
@@ -590,7 +545,7 @@ public class FakeDataStoreImpl implements DataStore {
 					addAgent(login,idTypeAgent, idsUv, name, firstName);
 					break;
 					
-				case 'F' : 
+				case 'U' : 
 					pt = 2;
 					int idType=0;
 					String title="";
@@ -600,6 +555,7 @@ public class FakeDataStoreImpl implements DataStore {
 					int annee;
 					Collection<Date> dates = null;
 					Date dateLim = null;
+					Date date = null;
 					
 					while (ligne.charAt(pt)!= ' '){
 					   nb_ch = nb_ch + ligne.charAt(pt);
@@ -609,13 +565,13 @@ public class FakeDataStoreImpl implements DataStore {
 					pt++;
 					
 					while (ligne.charAt(pt)!= ' '){
-						login = title+ligne.charAt(pt);
+						title = title+ligne.charAt(pt);
 						pt++;
 					}
 					pt++;
 					
 					while (ligne.charAt(pt)!= ' '){
-						login = locality+ligne.charAt(pt);
+						locality = locality+ligne.charAt(pt);
 						pt++;
 					}
 					pt++;
@@ -625,28 +581,60 @@ public class FakeDataStoreImpl implements DataStore {
 					   pt++;
 					}
 					jour = Integer.parseInt(nb_ch);
+					nb_ch="";
 					pt++;
 					while (ligne.charAt(pt)!= '/'){
 					   nb_ch = nb_ch + ligne.charAt(pt);
 					   pt++;
 					}
 					mois = Integer.parseInt(nb_ch);
+					nb_ch="";
 					pt++;
 					while (ligne.charAt(pt)!= ' '){
 						nb_ch = nb_ch + ligne.charAt(pt);
 						pt++;
 					}
 					annee = Integer.parseInt(nb_ch);
+					nb_ch="";
 					if (annee > 100) {annee = annee -1900;}
 					else {annee = annee + 100;}
 					pt++;
 					dateLim = new Date(annee,mois,jour);
-					
-					
-					
+
+					dates = new Vector<Date>();
+					while (ligne.charAt(pt)!='$'){
+						while (ligne.charAt(pt)!= '/'){
+						   nb_ch = nb_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						jour = Integer.parseInt(nb_ch);
+						nb_ch="";
+						pt++;
+						while (ligne.charAt(pt)!= '/'){
+						   nb_ch = nb_ch + ligne.charAt(pt);
+						   pt++;
+						}
+						mois = Integer.parseInt(nb_ch);
+						nb_ch="";
+						pt++;
+						while (ligne.charAt(pt)!= ','){
+							nb_ch = nb_ch + ligne.charAt(pt);
+							pt++;
+						}
+						annee = Integer.parseInt(nb_ch);
+						nb_ch="";
+						if (annee > 100) {annee = annee -1900;}
+						else {annee = annee + 100;}
+						pt++;
+						date = new Date(annee,mois,jour);
+						dates.add(date);
+					}
+										
 					addUv(idType,title,locality,dates,dateLim);
 					break;
-				case 'S' : break;
+				case 'S' : 
+					
+					break;
 				case 'T' : break;
 				default : break;
 				}
