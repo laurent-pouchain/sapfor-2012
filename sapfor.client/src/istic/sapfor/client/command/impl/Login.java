@@ -18,6 +18,13 @@ public class Login implements ICommand {
 	private ServiceSession clientS;
 	private IHMGStage ihmgstage ;
 	private ServiceAgent client;
+	
+	public ServiceAgent getClient() {
+		return client;
+	}
+	public void setClient(ServiceAgent client) {
+		this.client = client;
+	}
 	public IHMGStage getIhmgstage() {
 		return ihmgstage;
 	}
