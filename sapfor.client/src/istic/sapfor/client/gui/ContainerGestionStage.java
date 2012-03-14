@@ -1,12 +1,17 @@
 package istic.sapfor.client.gui;
 
+import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
 
@@ -15,18 +20,50 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ContainerGestionStage implements IHMGStage {
 
 private ClassPathXmlApplicationContext context = null;
-private SapforJFrame frame;
+private SapforJFrame frame,frameLogin;
 private SapforButton bts;
 private SapforJPanelUV infoStageUv;
-
+private SapforLabel accueilLabel;
 
 public void showUI(ClassPathXmlApplicationContext ctx) {
 	context = ctx;	
+	frameLogin=new SapforJFrame("Login");
+	SapforButton log= new SapforButton("Connexion");
+	SapforLabel name = new SapforLabel("nom:");
+	SapforLabel pwd = new SapforLabel("password:");
+	final SapforJTextArea fname = new SapforJTextArea("");
+	final SapforJTextArea fpwd = new SapforJTextArea("");
+
+	frameLogin.add(name);
+	frameLogin.add(fname);
+	frameLogin.add(pwd);
+	frameLogin.add(fpwd);
+	frameLogin.add(log);
+	frameLogin.setVisible(true);
+	
+	log.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+			ICommand cmd = (ICommand) context.getBean("cmdLogin");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			String logpwd = fname.getText()+"*"+fpwd.getText();
+		
+			ctx.put(ICommandContextKey.Key_login, logpwd);
+		
+			
+			cmd.execute(ctx);
+	
+			
+		}
+	});
 	
 	frame= new SapforJFrame("page stage dispo");
 	bts= new SapforButton("stage dispo");
+	accueilLabel= new SapforLabel();
 	frame.add(bts);
-    frame.setVisible(true);
+    frame.setVisible(false);
+    frame.add(accueilLabel);
     //cadre pour afficher les uv
     infoStageUv= new SapforJPanelUV();
 	infoStageUv.setVisible(false);
@@ -107,57 +144,56 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	@Override
 	public void displayUvDispo(final HashMap<Long, String> uv) {
 		
-		int x=50,y=50;
+		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
+		int x=50,y=50; Integer i=0;
 		for(Entry<Long, String> entry : uv.entrySet()) {
 		    Long cle = entry.getKey();
 		    String valeur = entry.getValue();
-		    
 			SapforLabel nuv= new SapforLabel (valeur);
 			String nom=cle.toString();
 			JCheckBox rad= new JCheckBox ();
-		
 			rad.setName(nom);
+			//keyset
+			lstbox.put(i, rad);
+			i++;
 		    infoStageUv.add(nuv);
 		    infoStageUv.add(rad);
 		    
 		   y=y+120;
-	 
-	
-		// TODO Auto-generated method stub
+														}
 		
-	}
-		SapforButton inscr= new SapforButton("s'inscrire");
-		infoStageUv.add(inscr);
-		infoStageUv.setVisible(true);
-	// quand on appuis sur submit on regarde dans toute les set box si state = 	cb.isSelected(); on fait une collection
-		//clique sur les UVs à choisir
-		inscr.addMouseListener(new MouseAdapter() {
+			SapforButton inscr= new SapforButton("s'inscrire");
+			infoStageUv.add(inscr);
+			infoStageUv.setVisible(true);
+			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
+	
+			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				for(Entry<Long, String> entry : uv.entrySet()) {
-				    Long cle = entry.getKey();
-				   
-					
-				// pas fini
-		  
+				List<String> idUv=new LinkedList<String>();
+				for (int i=0;i<lstbox.size();i++){
+					if (lstbox.get(i).isSelected()==true){
+						idUv.add(lstbox.get(i).getName());
+														 }
 				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
 				DefaultCommandContext ctx = new DefaultCommandContext();
-				
-				ctx.put(ICommandContextKey.Key_Stage, cle.toString());
-				
+				ctx.put(ICommandContextKey.Key_Insct, idUv);
 				cmd.execute(ctx);
-				
-			
 				System.out.println("OK2");	
-			}
-			}});
-		
-	
-
-		
-	
-	
+												}
+													}
+													});
 	}
+
+
+	@Override
+	public void displayAccueilAgent(String nameA, String fNameA, long idA) {
+		// TODO Auto-generated method stub
+		frame.setVisible(true);
+		frameLogin.setVisible(false);
+		accueilLabel.setText("Bonjour "+ nameA+" "+ fNameA);
+	}
+
 	
 	
 }
