@@ -3,12 +3,15 @@ package istic.sapfor.client.command.impl;
 import java.util.Collection;
 import java.util.HashMap;
 
-import istic.sapfor.api.dto.StageDTO;
+
 import istic.sapfor.api.dto.UvDTO;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceUv;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.command.ICommandContext;
+import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
+
 
 public class AfficherUvStage implements ICommand{
 	
@@ -16,12 +19,14 @@ public class AfficherUvStage implements ICommand{
 	private ServiceAgent client;
 	private IHMGStage ihmgstage ;
 	
-	public Boolean execute() {
+	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
 		long idAgent = (long)0;
-		//récup de l'id stage
-		long idStage=(long)0;
-		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent, idStage);
+		
+		String idS=ctx.get(ICommandContextKey.Key_Stage);
+		int idStage;
+		idStage= Integer.parseInt(idS); 
+		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent, (long)idStage);
 		System.out.println(uvDispo);
 		HashMap<Long,String> uv= new HashMap<Long,String>();
 		for (long id : uvDispo ){

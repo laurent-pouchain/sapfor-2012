@@ -2,6 +2,7 @@ package istic.sapfor.client.gui;
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.command.impl.DefaultCommandContext;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -131,7 +132,7 @@ public class MainContainer implements IHM{
 					public void mouseClicked(MouseEvent e) {
 					
 						ICommand cmd = (ICommand) context.getBean("cmdDisplayAgents");
-						cmd.execute();
+						cmd.execute(new DefaultCommandContext());
 						
 			       
 						System.out.println("OK");
@@ -145,7 +146,7 @@ public class MainContainer implements IHM{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					ICommand cmd = (ICommand) context.getBean("cmdAddAgents");
-					cmd.execute();					
+					cmd.execute(new DefaultCommandContext());
 					System.out.println("Ok");
 				
 				}

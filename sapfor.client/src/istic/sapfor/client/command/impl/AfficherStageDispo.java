@@ -10,6 +10,7 @@ import istic.sapfor.api.dto.StageDTO;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
+import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDispo implements ICommand {
@@ -43,13 +44,18 @@ public class AfficherStageDispo implements ICommand {
 	}
 
 	@Override
-	public Boolean execute() {
+	public Boolean execute(ICommandContext ctx) {
 		//creer la liste
 		
 		//TODO recuperer l'id de l'agent (suite à sa connexion) pour pouvoir obtenir la liste des stages disponibles pour cet agent
 		//long idAgent = (long)0;			//à modifier
 		
 		Collection<Long> stDispo = client.getIdStageDispo((long) 0);
+		if (client.getIdStageDispo((long)0).isEmpty()==true){ 
+			ihmgstage.displayStageDispo(null);
+			return true;
+									}
+		else{
 		System.out.println(stDispo);
 		HashMap<Long,String> st= new HashMap<Long,String>();
 		for (long id : stDispo ){
@@ -58,13 +64,11 @@ public class AfficherStageDispo implements ICommand {
 			st.put(id, s.getTitle());
 			System.out.println(s.getTitle());
 								}
-		//afficher (implémentée dans mainContaineur)
 		
-		//D"commenter la ligne du dessous quand displayStageDispo sera opérationnelle
 		ihmgstage.displayStageDispo(st);
 		
 		return true;
 
 
-}
+}}
 }
