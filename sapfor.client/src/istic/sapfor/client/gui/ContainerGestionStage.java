@@ -110,6 +110,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	@Override
 	public void displayUvDispo(final HashMap<Long, String> uv) {
+		
 		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
 		int x=50,y=50; Integer i=0;
 		for(Entry<Long, String> entry : uv.entrySet()) {
@@ -126,44 +127,32 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    infoStageUv.add(rad);
 		    
 		   y=y+120;
-	 
-	
-		// TODO Auto-generated method stub
+														}
 		
-	}
-		SapforButton inscr= new SapforButton("s'inscrire");
-		infoStageUv.add(inscr);
-		infoStageUv.setVisible(true);
-	// quand on appuis sur submit on regarde dans toute les set box si state = 	cb.isSelected(); on fait une collection
-		//clique sur les UVs à choisir
-		inscr.addMouseListener(new MouseAdapter() {
+			SapforButton inscr= new SapforButton("s'inscrire");
+			infoStageUv.add(inscr);
+			infoStageUv.setVisible(true);
+			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
+	
+			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				List<String> idUv=new LinkedList<String>();
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
-					}
-				   
-		  
+														 }
 				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
 				DefaultCommandContext ctx = new DefaultCommandContext();
-				
 				ctx.put(ICommandContextKey.Key_Insct, idUv);
-				
 				cmd.execute(ctx);
-				
-			
 				System.out.println("OK2");	
-			}
-			}});
-		
-	
-
-		
-	
-	
+												}
+													}
+													});
 	}
+
+
 	
 	
 }
