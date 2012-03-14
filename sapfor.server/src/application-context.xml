@@ -22,33 +22,21 @@
 
 	<bean id="sharedDataStore" class="istic.sapfor.server.datastore.impl.FakeDataStoreImpl"></bean>
 
-
-
     <bean id="wsServiceAgent" class="istic.sapfor.service.impl.ServiceAgentImpl">
 	   <property name="dataStore" ref="sharedDataStore"></property>
     </bean>
-
 
     <jaxws:endpoint id="wsServiceAgentWeb" implementor="#wsServiceAgent"
     address="http://0.0.0.0:9085/ws/ServiceAgent">
     </jaxws:endpoint>
 
-	
-
 	<bean id="wsServiceSession" class="istic.sapfor.service.impl.ServiceSessionImpl">
 		<property name="dataStore" ref="sharedDataStore"></property>
 	</bean>
 
-
-	<simple:server id="wsServiceSessionWeb"
-		serviceClass="istic.sapfor.api.service.ServiceSession" address="http://0.0.0.0:9086/ws/ServiceSession">
-		<simple:serviceBean>
-			<ref bean="wsServiceSession" />
-		</simple:serviceBean>
-		<simple:dataBinding>
-			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
-		</simple:dataBinding>
-	</simple:server>
+	<jaxws:endpoint id="wsServiceSessionWeb" implementor="#wsServiceSession"
+    address="http://0.0.0.0:9086/ws/ServiceSession">
+    </jaxws:endpoint>
 
 
 	<bean id="wsServiceUv" class="istic.sapfor.service.impl.ServiceUvImpl">
@@ -64,30 +52,18 @@
 		<property name="dataStore" ref="sharedDataStore"></property>
 	</bean>
 
-
 	<jaxws:endpoint id="wsServiceStageWeb" implementor="#wsServiceStage"
-		address="http://0.0.0.0:9088/ws/ServiceStage">
-		
+		address="http://0.0.0.0:9088/ws/ServiceStage">	
 	</jaxws:endpoint>
 
 
 	<bean id="wsServiceTypeUv" class="istic.sapfor.service.impl.ServiceTypeUvImpl">
 		<property name="dataStore" ref="sharedDataStore"></property>
 	</bean>
-
-
-	<simple:server id="wsServiceTypeUvWeb"
-		serviceClass="istic.sapfor.api.service.ServiceTypeUv" address="http://0.0.0.0:9088/ws/ServiceTypeUv">
-		<simple:serviceBean>
-			<ref bean="wsServiceTypeUv" />
-		</simple:serviceBean>
-		<simple:dataBinding>
-			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
-		</simple:dataBinding>
-	</simple:server>
-
-
-
+	
+	<jaxws:endpoint id="wsServiceTypeUvWeb" implementor="#wsServiceTypeUv"
+		address="http://0.0.0.0:9089/ws/ServiceStage">	
+	</jaxws:endpoint>
 
 	<bean id="dataStoreTester" class="istic.sapfor.server.tester.ClientTester">
 		<property name="dataStore" ref="sharedDataStore"></property>

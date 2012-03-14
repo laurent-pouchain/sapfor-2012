@@ -20,7 +20,14 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
 http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
+	
+	<bean id="ServiceSessionClient" class="istic.sapfor.api.service.ServiceSession"
+		factory-bean="ServiceSessionFactory" factory-method="create" />
 
+	<bean id="ServiceSessionFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceSession" />
+		<property name="address" value="http://0.0.0.0:9086/ws/ServiceSession" />
+	</bean>
  
   	<bean id="ServiceAgentClient" class="istic.sapfor.api.service.ServiceAgent"
 		factory-bean="ServiceAgentFactory" factory-method="create" />
@@ -74,6 +81,12 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 	<bean id="cmdAddInscrition" class="istic.sapfor.client.command.impl.AddInscription">
 		<property name="ihmgstage" ref="ui1" />
 		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	<bean id="cmdLogin" class="istic.sapfor.client.command.impl.Login">
+		<property name="clientS" ref="ServicSessionClient" />
+		<property name="client" ref="ServicAgentClient" />
+		<property name="ihmgstage" ref="ui1" />
+		
 	</bean>
 </beans>
 <!-- END SNIPPET: beans -->
