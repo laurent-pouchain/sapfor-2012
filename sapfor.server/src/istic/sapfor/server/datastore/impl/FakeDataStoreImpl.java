@@ -102,20 +102,6 @@ public class FakeDataStoreImpl implements DataStore {
 	@SuppressWarnings("deprecation")
 	private void remplir() {
 		
-		Collection<Long> idOwnedJD = new Vector<Long>();
-		Collection<Long> idOwnedU1 = new Vector<Long>();
-		Collection<Long> idOwnedU2 = new Vector<Long>();
-		
-		idOwnedU1.add((long)0);
-		idOwnedU1.add((long)6);
-		
-		idOwnedU2.add((long)3);
-		idOwnedU2.add((long)4);
-		idOwnedU2.add((long)6);
-
-		addAgent("admin",0,idOwnedJD,"Doe","John");
-		addAgent("agent1",1,idOwnedU1,"Dupont","Jean");
-		addAgent("agent2",1,idOwnedU2,"Dupond","Jeanne");
 
 		Collection<Date> datesUv0 = new Vector<Date>();
 		datesUv0.add(new Date(111,12,9));
@@ -542,6 +528,7 @@ public class FakeDataStoreImpl implements DataStore {
 		return listeUvInscrit;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void remplir_fichier(String f) {
 		try {
 			InputStream ips = new FileInputStream(f);			
@@ -549,6 +536,7 @@ public class FakeDataStoreImpl implements DataStore {
 			BufferedReader br=new BufferedReader(ipsr);
 			String ligne;
 			while ((ligne=br.readLine())!=null){
+				String nb_ch = "";
 				int pt = 0;
 				switch (ligne.charAt(0)){
 				case 'A' : 
@@ -557,7 +545,6 @@ public class FakeDataStoreImpl implements DataStore {
 					String name ="";
 					String firstName ="";
 					Collection<Long> idsUv = new Vector<Long>();
-					String long_ch = "";
 					Integer idTypeAgent;
 					Long idUv_l;
 					
@@ -578,18 +565,19 @@ public class FakeDataStoreImpl implements DataStore {
 					}
 					pt++;
 					while (ligne.charAt(pt)!= ' '){
-					   long_ch = long_ch + ligne.charAt(pt);
+					   nb_ch = nb_ch + ligne.charAt(pt);
 					   pt++;
 					}
-					idTypeAgent = Integer.parseInt(long_ch);
+					idTypeAgent = Integer.parseInt(nb_ch);
 					pt++;
+					nb_ch = "";
 					while (ligne.charAt(pt)!= '$'){
 						while (ligne.charAt(pt)!= ','){
-						   long_ch = long_ch + ligne.charAt(pt);
+						   nb_ch = nb_ch + ligne.charAt(pt);
 						   pt++;
 						}
-						idUv_l = Long.parseLong(long_ch);
-						long_ch = "";
+						idUv_l = Long.parseLong(nb_ch);
+						nb_ch = "";
 						idsUv.add(idUv_l);
 						pt++;
 					}
@@ -602,7 +590,62 @@ public class FakeDataStoreImpl implements DataStore {
 					addAgent(login,idTypeAgent, idsUv, name, firstName);
 					break;
 					
-				case 'U' : break;
+				case 'F' : 
+					pt = 2;
+					int idType=0;
+					String title="";
+					String locality="";
+					int jour;
+					int mois;
+					int annee;
+					Collection<Date> dates = null;
+					Date dateLim = null;
+					
+					while (ligne.charAt(pt)!= ' '){
+					   nb_ch = nb_ch + ligne.charAt(pt);
+					   pt++;
+					}
+					idType = Integer.parseInt(nb_ch);
+					pt++;
+					
+					while (ligne.charAt(pt)!= ' '){
+						login = title+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
+					
+					while (ligne.charAt(pt)!= ' '){
+						login = locality+ligne.charAt(pt);
+						pt++;
+					}
+					pt++;
+					
+					while (ligne.charAt(pt)!= '/'){
+					   nb_ch = nb_ch + ligne.charAt(pt);
+					   pt++;
+					}
+					jour = Integer.parseInt(nb_ch);
+					pt++;
+					while (ligne.charAt(pt)!= '/'){
+					   nb_ch = nb_ch + ligne.charAt(pt);
+					   pt++;
+					}
+					mois = Integer.parseInt(nb_ch);
+					pt++;
+					while (ligne.charAt(pt)!= ' '){
+						nb_ch = nb_ch + ligne.charAt(pt);
+						pt++;
+					}
+					annee = Integer.parseInt(nb_ch);
+					if (annee > 100) {annee = annee -1900;}
+					else {annee = annee + 100;}
+					pt++;
+					dateLim = new Date(annee,mois,jour);
+					
+					
+					
+					addUv(idType,title,locality,dates,dateLim);
+					break;
 				case 'S' : break;
 				case 'T' : break;
 				default : break;

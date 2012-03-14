@@ -2,3 +2,6 @@
 .settings/
 *.class
 bin/
+/sapfor.server/target/
+/sapfor.client/target/
+/sapfor.api/target/
