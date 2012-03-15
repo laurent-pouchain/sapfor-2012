@@ -11,6 +11,7 @@ import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
+import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDispo implements ICommand {
@@ -49,8 +50,9 @@ public class AfficherStageDispo implements ICommand {
 		
 		//TODO recuperer l'id de l'agent (suite à sa connexion) pour pouvoir obtenir la liste des stages disponibles pour cet agent
 		//long idAgent = (long)0;			//à modifier
-		
-		Collection<Long> stDispo = client.getIdStageDispo((long) 0);
+		String idA=ctx.get(ICommandContextKey.Key_idA);
+		int idAgent = Integer.parseInt(idA);
+		Collection<Long> stDispo = client.getIdStageDispo((long) idAgent);
 		if (client.getIdStageDispo((long)0).isEmpty()==true){ 
 			ihmgstage.displayStageDispo(null);
 			return true;
