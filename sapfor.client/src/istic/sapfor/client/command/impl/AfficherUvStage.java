@@ -2,6 +2,8 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 
 import istic.sapfor.api.dto.UvDTO;
@@ -21,12 +23,18 @@ public class AfficherUvStage implements ICommand{
 	
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
-		long idAgent = (long)0;
-		
-		String idS=ctx.get(ICommandContextKey.Key_Stage);
+	
+		List<String> idTemp=new LinkedList<String>();
+		idTemp=ctx.getList(ICommandContextKey.Key_Stage);
+	
+			String idSt=idTemp.get(0);
+			String idAg=idTemp.get(1);
+			
 		int idStage;
-		idStage= Integer.parseInt(idS); 
-		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent, (long)idStage);
+		idStage= Integer.parseInt(idSt); 
+		int idAgent;
+		idAgent= Integer.parseInt(idAg); 
+		Collection<Long> uvDispo = client.getIdUvStageDispo((long)idAgent,(long)idStage);
 		System.out.println(uvDispo);
 		HashMap<Long,String> uv= new HashMap<Long,String>();
 		for (long id : uvDispo ){
