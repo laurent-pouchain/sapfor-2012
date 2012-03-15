@@ -52,8 +52,7 @@ public class AfficherStageDispo implements ICommand {
 		//long idAgent = (long)0;			//à modifier
 
 		String idA=ctx.get(ICommandContextKey.Key_Agent);
-		int idAgent;
-		idAgent= Integer.parseInt(idA); 
+		int idAgent= Integer.parseInt(idA); 
 		Collection<Long> stDispo = client.getIdStageDispo((long)idAgent);
 		if (client.getIdStageDispo((long)idAgent).isEmpty()==true){ 
 
