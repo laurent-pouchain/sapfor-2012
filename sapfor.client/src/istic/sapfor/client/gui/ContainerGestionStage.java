@@ -241,7 +241,6 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 		if (st==null){
 			    SapforListeStage s=new SapforListeStage ("Pas de stage disponible");
-			    //s.setBounds(x,y,200,50); @Pierre setBounds est inutile il faut faire des ".setPreferredSize(Dimension dim);"
 			    s.getBtu().setVisible(false);
 			    
 			    y=y+120;
@@ -294,6 +293,14 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	@Override
 	public void displayUvDispo(final HashMap<Long, String> uv) {
 		
+		if (uv==null){
+			SapforLabel nonUv= new SapforLabel ("Aucune Uv disponible");
+			infoStageUv.add(nonUv);
+		}
+		
+		else{
+			
+		
 		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
 		int x=50,y=50; Integer i=0;
 		for(Entry<Long, String> entry : uv.entrySet()) {
@@ -306,6 +313,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			//keyset
 			lstbox.put(i, rad);
 			i++;
+			
 		    infoStageUv.add(nuv);
 		    infoStageUv.add(rad);
 		    
@@ -321,6 +329,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				List<String> idUv=new LinkedList<String>();
+				Long idAg=getIdAgent();
+				idUv.add(idAg.toString());
+	
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
@@ -333,6 +344,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 												}
 													}
 													});
+		}
 	}
 
 

@@ -11,10 +11,8 @@ public class SapforJPanelUV extends JPanel {
 		super();
 		SapforLabel desc = new SapforLabel("Description du Stage");
 		this.add(desc);
-		this.setName("informationStage");
 		this.setBounds(400, 50, 150, 300);
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		SapforButton register = new SapforButton("Inscription");
 		
 		// TODO Auto-generated constructor stub
 	}

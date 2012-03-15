@@ -17,18 +17,24 @@ public class AddInscription implements ICommand {
 	@Override
 	public Boolean execute(ICommandContext ctx) {
 		//en attandant le loggin
-		long idAgent = (long)0;
+		
 		
 		List<String> idUvTemp=new LinkedList<String>();
 		List<Long> idUv=new LinkedList<Long>();
-		String temp; Integer id;
+		String temp; Integer id; 
+		
 		idUvTemp=ctx.getList(ICommandContextKey.Key_Insct);
-		for (int i=0;i<idUvTemp.size();i++){
+		
+		String idAg=idUvTemp.get(0);
+		int idAgent= Integer.parseInt(idAg); 
+		System.out.println(idAgent+" idagent qui veux s inscrire");
+		for (int i=1;i<idUvTemp.size();i++){
 			temp=idUvTemp.get(i);
 			id= Integer.parseInt(temp); 
+			System.out.println(temp+" id de UV validée");
 			idUv.add((long)id);	
 											}
-		client.addInscrip( idAgent,idUv);
+		client.addInscrip( (long)idAgent,idUv);
 		
 		System.out.println("inscription ok");
 		
