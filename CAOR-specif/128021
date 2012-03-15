@@ -1,6 +1,6 @@
 format 76
 "SapFor" // SapFor
-  revision 20
+  revision 21
   modified_by 21 "ED M2CCI"
   // class settings
   //class diagram settings
@@ -950,6 +950,22 @@ ${members}}
       relations
         end
     end
+
+    classinstance 134677 ""
+      type class_ref 148629 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 134805 ""
+      type class_ref 148629 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
   end
 
   classview 141077 "Classes DTO"
@@ -1029,7 +1045,6 @@ ${members}}
 	python_decl ""
 	idl_decl ""
       end
-
     end
 
     class 155669 "SessionDTO"

@@ -10,6 +10,7 @@ public interface IHMGStage {
 	
 public void displayStageDispo(HashMap<Long, String> st);
 public void displayUvDispo(HashMap<Long, String> uv);
-public void displayAccueilAgent(String nameA,String fNameA,long idA);
+public void displayAccueilAgentSuccessfull(String nameA,String fNameA,long idA);
+
 
 }

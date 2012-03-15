@@ -1,45 +1,124 @@
 package istic.sapfor.client.gui;
 
-import istic.sapfor.api.dto.AgentDTO;
+
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.border.BevelBorder;
+
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ContainerGestionStage implements IHMGStage {
 
 private ClassPathXmlApplicationContext context = null;
-private SapforJFrame frame,frameLogin;
+private SapforJFrame frame;
 private SapforButton bts;
 private SapforJPanelUV infoStageUv;
 private SapforLabel accueilLabel;
+private JPanel paneWestInfoAgent;
+private JPanel paneStage;
+private JPanel paneUV;
+private JDialog Jlogin;
+private Long idAgent;
+
+public long getIdAgent() {
+	return idAgent;
+}
+
+public void setIdAgent(long idAgent) {
+	this.idAgent = idAgent;
+}
+
 
 public void showUI(ClassPathXmlApplicationContext ctx) {
-	context = ctx;	
-	frameLogin=new SapforJFrame("Login");
-	SapforButton log= new SapforButton("Connexion");
-	SapforLabel name = new SapforLabel("nom:");
-	SapforLabel pwd = new SapforLabel("password:");
-	final SapforJTextArea fname = new SapforJTextArea("");
-	final SapforJTextArea fpwd = new SapforJTextArea("");
 
-	frameLogin.add(name);
-	frameLogin.add(fname);
-	frameLogin.add(pwd);
-	frameLogin.add(fpwd);
-	frameLogin.add(log);
-	frameLogin.setVisible(true);
+	context = ctx;
+	//Partie à modifier car trop lourde, mettre ça dans une méthode ou autre...
+	
+	frame= new SapforJFrame("page stage dispo"); //Création de la fenetre d'accueil des agents (invisible avant connexion)
+	frame.setVisible(false);
+	
+	Jlogin = new JDialog(frame); //Création de la boite de dialogue de connexion.
+	Jlogin.setTitle("Connexion");
+	Jlogin.setSize(300,150);
+	Jlogin.setResizable(false);
+	
+	
+	//Ajout des différents composants de la boite de dialogue de connexion.
+	Dimension std = new Dimension(100,25);
+	SapforLabel name = new SapforLabel("nom:");
+	name.setPreferredSize(std);
+	
+	SapforLabel pwd = new SapforLabel("password:");
+	pwd.setPreferredSize(std);
+	
+	final SapforJTextArea fname = new SapforJTextArea("agent1");//Enlever "agent1" pour la prod
+	fname.setPreferredSize(std);
+	
+	final JPasswordField fpwd = new JPasswordField("motdepasse");//Enlever "motdepasse" pour la prod
+	fpwd.setPreferredSize(std);
+	
+	SapforButton log= new SapforButton("Connexion");
+	log.setPreferredSize(std);
+	
+	//Positionnement des composants dans la boite de dialogue de connexion.
+	Jlogin.setLayout(new GridBagLayout());
+	GridBagConstraints gbc = new GridBagConstraints();
+	 
+	gbc.weightx = 1;
+	gbc.weighty = 1;
+	gbc.ipadx= 1;
+	gbc.ipady= 1;
+	
+	gbc.gridx = 0;
+	gbc.gridwidth = 1;
+	gbc.gridheight = 1;
+	gbc.gridy = 0;
+	gbc.fill = GridBagConstraints.NONE;
+	Jlogin.add(name,gbc);
+	 
+	gbc.gridx = 1;
+	gbc.gridwidth = 1;
+	gbc.gridheight = 1;
+	gbc.gridy = 0;
+	Jlogin.add(fname, gbc);
+	 
+	gbc.gridx = 0;
+	gbc.gridwidth = 1;
+	gbc.gridheight = 1;
+	gbc.gridy = 2;
+	Jlogin.add(pwd, gbc);
+	 
+	gbc.gridx = 1;
+	gbc.gridwidth = 1;
+	gbc.gridheight = 1;
+	gbc.gridy = 2;
+	Jlogin.add(fpwd,gbc);
+	 
+	gbc.gridx = 1;
+	gbc.gridwidth = 1;
+	gbc.gridheight = 1;
+	gbc.gridy = 3;
+	Jlogin.add(log,gbc);
+	
+	Jlogin.setVisible(true);
 	
 	log.addMouseListener(new MouseAdapter() {
 		@Override
@@ -47,35 +126,101 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdLogin");
 			DefaultCommandContext ctx = new DefaultCommandContext();
-			String logpwd = fname.getText()+"*"+fpwd.getText();
-		
-			ctx.put(ICommandContextKey.Key_login, logpwd);
-		
+			List<String> login=new LinkedList<String>();
+			System.out.println(fname.getText());
+			System.out.println(fpwd.getText());
+			String log = fname.getText();
+			String pwd= fpwd.getText();
+			login.add(log);
+			login.add(pwd);
 			
+			ctx.put(ICommandContextKey.Key_login, login);
 			cmd.execute(ctx);
-	
+			
 			
 		}
 	});
 	
-	frame= new SapforJFrame("page stage dispo");
-	bts= new SapforButton("stage dispo");
+	//Création des composants de la page d'accueil du candidat loggé
+	/*bts= new SapforButton("stage dispo");
+	bts.setPreferredSize(std);
 	accueilLabel= new SapforLabel();
-	frame.add(bts);
-    frame.setVisible(false);
-    frame.add(accueilLabel);
+	paneStage = new JPanel();
+	paneStage.add(bts);
+    paneStage.add(accueilLabel);
+    
     //cadre pour afficher les uv
     infoStageUv= new SapforJPanelUV();
 	infoStageUv.setVisible(false);
-	frame.add(infoStageUv);
-    
-    
+	paneStage.add(infoStageUv);
+	frame.add(paneStage);*/
+	frame.setLayout(new GridBagLayout());
+	GridBagConstraints frameGBC = new GridBagConstraints();
+	
+	paneWestInfoAgent = new JPanel();
+	paneWestInfoAgent.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+	//paneWestInfoAgent.setPreferredSize(new Dimension(800,600));
+	accueilLabel= new SapforLabel();
+	paneWestInfoAgent.add(accueilLabel);
+	
+	bts= new SapforButton("stage dispo");
+	bts.setPreferredSize(std);
+	paneWestInfoAgent.add(bts);
+	
+	paneStage = new JPanel();
+	//paneStage.setPreferredSize(new Dimension(500,600));
+	paneStage.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+	//cadre pour afficher les uv
+	paneUV = new JPanel();
+	//paneUV.setPreferredSize(new Dimension(500,600));
+	paneUV.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+    infoStageUv= new SapforJPanelUV();
+	infoStageUv.setVisible(false);
+	paneUV.add(infoStageUv);
+	
+	
+
+	frameGBC.weightx = 1;
+	frameGBC.weighty = 1;
+	frameGBC.ipadx= 1;
+	frameGBC.ipady= 1;
+	
+	frameGBC.gridx = 0;
+	frameGBC.gridwidth = 1;
+	frameGBC.gridheight = 1;
+	frameGBC.gridy = 0;
+	frameGBC.fill = GridBagConstraints.BOTH;
+	frameGBC.anchor = GridBagConstraints.WEST;
+	frame.add(paneWestInfoAgent,frameGBC);
+	 
+	frameGBC.gridx = 1;
+	frameGBC.gridwidth = 1;
+	frameGBC.gridheight = 1;
+	frameGBC.gridy = 0;
+	frame.add(paneStage, frameGBC);
+	
+	frameGBC.gridx = 2;
+	frameGBC.gridwidth = 1;
+	frameGBC.gridheight = 1;
+	frameGBC.gridy = 0;
+	frame.add(paneUV, frameGBC);
+	
+	
+	
+	
+	
 	bts.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
-			cmd.execute(new DefaultCommandContext());
+			DefaultCommandContext ctx = new DefaultCommandContext();
+
+			Long idAg=getIdAgent();
+		
+			ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
+
+			cmd.execute(ctx);
 			
 			System.out.println("OK");
 			
@@ -96,11 +241,11 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 		if (st==null){
 			    SapforListeStage s=new SapforListeStage ("Pas de stage disponible");
-			    s.setBounds(x,y,200,50);
+			    //s.setBounds(x,y,200,50); @Pierre setBounds est inutile il faut faire des ".setPreferredSize(Dimension dim);"
 			    s.getBtu().setVisible(false);
 			    
-			   y=y+120;
-			    frame.add(s);		
+			    y=y+120;
+			    paneStage.add(s);		
 		}
 												
 			else {
@@ -109,19 +254,24 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	final Long cle = entry.getKey();
 		    	String valeur = entry.getValue();
 		    	SapforListeStage s=new SapforListeStage (valeur);
-		 
-		    	s.setBounds(x,y,200,50);
+		    	//System.out.println(valeur);
+		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
-		    	frame.add(s);
+		    	paneStage.add(s);
 		    	//clique sur le bouton pour afficher les stages disponibles
 		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-			
+					//String idA = accueilLabel.getText().split(" ")[3];
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
 					DefaultCommandContext ctx = new DefaultCommandContext();
-					
-					ctx.put(ICommandContextKey.Key_Stage, cle.toString());
+
+					List<String> stageDisp=new LinkedList<String>();
+					Long idAg=getIdAgent();
+					stageDisp.add(cle.toString());
+					stageDisp.add(idAg.toString());
+					ctx.put(ICommandContextKey.Key_Stage, stageDisp);
+
 					
 					cmd.execute(ctx);
 					
@@ -187,12 +337,19 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 
 	@Override
-	public void displayAccueilAgent(String nameA, String fNameA, long idA) {
+	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA) {
+
 		// TODO Auto-generated method stub
-		frame.setVisible(true);
-		frameLogin.setVisible(false);
-		accueilLabel.setText("Bonjour "+ nameA+" "+ fNameA);
-	}
+
+		String infoAgent=nameA+" "+fNameA;
+		accueilLabel.setText("Bonjour "+ infoAgent);//Edition du message personnalisé (Nom+prénom de l'agent loggé)
+		setIdAgent(idA);
+
+		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
+		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
+		}
+	
+
 
 	
 	
