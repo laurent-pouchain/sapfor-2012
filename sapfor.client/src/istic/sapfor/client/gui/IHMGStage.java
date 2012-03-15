@@ -12,6 +12,7 @@ public void displayStageDispo(HashMap<Long, String> st);
 public void displayUvDispo(HashMap<Long, String> uv);
 public void displayAccueilAgentSuccessfull(String nameA,String fNameA,long idA, long typeAg);
 public void errorLogin();
+public void GererStageDir(HashMap<Long, String> st);
 
 
 }
