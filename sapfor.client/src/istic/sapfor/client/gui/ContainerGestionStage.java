@@ -126,6 +126,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 	Jlogin.setVisible(true);
 	
+
 	//Listener du bouton "connexion"
 	log.addMouseListener(new MouseAdapter() {
 		@Override
@@ -185,12 +186,35 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	paneUV.add(infoStageUv);
 	
 	
+
 	
 	frame.add(paneWestInfoAgent);
 	frame.add(paneStage);
 	frame.add(paneUV);
 	
-	//Listener du bouton "stage disponible"
+
+
+
+	
+/*	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
+	
+	admin.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
+			rootUI.showUI(context);
+			frame.setVisible(false);
+			
+			//Ok pour le changement de page de l'admin
+		}
+	});*/			
+	
+	//Antoine R. j'ai de mon coté fais quelques modif on verra ça demain.
+	
+	
+	//listener pour l'affichage des stages
+
 	bts.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -230,9 +254,6 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 
 
-
-
-
 	public void displayStageDispo(HashMap<Long,String> st) {
 		// TODO Auto-generated method stub
 		
@@ -247,34 +268,42 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 												
 			else {
-				for(Entry<Long, String> entry : st.entrySet()) {
-				    final Long cle = entry.getKey();
-				    String valeur = entry.getValue();
-				    SapforListeStage s=new SapforListeStage (valeur);
-				    
-				   	y=y+120;
-				   	paneStage.add(s);
-				   	//clique sur le bouton pour afficher les stages disponibles
-				   	s.getBtu().addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						//String idA = accueilLabel.getText().split(" ")[3];
-						ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
-						DefaultCommandContext ctx = new DefaultCommandContext();
-						List<String> stageDisp=new LinkedList<String>();
-						Long idAg=getIdAgent();
-						System.out.println(idAg+" test ");
-						stageDisp.add(cle.toString());
-						stageDisp.add(idAg.toString());
-						ctx.put(ICommandContextKey.Key_Stage, stageDisp);
-		
-							
-						cmd.execute(ctx);
-							
-						
-						System.out.println("OK2");	
-						}
-				   	});
+
+		for(Entry<Long, String> entry : st.entrySet()) {
+
+		    	final Long cle = entry.getKey();
+		    	String valeur = entry.getValue();
+		    	SapforListeStage s=new SapforListeStage (valeur);
+		    	//System.out.println(valeur);
+		    	//s.setBounds(x,y,200,50); 
+		    	y=y+120;
+		    	paneStage.add(s);
+		    	
+		    	
+		    	
+		    	//listener pour afficher les UV disponibles
+		    	s.getBtu().addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					//String idA = accueilLabel.getText().split(" ")[3];
+					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
+					DefaultCommandContext ctx = new DefaultCommandContext();
+
+					List<String> stageDisp=new LinkedList<String>();
+					Long idAg=getIdAgent();
+					System.out.println(idAg+" test ");
+					stageDisp.add(cle.toString());
+					stageDisp.add(idAg.toString());
+					ctx.put(ICommandContextKey.Key_Stage, stageDisp);
+
+					
+					cmd.execute(ctx);
+					
+				
+					System.out.println("OK2");	
+				}
+			});
+
 	    	
 				}
 			}
@@ -321,8 +350,14 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			SapforButton inscr= new SapforButton("s'inscrire");
 			infoStageUv.add(inscr);
 			infoStageUv.setVisible(true);
+
 			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
 		
+
+			
+			//listener pour la validation de l'inscription
+			//TODO verifier que l'agent n'est pas déjà inscrit...
+
 			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -345,6 +380,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					ctx.put(ICommandContextKey.Key_Insct, idUv);
 					cmd.execute(ctx);
 					System.out.println("OK2");
+					JOptionPane.showMessageDialog(null,"Inscription réussie", "Confirmation",JOptionPane.PLAIN_MESSAGE);
 				}	
 													
 			}

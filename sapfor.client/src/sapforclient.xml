@@ -56,6 +56,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 	<bean id="ui" class="istic.sapfor.client.gui.MainContainer"></bean>
 	
  	<bean id="ui1" class="istic.sapfor.client.gui.ContainerGestionStage"></bean>
+ 	<bean id="uiAdmin" class="istic.sapfor.client.gui.ContainerGestionAdmin"></bean>
 
 	<bean id="cmdDisplayAgents" class="istic.sapfor.client.command.impl.AfficherAgent">
 		<property name="ihm" ref="ui" />
