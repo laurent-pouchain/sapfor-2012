@@ -1,145 +1,264 @@
 format 76
 
 classinstancecanvas 128394 classinstance_ref 134794 // 
-  xyz 50 23 2005 life_line_z 2000
+  xyz 20 25 2005 life_line_z 2000
 end
 classinstancecanvas 128650 classinstance_ref 134538 // 
-  xyz 481 27 2000 life_line_z 2000
+  xyz 380 28 2000 life_line_z 2000
 end
+classinstancecanvas 133141 classinstance_ref 134677 // 
+  xyz 677 33 2000 life_line_z 2000
+end
+note 134805 "Fait pour chaque stage inscrit"
+  xyzwh 726.5 178.5 2000 105 49
+note 134933 "Fait pour chaque UV du stage"
+  xyzwh 722 338 2000 105 49
+note 137237 "Fait pour chaque UV du stage"
+  xyzwh 720.5 795.5 2000 105 49
 durationcanvas 128021 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 177 2010 11 32
+  xyzwh 41 209 2010 11 32
 end
 durationcanvas 129930 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 124 2010 11 41
+  xyzwh 41 96 2010 11 41
 end
 durationcanvas 130058 classinstance_ref 128650 // :Client
-  xyzwh 500 130 2010 11 83
-end
-durationcanvas 130069 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 239 2010 11 39
-end
-durationcanvas 130197 classinstance_ref 128650 // :Client
-  xyzwh 500 255 2010 11 70
-end
-durationcanvas 130453 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 302 2010 11 25
-end
-durationcanvas 130709 classinstance_ref 128650 // :Client
-  xyzwh 500 633 2010 11 64
-  overlappingdurationcanvas 130965
-    xyzwh 506 649 2020 11 30
+  xyzwh 399 100 2010 11 139
+  overlappingdurationcanvas 133525
+    xyzwh 405 132 2020 11 32
+  end
+  overlappingdurationcanvas 134549
+    xyzwh 405 199 2020 11 25
   end
 end
+durationcanvas 130069 classinstance_ref 128394 // :Utilisateur
+  xyzwh 41 257 2010 11 39
+end
+durationcanvas 130197 classinstance_ref 128650 // :Client
+  xyzwh 399 261 2010 11 138
+  overlappingdurationcanvas 134037
+    xyzwh 405 364 2020 11 25
+  end
+  overlappingdurationcanvas 135317
+    xyzwh 405 305 2020 11 25
+  end
+end
+durationcanvas 130453 classinstance_ref 128394 // :Utilisateur
+  xyzwh 41 366 2010 11 30
+end
+durationcanvas 130709 classinstance_ref 128650 // :Client
+  xyzwh 399 683 2010 11 178
+end
 durationcanvas 131082 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 540 2010 11 111
+  xyzwh 41 590 2010 11 111
   overlappingdurationcanvas 131722
-    xyzwh 77 588 2020 11 57
+    xyzwh 47 638 2020 11 57
   end
 end
 durationcanvas 131210 classinstance_ref 128650 // :Client
-  xyzwh 500 547 2010 11 157
+  xyzwh 399 599 2010 11 269
+  overlappingdurationcanvas 136469
+    xyzwh 405 745 2020 11 25
+  end
+  overlappingdurationcanvas 136981
+    xyzwh 405 823 2020 11 25
+  end
 end
 durationcanvas 131221 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 677 2010 11 34
+  xyzwh 41 833 2010 11 39
 end
 durationcanvas 131477 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 359 2010 11 105
+  xyzwh 41 409 2010 11 105
   overlappingdurationcanvas 131861
-    xyzwh 77 395 2020 11 52
+    xyzwh 47 445 2020 11 52
   end
 end
 durationcanvas 131605 classinstance_ref 128650 // :Client
-  xyzwh 500 360 2010 11 158
+  xyzwh 399 410 2010 11 158
   overlappingdurationcanvas 132373
-    xyzwh 506 434 2020 11 40
-    overlappingdurationcanvas 132629
-      xyzwh 512 442 2030 11 25
+    xyzwh 405 485 2020 11 67
+    overlappingdurationcanvas 135829
+      xyzwh 411 521 2030 11 25
     end
   end
 end
 durationcanvas 132885 classinstance_ref 128394 // :Utilisateur
-  xyzwh 71 485 2010 11 42
+  xyzwh 41 535 2010 11 42
+end
+durationcanvas 133269 classinstance_ref 133141 // :Serveur
+  xyzwh 698 115 2010 11 48
+end
+durationcanvas 133781 classinstance_ref 133141 // :Serveur
+  xyzwh 698 335 2010 11 55
+end
+durationcanvas 134293 classinstance_ref 133141 // :Serveur
+  xyzwh 698 179 2010 11 37
+end
+durationcanvas 135061 classinstance_ref 133141 // :Serveur
+  xyzwh 698 285 2010 11 42
+end
+durationcanvas 135573 classinstance_ref 133141 // :Serveur
+  xyzwh 698 483 2010 11 61
+end
+durationcanvas 136085 classinstance_ref 133141 // :Serveur
+  xyzwh 698 719 2010 11 44
+end
+durationcanvas 136725 classinstance_ref 133141 // :Serveur
+  xyzwh 698 799 2010 11 40
 end
 msg 128149 synchronous
   from durationcanvas_ref 130058
   to durationcanvas_ref 128021
-  yz 184 2015 explicitmsg "affiche la page des stages demandés"
+  yz 224 2015 explicitmsg "affiche la page des stages demandés"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 178 170
+  label_xy 130 210
 msg 130186 asynchronous
   from durationcanvas_ref 129930
   to durationcanvas_ref 130058
-  yz 130 2015 explicitmsg "clique sur \"Stages demandés\""
+  yz 100 2015 explicitmsg "clique sur \"Stages demandés\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 199 116
+  label_xy 148 86
 msg 130325 synchronous
   from durationcanvas_ref 130069
   to durationcanvas_ref 130197
-  yz 255 2015 explicitmsg "clique sur \"Info stage\" après avoir sélectionné un stage"
+  yz 271 2015 explicitmsg "clique sur \"Stage\" après avoir sélectionné un stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 145 241
+  label_xy 94 257
 msg 130581 synchronous
   from durationcanvas_ref 130197
   to durationcanvas_ref 130453
-  yz 302 2015 explicitmsg "affiche la page du stage"
+  yz 378 2015 explicitmsg "affiche la page du stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 219 288
+  label_xy 143 364
 msg 130837 synchronous
   from durationcanvas_ref 131722
   to durationcanvas_ref 130709
-  yz 633 2025 explicitmsg "clique sur \"Oui\""
+  yz 683 2025 explicitmsg "clique sur \"Oui\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 241 619
-reflexivemsg 131093 synchronous
-  to durationcanvas_ref 130965
-  yz 649 2025 explicitmsg "désinscrit l'utilisateur de toutes les UVs du stage"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 541 646
+  label_xy 154 669
 msg 131338 synchronous
   from durationcanvas_ref 131082
   to durationcanvas_ref 131210
-  yz 555 2015 explicitmsg "clique sur \"Désinscription au Stage\""
+  yz 607 2015 explicitmsg "clique sur \"Désinscription au Stage\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 215 541
+  label_xy 104 593
 msg 131349 synchronous
   from durationcanvas_ref 130709
   to durationcanvas_ref 131221
-  yz 686 2015 explicitmsg "affiche page de confirmation"
+  yz 850 2015 explicitmsg "affiche page de confirmation"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 209 672
+  label_xy 125 836
 msg 131733 synchronous
   from durationcanvas_ref 131477
   to durationcanvas_ref 131605
-  yz 361 2015 explicitmsg "selectionne une UV et clique sur \"Désinscription\""
+  yz 411 2015 explicitmsg "selectionne une UV et clique sur \"Désinscription\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 174 347
+  label_xy 103 397
 msg 131850 asynchronous
   from durationcanvas_ref 131210
   to durationcanvas_ref 131722
-  yz 590 2025 explicitmsg "demande confirmation"
+  yz 642 2025 explicitmsg "demande confirmation"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 228 576
+  label_xy 133 628
 msg 131989 synchronous
   from durationcanvas_ref 131605
   to durationcanvas_ref 131861
-  yz 395 2025 explicitmsg "demande confirmation"
+  yz 445 2025 explicitmsg "demande confirmation"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 241 381
+  label_xy 142 431
 msg 132501 synchronous
   from durationcanvas_ref 131861
   to durationcanvas_ref 132373
-  yz 434 2030 explicitmsg "clique sur \"Oui\""
+  yz 485 2030 explicitmsg "clique sur \"Oui\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 260 420
-reflexivemsg 132757 synchronous
-  to durationcanvas_ref 132629
-  yz 442 2035 explicitmsg "désincrit l'utilisateur de l'UV sélectionnée"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 550 448
+  label_xy 154 471
 msg 133013 synchronous
   from durationcanvas_ref 131605
   to durationcanvas_ref 132885
-  yz 502 2015 explicitmsg "affiche page de confirmation"
+  yz 552 2015 explicitmsg "affiche page de confirmation"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 222 488
+  label_xy 121 538
+msg 133397 synchronous
+  from durationcanvas_ref 130058
+  to durationcanvas_ref 133269
+  yz 119 2015 explicitmsg "getIdStageInscrit(Long idAgent)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 482 105
+msg 133653 synchronous
+  from durationcanvas_ref 133269
+  to durationcanvas_ref 133525
+  yz 147 2025 explicitmsg "idStageInsc:Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 487 133
+msg 133909 synchronous
+  from durationcanvas_ref 130197
+  to durationcanvas_ref 133781
+  yz 346 2015 explicitmsg "getUv(Long IdUV)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 490 332
+msg 134165 synchronous
+  from durationcanvas_ref 133781
+  to durationcanvas_ref 134037
+  yz 374 2025 explicitmsg "uv : UvDTO"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 509 360
+msg 134421 synchronous
+  from durationcanvas_ref 130058
+  to durationcanvas_ref 134293
+  yz 179 2015 explicitmsg "getStage(Long idStage)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 497 165
+msg 134677 synchronous
+  from durationcanvas_ref 134293
+  to durationcanvas_ref 134549
+  yz 205 2025 explicitmsg "stage: StageDTO"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 516 191
+msg 135189 synchronous
+  from durationcanvas_ref 130197
+  to durationcanvas_ref 135061
+  yz 285 2020 explicitmsg "getIdUvStageInscrit(Long idAgent, Long idStage)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 416 271
+msg 135445 synchronous
+  from durationcanvas_ref 135061
+  to durationcanvas_ref 135317
+  yz 316 2025 explicitmsg "idUvInsc:Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 473 302
+msg 135701 synchronous
+  from durationcanvas_ref 132373
+  to durationcanvas_ref 135573
+  yz 492 2025 explicitmsg "setStatut(Long idUv, Long idCandidat, Etat.annule, Etat ancienEtat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 428 467
+msg 135957 synchronous
+  from durationcanvas_ref 135573
+  to durationcanvas_ref 135829
+  yz 528 2035 explicitmsg "confirmeAnnul : bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 511 514
+msg 136213 synchronous
+  from durationcanvas_ref 131210
+  to durationcanvas_ref 136085
+  yz 720 2015 explicitmsg "getIdUvStageInscrit(Long idAgent, Long idStage)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 437 706
+msg 136597 synchronous
+  from durationcanvas_ref 136085
+  to durationcanvas_ref 136469
+  yz 751 2025 explicitmsg "idUvInsc:Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 494 737
+msg 136853 synchronous
+  from durationcanvas_ref 131210
+  to durationcanvas_ref 136725
+  yz 799 2015 explicitmsg "setStatut(Long idUv, Long idCandidat, Etat.annule, Etat ancienEtat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 418 778
+msg 137109 synchronous
+  from durationcanvas_ref 136725
+  to durationcanvas_ref 136981
+  yz 828 2025 explicitmsg "confirmeAnnul : bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 508 814
 end

@@ -1,108 +1,211 @@
 format 76
 
 classinstancecanvas 128138 classinstance_ref 134538 // 
-  xyz 506 10 2000 life_line_z 2000
+  xyz 446 9 2000 life_line_z 2000
 end
 classinstancecanvas 128266 classinstance_ref 134794 // 
-  xyz 139 16 2005 life_line_z 2000
+  xyz 121 16 2005 life_line_z 2000
 end
 note 129674 "//utilisateur : directeur d'au moins un stage"
-  xyzwh 33 10 2000 103 65
+  xyzwh 209 10 2000 103 65
+classinstancecanvas 130325 classinstance_ref 134805 // 
+  xyz 770 6 2000 life_line_z 2000
+end
 note 133258 "liste des inscrits seulement"
-  xyzwh 25 391 2010 87 59
+  xyzwh 8 370 2010 87 59
 note 133386 "liste des inscrits + liste des retenues
 liste d'attente, non retenues"
-  xyzwh 13 520 2000 127 75
+  xyzwh 5 567 2000 127 75
 durationcanvas 128021 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 189 2010 11 32
+  xyzwh 142 208 2010 11 33
 end
 durationcanvas 128277 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 308 2010 11 30
+  xyzwh 142 308 2010 11 30
 end
 durationcanvas 128533 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 557 2010 11 42
+  xyzwh 142 601 2010 11 42
 end
 durationcanvas 129685 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 378 2010 11 40
+  xyzwh 142 378 2010 11 40
 end
 durationcanvas 129802 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 129 2010 11 40
+  xyzwh 142 101 2010 11 30
 end
 durationcanvas 129813 classinstance_ref 128138 // :Client
-  xyzwh 525 380 2010 11 77
+  xyzwh 465 380 2010 11 138
+  overlappingdurationcanvas 132501
+    xyzwh 471 420 2020 11 25
+  end
+  overlappingdurationcanvas 133013
+    xyzwh 471 482 2020 11 25
+  end
 end
 durationcanvas 129930 classinstance_ref 128138 // :Client
-  xyzwh 525 129 2010 11 88
+  xyzwh 465 98 2010 11 143
+  overlappingdurationcanvas 130709
+    xyzwh 471 139 2020 11 25
+  end
+  overlappingdurationcanvas 131221
+    xyzwh 471 206 2020 11 25
+  end
 end
 durationcanvas 130069 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 434 2010 11 25
+  xyzwh 142 490 2010 11 29
+end
+durationcanvas 130453 classinstance_ref 130325 // :Serveur
+  xyzwh 791 122 2010 11 36
 end
 durationcanvas 130954 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 255 2010 11 40
+  xyzwh 142 255 2010 11 40
+end
+durationcanvas 130965 classinstance_ref 130325 // :Serveur
+  xyzwh 791 185 2010 11 44
 end
 durationcanvas 131082 classinstance_ref 128138 // :Client
-  xyzwh 525 260 2010 11 71
+  xyzwh 465 260 2010 11 71
+  overlappingdurationcanvas 131989
+    xyzwh 471 299 2020 11 25
+  end
+end
+durationcanvas 131477 classinstance_ref 130325 // :Serveur
+  xyzwh 791 269 2010 11 50
 end
 durationcanvas 132106 classinstance_ref 128266 // :Utilisateur
-  xyzwh 160 493 2010 11 52
+  xyzwh 142 546 2010 11 44
 end
 durationcanvas 132234 classinstance_ref 128138 // :Client
-  xyzwh 525 511 2010 11 76
-  overlappingdurationcanvas 128789
-    xyzwh 531 545 2020 11 25
+  xyzwh 465 555 2010 11 76
+  overlappingdurationcanvas 133525
+    xyzwh 471 601 2020 11 25
   end
+end
+durationcanvas 132245 classinstance_ref 130325 // :Serveur
+  xyzwh 791 392 2010 11 47
+end
+durationcanvas 132757 classinstance_ref 130325 // :Serveur
+  xyzwh 791 461 2010 11 45
+end
+durationcanvas 133269 classinstance_ref 130325 // :Serveur
+  xyzwh 791 576 2010 11 45
 end
 msg 128149 synchronous
   from durationcanvas_ref 129930
   to durationcanvas_ref 128021
-  yz 196 2015 explicitmsg "affiche la page des stages gérés"
+  yz 223 2015 explicitmsg "affiche la page des stages gérés"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 261 182
+  label_xy 243 209
 msg 128405 synchronous
   from durationcanvas_ref 131082
   to durationcanvas_ref 128277
   yz 313 2015 explicitmsg "affiche la page du stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 271 299
+  label_xy 253 299
 msg 128661 synchronous
   from durationcanvas_ref 132234
   to durationcanvas_ref 128533
-  yz 575 2015 explicitmsg "affiche la page de \"Tri candidatures\" de l'UV correspondante"
+  yz 619 2015 explicitmsg "affiche la page de \"Tri candidatures\" de l'UV correspondante"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 208 562
-reflexivemsg 128917 synchronous
-  to durationcanvas_ref 128789
-  yz 545 2025 explicitmsg "clot les inscriptions de l'UV"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 565 544
+  label_xy 164 606
 msg 129941 synchronous
   from durationcanvas_ref 129685
   to durationcanvas_ref 129813
   yz 391 2015 explicitmsg "selectionne une UV et clique sur \"Gestion UV\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 237 377
+  label_xy 219 377
 msg 130058 synchronous
   from durationcanvas_ref 129802
   to durationcanvas_ref 129930
-  yz 129 2015 explicitmsg "clique sur \"Stages gérés\""
+  yz 109 2015 explicitmsg "clique sur \"Stages gérés\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 278 115
+  label_xy 260 95
 msg 130197 synchronous
   from durationcanvas_ref 129813
   to durationcanvas_ref 130069
-  yz 434 2015 explicitmsg "affiche la page de gestion de l'UV"
+  yz 498 2015 explicitmsg "affiche la page de gestion de l'UV"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 267 420
+  label_xy 249 484
+msg 130581 synchronous
+  from durationcanvas_ref 129930
+  to durationcanvas_ref 130453
+  yz 122 2020 explicitmsg "getIdStageDir(Long idAgent);"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 564 108
+msg 130837 synchronous
+  from durationcanvas_ref 130453
+  to durationcanvas_ref 130709
+  yz 147 2025 explicitmsg "idsStageDir : Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 566 133
+msg 131093 synchronous
+  from durationcanvas_ref 129930
+  to durationcanvas_ref 130965
+  yz 185 2015 explicitmsg "getStage(Long idStage)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 576 171
 msg 131210 asynchronous
   from durationcanvas_ref 130954
   to durationcanvas_ref 131082
-  yz 267 2015 explicitmsg "clique sur \"Info\" après avoir sélectionné un stage"
+  yz 268 2015 explicitmsg "clique sur \"Info\" après avoir sélectionné un stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 215 253
+  label_xy 197 254
+msg 131349 synchronous
+  from durationcanvas_ref 130965
+  to durationcanvas_ref 131221
+  yz 214 2025 explicitmsg "stage : StageDTO"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 594 200
+msg 131605 synchronous
+  from durationcanvas_ref 131082
+  to durationcanvas_ref 131477
+  yz 274 2020 explicitmsg "getUv(Long idUv)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 591 260
+msg 132117 synchronous
+  from durationcanvas_ref 131477
+  to durationcanvas_ref 131989
+  yz 308 2025 explicitmsg "uv : UvDTO"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 609 294
 msg 132362 asynchronous
   from durationcanvas_ref 132106
   to durationcanvas_ref 132234
-  yz 511 2015 explicitmsg "clique sur \"Clore les candidatures\""
+  yz 561 2015 explicitmsg "clique sur \"Clore les candidatures\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 254 497
+  label_xy 236 547
+msg 132373 synchronous
+  from durationcanvas_ref 129813
+  to durationcanvas_ref 132245
+  yz 392 2020 explicitmsg "getIdCandidat(Long idUv, Etat.inscrit);"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 543 378
+msg 132629 synchronous
+  from durationcanvas_ref 132245
+  to durationcanvas_ref 132501
+  yz 420 2025 explicitmsg "idsCandidat : Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 566 406
+msg 132885 synchronous
+  from durationcanvas_ref 129813
+  to durationcanvas_ref 132757
+  yz 461 2015 explicitmsg "getAgent(Long idCandidat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 575 447
+msg 133141 synchronous
+  from durationcanvas_ref 132757
+  to durationcanvas_ref 133013
+  yz 495 2025 explicitmsg "candidat : AgentDTO"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 586 481
+msg 133397 synchronous
+  from durationcanvas_ref 132234
+  to durationcanvas_ref 133269
+  yz 576 2020 explicitmsg "setCandidatureClose(Long idUv, bool.true)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 558 562
+msg 133653 synchronous
+  from durationcanvas_ref 133269
+  to durationcanvas_ref 133525
+  yz 606 2025 explicitmsg "confirmCandClose : bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 578 592
 end

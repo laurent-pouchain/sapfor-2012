@@ -12,23 +12,21 @@ classinstancecanvas 131722 classinstance_ref 134794 //
   xyz 44 4 2005 life_line_z 2000
 end
 note 132373 "Fait pour chaque UV du stage"
-  xyzwh 683.5 409.5 2000 105 49
-note 132757 "Fait pour chaque UV sélectionnée par l'utilisateur"
-  xyzwh 679 575 2000 105 61
+  xyzwh 689.5 302.5 2000 105 49
 durationcanvas 128021 classinstance_ref 131722 // :Utilisateur
   xyzwh 65 201 2010 11 48
 end
 durationcanvas 128277 classinstance_ref 131722 // :Utilisateur
-  xyzwh 65 450 2010 11 40
+  xyzwh 65 360 2010 11 40
 end
 durationcanvas 128533 classinstance_ref 131722 // :Utilisateur
-  xyzwh 65 625 2010 11 42
+  xyzwh 65 540 2010 11 42
 end
 durationcanvas 129045 classinstance_ref 131722 // :Utilisateur
-  xyzwh 65 513 2010 11 38
+  xyzwh 65 428 2010 11 38
 end
 durationcanvas 129173 classinstance_ref 128138 // :Client
-  xyzwh 378 517 2010 11 40
+  xyzwh 378 432 2010 11 40
 end
 durationcanvas 129685 classinstance_ref 129557 // :Serveur
   xyzwh 658 103 2010 11 35
@@ -36,31 +34,19 @@ end
 durationcanvas 130197 classinstance_ref 129557 // :Serveur
   xyzwh 658 169 2010 11 46
 end
-durationcanvas 130837 classinstance_ref 129557 // :Serveur
-  xyzwh 658 286 2010 11 37
-end
-durationcanvas 131349 classinstance_ref 129557 // :Serveur
-  xyzwh 658 350 2010 11 36
-end
 durationcanvas 131861 classinstance_ref 129557 // :Serveur
-  xyzwh 658 416 2010 11 43
+  xyzwh 658 291 2010 11 78
 end
 durationcanvas 132501 classinstance_ref 129557 // :Serveur
-  xyzwh 658 596 2010 11 43
+  xyzwh 658 511 2010 11 43
 end
 durationcanvas 134410 classinstance_ref 131722 // :Utilisateur
   xyzwh 65 266 2010 11 45
 end
 durationcanvas 134538 classinstance_ref 128138 // :Client
-  xyzwh 378 266 2010 11 215
-  overlappingdurationcanvas 131093
-    xyzwh 384 305 2020 11 25
-  end
-  overlappingdurationcanvas 131605
-    xyzwh 384 364 2020 11 25
-  end
+  xyzwh 378 265 2010 11 139
   overlappingdurationcanvas 132117
-    xyzwh 384 439 2020 11 25
+    xyzwh 384 349 2020 11 25
   end
 end
 durationcanvas 137738 classinstance_ref 131722 // :Utilisateur
@@ -76,12 +62,12 @@ durationcanvas 137866 classinstance_ref 128138 // :Client
   end
 end
 durationcanvas 139786 classinstance_ref 131722 // :Utilisateur
-  xyzwh 65 569 2010 11 44
+  xyzwh 65 484 2010 11 44
 end
 durationcanvas 139914 classinstance_ref 128138 // :Client
-  xyzwh 378 577 2010 11 86
+  xyzwh 378 492 2010 11 86
   overlappingdurationcanvas 132885
-    xyzwh 384 620 2020 11 25
+    xyzwh 384 535 2020 11 25
   end
 end
 msg 128149 synchronous
@@ -93,99 +79,75 @@ msg 128149 synchronous
 msg 128405 synchronous
   from durationcanvas_ref 134538
   to durationcanvas_ref 128277
-  yz 470 2015 explicitmsg "affiche la page du Stage"
+  yz 379 2015 explicitmsg "affiche la page du Stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 169 458
+  label_xy 169 367
 msg 128661 synchronous
   from durationcanvas_ref 139914
   to durationcanvas_ref 128533
-  yz 634 2015 explicitmsg "affiche la page de confirmation"
+  yz 549 2015 explicitmsg "affiche la page de confirmation"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 155 620
+  label_xy 155 535
 msg 129301 synchronous
   from durationcanvas_ref 129045
   to durationcanvas_ref 129173
-  yz 523 2015 explicitmsg "choisit ses UV"
+  yz 438 2015 explicitmsg "choisit ses UV"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 194 509
+  label_xy 194 424
 msg 129813 synchronous
   from durationcanvas_ref 137866
   to durationcanvas_ref 129685
-  yz 105 2015 explicitmsg "getIdStagesDispo(Session)"
+  yz 105 2015 explicitmsg "getIdStagesDispo(Long idAgent)"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 458 91
 msg 130069 synchronous
   from durationcanvas_ref 129685
   to durationcanvas_ref 129941
-  yz 127 2025 explicitmsg "id_stages_disp:collection<string>"
+  yz 127 2025 explicitmsg "idStageDispo:Collection<Long>"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 446 113
 msg 130325 synchronous
   from durationcanvas_ref 137866
   to durationcanvas_ref 130197
-  yz 170 2015 explicitmsg "getNomStage(Session,IdStage)"
+  yz 170 2015 explicitmsg "getStage(Long idStage)"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 448 156
 msg 130581 synchronous
   from durationcanvas_ref 130197
   to durationcanvas_ref 130453
-  yz 199 2025 explicitmsg "nom_stage:string"
+  yz 199 2025 explicitmsg "stage:StageDTO"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 485 185
-msg 130965 synchronous
-  from durationcanvas_ref 134538
-  to durationcanvas_ref 130837
-  yz 288 2015 explicitmsg "getInfoStage(Session,IdStage)"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 450 274
-msg 131221 synchronous
-  from durationcanvas_ref 130837
-  to durationcanvas_ref 131093
-  yz 312 2025 explicitmsg "inf_stage:InfoStage"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 479 298
-msg 131477 synchronous
-  from durationcanvas_ref 134538
-  to durationcanvas_ref 131349
-  yz 352 2015 explicitmsg "getListeUVStage(Session,IdStage)"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 440 338
-msg 131733 synchronous
-  from durationcanvas_ref 131349
-  to durationcanvas_ref 131605
-  yz 374 2025 explicitmsg "liste_id_UV:collection<string>"
-  show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 456 360
 msg 131989 synchronous
   from durationcanvas_ref 134538
   to durationcanvas_ref 131861
-  yz 416 2015 explicitmsg "getNomUV(Session,IdUV)"
+  yz 294 2015 explicitmsg "getUV(Long IdUV)"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 461 402
+  label_xy 461 280
 msg 132245 synchronous
   from durationcanvas_ref 131861
   to durationcanvas_ref 132117
-  yz 443 2025 explicitmsg "nom_UV:string"
+  yz 353 2025 explicitmsg "uv:UvDTO"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 491 429
+  label_xy 491 339
 msg 132629 synchronous
   from durationcanvas_ref 139914
   to durationcanvas_ref 132501
-  yz 600 2015 explicitmsg "deposerCandidature(Session,IdUV)"
+  yz 515 2015 explicitmsg "addInscrip(Long idAgent, Collection<Long> idUv)"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 438 586
+  label_xy 417 501
 msg 133013 synchronous
   from durationcanvas_ref 132501
   to durationcanvas_ref 132885
-  yz 628 2025 explicitmsg "candidature_deposée:bool"
+  yz 543 2025 explicitmsg "insAjoutee:bool"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 462 614
+  label_xy 462 529
 msg 134666 synchronous
   from durationcanvas_ref 134410
   to durationcanvas_ref 134538
-  yz 278 2015 explicitmsg "clique sur \"Info stage\" après avoir sélectionné un stage"
+  yz 277 2015 explicitmsg "clique sur \"Liste UVs\" après avoir sélectionné un stage"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 99 264
+  label_xy 99 263
 msg 137994 synchronous
   from durationcanvas_ref 137738
   to durationcanvas_ref 137866
@@ -195,7 +157,7 @@ msg 137994 synchronous
 msg 140042 synchronous
   from durationcanvas_ref 139786
   to durationcanvas_ref 139914
-  yz 588 2015 explicitmsg "clique sur \"Inscription\""
+  yz 503 2015 explicitmsg "clique sur \"Inscription\""
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 171 574
+  label_xy 171 489
 end
