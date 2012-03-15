@@ -125,6 +125,8 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 	Jlogin.setVisible(true);
 	
+	
+	//listener pour le loggin
 	log.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -212,10 +214,22 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	frameGBC.gridy = 0;
 	frame.add(paneUV, frameGBC);
 	
+	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
+	
+	admin.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
+			rootUI.showUI(context);
+			frame.setVisible(false);
+			
+			//Ok pour le changement de page de l'admin
+		}
+	});
 	
 	
-	
-	
+	//listener pour l'affichage des stages
 	bts.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -237,7 +251,6 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	});
 	
 
-	//passer par un context pour envoyer l'id du stage
 	
 }
 	
@@ -264,7 +277,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
 		    	paneStage.add(s);
-		    	//clique sur le bouton pour afficher les stages disponibles
+		    	
+		    	
+		    	
+		    	//listener pour afficher les UV disponibles
 		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -334,8 +350,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			SapforButton inscr= new SapforButton("s'inscrire");
 			infoStageUv.add(inscr);
 			infoStageUv.setVisible(true);
-			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
-	
+			
+			//listener pour la validation de l'inscription
+			
 			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

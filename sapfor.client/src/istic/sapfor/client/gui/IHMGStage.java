@@ -1,8 +1,6 @@
 package istic.sapfor.client.gui;
 
-import istic.sapfor.api.dto.AgentDTO;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public interface IHMGStage {
