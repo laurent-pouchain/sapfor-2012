@@ -40,7 +40,8 @@ private JPanel paneUV;
 private JDialog Jlogin;
 private SapforButton log;
 private Long idAgent;
-private JPanel panelAdmin;
+private SapforButton admin;
+
 
 public long getIdAgent() {
 	return idAgent;
@@ -166,7 +167,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	//paneWestInfoAgent.setPreferredSize(new Dimension(800,600));
 	accueilLabel= new SapforLabel();
 	paneWestInfoAgent.add(accueilLabel);
-	
+	admin = new SapforButton("Gérer Stage");
+	admin.setVisible(false);
+	paneWestInfoAgent.add(admin);
 	bts= new SapforButton("stage dispo");
 	bts.setPreferredSize(std);
 	paneWestInfoAgent.add(bts);
@@ -345,16 +348,18 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
 														 }
-				if(idUv.isEmpty()==true){
+				}
+				if(idUv.size()==1){
 					JOptionPane.showMessageDialog(null, "Vous n'avez selectionné aucune Uv", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
-				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
-				DefaultCommandContext ctx = new DefaultCommandContext();
-				ctx.put(ICommandContextKey.Key_Insct, idUv);
-				cmd.execute(ctx);
-				System.out.println("OK2");}	
-												}
+					ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
+					DefaultCommandContext ctx = new DefaultCommandContext();
+					ctx.put(ICommandContextKey.Key_Insct, idUv);
+					cmd.execute(ctx);
+					System.out.println("OK2");
+				}	
+												
 													}
 													});
 		}
@@ -373,7 +378,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
 		if(typeAg==0){
-			panelAdmin.setVisible(true);
+			admin.setVisible(true);
 		}
 		}
 
