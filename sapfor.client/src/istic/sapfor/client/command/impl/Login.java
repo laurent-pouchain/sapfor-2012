@@ -40,7 +40,7 @@ public class Login implements ICommand {
 	}
 	@Override
 	public Boolean execute(ICommandContext ctx) {
-		long idAgent = (long)0;
+	
 		
 		List<String> idLog=ctx.getList(ICommandContextKey.Key_login);
 		System.out.println(idLog);
@@ -56,8 +56,9 @@ public class Login implements ICommand {
 		String nameA=ag.getName();
 		String fNameA=ag.getFirstName();
 		System.out.println(nameA+" "+fNameA);
-		ihmgstage.displayAccueilAgent(nameA,fNameA,idA);
+		ihmgstage.displayAccueilAgentSuccessfull(nameA,fNameA,idA);
 		return true;
-	}
+	
 
+}
 }

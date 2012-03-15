@@ -37,6 +37,7 @@ private JPanel paneStage;
 private JPanel paneUV;
 private JDialog Jlogin;
 
+
 public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	context = ctx;
@@ -199,7 +200,12 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		public void mouseClicked(MouseEvent e) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
-			cmd.execute(new DefaultCommandContext());
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			String idA = accueilLabel.getText().split(" ")[3];
+			System.out.println(accueilLabel.getText());
+			
+			ctx.put(ICommandContextKey.Key_idA, idA);
+			cmd.execute(ctx);
 			
 			System.out.println("OK");
 			
@@ -233,7 +239,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	final Long cle = entry.getKey();
 		    	String valeur = entry.getValue();
 		    	SapforListeStage s=new SapforListeStage (valeur);
-		 
+		    	//System.out.println(valeur);
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
 		    	paneStage.add(s);
@@ -241,11 +247,11 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-			
+					String idA = accueilLabel.getText().split(" ")[3];
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
 					DefaultCommandContext ctx = new DefaultCommandContext();
 					
-					ctx.put(ICommandContextKey.Key_Stage, cle.toString());
+					ctx.put(ICommandContextKey.Key_Stage, cle.toString()+" "+idA);
 					
 					cmd.execute(ctx);
 					
@@ -311,15 +317,16 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 
 	@Override
-	public void displayAccueilAgent(String nameA, String fNameA, long idA) {
+	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA) {
+
 		// TODO Auto-generated method stub
-		String infoAgent=nameA+" "+fNameA;
+		String infoAgent=nameA+" "+fNameA+" "+idA;
 		accueilLabel.setText("Bonjour "+ infoAgent); //Edition du message personnalisé (Nom+prénom de l'agent loggé)
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
-		
-		
-	}
+		}
+	
+
 
 	
 	

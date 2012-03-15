@@ -21,12 +21,15 @@ public class AfficherUvStage implements ICommand{
 	
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
-		long idAgent = (long)0;
 		
-		String idS=ctx.get(ICommandContextKey.Key_Stage);
-		int idStage;
-		idStage= Integer.parseInt(idS); 
-		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent, (long)idStage);
+		//A modifier pour recuperer l'idAgent également
+		//long idAgent = (long)0;
+		
+		String idS=ctx.get(ICommandContextKey.Key_Stage).split(" ")[0];
+		String idA=ctx.get(ICommandContextKey.Key_Stage).split(" ")[1];
+		int idStage= Integer.parseInt(idS);
+		int idAgent= Integer.parseInt(idA);
+		Collection<Long> uvDispo = client.getIdUvStageDispo((long)idAgent, (long)idStage);
 		System.out.println(uvDispo);
 		HashMap<Long,String> uv= new HashMap<Long,String>();
 		for (long id : uvDispo ){
