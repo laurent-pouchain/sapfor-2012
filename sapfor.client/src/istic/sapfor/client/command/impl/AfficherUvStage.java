@@ -23,6 +23,7 @@ public class AfficherUvStage implements ICommand{
 	
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
+
 	
 		List<String> idTemp=new LinkedList<String>();
 		idTemp=ctx.getList(ICommandContextKey.Key_Stage);
@@ -35,6 +36,10 @@ public class AfficherUvStage implements ICommand{
 		int idAgent;
 		idAgent= Integer.parseInt(idAg); 
 		Collection<Long> uvDispo = client.getIdUvStageDispo((long)idAgent,(long)idStage);
+		
+		//A modifier pour recuperer l'idAgent également
+		//long idAgent = (long)0;
+	
 		System.out.println(uvDispo);
 		HashMap<Long,String> uv= new HashMap<Long,String>();
 		for (long id : uvDispo ){

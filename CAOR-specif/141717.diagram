@@ -66,19 +66,19 @@ msg 128789 synchronous
 msg 129173 synchronous
   from durationcanvas_ref 136714
   to durationcanvas_ref 129045
-  yz 111 2020 explicitmsg "login(user,password)"
+  yz 111 2020 explicitmsg "login(String user, String password)"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 484 97
 msg 129429 synchronous
   from durationcanvas_ref 129045
   to durationcanvas_ref 129301
-  yz 134 2025 explicitmsg "Session:Session"
+  yz 134 2025 explicitmsg "session:SessionDTO"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 495 121
 msg 129685 synchronous
   from durationcanvas_ref 128405
   to durationcanvas_ref 129557
-  yz 285 2020 explicitmsg "logout(Session)"
+  yz 285 2020 explicitmsg "logout(SessionDTO session)"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 504 271
 msg 130197 synchronous
@@ -90,13 +90,13 @@ msg 130197 synchronous
 msg 130453 synchronous
   from durationcanvas_ref 136714
   to durationcanvas_ref 130325
-  yz 173 2015 explicitmsg "getInfoAgent(Session)"
+  yz 173 2015 explicitmsg "getAgent(Long idAgent)"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 488 159
 msg 130709 synchronous
   from durationcanvas_ref 130325
   to durationcanvas_ref 130581
-  yz 203 2025 explicitmsg "inf_agent:InfoAgent"
+  yz 203 2025 explicitmsg "agent:AgentDTO"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 498 189
 msg 136842 synchronous

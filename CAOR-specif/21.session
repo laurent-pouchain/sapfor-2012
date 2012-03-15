@@ -1,5 +1,20 @@
-window_sizes 1575 918 393 1172 654 168
+window_sizes 1366 706 393 1172 654 168
+diagrams
+  sequencediagram_ref 141717 // connexion
+    769 371 100 4 0 0
+  sequencediagram_ref 134538 // deposer_candidature
+    769 371 100 4 108 0
+  sequencediagram_ref 134666 // retirer_candidature
+    769 371 100 4 576 0
+  active  sequencediagram_ref 134794 // clore_candidatures
+    967 464 100 4 0 0
+  sequencediagram_ref 134922 // classer_candidature
+    769 371 100 4 0 0
+end
 show_stereotypes
-selected 
-package_ref 129 // CAOR-specif
+selected sequencediagram_ref 134794 // clore_candidatures
+open
+  usecaseview_ref 134549 // Conception
+  classview_ref 141077 // Classes DTO
+end
 end

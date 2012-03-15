@@ -38,7 +38,7 @@ public class SapforListeStage extends JPanel {
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		this.add(stage);
 		this.add(btu);
-		System.out.println(titre+" - SapforListeStage");
+		//System.out.println(titre+" - SapforListeStage");
 		// TODO Auto-generated constructor stub
 	}
 	

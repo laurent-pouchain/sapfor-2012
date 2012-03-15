@@ -46,6 +46,7 @@ public void setIdAgent(long idAgent) {
 	this.idAgent = idAgent;
 }
 
+
 public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	context = ctx;
@@ -214,9 +215,11 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
 			DefaultCommandContext ctx = new DefaultCommandContext();
+
 			Long idAg=getIdAgent();
 		
 			ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
+
 			cmd.execute(ctx);
 			
 			System.out.println("OK");
@@ -251,7 +254,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	final Long cle = entry.getKey();
 		    	String valeur = entry.getValue();
 		    	SapforListeStage s=new SapforListeStage (valeur);
-		 
+		    	//System.out.println(valeur);
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
 		    	paneStage.add(s);
@@ -259,14 +262,16 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-			
+					//String idA = accueilLabel.getText().split(" ")[3];
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
 					DefaultCommandContext ctx = new DefaultCommandContext();
+
 					List<String> stageDisp=new LinkedList<String>();
 					Long idAg=getIdAgent();
 					stageDisp.add(cle.toString());
 					stageDisp.add(idAg.toString());
 					ctx.put(ICommandContextKey.Key_Stage, stageDisp);
+
 					
 					cmd.execute(ctx);
 					
@@ -332,16 +337,19 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 
 	@Override
-	public void displayAccueilAgent(String nameA, String fNameA, long idA) {
+	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA) {
+
 		// TODO Auto-generated method stub
+
 		String infoAgent=nameA+" "+fNameA;
 		accueilLabel.setText("Bonjour "+ infoAgent);//Edition du message personnalisé (Nom+prénom de l'agent loggé)
 		setIdAgent(idA);
+
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
-		
-		
-	}
+		}
+	
+
 
 	
 	
