@@ -12,7 +12,7 @@ public class SapforJFrame extends JFrame{
 setDefaultCloseOperation(EXIT_ON_CLOSE);
         //pack();
         //this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-		setSize(800,600);
+		setSize(1600,900);
         setPreferredSize(getSize());
         setResizable(false);
         setTitle(titre);

@@ -49,14 +49,19 @@ public class Login implements ICommand {
 		String pwd=idLog.get(1);
 		System.out.println(log+" "+pwd);
 		SessionDTO session = clientS.login(log, pwd);
+		if (session==null){
+			ihmgstage.errorLogin();
+		}
+		else{
 		System.out.println("Session: " +session);
 		long idA = session.getIdAgent();
 		System.out.print(idA+" ");
 		AgentDTO ag = client.getAgent(idA);
+		long typeAg=ag.getIdTypeAgent();
 		String nameA=ag.getName();
 		String fNameA=ag.getFirstName();
 		System.out.println(nameA+" "+fNameA);
-		ihmgstage.displayAccueilAgentSuccessfull(nameA,fNameA,idA);
+		ihmgstage.displayAccueilAgentSuccessfull(nameA,fNameA,idA,typeAg);}
 		return true;
 	
 

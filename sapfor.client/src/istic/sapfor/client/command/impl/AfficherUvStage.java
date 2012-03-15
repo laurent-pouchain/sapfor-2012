@@ -29,8 +29,9 @@ public class AfficherUvStage implements ICommand{
 		idTemp=ctx.getList(ICommandContextKey.Key_Stage);
 	
 			String idSt=idTemp.get(0);
+			//System.out.print(idSt+ "ID STAGE ");
 			String idAg=idTemp.get(1);
-			
+			//System.out.println(idAg+" ID AGENT");
 		int idStage;
 		idStage= Integer.parseInt(idSt); 
 		int idAgent;

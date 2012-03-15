@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.BevelBorder;
@@ -36,7 +38,9 @@ private JPanel paneWestInfoAgent;
 private JPanel paneStage;
 private JPanel paneUV;
 private JDialog Jlogin;
+private SapforButton log;
 private Long idAgent;
+private JPanel panelAdmin;
 
 public long getIdAgent() {
 	return idAgent;
@@ -75,7 +79,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	final JPasswordField fpwd = new JPasswordField("motdepasse");//Enlever "motdepasse" pour la prod
 	fpwd.setPreferredSize(std);
 	
-	SapforButton log= new SapforButton("Connexion");
+	log= new SapforButton("Connexion");
 	log.setPreferredSize(std);
 	
 	//Positionnement des composants dans la boite de dialogue de connexion.
@@ -268,6 +272,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 					List<String> stageDisp=new LinkedList<String>();
 					Long idAg=getIdAgent();
+					System.out.println(idAg+" test ");
 					stageDisp.add(cle.toString());
 					stageDisp.add(idAg.toString());
 					ctx.put(ICommandContextKey.Key_Stage, stageDisp);
@@ -296,9 +301,12 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
 		int x=50,y=50; Integer i=0;
+		infoStageUv.removeAll();
+		infoStageUv.setVisible(false);
 		for(Entry<Long, String> entry : uv.entrySet()) {
 		    Long cle = entry.getKey();
 		    String valeur = entry.getValue();
+		    System.out.println(valeur + " titre UV");
 			SapforLabel nuv= new SapforLabel (valeur);
 			String nom=cle.toString();
 			JCheckBox rad= new JCheckBox ();
@@ -309,9 +317,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    infoStageUv.add(nuv);
 		    infoStageUv.add(rad);
 		    
-		   y=y+120;
+		    y=y+120;
 														}
-		
+			
 			SapforButton inscr= new SapforButton("s'inscrire");
 			infoStageUv.add(inscr);
 			infoStageUv.setVisible(true);
@@ -320,16 +328,21 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				List<String> idUv=new LinkedList<String>();
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
 														 }
+				if(idUv.isEmpty()==true){
+					JOptionPane.showMessageDialog(null, "Vous n'avez selectionné aucune Uv", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
 				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
 				DefaultCommandContext ctx = new DefaultCommandContext();
 				ctx.put(ICommandContextKey.Key_Insct, idUv);
 				cmd.execute(ctx);
-				System.out.println("OK2");	
+				System.out.println("OK2");}	
 												}
 													}
 													});
@@ -337,17 +350,27 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 
 	@Override
-	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA) {
+	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA, long typeAg) {
 
 		// TODO Auto-generated method stub
 
-		String infoAgent=nameA+" "+fNameA;
+		String infoAgent=fNameA+" "+nameA;
 		accueilLabel.setText("Bonjour "+ infoAgent);//Edition du message personnalisé (Nom+prénom de l'agent loggé)
 		setIdAgent(idA);
-
+		
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
+		if(typeAg==0){
+			panelAdmin.setVisible(true);
 		}
+		}
+
+	@Override
+	public void errorLogin() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "Mauvais Login/Mot de passe", "Error", JOptionPane.ERROR_MESSAGE);
+        
+	}
 	
 
 
