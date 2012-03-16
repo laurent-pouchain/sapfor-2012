@@ -1,6 +1,6 @@
 format 76
 "SapFor" // SapFor
-  revision 21
+  revision 23
   modified_by 21 "ED M2CCI"
   // class settings
   //class diagram settings
@@ -960,6 +960,14 @@ ${members}}
     end
 
     classinstance 134805 ""
+      type class_ref 148629 // Serveur
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 141333 ""
       type class_ref 148629 // Serveur
       attributes
         end
