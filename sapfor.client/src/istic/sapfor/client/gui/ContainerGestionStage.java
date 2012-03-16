@@ -5,9 +5,11 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
 
 
@@ -40,7 +42,8 @@ private JPanel paneUV;
 private JDialog Jlogin;
 private SapforButton log;
 private Long idAgent;
-private JPanel panelAdmin;
+private SapforButton buttonAdmin;
+private JTabbedPane Onglets = null;
 
 public long getIdAgent() {
 	return idAgent;
@@ -56,10 +59,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	context = ctx;
 	//Partie à modifier car trop lourde, mettre ça dans une méthode ou autre...
 	
-	frame= new SapforJFrame("page stage dispo"); //Création de la fenetre d'accueil des agents (invisible avant connexion)
-	frame.setVisible(false);
 	
-	Jlogin = new JDialog(frame); //Création de la boite de dialogue de connexion.
+	//Création de la boite de dialogue de connexion.
+	Jlogin = new JDialog(); 
 	Jlogin.setTitle("Connexion");
 	Jlogin.setSize(300,150);
 	Jlogin.setResizable(false);
@@ -73,7 +75,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	SapforLabel pwd = new SapforLabel("password:");
 	pwd.setPreferredSize(std);
 	
-	final SapforJTextArea fname = new SapforJTextArea("agent1");//Enlever "agent1" pour la prod
+	final SapforJTextArea fname = new SapforJTextArea("admin");//Enlever "admin" pour la prod
 	fname.setPreferredSize(std);
 	
 	final JPasswordField fpwd = new JPasswordField("motdepasse");//Enlever "motdepasse" pour la prod
@@ -124,6 +126,8 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 	Jlogin.setVisible(true);
 	
+
+	//Listener du bouton "connexion"
 	log.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -146,37 +150,36 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	});
 	
 	//Création des composants de la page d'accueil du candidat loggé
-	/*bts= new SapforButton("stage dispo");
-	bts.setPreferredSize(std);
-	accueilLabel= new SapforLabel();
-	paneStage = new JPanel();
-	paneStage.add(bts);
-    paneStage.add(accueilLabel);
-    
-    //cadre pour afficher les uv
-    infoStageUv= new SapforJPanelUV();
-	infoStageUv.setVisible(false);
-	paneStage.add(infoStageUv);
-	frame.add(paneStage);*/
-	frame.setLayout(new GridBagLayout());
-	GridBagConstraints frameGBC = new GridBagConstraints();
 	
+	//Fenêtre principale
+	frame= new SapforJFrame("page stage dispo"); //Création de la fenetre d'accueil des agents (invisible avant connexion)
+	frame.setVisible(false);
+	frame.setLayout(new GridBagLayout());
+	GridLayout gl = new GridLayout(0,3);
+	frame.setLayout(gl);
+	
+	//Panneau de l'utilisateur
 	paneWestInfoAgent = new JPanel();
 	paneWestInfoAgent.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-	//paneWestInfoAgent.setPreferredSize(new Dimension(800,600));
 	accueilLabel= new SapforLabel();
 	paneWestInfoAgent.add(accueilLabel);
 	
-	bts= new SapforButton("stage dispo");
+	bts= new SapforButton("Stage dispo");
 	bts.setPreferredSize(std);
 	paneWestInfoAgent.add(bts);
 	
+	//Bouton disponible pour les administrateurs (visible lors du loggage)
+	buttonAdmin = new SapforButton("Gérer Stage");
+	buttonAdmin.setVisible(false);
+	paneWestInfoAgent.add(buttonAdmin);
+	
+	
+	//Panneau affichant les stages disponibles pour l'utilisateur
 	paneStage = new JPanel();
-	//paneStage.setPreferredSize(new Dimension(500,600));
 	paneStage.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-	//cadre pour afficher les uv
+	
+	//Panneau affichant les UV disponibles pour l'utilisateur (visible en cliquant sur un stage)
 	paneUV = new JPanel();
-	//paneUV.setPreferredSize(new Dimension(500,600));
 	paneUV.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
     infoStageUv= new SapforJPanelUV();
 	infoStageUv.setVisible(false);
@@ -184,35 +187,34 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 	
 
-	frameGBC.weightx = 1;
-	frameGBC.weighty = 1;
-	frameGBC.ipadx= 1;
-	frameGBC.ipady= 1;
 	
-	frameGBC.gridx = 0;
-	frameGBC.gridwidth = 1;
-	frameGBC.gridheight = 1;
-	frameGBC.gridy = 0;
-	frameGBC.fill = GridBagConstraints.BOTH;
-	frameGBC.anchor = GridBagConstraints.WEST;
-	frame.add(paneWestInfoAgent,frameGBC);
-	 
-	frameGBC.gridx = 1;
-	frameGBC.gridwidth = 1;
-	frameGBC.gridheight = 1;
-	frameGBC.gridy = 0;
-	frame.add(paneStage, frameGBC);
+	frame.add(paneWestInfoAgent);
+	frame.add(paneStage);
+	frame.add(paneUV);
 	
-	frameGBC.gridx = 2;
-	frameGBC.gridwidth = 1;
-	frameGBC.gridheight = 1;
-	frameGBC.gridy = 0;
-	frame.add(paneUV, frameGBC);
+
+
+
 	
+/*	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
 	
+	admin.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
+			rootUI.showUI(context);
+			frame.setVisible(false);
+			
+			//Ok pour le changement de page de l'admin
+		}
+	});*/			
+	
+	//Antoine R. j'ai de mon coté fais quelques modif on verra ça demain.
 	
 	
-	
+	//listener pour l'affichage des stages
+
 	bts.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -227,17 +229,31 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			cmd.execute(ctx);
 			
 			System.out.println("OK");
-			
-	
-			
+						
 		}
 	});
 	
+	//Listener du bouton "Gérer Stage" (Administrateur only)
+	buttonAdmin.addMouseListener(new MouseAdapter() {
+		public void mouseClicked(MouseEvent e) {
+		
+			ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+	
+			Long idAg=getIdAgent();
+		
+			ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
+	
+			cmd.execute(ctx);
+			
+			//System.out.println("OK");
+					
+		}
+	});
+	}
+	
 
-	//passer par un context pour envoyer l'id du stage
-	
-}
-	
+
 	public void displayStageDispo(HashMap<Long,String> st) {
 		// TODO Auto-generated method stub
 		
@@ -252,6 +268,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 												
 			else {
+
 		for(Entry<Long, String> entry : st.entrySet()) {
 
 		    	final Long cle = entry.getKey();
@@ -261,7 +278,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
 		    	paneStage.add(s);
-		    	//clique sur le bouton pour afficher les stages disponibles
+		    	
+		    	
+		    	
+		    	//listener pour afficher les UV disponibles
 		    	s.getBtu().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -283,15 +303,15 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					System.out.println("OK2");	
 				}
 			});
+
 	    	
-		}
-		}
+				}
+			}
 	
 			bts.setVisible(false);
-
 			System.out.println("Essai sans serveur ni BD");
 			
-}
+	}//fin displayStageDispo
 			
 		
 
@@ -304,68 +324,82 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 		
 		else{
-			
-		
-		final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
-		int x=50,y=50; Integer i=0;
-		infoStageUv.removeAll();
-		infoStageUv.setVisible(false);
-		for(Entry<Long, String> entry : uv.entrySet()) {
-		    Long cle = entry.getKey();
-		    String valeur = entry.getValue();
-		    System.out.println(valeur + " titre UV");
-			SapforLabel nuv= new SapforLabel (valeur);
-			String nom=cle.toString();
-			JCheckBox rad= new JCheckBox ();
-			rad.setName(nom);
-			//keyset
-			lstbox.put(i, rad);
-			i++;
-			
-		    infoStageUv.add(nuv);
-		    infoStageUv.add(rad);
-		    
-		    y=y+120;
-														}
-			
+
+			final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
+			int x=50,y=50; Integer i=0;
+			infoStageUv.removeAll();
+			infoStageUv.setVisible(false);
+			for(Entry<Long, String> entry : uv.entrySet()) {
+			    Long cle = entry.getKey();
+			    String valeur = entry.getValue();
+			    System.out.println(valeur + " titre UV");
+				SapforLabel nuv= new SapforLabel (valeur);
+				String nom=cle.toString();
+				JCheckBox rad= new JCheckBox ();
+				rad.setName(nom);
+				//keyset
+				lstbox.put(i, rad);
+				i++;
+				
+			    infoStageUv.add(nuv);
+			    infoStageUv.add(rad);
+			    
+			    y=y+120;
+			}
+				
 			SapforButton inscr= new SapforButton("s'inscrire");
 			infoStageUv.add(inscr);
 			infoStageUv.setVisible(true);
+
 			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
-	
+		
+
+			
+			//listener pour la validation de l'inscription
+			//TODO verifier que l'agent n'est pas déjà inscrit...
+
 			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+					
 				List<String> idUv=new LinkedList<String>();
 				Long idAg=getIdAgent();
 				idUv.add(idAg.toString());
-	
+		
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
-														 }}
+
+														 }
+												}
+				
+
 				if(idUv.size()==1){
 					JOptionPane.showMessageDialog(null, "Vous n'avez selectionné aucune Uv", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
-				ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
-				DefaultCommandContext ctx = new DefaultCommandContext();
-				ctx.put(ICommandContextKey.Key_Insct, idUv);
-				cmd.execute(ctx);
-				System.out.println("OK2");}	
-												
-													}
-													});
+
+
+		
+					ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
+					DefaultCommandContext ctx = new DefaultCommandContext();
+					ctx.put(ICommandContextKey.Key_Insct, idUv);
+					cmd.execute(ctx);
+					System.out.println("OK2");
+					JOptionPane.showMessageDialog(null,"Inscription réussie", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+				}	
+													
+			}
+			});
+
 		}
-	}
+	}//fin displayUvDispo
 
-
+	
+	
 	@Override
 	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA, long typeAg) {
-
 		// TODO Auto-generated method stub
-
 		String infoAgent=fNameA+" "+nameA;
 		accueilLabel.setText("Bonjour "+ infoAgent);//Edition du message personnalisé (Nom+prénom de l'agent loggé)
 		setIdAgent(idA);
@@ -373,19 +407,62 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
 		if(typeAg==0){
-			panelAdmin.setVisible(true);
+			buttonAdmin.setVisible(true);
 		}
-		}
+	}
 
 	@Override
 	public void errorLogin() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Mauvais Login/Mot de passe", "Error", JOptionPane.ERROR_MESSAGE);
-        
 	}
-	
-
 
 	
 	
+//---------------------------------------------------------------------------------------------------------------		
+//					MODIFICATION EN COURS - Antoine R. - Pannel Admin de Gestion des stages.
+//---------------------------------------------------------------------------------------------------------------	
+	
+	@Override
+	public void GererStageDir(HashMap<Long, String> st) {
+		// TODO Auto-generated method stub		
+		getOnglets(st);
+		
+		SapforJFrame frameGestionStage = new SapforJFrame("Gestion Stage");
+		frameGestionStage.add(Onglets);
+	    Onglets.setVisible(true);
+	    frame.setVisible(false);
+	    frameGestionStage.setVisible(true);
+	}
+	private JTabbedPane getOnglets(HashMap<Long,String> stDir)
+	{
+	    if(Onglets== null)
+	    {
+	        try
+	        {if (stDir==null){
+			    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage à gerer");
+			    s.getBtu().setVisible(false);
+			    paneStage.add(s);		
+	        	}
+												
+			else {
+				Onglets = new JTabbedPane();
+				Onglets.setSize(800,600);
+				int i = 1;
+				for(Entry<Long, String> entry : stDir.entrySet()) {
+					String idOnglet="Onglet "+i;
+					System.out.println(idOnglet);
+					SapforGestionStage GererStage=new SapforGestionStage(entry.getValue());
+		            Onglets.addTab(entry.getValue(), null, GererStage, null); //
+		            i++;
+				}
+				}
+
+	        } catch (java.lang.Throwable e)
+	        {
+	            // TODO: Something
+	        }
+	    }	    
+	    return Onglets;
+	}
 }
