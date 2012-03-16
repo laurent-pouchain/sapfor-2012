@@ -9,5 +9,9 @@ import javax.jws.WebService;
 public interface ServiceUv {
 	
 	UvDTO getUv(long id);
+	
+	boolean setCandCloses(long id);
+	
+	boolean setCandValids(long id);
         
 }

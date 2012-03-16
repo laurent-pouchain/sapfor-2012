@@ -11,7 +11,7 @@ public class ServiceTypeUvImpl extends StatefullService implements ServiceTypeUv
 
 	@Override
 	public TypeUvDTO getTypeUv(Long id) {
-
+		logger.info("getTypeUv Called with param : "+id);
 		return dataStore.getTypeUv(id);
 	}
 

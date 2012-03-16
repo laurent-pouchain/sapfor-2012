@@ -6,12 +6,10 @@ package istic.sapfor.api.dto;
 import java.io.Serializable;
 import java.util.Collection;
 
+@SuppressWarnings("serial")
 public class AgentDTO implements Serializable {
 
-/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 private String login;
 private long idAgent;
 private long idTypeAgent;

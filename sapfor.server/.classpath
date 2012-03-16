@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="/commonLib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/commonLib/apache-cxf-2.2.5/lib/abdera-core-0.4.0-incubating.jar"/>
@@ -80,5 +81,6 @@
 	<classpathentry kind="lib" path="/commonLib/spring-framework-3.0.0.RELEASE/dist/org.springframework.web.struts-3.0.0.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/commonLib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sapfor.api"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

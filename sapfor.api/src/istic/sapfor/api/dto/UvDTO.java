@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class UvDTO implements Serializable {
 	
 	private long idUv;
@@ -12,6 +13,13 @@ public class UvDTO implements Serializable {
 	private String locality;
 	private Collection<Date> dates;
 	private Date dateLimite;
+	private boolean candCloses;
+	private boolean candValids;
+	
+	public UvDTO(){
+		candCloses = false;
+		candValids = false;
+	}
 	
 	
 	public long getIdUv() {
@@ -49,6 +57,18 @@ public class UvDTO implements Serializable {
 	}
 	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
+	}
+	public boolean isCandCloses() {
+		return candCloses;
+	}
+	public void setCandCloses(boolean candCloses) {
+		this.candCloses = candCloses;
+	}
+	public boolean isCandValids() {
+		return candValids;
+	}
+	public void setCandValids(boolean candValids) {
+		this.candValids = candValids;
 	}
 
 

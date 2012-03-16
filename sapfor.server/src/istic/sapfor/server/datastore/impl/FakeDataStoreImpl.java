@@ -331,7 +331,10 @@ public class FakeDataStoreImpl implements DataStore {
 		for (Long idUv : listeUvDispo) {
 			listeTypeUvPrereq = this.typeUvMap.get(uvMap.get(idUv).getIdTypeUv()).getListIdUvPrereq();
 			if (listeTypeUvOwned.containsAll(listeTypeUvPrereq) & !listeTypeUvOwned.contains(uvMap.get(idUv).getIdTypeUv())) {
-				listeUvPossible.add(idUv);
+				//verification de "Candidatures Closes"
+				if (!uvMap.get(idUv).isCandCloses()){
+					listeUvPossible.add(idUv);	
+				}
 			}
 		}
 		return listeUvPossible;
@@ -353,7 +356,6 @@ public class FakeDataStoreImpl implements DataStore {
 			if (!this.getIdUvStageDispo(idAgent, idStage).isEmpty()){ // si ce stage a au moins 1 UV possible pour cet agent
 				listIdStageDispo.add(idStage); // ajouter ce stage a la liste des stages possibles
 			}
-			
 		}
 		return listIdStageDispo;
 	}
@@ -640,6 +642,18 @@ public class FakeDataStoreImpl implements DataStore {
 		}
 		catch (FileNotFoundException e) {e.printStackTrace();}
 		catch (IOException e) {e.printStackTrace();}
+	}
+
+	@Override
+	public boolean setCandCloses(long id) {
+        uvMap.get(id).setCandCloses(true);
+		return true;
+	}
+
+	@Override
+	public boolean setCandValids(long id) {
+		uvMap.get(id).setCandValids(true);
+		return true;
 	}
 
 
