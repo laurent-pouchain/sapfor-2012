@@ -344,8 +344,8 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
-														 }
-				if(idUv.isEmpty()==true){
+														 }}
+				if(idUv.size()==1){
 					JOptionPane.showMessageDialog(null, "Vous n'avez selectionné aucune Uv", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
@@ -354,7 +354,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 				ctx.put(ICommandContextKey.Key_Insct, idUv);
 				cmd.execute(ctx);
 				System.out.println("OK2");}	
-												}
+												
 													}
 													});
 		}
