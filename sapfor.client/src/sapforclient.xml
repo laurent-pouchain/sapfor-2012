@@ -107,7 +107,9 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 	<bean id="cmdDisplayGestionStage" class="istic.sapfor.client.command.impl.GestionStage">
 		<property name="client" ref="ServiceAgentClient" />
 		<property name="clientS" ref="ServiceStageClient" />
-		<property name="ihmgstage" ref="ui1" />
+		<property name="ihmAdmin" ref="uiAdmin" />
+		<property name="context" ref="ctx"/>
+		
 		
 	</bean>
 	

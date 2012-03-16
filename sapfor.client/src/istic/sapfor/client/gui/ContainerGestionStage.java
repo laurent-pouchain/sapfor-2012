@@ -43,7 +43,7 @@ private JDialog Jlogin;
 private SapforButton log;
 
 private SapforButton buttonAdmin;
-private JTabbedPane Onglets = null;
+
 
 
 
@@ -189,9 +189,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 
 	
-/*	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
+	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
 	
-	admin.addMouseListener(new MouseAdapter() {
+	buttonAdmin.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
@@ -201,7 +201,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			
 			//Ok pour le changement de page de l'admin
 		}
-	});*/			
+	});			
 	
 	//Antoine R. j'ai de mon coté fais quelques modif on verra ça demain.
 	
@@ -221,23 +221,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 	});
 	
-	//Listener du bouton "Gérer Stage" (Administrateur only)
-	buttonAdmin.addMouseListener(new MouseAdapter() {
-		public void mouseClicked(MouseEvent e) {
-		
-			ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
-			DefaultCommandContext ctx = new DefaultCommandContext();
-	
-			//Long idAg=getIdAgent();
-		
-		//	ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
-	
-			cmd.execute(ctx);
-			
-			//System.out.println("OK");
-					
-		}
-	});
+
 	}
 	
 
@@ -400,51 +384,5 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	}
 
 	
-	
-//---------------------------------------------------------------------------------------------------------------		
-//					MODIFICATION EN COURS - Antoine R. - Pannel Admin de Gestion des stages.
-//---------------------------------------------------------------------------------------------------------------	
-	
-	@Override
-	public void GererStageDir(HashMap<Long, String> st) {
-		// TODO Auto-generated method stub		
-		getOnglets(st);
-		
-		SapforJFrame frameGestionStage = new SapforJFrame("Gestion Stage");
-		frameGestionStage.add(Onglets);
-	    Onglets.setVisible(true);
-	    frame.setVisible(false);
-	    frameGestionStage.setVisible(true);
-	}
-	private JTabbedPane getOnglets(HashMap<Long,String> stDir)
-	{
-	    if(Onglets== null)
-	    {
-	        try
-	        {if (stDir==null){
-			    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage à gerer");
-			    s.getBtu().setVisible(false);
-			    paneStage.add(s);		
-	        	}
-												
-			else {
-				Onglets = new JTabbedPane();
-				Onglets.setSize(800,600);
-				int i = 1;
-				for(Entry<Long, String> entry : stDir.entrySet()) {
-					String idOnglet="Onglet "+i;
-					System.out.println(idOnglet);
-					SapforGestionStage GererStage=new SapforGestionStage(entry.getValue());
-		            Onglets.addTab(entry.getValue(), null, GererStage, null); //
-		            i++;
-				}
-				}
 
-	        } catch (java.lang.Throwable e)
-	        {
-	            // TODO: Something
-	        }
-	    }	    
-	    return Onglets;
-	}
 }

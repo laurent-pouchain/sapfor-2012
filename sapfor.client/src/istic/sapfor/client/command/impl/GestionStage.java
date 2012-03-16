@@ -9,18 +9,27 @@ import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
+import istic.sapfor.client.gui.IHMAdmin;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class GestionStage implements ICommand{
 	private ServiceAgent client;
 	private ServiceStage clientS;
-	private IHMGStage ihmgstage;
+	private IHMAdmin ihmAdmin;
+	private ICommandContext context;
 	
-	public IHMGStage getIhmgstage() {
-		return ihmgstage;
+	public IHMAdmin getIhmAdmin() {
+		return ihmAdmin;
 	}
-	public void setIhmgstage(IHMGStage ihmgstage) {
-		this.ihmgstage = ihmgstage;
+	public void setIhmAdmin(IHMAdmin ihmAdmin) {
+		this.ihmAdmin = ihmAdmin;
+	}
+
+	public ICommandContext getContext() {
+		return context;
+	}
+	public void setContext(ICommandContext context) {
+		this.context = context;
 	}
 	public ServiceAgent getClient() {
 		return client;
@@ -39,12 +48,12 @@ public class GestionStage implements ICommand{
 	@Override
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
-		String idA=ctx.get(ICommandContextKey.Key_Agent);
-		int idAgent= Integer.parseInt(idA);
-		Collection<Long> stDir = client.getIdStageDir((long)idAgent);
-		if (client.getIdStageDispo((long)idAgent).isEmpty()==true){ 
+		ctx.get(ICommandContextKey.Key_Agent);
+		long idAgent=context.getIdAgent();
+		Collection<Long> stDir = client.getIdStageDir(idAgent);
+		if (client.getIdStageDispo(idAgent).isEmpty()==true){ 
 
-			ihmgstage.GererStageDir(null);
+			ihmAdmin.GererStageDir(null);
 			return true;
 									}
 		else{
@@ -57,7 +66,7 @@ public class GestionStage implements ICommand{
 			System.out.println(s.getTitle());
 								}
 		
-		ihmgstage.GererStageDir(st);
+		ihmAdmin.GererStageDir(st);
 		
 		return true;
 
