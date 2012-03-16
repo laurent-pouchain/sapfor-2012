@@ -4,7 +4,7 @@ public enum ICommandContextKey {
 
 
 
-	Key_Stage, Key_login, Key_Insct, Key_Agent;
+	Key_Stage, Key_login, Key_Insct, Key_Agent, Key_Cand;
 
 
 	

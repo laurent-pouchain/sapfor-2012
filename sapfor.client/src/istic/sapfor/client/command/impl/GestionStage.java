@@ -19,7 +19,7 @@ public class GestionStage implements ICommand{
 	private ServiceAgent client;
 	private ServiceUv clientU;
 	private IHMAdmin ihmAdmin;
-	private ICommandContext context;
+	
 	
 	public IHMAdmin getIhmAdmin() {
 		return ihmAdmin;
@@ -28,12 +28,6 @@ public class GestionStage implements ICommand{
 		this.ihmAdmin = ihmAdmin;
 	}
 
-	public ICommandContext getContext() {
-		return context;
-	}
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
 	public ServiceAgent getClient() {
 		return client;
 	}

@@ -11,6 +11,11 @@ import javax.swing.border.BevelBorder;
 
 public class SapforGestionStage extends JPanel{
 
+private JPanel inscrit;	
+private JPanel classer;	
+private JPanel retenu;	
+private JPanel listeDA;	
+private JPanel refuse;	
 //MODIFICATION EN COURS - Antoine R. - Pannel Admin Gestion Stage	
 	public SapforGestionStage(String titre) {
 		super();
@@ -20,18 +25,18 @@ public class SapforGestionStage extends JPanel{
 		JPanel main = new JPanel();
 		GridLayout paneGestionStage = new GridLayout(0,2);
 		main.setLayout(paneGestionStage);
-		JPanel inscrit=new JPanel();
-		inscrit.add(new JLabel("TODO afficher candidats inscrits"));
+		inscrit=new JPanel();
+	
 		inscrit.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		main.add(inscrit);
-		JPanel classer=new JPanel();
+		classer=new JPanel();
 		//classer.add(new JLabel("TODO afficher candidats classés"));
 		classer.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		
 		GridLayout classerLayout=new GridLayout(3,0);
-		JPanel retenu = new JPanel();
-		JPanel listeDA = new JPanel();
-		JPanel refuse = new JPanel();
+		retenu = new JPanel();
+		listeDA = new JPanel();
+		refuse = new JPanel();
 
 		retenu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		listeDA.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
@@ -63,6 +68,36 @@ public class SapforGestionStage extends JPanel{
 		
 	
 		// TODO Auto-generated constructor stub
+	}
+	public JPanel getInscrit() {
+		return inscrit;
+	}
+	public void setInscrit(JPanel inscrit) {
+		this.inscrit = inscrit;
+	}
+	public JPanel getClasser() {
+		return classer;
+	}
+	public void setClasser(JPanel classer) {
+		this.classer = classer;
+	}
+	public JPanel getRetenu() {
+		return retenu;
+	}
+	public void setRetenu(JPanel retenu) {
+		this.retenu = retenu;
+	}
+	public JPanel getListeDA() {
+		return listeDA;
+	}
+	public void setListeDA(JPanel listeDA) {
+		this.listeDA = listeDA;
+	}
+	public JPanel getRefuse() {
+		return refuse;
+	}
+	public void setRefuse(JPanel refuse) {
+		this.refuse = refuse;
 	}
 
 }
