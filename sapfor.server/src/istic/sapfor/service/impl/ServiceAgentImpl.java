@@ -65,7 +65,10 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 	public boolean setStatut(Long idUv, Long idCandidat,
 		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		logger.info("setStatut Called with param : "+idUv+" "+idCandidat+" "+nouvelEtat+" "+ancienEtat);
+		if (dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat)) {
 		return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
+		} 
+		else {return false;}
     }
 	
 	@Override

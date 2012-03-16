@@ -11,6 +11,7 @@ public class ServiceUvImpl extends StatefullService implements ServiceUv {
 	
 	@Override
 	public UvDTO getUv(long id) {
+		logger.info("getUv Called with param : "+id);
 		return dataStore.getUv(id);
 	}
 

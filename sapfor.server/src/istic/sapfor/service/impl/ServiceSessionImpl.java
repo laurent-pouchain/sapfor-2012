@@ -11,6 +11,7 @@ public class ServiceSessionImpl extends StatefullService implements ServiceSessi
 
 	@Override
 	public SessionDTO login(String user, String password) {
+		logger.info("login from : "+user);
 		return dataStore.login(user, password);
 	}
 

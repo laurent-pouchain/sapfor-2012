@@ -10,7 +10,7 @@ public class ServiceStageImpl extends StatefullService implements ServiceStage {
 	
 	@Override
 	public StageDTO getStage(long id) {
-		//probleme!!!!
+		logger.info("getStage Called with param : "+id);
 		return dataStore.getStage(id);
 	}
 
