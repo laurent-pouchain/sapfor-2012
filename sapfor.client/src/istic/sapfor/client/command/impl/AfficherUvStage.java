@@ -20,7 +20,14 @@ public class AfficherUvStage implements ICommand{
 	private ServiceUv clientU;
 	private ServiceAgent client;
 	private IHMGStage ihmgstage ;
+	private ICommandContext context;
 	
+	public ICommandContext getContext() {
+		return context;
+	}
+	public void setContext(ICommandContext context) {
+		this.context = context;
+	}
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
 
@@ -30,13 +37,13 @@ public class AfficherUvStage implements ICommand{
 	
 			String idSt=idTemp.get(0);
 			//System.out.print(idSt+ "ID STAGE ");
-			String idAg=idTemp.get(1);
+			//String idAg=idTemp.get(1);
 			//System.out.println(idAg+" ID AGENT");
-		int idStage;
-		idStage= Integer.parseInt(idSt); 
-		int idAgent = Integer.parseInt(idAg); 
-		Collection<Long> uvDispo = client.getIdUvStageDispo((long)idAgent,(long)idStage);
-		if (client.getIdUvStageDispo((long)idAgent,(long)idStage).isEmpty()==true)
+		long idAgent=context.getIdAgent();
+		int idStage= Integer.parseInt(idSt); 
+		
+		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent,(long)idStage);
+		if (client.getIdUvStageDispo(idAgent,(long)idStage).isEmpty()==true)
 		{	ihmgstage.displayUvDispo(null);
 			return true;
 		

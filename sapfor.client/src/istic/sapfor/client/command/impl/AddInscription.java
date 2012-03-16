@@ -13,6 +13,7 @@ public class AddInscription implements ICommand {
 
 	private ServiceAgent client;
 	private IHMGStage ihmgstage ;
+	private ICommandContext context;
 	
 	@Override
 	public Boolean execute(ICommandContext ctx) {
@@ -24,21 +25,21 @@ public class AddInscription implements ICommand {
 		String temp; Integer id; 
 		
 		idUvTemp=ctx.getList(ICommandContextKey.Key_Insct);
+		long idAgent=context.getIdAgent();
 		
-		String idAg=idUvTemp.get(0);
-		int idAgent= Integer.parseInt(idAg); 
 		System.out.println(idAgent+" idagent qui veux s inscrire");
-		for (int i=1;i<idUvTemp.size();i++){
+		for (int i=0;i<idUvTemp.size();i++){
 			temp=idUvTemp.get(i);
 			id= Integer.parseInt(temp); 
 			System.out.println(temp+" id de UV validée");
 			idUv.add((long)id);	
 											}
-		client.addInscrip( (long)idAgent,idUv);
+		if (client.addInscrip( idAgent,idUv)==true){System.out.println("inscription ok"); return true; }
+		else {System.out.println("echec de l'inscription"); return false;}
 		
-		System.out.println("inscription ok");
 		
-		return true;
+		
+		
 	}
 
 	public ServiceAgent getClient() {
@@ -55,6 +56,14 @@ public class AddInscription implements ICommand {
 
 	public void setIhmgstage(IHMGStage ihmgstage) {
 		this.ihmgstage = ihmgstage;
+	}
+
+	public ICommandContext getContext() {
+		return context;
+	}
+
+	public void setContext(ICommandContext context) {
+		this.context = context;
 	}
 
 }

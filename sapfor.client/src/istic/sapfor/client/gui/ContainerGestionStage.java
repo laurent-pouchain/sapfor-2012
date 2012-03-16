@@ -41,17 +41,10 @@ private JPanel paneStage;
 private JPanel paneUV;
 private JDialog Jlogin;
 private SapforButton log;
-private Long idAgent;
+
 private SapforButton buttonAdmin;
 private JTabbedPane Onglets = null;
 
-public long getIdAgent() {
-	return idAgent;
-}
-
-public void setIdAgent(long idAgent) {
-	this.idAgent = idAgent;
-}
 
 
 public void showUI(ClassPathXmlApplicationContext ctx) {
@@ -221,11 +214,6 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
 			DefaultCommandContext ctx = new DefaultCommandContext();
-
-			Long idAg=getIdAgent();
-		
-			ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
-
 			cmd.execute(ctx);
 			
 			System.out.println("OK");
@@ -240,9 +228,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
 			DefaultCommandContext ctx = new DefaultCommandContext();
 	
-			Long idAg=getIdAgent();
+			//Long idAg=getIdAgent();
 		
-			ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
+		//	ctx.put(ICommandContextKey.Key_Agent, idAg.toString());
 	
 			cmd.execute(ctx);
 			
@@ -290,13 +278,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					DefaultCommandContext ctx = new DefaultCommandContext();
 
 					List<String> stageDisp=new LinkedList<String>();
-					Long idAg=getIdAgent();
-					System.out.println(idAg+" test ");
+				
 					stageDisp.add(cle.toString());
-					stageDisp.add(idAg.toString());
 					ctx.put(ICommandContextKey.Key_Stage, stageDisp);
 
-					
 					cmd.execute(ctx);
 					
 				
@@ -356,16 +341,13 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 			
 			//listener pour la validation de l'inscription
-			//TODO verifier que l'agent n'est pas déjà inscrit...
+			
 
 			inscr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 					
 				List<String> idUv=new LinkedList<String>();
-				Long idAg=getIdAgent();
-				idUv.add(idAg.toString());
-		
 				for (int i=0;i<lstbox.size();i++){
 					if (lstbox.get(i).isSelected()==true){
 						idUv.add(lstbox.get(i).getName());
@@ -373,8 +355,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 														 }
 												}
 				
-
-				if(idUv.size()==1){
+				if(idUv.size()==0){
 					JOptionPane.showMessageDialog(null, "Vous n'avez selectionné aucune Uv", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
@@ -384,9 +365,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					ICommand cmd = (ICommand) context.getBean("cmdAddInscrition");
 					DefaultCommandContext ctx = new DefaultCommandContext();
 					ctx.put(ICommandContextKey.Key_Insct, idUv);
-					cmd.execute(ctx);
+					boolean etat=cmd.execute(ctx);
 					System.out.println("OK2");
-					JOptionPane.showMessageDialog(null,"Inscription réussie", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+					if (etat==true) {JOptionPane.showMessageDialog(null,"Inscription réussie", "Confirmation",JOptionPane.PLAIN_MESSAGE);}
+					else {JOptionPane.showMessageDialog(null, "erreur inscription (déjà inscrit)", "Error", JOptionPane.ERROR_MESSAGE);}
 				}	
 													
 			}
@@ -398,11 +380,11 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 	
 	@Override
-	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long idA, long typeAg) {
+	public void displayAccueilAgentSuccessfull(String nameA, String fNameA, long typeAg) {
 		// TODO Auto-generated method stub
 		String infoAgent=fNameA+" "+nameA;
 		accueilLabel.setText("Bonjour "+ infoAgent);//Edition du message personnalisé (Nom+prénom de l'agent loggé)
-		setIdAgent(idA);
+	
 		
 		Jlogin.setVisible(false);					 //Disparition de la boite de dialogue de connexion
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé

@@ -1,13 +1,11 @@
 package istic.sapfor.client.command.impl;
 
-import java.util.Collection;
-import java.util.HashMap;
+
 import java.util.List;
 
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.dto.SessionDTO;
-import istic.sapfor.api.dto.UvDTO;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceSession;
 import istic.sapfor.client.command.ICommand;
@@ -19,7 +17,14 @@ public class Login implements ICommand {
 	private ServiceSession clientS;
 	private IHMGStage ihmgstage ;
 	private ServiceAgent client;
+	private ICommandContext context;
 	
+	public ICommandContext getContext() {
+		return context;
+	}
+	public void setContext(ICommandContext context) {
+		this.context = context;
+	}
 	public ServiceAgent getClient() {
 		return client;
 	}
@@ -61,7 +66,8 @@ public class Login implements ICommand {
 		String nameA=ag.getName();
 		String fNameA=ag.getFirstName();
 		System.out.println(nameA+" "+fNameA);
-		ihmgstage.displayAccueilAgentSuccessfull(nameA,fNameA,idA,typeAg);}
+		context.setIdAgent(idA);
+		ihmgstage.displayAccueilAgentSuccessfull(nameA,fNameA,typeAg);}
 		return true;
 	
 

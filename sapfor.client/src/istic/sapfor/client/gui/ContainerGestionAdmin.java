@@ -12,7 +12,7 @@ private SapforJFrame frameAdmin;
 	public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 		context = ctx;
-		System.out.print("passage dans le container?");
+		//System.out.print("passage dans le container?");
 		frameAdmin= new SapforJFrame("page admin"); //Création de la fenetre d'accueil des admin )
 		frameAdmin.setVisible(true);
 

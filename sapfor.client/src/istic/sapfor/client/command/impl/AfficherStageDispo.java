@@ -19,9 +19,18 @@ public class AfficherStageDispo implements ICommand {
 	private ServiceStage clientS;
 	private ServiceAgent client;
 	private IHMGStage ihmgstage ;
+	private ICommandContext context;
 	
 	public ServiceStage getClientS() {
 		return clientS;
+	}
+
+	public ICommandContext getContext() {
+		return context;
+	}
+
+	public void setContext(ICommandContext context) {
+		this.context = context;
 	}
 
 	public void setClientS(ServiceStage client) {
@@ -52,9 +61,9 @@ public class AfficherStageDispo implements ICommand {
 		//long idAgent = (long)0;			//à modifier
 
 		String idA=ctx.get(ICommandContextKey.Key_Agent);
-		int idAgent= Integer.parseInt(idA); 
-		Collection<Long> stDispo = client.getIdStageDispo((long)idAgent);
-		if (client.getIdStageDispo((long)idAgent).isEmpty()==true){ 
+		long idAgent=context.getIdAgent();
+		Collection<Long> stDispo = client.getIdStageDispo(idAgent);
+		if (client.getIdStageDispo(idAgent).isEmpty()==true){ 
 
 			ihmgstage.displayStageDispo(null);
 			return true;
