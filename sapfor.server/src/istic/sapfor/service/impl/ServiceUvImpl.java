@@ -15,4 +15,14 @@ public class ServiceUvImpl extends StatefullService implements ServiceUv {
 		return dataStore.getUv(id);
 	}
 
+	@Override
+	public boolean setCandCloses(long id) {
+        return dataStore.setCandCloses(id);
+	}
+
+	@Override
+	public boolean setCandValids(long id) {
+		return dataStore.setCandValids(id);
+	}
+
 }

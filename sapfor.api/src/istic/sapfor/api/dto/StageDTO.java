@@ -3,6 +3,7 @@ package istic.sapfor.api.dto;
 import java.io.Serializable;
 import java.util.Collection;
 
+@SuppressWarnings("serial")
 public class StageDTO implements Serializable {
 	
 	private long idStage;

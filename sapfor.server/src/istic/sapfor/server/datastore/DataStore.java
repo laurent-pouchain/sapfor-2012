@@ -67,6 +67,8 @@ public interface DataStore {
 	 * Methode qui renvoie la liste des stages possibles pour un agent donne
 	 */
 	public Collection<Long> getIdStageDispo(Long idAgent);
+	public boolean setCandCloses(long id);
+	public boolean setCandValids(long id);
 
 	
 }

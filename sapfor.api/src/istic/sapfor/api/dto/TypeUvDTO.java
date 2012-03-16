@@ -1,8 +1,10 @@
 package istic.sapfor.api.dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class TypeUvDTO {
+@SuppressWarnings("serial")
+public class TypeUvDTO implements Serializable{
 
 	private long idTypeUv;
 	private String title;

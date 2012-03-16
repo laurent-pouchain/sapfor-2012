@@ -5,7 +5,12 @@
 package istic.sapfor.server.datastore;
 
 import istic.sapfor.api.dto.*;
+import istic.sapfor.server.datastore.DataStore;
+import istic.sapfor.server.datastore.impl.FakeDataStoreImpl;
+
 import java.util.Collection;
+import java.util.Vector;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,6 +19,8 @@ import static org.junit.Assert.*;
  * @author duke
  */
 public class DataStoreTest {
+	
+    private DataStore instance;
     
     public DataStoreTest() {
     }
@@ -28,6 +35,7 @@ public class DataStoreTest {
     
     @Before
     public void setUp() {
+        instance = new FakeDataStoreImpl();
     }
     
     @After
@@ -40,14 +48,14 @@ public class DataStoreTest {
     @Test
     public void testLogin() {
         System.out.println("login");
-        String user = "";
-        String password = "";
-        DataStore instance = new DataStoreImpl();
-        SessionDTO expResult = null;
+        String user = "admin";
+        String password = "motdepasse";
+        SessionDTO expResult = new SessionDTO();
+        expResult.setIdAgent((long)0);
         SessionDTO result = instance.login(user, password);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -308,13 +316,16 @@ public class DataStoreTest {
     @Test
     public void testGetIdStageDir() {
         System.out.println("getIdStageDir");
-        Long idAgent = null;
-        DataStore instance = new DataStoreImpl();
-        Collection expResult = null;
-        Collection result = instance.getIdStageDir(idAgent);
+        Long idAgent = (long)0;
+        Collection<Long> expResult = new Vector<Long>();
+        expResult.add((long)0);
+        expResult.add((long)1);
+        expResult.add((long)2);
+        expResult.add((long)3);
+        Collection<Long> result = instance.getIdStageDir(idAgent);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -533,5 +544,15 @@ public class DataStoreTest {
         public Collection<Long> getIdStageDispo(Long idAgent) {
             return null;
         }
+
+		@Override
+		public boolean setCandCloses(long id) {
+			return false;
+		}
+
+		@Override
+		public boolean setCandValids(long id) {
+			return false;
+		}
     }
 }

@@ -36,7 +36,7 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 		logger.info("addInscrip Called with param : "+idAgent+" "+idsUv);
 		for (Long idS : dataStore.getIdStageInscrit(idAgent)) {
 			for (Long idUv : dataStore.getIdUvStageInscrit(idAgent, idS)) {
-				if (idsUv.contains(idUv)) {return false;}
+				if ((dataStore.getUv(idUv).isCandCloses()) || idsUv.contains(idUv)) {return false;}
 			}
 				
 		}
@@ -65,10 +65,19 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 	public boolean setStatut(Long idUv, Long idCandidat,
 		EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
 		logger.info("setStatut Called with param : "+idUv+" "+idCandidat+" "+nouvelEtat+" "+ancienEtat);
-		if (dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat)) {
-		return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
-		} 
-		else {return false;}
+		if (nouvelEtat == EtatCandidatureDTO.annule && 
+				(!dataStore.getUv(idUv).isCandCloses()|dataStore.getUv(idUv).isCandValids())){
+			if (dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat)) {
+				return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
+			}
+			else {return false;}
+		}
+		else {
+			if (nouvelEtat != EtatCandidatureDTO.annule && dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat)) {
+				return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
+			}
+			else {return false;}
+		}
     }
 	
 	@Override
