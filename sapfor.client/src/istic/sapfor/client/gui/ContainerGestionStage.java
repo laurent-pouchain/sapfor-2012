@@ -186,12 +186,24 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	frame.add(paneUV);
 	
 
+	bts.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 
-
+			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			cmd.execute(ctx);
+			
+			System.out.println("OK");
+						
+		}
+	});
+			
+	
 	
 	//A faire le listener pour l'affichage de la nouvelle fenetre de gestion des stage avec boutton admin
 	
-	buttonAdmin.addMouseListener(new MouseAdapter() {
+/*	buttonAdmin.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
@@ -201,18 +213,18 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			
 			//Ok pour le changement de page de l'admin
 		}
-	});			
+	});			*/
 	
 	//Antoine R. j'ai de mon coté fais quelques modif on verra ça demain.
 	
 	
 	//listener pour l'affichage des stages
 
-	bts.addMouseListener(new MouseAdapter() {
+	buttonAdmin.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		
-			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDispo");
+			ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDir");
 			DefaultCommandContext ctx = new DefaultCommandContext();
 			cmd.execute(ctx);
 			
@@ -223,8 +235,55 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	
 
 	}
-	
 
+	public void displayStageDir(HashMap<Long,String> stDir) {
+	int x=50,y=50;
+		
+		if (stDir==null){
+			    SapforListeStage sdir=new SapforListeStage ("Pas de stage disponible");
+			    sdir.getBtu().setVisible(false);
+			    
+			    
+			    paneStage.add(sdir);		
+		}
+												
+			else {
+			
+		for(Entry<Long, String> entry : stDir.entrySet()) {
+
+		    	final Long cle = entry.getKey();
+		    	String valeur = entry.getValue();
+		    	SapforListeStage sdir=new SapforListeStage (valeur);
+		    	//System.out.println(valeur);
+		    	//s.setBounds(x,y,200,50); 
+		    	y=y+120;
+		    	paneStage.add(sdir);
+		    	
+		    	sdir.getBtu().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+		    			
+						String idS =(cle.toString());
+						DefaultCommandContext ctx = new DefaultCommandContext();
+						ctx.put(ICommandContextKey.Key_Stage, idS);
+		    			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
+		    			rootUI.showUI(context,ctx);
+		    			frame.setVisible(false);
+		    			
+
+		    		}
+		    	});			
+		    	
+		}
+		}
+
+		bts.setVisible(false);
+		System.out.println("Essai sans serveur ni BD");
+		
+}//fin displayStageDir
+		
+		
+	
 
 	public void displayStageDispo(HashMap<Long,String> st) {
 		// TODO Auto-generated method stub
@@ -258,6 +317,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					//String idA = accueilLabel.getText().split(" ")[3];
+					
 					ICommand cmd = (ICommand) context.getBean("cmdDisplayUvDispo");
 					DefaultCommandContext ctx = new DefaultCommandContext();
 

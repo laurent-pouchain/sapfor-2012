@@ -1,10 +1,12 @@
 package istic.sapfor.client.gui;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import javax.swing.JTabbedPane;
 
+import istic.sapfor.api.dto.EtatCandidatureDTO;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
@@ -18,12 +20,11 @@ private SapforJFrame frameAdmin;
 private JTabbedPane Onglets = null;
 	
 
-	public void showUI(ClassPathXmlApplicationContext ctx) {
+	public void showUI(ClassPathXmlApplicationContext ctx, DefaultCommandContext cont ) {
 		
 		context = ctx;
 		
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
-		DefaultCommandContext cont = new DefaultCommandContext();
 		cmd.execute(cont);
 			
 		
@@ -31,16 +32,14 @@ private JTabbedPane Onglets = null;
 	}
 
 
-	@Override
-	public void GererStageDir(HashMap<Long, String> st) {
+	public void GererInscriptionUvDir(HashMap<Long, String> st) {
 	
 			// TODO Auto-generated method stub		
 			getOnglets(st);
-			
+		
 			SapforJFrame frameGestionStage = new SapforJFrame("Gestion Stage");
 			frameGestionStage.add(Onglets);
 		    Onglets.setVisible(true);
-		    frameGestionStage.setVisible(false);
 		    frameGestionStage.setVisible(true);
 		}
 		private JTabbedPane getOnglets(HashMap<Long,String> stDir)
@@ -61,8 +60,8 @@ private JTabbedPane Onglets = null;
 					for(Entry<Long, String> entry : stDir.entrySet()) {
 						String idOnglet="Onglet "+i;
 						System.out.println(idOnglet);
-						SapforGestionStage GererStage=new SapforGestionStage(entry.getValue());
-			            Onglets.addTab(entry.getValue(), null, GererStage, null); //
+						SapforGestionStage GererUv=new SapforGestionStage(entry.getValue());
+			            Onglets.addTab(entry.getValue(), null, GererUv, null); //
 			            i++;
 					}
 					}
@@ -74,6 +73,47 @@ private JTabbedPane Onglets = null;
 		    }	    
 		    return Onglets;
 		}
+
+
+		@Override
+		public Collection<Long> getIdStageDir(Long idAgent) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public Collection<Long> getIdUvStageDir(Long idStage) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public Collection<Long> getIdUvStageDispo(Long idAgent, Long idStage) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public Collection<Long> getIdCandidat(Long idUv, EtatCandidatureDTO etat) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public boolean setStatut(Long idUv, Long idCandidat,
+				EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+
+
+
+		
 		
 	
 		
