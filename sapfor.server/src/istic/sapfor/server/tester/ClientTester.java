@@ -34,8 +34,8 @@ public class ClientTester implements InitializingBean {
 		for (int i = 0; i < fDS.nbStages(); i++) {
 			StageDTO s = fDS.getStage((long) i);
 			System.out.print("Nom du Stage : ");
-			System.out.println(s.getTitle() + " (à " + s.getLocality() + ")");
-			System.out.println("Composé des Uvs suivantes : ");
+			System.out.println(s.getTitle() + " (ï¿½ " + s.getLocality() + ")");
+			System.out.println("Composï¿½ des Uvs suivantes : ");
 			for (Long idUv : s.getListIdUv()) {
 				System.out.println(fDS.getUv(idUv).getTitle());
 			}
@@ -45,7 +45,7 @@ public class ClientTester implements InitializingBean {
 		for (int i = 0; i < fDS.nbUvs(); i++) {
 			UvDTO u = fDS.getUv((long) i);
 			System.out.print("Nom de l'UV : ");
-			System.out.println(u.getTitle() + " (à " + u.getLocality() + ")");
+			System.out.println(u.getTitle() + " (ï¿½ " + u.getLocality() + ")");
 			System.out.println("");
 		}
 
@@ -54,7 +54,7 @@ public class ClientTester implements InitializingBean {
 		UvDTO uv = new UvDTO();
 
 		uv.setIdTypeUv(1);
-		uv.setTitle("Basics-Essai-Entrée");
+		uv.setTitle("Basics-Essai-Entrï¿½e");
 		uv.setLocality("Paris");
 		Collection<Date> dates = new Vector<Date>();
 		uv.setDates(dates);
@@ -70,7 +70,7 @@ public class ClientTester implements InitializingBean {
 			if (fDS.getUv((long)i)!=null){
 			  UvDTO u = fDS.getUv((long)i);
 		      System.out.print("Nom de l'UV (id : "+i+") : ");
-			  System.out.println(u.getTitle()+" (à "+u.getLocality()+")");
+			  System.out.println(u.getTitle()+" (ï¿½ "+u.getLocality()+")");
 			  System.out.println("");
 			}
 		}
@@ -83,8 +83,8 @@ public class ClientTester implements InitializingBean {
 			if (fDS.getStage((long)i)!=null){
 				StageDTO s = fDS.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
-				System.out.println("Composé des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (ï¿½ "+s.getLocality()+")");
+				System.out.println("Composï¿½ des Uvs suivantes : ");
 					for (Long idUv :  fDS.getIdUvStageDispo((long)0,s.getIdStage())) {
 						System.out.println(fDS.getUv(idUv).getTitle());
 					}
@@ -100,8 +100,8 @@ public class ClientTester implements InitializingBean {
 			if (fDS.getStage((long)i)!=null){
 				StageDTO s = fDS.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
-				System.out.println("Composé des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (ï¿½ "+s.getLocality()+")");
+				System.out.println("Composï¿½ des Uvs suivantes : ");
 					for (Long idUv :  fDS.getIdUvStageDispo((long)1,s.getIdStage())) {
 						System.out.println(fDS.getUv(idUv).getTitle());
 					}
@@ -117,8 +117,8 @@ public class ClientTester implements InitializingBean {
 			if (fDS.getStage((long)i)!=null){
 				StageDTO s = fDS.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
-				System.out.println("Composé des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (ï¿½ "+s.getLocality()+")");
+				System.out.println("Composï¿½ des Uvs suivantes : ");
 					for (Long idUv :  fDS.getIdUvStageDispo((long)2,s.getIdStage())) {
 						System.out.println(fDS.getUv(idUv).getTitle());
 					}
@@ -126,13 +126,13 @@ public class ClientTester implements InitializingBean {
 				}
 			}
 		
-		System.out.println("-------Liste des Stages dirigés par John Doe------------");
+		System.out.println("-------Liste des Stages dirigï¿½s par John Doe------------");
 
 		for (Long is : fDS.getIdStageDir((long)0)) {
 			StageDTO s = fDS.getStage((long)is);	
 			System.out.print("Nom du Stage : ");
-			System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
-			System.out.println("Composé des Uvs suivantes : ");
+			System.out.println(s.getTitle()+" (ï¿½ "+s.getLocality()+")");
+			System.out.println("Composï¿½ des Uvs suivantes : ");
 			for (Long idUv :  fDS.getIdUvStageDir(s.getIdStage())) {
 				System.out.println(fDS.getUv(idUv).getTitle());
 			}
@@ -154,7 +154,7 @@ public class ClientTester implements InitializingBean {
 		fDS.addInscrip((long)1, idsUv1);
 		fDS.addInscrip((long)2, idsUv2);
 		
-		System.out.println("Liste des candidats inscrit à l'Uv 6");
+		System.out.println("Liste des candidats inscrit ï¿½ l'Uv 6");
 		for (Long ic : fDS.getIdCandidat((long)6,EtatCandidatureDTO.inscrit)){
 			System.out.println(fDS.getAgent(ic).getFirstName()+" "+fDS.getAgent(ic).getName());
 		}
@@ -233,7 +233,7 @@ public class ClientTester implements InitializingBean {
 		 * Rajout de tests par JCG 12/03/2012
 		 */
 				
-		System.out.println("--------------------Tests rajoutés par JCG le 12/03/2012--------------------");
+		System.out.println("--------------------Tests rajoutï¿½s par JCG le 12/03/2012--------------------");
 		System.out.println();
 		System.out.println("-----------Liste des stages auxquels sont inscrits les candidats------------");
 
@@ -277,10 +277,10 @@ public class ClientTester implements InitializingBean {
 		
 
 		System.out.println("-----------Liste des stages auxquels sont inscrits les candidats------------");
-		System.out.println("--------------------------après quelques annulations------------------------");
+		System.out.println("--------------------------aprï¿½s quelques annulations------------------------");
 
-		fDS.setStatut((long) 5, (long) 0, EtatCandidatureDTO.annulé, EtatCandidatureDTO.retenu);
-		fDS.setStatut((long) 9, (long) 2, EtatCandidatureDTO.annulé, EtatCandidatureDTO.listeAttente);		
+		fDS.setStatut((long) 5, (long) 0, EtatCandidatureDTO.annule, EtatCandidatureDTO.retenu);
+		fDS.setStatut((long) 9, (long) 2, EtatCandidatureDTO.annule, EtatCandidatureDTO.listeAttente);		
 		
 		for (int i = 0; i < 100; i++) {
 			if (fDS.getAgent((long) i) != null) {
@@ -296,7 +296,7 @@ public class ClientTester implements InitializingBean {
 		}
 
 		System.out.println("-------------Liste des UVs auxquelles sont inscrits les candidats------------");
-		System.out.println("--------------------------après quelques annulations-------------------------");
+		System.out.println("--------------------------aprï¿½s quelques annulations-------------------------");
 
 		for (int i = 0; i < 100; i++) {
 			if (fDS.getAgent((long) i) != null) {
@@ -313,10 +313,10 @@ public class ClientTester implements InitializingBean {
 			}
 		}
 
-		System.out.println("----------------Fin des Tests rajoutés par JCG le 12/03/2012-----------------");
+		System.out.println("----------------Fin des Tests rajoutï¿½s par JCG le 12/03/2012-----------------");
 		System.out.println();
 
-		System.out.println("----------------Tests rajoutés par Laurent le 12/03/2012-----------------");
+		System.out.println("----------------Tests rajoutï¿½s par Laurent le 12/03/2012-----------------");
 		System.out.println();
 		
 		for (int i = 0; i < 100; i++) {
@@ -345,7 +345,7 @@ public class ClientTester implements InitializingBean {
 			if (a1!=null) {
 				System.out.print("L'agent ");
 				System.out.print(a1.getFirstName() + " " + a1.getName());
-				System.out.println(" est connecté");
+				System.out.println(" est connectï¿½");
 			}
 			else {System.out.println("L'agent n'existe pas");}
 		}
