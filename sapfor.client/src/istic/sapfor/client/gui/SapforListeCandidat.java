@@ -1,30 +1,31 @@
 package istic.sapfor.client.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.border.BevelBorder;
 
-public class SapforListeCandidat  extends JPanel {
+public class SapforListeCandidat  extends JTextPane {
 	
-	private SapforLabel candidat; 
+	
+	
 	
 	public SapforListeCandidat (String titre) {
-		super();   
-		candidat=new SapforLabel(titre);
-		this.setLayout(new GridBagLayout());
+		super();
+		this.setText(titre);
+		this.setEditable(false);
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		this.add(candidat);
 		
 	}
 	public SapforListeCandidat (String titre, Color c) {
-		super();   
-		candidat=new SapforLabel(titre);
-		this.setLayout(new GridBagLayout());
+		super();
+		this.setText(titre);
+		this.setEditable(false);
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		this.add(candidat);
 		this.setBackground(c);
 	}
 }
