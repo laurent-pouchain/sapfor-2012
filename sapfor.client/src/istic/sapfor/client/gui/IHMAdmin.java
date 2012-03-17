@@ -12,4 +12,5 @@ public interface IHMAdmin {
 	void DisplayRetenu(HashMap<Long, String> cand);
 	void DisplayNonRetenu(HashMap<Long, String> cand);
 	void DisplayListA(HashMap<Long, String> cand);
+	void Rafraichir(Integer idUv);
 }

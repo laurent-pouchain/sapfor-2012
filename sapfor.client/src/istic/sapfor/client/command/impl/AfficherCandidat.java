@@ -18,6 +18,8 @@ public class AfficherCandidat implements ICommand {
 
 	private ServiceAgent client;
 	private ServiceUv clientU;
+	private IHMAdmin ihmAdmin;
+	
 	public ServiceAgent getClient() {
 		return client;
 	}
@@ -26,7 +28,7 @@ public class AfficherCandidat implements ICommand {
 		this.client = client;
 	}
 
-	private IHMAdmin ihmAdmin;
+	
 	
 	public ServiceUv getClientU() {
 		return clientU;
@@ -58,29 +60,7 @@ public class AfficherCandidat implements ICommand {
 
 		//test avec une liste non vide pour l'IHM
 		//on ne peu pas tester si les onglets son pise en compte ou si il faut un listener
-	/*	Collection<Long> idCand=new LinkedList();
-		idCand.add((long)1);
-		idCand.add((long)3);
-		idCand.add((long)5);
-		idCand.add((long)6);
-		
-		Collection<Long> idRet=new LinkedList();
-		idRet.add((long)1);
-		idRet.add((long)2);
-		idRet.add((long)4);
-		idRet.add((long)7);
-		
-		Collection<Long> idNonRet=new LinkedList();
-		idNonRet.add((long)0);
-		idNonRet.add((long)3);
-		idNonRet.add((long)8);
-		idNonRet.add((long)6);
-		
-		Collection<Long> idAtt=new LinkedList();
-		idAtt.add((long)1);
-		idAtt.add((long)3);
-		idAtt.add((long)5);
-		idAtt.add((long)6);*/
+	
 		
 		System.out.println("idCand"+idCand);
 		System.out.println("idRet"+idRet);

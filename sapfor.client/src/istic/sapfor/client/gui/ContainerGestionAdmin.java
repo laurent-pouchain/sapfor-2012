@@ -21,6 +21,16 @@ private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private JTabbedPane Onglets = null;
 private SapforGestionStage GererUv;
+
+public ClassPathXmlApplicationContext getContext() {
+	return context;
+}
+
+
+public void setContext(ClassPathXmlApplicationContext context) {
+	this.context = context;
+}
+
 	
 
 	public JTabbedPane getOnglets() {
@@ -186,9 +196,16 @@ public void setOnglets(JTabbedPane onglets) {
 		    											}
 					}
 																	}
-		
-	
-
+		public void Rafraichir(Integer idUv){
+			DefaultCommandContext ctx = new DefaultCommandContext();
+        	
+        	System.out.println("avant l'affichage");
+        	
+        	ctx.put(ICommandContextKey.Key_Cand, idUv.toString());
+            ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
+    		cmd.execute(ctx);
+    		System.out.println("apres l'affichage");
+			}
 	
 
 
