@@ -350,19 +350,21 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	@Override
 	public void displayUvDispo(final HashMap<Long, String> uv,final HashMap<Long, String> uvInscrit) {
 		
+		//System.out.println("----------------------------------------");
+		//System.out.println(uv+"\n"+uvInscrit);
 		if (uv==null && uvInscrit==null){
 			SapforLabel nonUv= new SapforLabel ("Aucune Uv disponible");
 			infoStageUv.add(nonUv);
 		}
 		
 		else{
-
+			//System.out.println("uv && uvInscrit non null");
 			final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
 			int x=50,y=50; Integer i=0;
 			infoStageUv.removeAll();
 			infoStageUv.setVisible(false);
+			if(uvInscrit==null){//System.out.println("uvInscrit == null");
 			for(Entry<Long, String> entry : uv.entrySet()) {
-				if(uvInscrit==null){
 					Long cle = entry.getKey();
 				    String valeur = entry.getValue();
 				    System.out.println(valeur + " titre UV");
@@ -380,17 +382,19 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			    
 				    y=y+120;
 				    }
-				else{
-					if(uvInscrit.containsKey(entry)==true){
-				    	Long cle = entry.getKey();
-					    String valeur = entry.getValue();
-					    System.out.println(valeur + " titre UV");
+			}
+			else{System.out.println("uvInscrit non null");
+			for(Entry<Long, String> entry2 : uv.entrySet()) {
+					if(uvInscrit.containsKey(entry2.getKey())==true){
+						//System.out.println("uvInscrit - test boucle");
+				    	Long cle = entry2.getKey();
+					    String valeur = entry2.getValue();
+					    System.out.println(valeur + " titre UV if");
 						SapforLabel nuv= new SapforLabel (valeur);
 						String nom=cle.toString();
 						JCheckBox rad= new JCheckBox ();
 						rad.setName(nom);
-						rad.disable();
-						//keyset
+						
 						lstbox.put(i, rad);
 						i++;
 						
@@ -399,14 +403,14 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 					
 					}
 					else{
-						Long cle = entry.getKey();
-					    String valeur = entry.getValue();
-					    System.out.println(valeur + " titre UV");
+						Long cle = entry2.getKey();
+					    String valeur = entry2.getValue();
+					    //System.out.println(valeur + " titre UV else");
 						SapforLabel nuv= new SapforLabel (valeur);
 						String nom=cle.toString();
 						JCheckBox rad= new JCheckBox ();
 						rad.setName(nom);
-						
+						rad.setEnabled(true);
 						//keyset
 						lstbox.put(i, rad);
 						i++;
@@ -462,6 +466,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			});
 
 		}
+		//System.out.println("----------------------------------------");
 	}//fin displayUvDispo
 
 	
