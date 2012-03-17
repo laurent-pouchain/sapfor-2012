@@ -11,6 +11,12 @@ import istic.sapfor.api.dto.EtatCandidatureDTO;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
+import istic.sapfor.client.gui.tool.GhostComponentAdapter;
+import istic.sapfor.client.gui.tool.GhostDropListener;
+import istic.sapfor.client.gui.tool.GhostDropManagerDemo;
+import istic.sapfor.client.gui.tool.GhostGlassPane;
+import istic.sapfor.client.gui.tool.GhostMotionAdapter;
+import istic.sapfor.client.gui.tool.GhostPictureAdapter;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -21,7 +27,10 @@ private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private JTabbedPane Onglets = null;
 private SapforGestionStage GererUv;
-	
+private GhostGlassPane glassPane;	
+GhostDropListener listener;
+GhostPictureAdapter pictureAdapter;
+GhostComponentAdapter componentAdapter;
 
 	public JTabbedPane getOnglets() {
 	return Onglets;
@@ -47,13 +56,18 @@ public void setOnglets(JTabbedPane onglets) {
 
 	public void GererInscriptionUvDir(HashMap<Long, String> uv) {
 	
-			// TODO Auto-generated method stub		
-			getOnglets(uv);
-		
+			// TODO Auto-generated method stub
 			frameGestionStage = new SapforJFrame("Gestion Stage");
+			glassPane = new GhostGlassPane();
+		    frameGestionStage.setGlassPane(glassPane);
+		    getOnglets(uv);
+		
+			
 			frameGestionStage.add(Onglets);
 		    Onglets.setVisible(true);
+		    
 		    frameGestionStage.setVisible(true);
+		    
 		}
 	
 	
@@ -82,10 +96,11 @@ public void setOnglets(JTabbedPane onglets) {
 			        	DefaultCommandContext ctx = new DefaultCommandContext();
 			        	String idUv=entry.getKey().toString();
 			        	System.out.println("avant l'affichage");
-			        	
+			        	System.out.println("------------------------------------------------");
 			        	ctx.put(ICommandContextKey.Key_Cand, idUv);
 			            ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 			    		cmd.execute(ctx);
+			    		System.out.println("------------------------------------------------");
 			    		System.out.println("apres l'affichage");
 					}
 					}
@@ -101,18 +116,26 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayCandidat(HashMap<Long,String> cand) {
+		listener = new GhostDropManagerDemo(GererUv);
 			int x=50,y=50;
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
+			    
 			    y=y+120;
 			    GererUv.getInscrit().add(vide);
 						}							
 			else {
+				
+				
 		for(Entry<Long, String> entry : cand.entrySet()) {
 		    	final Long cle = entry.getKey();
 		    	String nom = entry.getValue();
 		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.green);
-		    	//System.out.println(valeur);
+		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
+		        componentAdapter.addGhostDropListener(listener);
+		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
+		        System.out.println(glassPane);
+		        System.out.println("Display Candidat - Candidat "+nom);
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;
 		    	GererUv.getInscrit().add(lst);
@@ -123,6 +146,7 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayRetenu(HashMap<Long, String> cand) {
+	listener = new GhostDropManagerDemo(GererUv);
 	int x=50,y=50;
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
@@ -135,6 +159,10 @@ public void setOnglets(JTabbedPane onglets) {
 		    	final Long cle = entry.getKey();
 		    	String nom = entry.getValue();
 		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.green);
+		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
+		        componentAdapter.addGhostDropListener(listener);
+		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
+		        System.out.println("Display Candidat - Candidat "+nom);
 		    	y=y+120;
 		    	GererUv.getRetenu().add(lst);
 		    											}
@@ -146,6 +174,7 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayNonRetenu(HashMap<Long, String> cand) {
+	listener = new GhostDropManagerDemo(GererUv);
 		int x=50,y=50;
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
@@ -158,6 +187,10 @@ public void setOnglets(JTabbedPane onglets) {
 		    	final Long cle = entry.getKey();
 		    	String nom = entry.getValue();
 		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.red);
+		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
+		        componentAdapter.addGhostDropListener(listener);
+		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
+		        System.out.println("Display Non retenu - Candidat "+nom);
 		    	y=y+120;
 		    	GererUv.getRefuse().add(lst);
 		    											}
@@ -169,6 +202,7 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayListA(HashMap<Long, String> cand) {
+	listener = new GhostDropManagerDemo(GererUv);
 		int x=50,y=50;
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
@@ -181,6 +215,10 @@ public void setOnglets(JTabbedPane onglets) {
 		    	final Long cle = entry.getKey();
 		    	String nom = entry.getValue();
 		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.orange);
+		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
+		        componentAdapter.addGhostDropListener(listener);
+		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
+		        System.out.println("Display Liste A - Candidat "+nom);
 		    	y=y+120;
 		    	GererUv.getListeDA().add(lst);
 		    											}
