@@ -1,71 +1,169 @@
 format 76
 
-classinstancecanvas 128010 classinstance_ref 134538 // 
-  xyz 526 14 2000 life_line_z 2000
-end
 note 128138 "//utilisateur : directeur placé sur la page de gestion de l'UV de l'un de ses stages,  dont les candidatures sont closes"
-  xyzwh 32 8 2000 179 75
+  xyzwh 205 2 2000 179 75
 note 128266 "valider ssi la liste des candidatures à traiter est vide"
-  xyzwh 49 238 2000 127 75
+  xyzwh 148 507 2000 127 75
 classinstancecanvas 128394 classinstance_ref 134794 // 
-  xyz 222 14 2005 life_line_z 2000
+  xyz 97 9 2005 life_line_z 2000
 end
-durationcanvas 128789 classinstance_ref 128394 // :Utilisateur
-  xyzwh 243 174 2010 11 32
+classinstancecanvas 131861 classinstance_ref 134805 // 
+  xyz 769 4 2000 life_line_z 2000
 end
-durationcanvas 129045 classinstance_ref 128394 // :Utilisateur
-  xyzwh 243 293 2010 11 32
+classinstancecanvas 131989 classinstance_ref 134538 // 
+  xyz 427 6 2000 life_line_z 2000
 end
-durationcanvas 129162 classinstance_ref 128010 // :Client
-  xyzwh 545 256 2010 11 56
-  overlappingdurationcanvas 129301
-    xyzwh 551 278 2020 11 25
+durationcanvas 132117 classinstance_ref 131861 // :Serveur
+  xyzwh 790 402 2010 11 39
+end
+durationcanvas 132245 classinstance_ref 131989 // :Client
+  xyzwh 446 194 2010 11 293
+  overlappingdurationcanvas 132501
+    xyzwh 452 231 2020 11 25
+  end
+  overlappingdurationcanvas 132629
+    xyzwh 452 304 2020 11 29
+  end
+  overlappingdurationcanvas 132757
+    xyzwh 452 364 2020 11 28
+  end
+  overlappingdurationcanvas 132885
+    xyzwh 452 426 2020 11 32
   end
 end
-durationcanvas 130186 classinstance_ref 128394 // :Utilisateur
-  xyzwh 243 240 2010 11 40
+durationcanvas 133141 classinstance_ref 131861 // :Serveur
+  xyzwh 790 210 2010 11 42
 end
-durationcanvas 133386 classinstance_ref 128394 // :Utilisateur
-  xyzwh 243 118 2010 11 45
+durationcanvas 133269 classinstance_ref 131861 // :Serveur
+  xyzwh 790 345 2010 11 39
 end
-durationcanvas 133514 classinstance_ref 128010 // :Client
-  xyzwh 545 126 2010 11 72
-  overlappingdurationcanvas 129557
-    xyzwh 551 158 2020 11 25
+durationcanvas 133397 classinstance_ref 131861 // :Serveur
+  xyzwh 790 278 2010 11 47
+end
+durationcanvas 134805 classinstance_ref 128394 // :Utilisateur
+  xyzwh 118 108 2010 11 397
+  overlappingdurationcanvas 135701
+    xyzwh 124 474 2020 11 25
   end
 end
-msg 128917 synchronous
-  from durationcanvas_ref 133514
-  to durationcanvas_ref 128789
-  yz 182 2015 explicitmsg "met à jour la page de gestion de l'UV"
+durationcanvas 134933 classinstance_ref 131989 // :Client
+  xyzwh 446 111 2010 11 375
+  overlappingdurationcanvas 135445
+    xyzwh 452 155 2020 11 25
+  end
+end
+durationcanvas 135189 classinstance_ref 131861 // :Serveur
+  xyzwh 790 118 2010 11 55
+end
+durationcanvas 135957 classinstance_ref 128394 // :Utilisateur
+  xyzwh 118 606 2010 11 109
+  overlappingdurationcanvas 136853
+    xyzwh 124 676 2020 11 33
+  end
+end
+durationcanvas 136085 classinstance_ref 131989 // :Client
+  xyzwh 446 605 2010 11 99
+  overlappingdurationcanvas 136597
+    xyzwh 452 659 2020 11 32
+  end
+end
+durationcanvas 136341 classinstance_ref 131861 // :Serveur
+  xyzwh 790 616 2010 11 72
+end
+msg 133525 synchronous
+  from durationcanvas_ref 132245
+  to durationcanvas_ref 133269
+  yz 346 2015 explicitmsg "getIdCandidat(Long idUv, Etat.listeAttente);"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 308 168
-msg 129173 synchronous
-  from durationcanvas_ref 129162
-  to durationcanvas_ref 129045
-  yz 300 2015 explicitmsg "affiche la page de confirmation"
+  label_xy 512 332
+msg 133653 synchronous
+  from durationcanvas_ref 133269
+  to durationcanvas_ref 132757
+  yz 371 2025 explicitmsg "idsListeAttente : Collection<Long>"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 325 286
-reflexivemsg 129429 synchronous
-  to durationcanvas_ref 129301
-  yz 278 2025 explicitmsg "notifie les agents de leur état"
+  label_xy 536 357
+msg 133781 synchronous
+  from durationcanvas_ref 132245
+  to durationcanvas_ref 133397
+  yz 286 2015 explicitmsg "getIdCandidat(Long idUv, Etat.retenu);"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 588 274
-reflexivemsg 129685 synchronous
-  to durationcanvas_ref 129557
-  yz 158 2025 explicitmsg "candidature triée"
+  label_xy 523 272
+msg 133909 synchronous
+  from durationcanvas_ref 133397
+  to durationcanvas_ref 132629
+  yz 311 2025 explicitmsg "idsRetenus : Collection<Long>"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 586 155
-msg 131978 asynchronous
-  from durationcanvas_ref 130186
-  to durationcanvas_ref 129162
-  yz 261 2015 explicitmsg "clique sur \"Valider sélection\""
+  label_xy 545 297
+msg 134037 synchronous
+  from durationcanvas_ref 133141
+  to durationcanvas_ref 132501
+  yz 238 2025 explicitmsg "idsInscrits : Collection<Long>"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 331 247
-msg 133642 asynchronous
-  from durationcanvas_ref 133386
-  to durationcanvas_ref 133514
-  yz 135 2015 explicitmsg "tri d'une candidature"
+  label_xy 547 224
+msg 134165 synchronous
+  from durationcanvas_ref 132245
+  to durationcanvas_ref 133141
+  yz 211 2015 explicitmsg "getIdCandidat(Long idUv, Etat.inscrit);"
   show_full_operations_definition default drawing_language default show_context_mode default
-  label_xy 352 122
+  label_xy 540 197
+msg 134421 synchronous
+  from durationcanvas_ref 132117
+  to durationcanvas_ref 132885
+  yz 428 2025 explicitmsg "idsNonRetenus : Collection<Long>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 535 414
+msg 134677 synchronous
+  from durationcanvas_ref 132245
+  to durationcanvas_ref 132117
+  yz 405 2015 explicitmsg "getIdCandidat(Long idUv, Etat.nonRetenu);"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 513 391
+msg 135061 synchronous
+  from durationcanvas_ref 134805
+  to durationcanvas_ref 134933
+  yz 118 2015 explicitmsg "tri d'une candidature"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 237 104
+msg 135317 synchronous
+  from durationcanvas_ref 134933
+  to durationcanvas_ref 135189
+  yz 125 2015 explicitmsg "setStatut(Long idUv, Long idCandidat, Etat nouvelEtat, Etat ancienEtat)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 463 95
+msg 135573 synchronous
+  from durationcanvas_ref 135189
+  to durationcanvas_ref 135445
+  yz 155 2025 explicitmsg "setStatutOK : bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 583 141
+msg 135829 synchronous
+  from durationcanvas_ref 134933
+  to durationcanvas_ref 135701
+  yz 474 2025 explicitmsg "affiche la page de \"Tri candidatures\" de l'UV correspondante"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 121 460
+msg 136213 synchronous
+  from durationcanvas_ref 135957
+  to durationcanvas_ref 136085
+  yz 611 2015 explicitmsg "clique sur \"Valider sélection\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 218 597
+msg 136469 synchronous
+  from durationcanvas_ref 136085
+  to durationcanvas_ref 136341
+  yz 627 2015 explicitmsg "setCandValids(Long idUv)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 559 613
+msg 136725 synchronous
+  from durationcanvas_ref 136341
+  to durationcanvas_ref 136597
+  yz 669 2025 explicitmsg "CandValids : nool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 584 655
+msg 136981 synchronous
+  from durationcanvas_ref 136085
+  to durationcanvas_ref 136853
+  yz 683 2030 explicitmsg "affiche \"Candidatures validées\""
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 214 669
 end

@@ -111,7 +111,7 @@ public void setOnglets(JTabbedPane onglets) {
 		for(Entry<Long, String> entry : cand.entrySet()) {
 		    	final Long cle = entry.getKey();
 		    	String nom = entry.getValue();
-		    	SapforListeCandidat lst=new SapforListeCandidat(nom);
+		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.green);
 		    	//System.out.println(valeur);
 		    	//s.setBounds(x,y,200,50); 
 		    	y=y+120;

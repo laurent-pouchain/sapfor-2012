@@ -51,91 +51,116 @@ public class AfficherCandidat implements ICommand {
 		int idUv=Integer.parseInt(idTemp);
 		
 		//probleme getCandidat rend une liste vide
-		//Collection<Long> idCand client.getIdCandidat((long)idUv, EtatCandidatureDTO.inscrit);
-		//Collection<Long> idRet =client.getIdCandidat((long)idUv, EtatCandidatureDTO.retenu);
+		Collection<Long> idCand =client.getIdCandidat((long)idUv, EtatCandidatureDTO.inscrit);
+		Collection<Long> idRet =client.getIdCandidat((long)idUv, EtatCandidatureDTO.retenu);
+		Collection<Long> idNonRet =client.getIdCandidat((long)idUv, EtatCandidatureDTO.nonRetenu);
+		Collection<Long> idAtt =client.getIdCandidat((long)idUv, EtatCandidatureDTO.listeAttente);
+
 		//test avec une liste non vide pour l'IHM
 		//on ne peu pas tester si les onglets son pise en compte ou si il faut un listener
-		Collection<Long> idCand=new LinkedList();
+	/*	Collection<Long> idCand=new LinkedList();
 		idCand.add((long)1);
 		idCand.add((long)3);
 		idCand.add((long)5);
 		idCand.add((long)6);
-		System.out.println(idCand);
+		
 		Collection<Long> idRet=new LinkedList();
 		idRet.add((long)1);
 		idRet.add((long)2);
 		idRet.add((long)4);
 		idRet.add((long)7);
-		System.out.println(idRet);
+		
 		Collection<Long> idNonRet=new LinkedList();
 		idNonRet.add((long)0);
 		idNonRet.add((long)3);
 		idNonRet.add((long)8);
 		idNonRet.add((long)6);
-		System.out.println(idNonRet);
+		
 		Collection<Long> idAtt=new LinkedList();
 		idAtt.add((long)1);
 		idAtt.add((long)3);
 		idAtt.add((long)5);
-		idAtt.add((long)6);
-		System.out.println(idAtt);
+		idAtt.add((long)6);*/
 		
+		System.out.println("idCand"+idCand);
+		System.out.println("idRet"+idRet);
+		System.out.println("idNonRet"+idNonRet);
+		System.out.println("idAtt"+idAtt);
+		//j'ai divisé le bloc en 4 méthodes pour la lisibilité
 		
+		if (idCand==null){ 
+			ihmAdmin.DisplayCandidat(null);
+			retenu(idRet,idNonRet,idAtt);}
+			else {
+				System.out.println(idCand);
+				HashMap<Long,String> cand = new HashMap<Long,String>();
+				for (long id : idCand ){
+					System.out.println(id);
+					AgentDTO a= client.getAgent(id);
+					String nom=a.getFirstName()+" "+a.getName();
+					cand.put(id, nom);
+					System.out.println(nom);}
+				ihmAdmin.DisplayCandidat(cand);
+				retenu(idRet,idNonRet,idAtt);}
 		
-		if (idCand.isEmpty()==true){ 
-			ihmAdmin.DisplayCandidat(null);}
-		else {
-			System.out.println(idCand);
-			HashMap<Long,String> cand = new HashMap<Long,String>();
-			for (long id : idCand ){
-				System.out.println(id);
-				AgentDTO a= client.getAgent(id);
-				String nom=a.getFirstName()+" "+a.getName();
-				cand.put(id, nom);
-				System.out.println(nom);}
-			ihmAdmin.DisplayCandidat(cand);}
-		
-						
-		if (idRet.isEmpty()==true){ 
-			ihmAdmin.DisplayRetenu(null);}
-		else {
-			System.out.println(idRet);
-			HashMap<Long,String> ret = new HashMap<Long,String>();
-			for (long id : idRet ){
-				System.out.println(id);
-				AgentDTO a= client.getAgent(id);
-				String nom=a.getFirstName()+" "+a.getName();
-				ret.put(id, nom);
-				System.out.println(nom);}
-			ihmAdmin.DisplayRetenu(ret);}
-		
-		if (idNonRet.isEmpty()==true){ 
-			ihmAdmin.DisplayNonRetenu(null);}
-		else {
-			System.out.println(idNonRet);
-			HashMap<Long,String> nonRet = new HashMap<Long,String>();
-			for (long id : idNonRet ){
-				System.out.println(id);
-				AgentDTO a= client.getAgent(id);
-				String nom=a.getFirstName()+" "+a.getName();
-				nonRet.put(id, nom);
-				System.out.println(nom);}
-			ihmAdmin.DisplayNonRetenu(nonRet);}
-	
-		if (idAtt.isEmpty()==true){ 
-			ihmAdmin.DisplayListA(null);}
-		else {
-			System.out.println(idAtt);
-			HashMap<Long,String> att = new HashMap<Long,String>();
-			for (long id : idAtt ){
-				System.out.println(id);
-				AgentDTO a= client.getAgent(id);
-				String nom=a.getFirstName()+" "+a.getName();
-				att.put(id, nom);
-				System.out.println(nom);}
-			ihmAdmin.DisplayListA(att);}
-	
+			
 	return true;
-	
 	}
+	
+	
+	
+	void retenu(Collection<Long> idRet,Collection<Long> idNonRet,Collection<Long> idAtt){
+		if (idRet==null){ 
+			ihmAdmin.DisplayRetenu(null);
+			nonRetenu(idNonRet,idAtt);}
+			else {
+				System.out.println(idRet);
+				HashMap<Long,String> ret = new HashMap<Long,String>();
+				for (long id : idRet ){
+					System.out.println(id);
+					AgentDTO a= client.getAgent(id);
+					String nom=a.getFirstName()+" "+a.getName();
+					ret.put(id, nom);
+					System.out.println(nom);}
+				ihmAdmin.DisplayRetenu(ret);
+			
+				nonRetenu(idNonRet,idAtt);	}
+			}
+		
+	void nonRetenu(Collection<Long> idNonRet, Collection<Long> idAtt){	
+		if (idNonRet==null){ 
+			ihmAdmin.DisplayNonRetenu(null);
+			ListeDa(idAtt);	}
+			else {
+				System.out.println(idNonRet);
+				HashMap<Long,String> nonRet = new HashMap<Long,String>();
+				for (long id : idNonRet ){
+					System.out.println(id);
+					AgentDTO a= client.getAgent(id);
+					String nom=a.getFirstName()+" "+a.getName();
+					nonRet.put(id, nom);
+					System.out.println(nom);}
+				ihmAdmin.DisplayNonRetenu(nonRet);
+				ListeDa(idAtt);}
+														}
+		
+	void ListeDa(Collection<Long> idAtt){
+		if (idAtt==null){ 
+			ihmAdmin.DisplayListA(null);}
+			else {
+				System.out.println(idAtt);
+				HashMap<Long,String> att = new HashMap<Long,String>();
+				for (long id : idAtt ){
+					System.out.println(id);
+					AgentDTO a= client.getAgent(id);
+					String nom=a.getFirstName()+" "+a.getName();
+					att.put(id, nom);
+					System.out.println(nom);}
+				ihmAdmin.DisplayListA(att);}
+												}
+		
+	
+
+
 }
+

@@ -17,7 +17,7 @@ public class SapforListeCandidat  extends JPanel {
 		this.setLayout(new GridBagLayout());
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		this.add(candidat);
-		this.setBackground(Color.BLUE);
+		
 	}
 	public SapforListeCandidat (String titre, Color c) {
 		super();   
