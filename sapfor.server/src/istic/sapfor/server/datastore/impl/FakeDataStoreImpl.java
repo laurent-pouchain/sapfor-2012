@@ -409,7 +409,7 @@ public class FakeDataStoreImpl implements DataStore {
 				}
 			}
 		}
-		
+		System.out.println(listeUvInscrit+"SERVEUR LOG");
 		return listeUvInscrit;
 	}
 	
