@@ -43,8 +43,11 @@ public class AfficherUvStage implements ICommand{
 		int idStage= Integer.parseInt(idSt); 
 		
 		Collection<Long> uvDispo = client.getIdUvStageDispo(idAgent,(long)idStage);
-		if (client.getIdUvStageDispo(idAgent,(long)idStage).isEmpty()==true)
-		{	ihmgstage.displayUvDispo(null);
+		Collection<Long> uvDispoInscrit = client.getIdUvStageInscrit(idAgent, (long)idStage);
+		System.out.println(uvDispoInscrit);
+		if(uvDispoInscrit==null){System.out.println("VIDE");}
+		if (uvDispo==null && uvDispoInscrit==null)
+		{	ihmgstage.displayUvDispo(null,null);
 			return true;
 		
 		}
@@ -57,11 +60,23 @@ public class AfficherUvStage implements ICommand{
 				UvDTO suv= clientU.getUv(id);
 				uv.put(id, suv.getTitle());
 				System.out.println(suv.getTitle());
-								}
-		
-		ihmgstage.displayUvDispo(uv);
-		return true;
 			}
+			
+			if(uvDispoInscrit==null){
+				ihmgstage.displayUvDispo(uv, null);
+			}
+			else{
+				HashMap<Long,String> uvInscrit= new HashMap<Long,String>();
+				for (long id: uvDispoInscrit){
+					System.out.println(id);
+					UvDTO suv= clientU.getUv(id);
+					uvInscrit.put(id, suv.getTitle());
+					System.out.println(suv.getTitle());
+				}
+		
+				ihmgstage.displayUvDispo(uv,uvInscrit);}
+		return true;
+		}
 		
 	}
 	public ServiceUv getClientU() {

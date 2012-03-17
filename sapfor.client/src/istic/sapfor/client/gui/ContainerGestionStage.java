@@ -69,8 +69,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	});
 
 	//Fenêtre principale
+
 	frame= new SapforJFrameAgent("page stage dispo");
 	frame.getBts().setPreferredSize(Jlogin.getStd()); 
+
 
 
 	frame.getBts().addMouseListener(new MouseAdapter() {
@@ -218,37 +220,83 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		
 
 	@Override
-	public void displayUvDispo(final HashMap<Long, String> uv) {
+	public void displayUvDispo(final HashMap<Long, String> uv,final HashMap<Long, String> uvInscrit) {
 		
-		if (uv==null){
+		//System.out.println("----------------------------------------");
+		//System.out.println(uv+"\n"+uvInscrit);
+		if (uv==null && uvInscrit==null){
 			SapforLabel nonUv= new SapforLabel ("Aucune Uv disponible");
 			frame.getInfoStageUv().add(nonUv);
 		}
 		
 		else{
-
+			//System.out.println("uv && uvInscrit non null");
 			final Map<Integer,JCheckBox> lstbox= new HashMap<Integer,JCheckBox>();
 			int x=50,y=50; Integer i=0;
+
 			frame.getInfoStageUv().removeAll();
 			frame.getInfoStageUv().setVisible(false);
+			if(uvInscrit==null){//System.out.println("uvInscrit == null");
 			for(Entry<Long, String> entry : uv.entrySet()) {
-			    Long cle = entry.getKey();
-			    String valeur = entry.getValue();
-			    System.out.println(valeur + " titre UV");
-				SapforLabel nuv= new SapforLabel (valeur);
-				String nom=cle.toString();
-				JCheckBox rad= new JCheckBox ();
-				rad.setName(nom);
-				//keyset
-				lstbox.put(i, rad);
-				i++;
-				
-				frame.getInfoStageUv().add(nuv);
-				frame.getInfoStageUv().add(rad);
+					Long cle = entry.getKey();
+				    String valeur = entry.getValue();
+				    System.out.println(valeur + " titre UV");
+					SapforLabel nuv= new SapforLabel (valeur);
+					String nom=cle.toString();
+					JCheckBox rad= new JCheckBox ();
+					rad.setName(nom);
+					
+					//keyset
+					lstbox.put(i, rad);
+					i++;
+					
+					frame.getInfoStageUv().add(nuv);
+					frame.getInfoStageUv().add(rad);
+
 			    
-			    y=y+120;
+				    y=y+120;
+				    }
 			}
-				
+			else{System.out.println("uvInscrit non null");
+			for(Entry<Long, String> entry2 : uv.entrySet()) {
+					if(uvInscrit.containsKey(entry2.getKey())==true){
+						//System.out.println("uvInscrit - test boucle");
+				    	Long cle = entry2.getKey();
+					    String valeur = entry2.getValue();
+					    System.out.println(valeur + " titre UV if");
+						SapforLabel nuv= new SapforLabel (valeur);
+						String nom=cle.toString();
+						JCheckBox rad= new JCheckBox ();
+						rad.setName(nom);
+						
+						lstbox.put(i, rad);
+						i++;
+						
+						frame.getInfoStageUv().add(nuv);
+					    //infoStageUv.add(rad);
+					
+					}
+					else{
+						Long cle = entry2.getKey();
+					    String valeur = entry2.getValue();
+					    //System.out.println(valeur + " titre UV else");
+						SapforLabel nuv= new SapforLabel (valeur);
+						String nom=cle.toString();
+						JCheckBox rad= new JCheckBox ();
+						rad.setName(nom);
+						rad.setEnabled(true);
+						//keyset
+						lstbox.put(i, rad);
+						i++;
+						
+						frame.getInfoStageUv().add(nuv);
+						frame.getInfoStageUv().add(rad);
+				    
+					    y=y+120;
+					}
+				}
+			    
+			}//fin for	
 			SapforButton inscr= new SapforButton("s'inscrire");
 			frame.getInfoStageUv().add(inscr);
 			frame.getInfoStageUv().setVisible(true);
@@ -292,6 +340,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			});
 
 		}
+		//System.out.println("----------------------------------------");
 	}//fin displayUvDispo
 
 	
