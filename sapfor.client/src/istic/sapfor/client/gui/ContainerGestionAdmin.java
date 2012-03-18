@@ -27,7 +27,6 @@ private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private JTabbedPane Onglets = null;
 private SapforGestionStage GererUv;
-
 private GhostGlassPane glassPane;	
 private GhostDropListener listener;
 
