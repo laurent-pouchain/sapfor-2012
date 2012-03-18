@@ -90,11 +90,7 @@ public void setOnglets(JTabbedPane onglets) {
 			glassPane = new GhostGlassPane();
 		    frameGestionStage.setGlassPane(glassPane);
 		    getOnglets(uv);
-		    
-			
 			frameGestionStage.add(Onglets);
-		    Onglets.setVisible(true);
-		    
 		    frameGestionStage.setVisible(true);
 		   
 		}
@@ -146,9 +142,9 @@ public void setOnglets(JTabbedPane onglets) {
 	@Override
 	public void DisplayCandidat(HashMap<Long,String> cand) {
 		listener = new GhostDropManagerDemo(GererUv);
-		/*listenerJPRefuse = new GhostDropManagerDemo(GererUv.getRefuse());
+		listenerJPRefuse = new GhostDropManagerDemo(GererUv.getRefuse());
 		listenerJPRetenu = new GhostDropManagerDemo(GererUv.getRetenu());
-		listenerJPListeDA = new GhostDropManagerDemo(GererUv.getListeDA());*/
+		listenerJPListeDA = new GhostDropManagerDemo(GererUv.getListeDA());
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
 			    /*vide.addMouseListener(componentAdaptInscritToRetenu = new GhostComponentAdapter(glassPane, "Inscrit -> Retenu"));
@@ -184,10 +180,13 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayRetenu(HashMap<Long, String> cand) {
-		/*listenerJPInscrit = new GhostDropManagerDemo(GererUv.getInscrit());
+		listenerJPInscrit = new GhostDropManagerDemo(GererUv.getInscrit());
+		GererUv.getInscrit().setBackground(Color.gray);
 		listenerJPListeDA = new GhostDropManagerDemo(GererUv.getListeDA());
-		listenerJPRefuse = new GhostDropManagerDemo(GererUv.getRefuse());*/		
-		listener = new GhostDropManagerDemo(GererUv);
+		GererUv.getListeDA().setBackground(Color.blue);
+		listenerJPRefuse = new GhostDropManagerDemo(GererUv.getRefuse());
+		GererUv.getRefuse().setBackground(Color.red);
+		//listener = new GhostDropManagerDemo(GererUv);
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat ");
 			    /*vide.addMouseListener(componentAdapterRetenuToInscrit = new GhostComponentAdapter(glassPane, "Retenu -> Inscrit"));
@@ -201,18 +200,18 @@ public void setOnglets(JTabbedPane onglets) {
 		}							
 		else {
 			for(Entry<Long, String> entry : cand.entrySet()) {
+				
 		    	String nom = entry.getValue();
 		    	SapforListeCandidat lst=new SapforListeCandidat(nom,  Color.green);
+		    	lst.addMouseListener(componentAdapterRetenuToInscrit = new GhostComponentAdapter(glassPane, "Retenu -> Inscrit"));
+			    lst.addMouseListener(componentAdapterRetenuToListeDA = new GhostComponentAdapter(glassPane, "Retenu -> ListeDA"));
+			    lst.addMouseListener(componentAdapterRetenuToRefuse = new GhostComponentAdapter(glassPane, "Retenu -> Refuse"));
+		    	//lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
 		    	
-		    	//lst.addMouseListener(componentAdapterRetenuToInscrit = new GhostComponentAdapter(glassPane, "Retenu -> Inscrit"));
-			    //lst.addMouseListener(componentAdapterRetenuToListeDA = new GhostComponentAdapter(glassPane, "Retenu -> ListeDA"));
-			    //lst.addMouseListener(componentAdapterRetenuToRefuse = new GhostComponentAdapter(glassPane, "Retenu -> Refuse"));
-		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
-		    	
-			    //componentAdapterRetenuToInscrit.addGhostDropListener(listenerJPInscrit);
-			    //componentAdapterRetenuToListeDA.addGhostDropListener(listenerJPListeDA);
-			    //componentAdapterRetenuToRefuse.addGhostDropListener(listenerJPRefuse);
-			    componentAdapter.addGhostDropListener(listener);
+			    componentAdapterRetenuToInscrit.addGhostDropListener(listenerJPInscrit);
+			    componentAdapterRetenuToListeDA.addGhostDropListener(listenerJPListeDA);
+			    componentAdapterRetenuToRefuse.addGhostDropListener(listenerJPRefuse);
+						    
 			    lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
 		        System.out.println("Display Candidat - Candidat "+nom);
 		    	GererUv.getRetenu().add(lst);
@@ -245,14 +244,14 @@ public void setOnglets(JTabbedPane onglets) {
 			    	String nom = entry.getValue();
 			    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.red);
 			    	
-			    	//lst.addMouseListener(componentAdapterRefuseToInscrit = new GhostComponentAdapter(glassPane, "Refuse -> Inscrit"));
-				    //lst.addMouseListener(componentAdapterRefuseToListeDA = new GhostComponentAdapter(glassPane, "Refuse -> ListeDA"));
-				    //lst.addMouseListener(componentAdapterRefuseToRetenu = new GhostComponentAdapter(glassPane, "Refuse -> Retenu"));
-				    lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
-				    //componentAdapterRefuseToInscrit.addGhostDropListener(listenerJPInscrit);
-				    //componentAdapterRefuseToListeDA.addGhostDropListener(listenerJPListeDA);
-				    //componentAdapterRefuseToRetenu.addGhostDropListener(listenerJPRetenu);
-				    componentAdapter.addGhostDropListener(listener);
+			    	lst.addMouseListener(componentAdapterRefuseToInscrit = new GhostComponentAdapter(glassPane, "Refuse -> Inscrit"));
+				    lst.addMouseListener(componentAdapterRefuseToListeDA = new GhostComponentAdapter(glassPane, "Refuse -> ListeDA"));
+				    lst.addMouseListener(componentAdapterRefuseToRetenu = new GhostComponentAdapter(glassPane, "Refuse -> Retenu"));
+				    //lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
+				    componentAdapterRefuseToInscrit.addGhostDropListener(listenerJPInscrit);
+				    componentAdapterRefuseToListeDA.addGhostDropListener(listenerJPListeDA);
+				    componentAdapterRefuseToRetenu.addGhostDropListener(listenerJPRetenu);
+				    //componentAdapter.addGhostDropListener(listener);
 				    lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
 				    System.out.println("Display Non retenu - Candidat "+nom);
 			    	GererUv.getRefuse().add(lst);
@@ -265,10 +264,10 @@ public void setOnglets(JTabbedPane onglets) {
 
 	@Override
 	public void DisplayListA(HashMap<Long, String> cand) {
-		/*listenerJPInscrit = new GhostDropManagerDemo(GererUv.getInscrit());
+		listenerJPInscrit = new GhostDropManagerDemo(GererUv.getInscrit());
 		listenerJPRefuse = new GhostDropManagerDemo(GererUv.getRefuse());
-		listenerJPRetenu = new GhostDropManagerDemo(GererUv.getRetenu());*/
-		listener = new GhostDropManagerDemo(GererUv);
+		listenerJPRetenu = new GhostDropManagerDemo(GererUv.getRetenu());
+		//listener = new GhostDropManagerDemo(GererUv);
 		System.out.println(cand);
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat ");
@@ -285,15 +284,17 @@ public void setOnglets(JTabbedPane onglets) {
 			for(Entry<Long, String> entry : cand.entrySet()) {
 			    	String nom = entry.getValue();
 			    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.orange);
-			    	//lst.addMouseListener(componentAdapterListeDAToInscrit = new GhostComponentAdapter(glassPane, "ListeDA -> Inscrit"));
-				    //lst.addMouseListener(componentAdapterListeDAToRefuse = new GhostComponentAdapter(glassPane, "ListeDA -> Refuse"));
-				    //lst.addMouseListener(componentAdapterListeDAToRetenu = new GhostComponentAdapter(glassPane, "ListeDA -> Retenu"));
-				    lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
+			    	lst.addMouseListener(componentAdapterListeDAToInscrit = new GhostComponentAdapter(glassPane, "ListeDA -> Inscrit"));
+				    lst.addMouseListener(componentAdapterListeDAToRefuse = new GhostComponentAdapter(glassPane, "ListeDA -> Refuse"));
+				    lst.addMouseListener(componentAdapterListeDAToRetenu = new GhostComponentAdapter(glassPane, "ListeDA -> Retenu"));
+				    
+				    //lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "Done"));
 				    //componentAdapterListeDAToInscrit.addGhostDropListener(listenerJPInscrit);
 				    //componentAdapterListeDAToRefuse.addGhostDropListener(listenerJPRefuse);
 				    //componentAdapterListeDAToRetenu.addGhostDropListener(listenerJPRetenu);
+				    
 				    lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));    
-				    componentAdapter.addGhostDropListener(listener);    
+				    //componentAdapter.addGhostDropListener(listener);    
 			        System.out.println("Display Liste A - Candidat "+nom);
 			    	GererUv.getListeDA().add(lst);
 			    	
