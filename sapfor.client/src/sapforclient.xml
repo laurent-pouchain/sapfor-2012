@@ -131,10 +131,11 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 	</bean>
 	
 	<bean id="cmdDisplayAgent" class="istic.sapfor.client.command.impl.AfficherAgent">
-		<property name="ihmgstage" ref="uiAgent" />
+		<property name="ihmgstage" ref="ui1" />
 		<property name="client" ref="ServiceAgentClient" />
 		<property name="context" ref="ctx"/>
 	</bean>
+	
 	
 </beans>
 <!-- END SNIPPET: beans -->

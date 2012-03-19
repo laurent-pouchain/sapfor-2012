@@ -35,7 +35,7 @@ public class AfficherAgent implements ICommand {
 		//j'envoie une hash map avec en clé l'id de l'agent et en valeur une string avec prenom nom				
 		//la methode displayAgent a mettre dans le cotainerGestion agent et dans l'interface qu'il implemente
 		
-		//ihmgstage.displayAgent(NomAgent);
+		ihmgstage.displayAgent(NomAgent);
 		
 		return null;
 	}

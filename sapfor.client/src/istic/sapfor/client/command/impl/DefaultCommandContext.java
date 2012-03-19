@@ -11,6 +11,7 @@ public class DefaultCommandContext implements ICommandContext{
 
 	private Map<ICommandContextKey,String> contextMap = new HashMap<ICommandContextKey,String>();
 	private Map<ICommandContextKey,List<String>> contextMapList = new HashMap<ICommandContextKey,List<String>>();
+	private Map<ICommandContextKey,Map<Long, String>> contextMapHash = new HashMap<ICommandContextKey,Map<Long, String>>();
 	private long idAgent;
 	@Override
 	public String get(ICommandContextKey key) {
@@ -21,6 +22,12 @@ public class DefaultCommandContext implements ICommandContext{
 		return contextMapList.get(key); 
 	}
 	
+	public Map<Long, String> get(Object key) {
+		return contextMapHash.get(key);
+	}
+	public Map<Long, String> put(ICommandContextKey key, Map<Long, String> value) {
+		return contextMapHash.put(key, value);
+	}
 	public void put(ICommandContextKey key,String val){
 		contextMap.put(key, val);
 	}

@@ -101,7 +101,18 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 	});
 	
-
+	frame.getButtonAddAgent().addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			
+			ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			cmd.execute(ctx);
+			
+			System.out.println("OK");
+						
+		}
+	});
 	}
 
 	public void displayStageDir(HashMap<Long,String> stDir) {
@@ -358,6 +369,15 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	public void errorLogin() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Mauvais Login/Mot de passe", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void displayAgent(Map<Long, String> nomAgent) {
+		
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		ctx.put(ICommandContextKey.Key_DisplayAgent, nomAgent);
+		ContainerGestionAgent rootUI = (ContainerGestionAgent) context.getBean("uiAgent");
+		rootUI.showUI(context,ctx,frame);
+		frame.setVisible(false);
 	}
 
 	
