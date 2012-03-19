@@ -35,7 +35,9 @@ public class AfficherAgent implements ICommand {
 		//j'envoie une hash map avec en clé l'id de l'agent et en valeur une string avec prenom nom				
 		//la methode displayAgent a mettre dans le cotainerGestion agent et dans l'interface qu'il implemente
 		
+		System.out.println(NomAgent);
 		ihmgstage.displayAgent(NomAgent);
+
 		
 		return null;
 	}
@@ -43,6 +45,20 @@ public class AfficherAgent implements ICommand {
 	
 	
 	
+	public IHMGStage getIhmgstage() {
+		return ihmgstage;
+	}
+
+
+
+
+	public void setIhmgstage(IHMGStage ihmgstage) {
+		this.ihmgstage = ihmgstage;
+	}
+
+
+
+
 	public ServiceAgent getClient() {
 		return client;
 	}
@@ -53,14 +69,7 @@ public class AfficherAgent implements ICommand {
 	}
 
 
-	public IHMGStage getIhmgstage() {
-		return ihmgstage;
-	}
 
-
-	public void setIhmgstage(IHMGStage ihmgstage) {
-		this.ihmgstage = ihmgstage;
-	}
 
 
 	public ICommandContext getContext() {
@@ -71,5 +80,8 @@ public class AfficherAgent implements ICommand {
 	public void setContext(ICommandContext context) {
 		this.context = context;
 	}
+	
+
+
 
 }

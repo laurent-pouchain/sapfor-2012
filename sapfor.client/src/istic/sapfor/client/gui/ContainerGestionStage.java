@@ -370,7 +370,6 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Mauvais Login/Mot de passe", "Error", JOptionPane.ERROR_MESSAGE);
 	}
-
 	public void displayAgent(Map<Long, String> nomAgent) {
 		
 		DefaultCommandContext ctx = new DefaultCommandContext();
@@ -379,6 +378,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		rootUI.showUI(context,ctx,frame);
 		frame.setVisible(false);
 	}
+
 
 	
 
