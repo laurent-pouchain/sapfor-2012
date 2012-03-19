@@ -1,23 +1,17 @@
 package istic.sapfor.client.gui;
 
 import java.awt.Color;
-import java.util.Collection;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-
 import javax.swing.JTabbedPane;
-
-import istic.sapfor.api.dto.EtatCandidatureDTO;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
-import istic.sapfor.client.gui.tool.GhostComponentAdapter;
-import istic.sapfor.client.gui.tool.GhostDropListener;
-import istic.sapfor.client.gui.tool.GhostDropManagerDemo;
-import istic.sapfor.client.gui.tool.GhostGlassPane;
-import istic.sapfor.client.gui.tool.GhostMotionAdapter;
-import istic.sapfor.client.gui.tool.GhostPictureAdapter;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ContainerGestionAdmin implements IHMAdmin {
@@ -26,11 +20,19 @@ public class ContainerGestionAdmin implements IHMAdmin {
 private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private JTabbedPane Onglets = null;
-private SapforGestionStage GererUv;
-private GhostGlassPane glassPane;	
-private GhostDropListener listener;
+private Map<Long,SapforGestionStage> GererUvs;
 
-private GhostComponentAdapter componentAdapter;
+public Map<Long, SapforGestionStage> getGererUvs() {
+	return GererUvs;
+}
+
+
+
+
+public void setGererUvs(Map<Long, SapforGestionStage> gererUvs) {
+	GererUvs = gererUvs;
+}
+
 
 
 public ClassPathXmlApplicationContext getContext() {
@@ -71,16 +73,11 @@ public void setOnglets(JTabbedPane onglets) {
 	
 			// TODO Auto-generated method stub
 			frameGestionStage = new SapforJFrame("Gestion Stage");
-			glassPane = new GhostGlassPane();
-		    frameGestionStage.setGlassPane(glassPane);
+
 		    getOnglets(uv);
-		
-			
 			frameGestionStage.add(Onglets);
-		    Onglets.setVisible(true);
-		    
 		    frameGestionStage.setVisible(true);
-		    
+		   
 		}
 	
 	
@@ -93,29 +90,36 @@ public void setOnglets(JTabbedPane onglets) {
 		        {if (uvDir==null){
 				    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage à gerer");
 				    s.getBtu().setVisible(false);
-				    //paneStage.add(s);		
-		        	}
+				  		
+		        }
 													
 				else {
 					Onglets = new JTabbedPane();
 					Onglets.setSize(800,600);
 					int i = 1;
-					for(Entry<Long, String> entry : uvDir.entrySet()) {
+				
+					Map<Long,SapforGestionStage> GererUvs=new HashMap<Long,SapforGestionStage>();
+	    			for(Entry<Long, String> entry : uvDir.entrySet()) {
 						String idOnglet="Onglet "+i;
+						System.out.println("repère recherche de l'id perdu");
 						System.out.println(idOnglet);
-						GererUv=new SapforGestionStage(entry.getValue());
+						SapforGestionStage GererUv=new SapforGestionStage(entry.getValue());
+						GererUvs.put(entry.getKey(), GererUv);
 			            Onglets.addTab(entry.getValue(), null, GererUv, null); 
 			            i++;
-			        	DefaultCommandContext ctx = new DefaultCommandContext();
-			        	String idUv=entry.getKey().toString();
-			        	System.out.println("avant l'affichage");
-			        	System.out.println("------------------------------------------------");
-			        	ctx.put(ICommandContextKey.Key_Cand, idUv);
-			            ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
-			    		cmd.execute(ctx);
-			    		System.out.println("------------------------------------------------");
-			    		System.out.println("apres l'affichage");
 					}
+					setGererUvs(GererUvs);
+						for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
+							DefaultCommandContext ctx = new DefaultCommandContext();
+							System.out.println("avant l'affichage");
+							System.out.println("------------------------------------------------");
+							System.out.println("l'IDUV C'est... "+entry.getKey());
+							ctx.put(ICommandContextKey.Key_Cand, entry.getKey().toString());
+							ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
+							cmd.execute(ctx);
+							System.out.println("------------------------------------------------");
+							System.out.println("apres l'affichage");
+						}
 					}
 
 		        } catch (java.lang.Throwable e)
@@ -128,134 +132,354 @@ public void setOnglets(JTabbedPane onglets) {
 
 
 	@Override
-	public void DisplayCandidat(HashMap<Long,String> cand) {
-		listener = new GhostDropManagerDemo(GererUv);
-			int x=50,y=50;
+	public void DisplayCandidat(final String idUv, HashMap<Long,String> cand) {
 		if (cand==null){
 			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
 			    
-			    y=y+120;
-			    GererUv.getInscrit().add(vide);
-						}							
-			else {
-				
-				
-		for(Entry<Long, String> entry : cand.entrySet()) {
-		    	final Long cle = entry.getKey();
+			    vide.getInscrit().setVisible(false);
+			    vide.getRetenu().setVisible(false);
+			    vide.getLstDa().setVisible(false);
+			    vide.getRefuse().setVisible(false);
+			    int idUvInt=Integer.parseInt(idUv);
+			   
+			    GererUvs.get((long)idUvInt).getInscrit().add(vide);
+			    
+		}							
+		else {			
+			for(final Entry<Long, String> entry : cand.entrySet()) {
 		    	String nom = entry.getValue();
-		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.green);
-		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
-		        componentAdapter.addGhostDropListener(listener);
-		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
-		        System.out.println(glassPane);
-		        System.out.println("Display Candidat - Candidat "+nom);
-		    	//s.setBounds(x,y,200,50); 
-		    	y=y+120;
-		    	GererUv.getInscrit().add(lst);
-		    											}
-					}
-																	}
+		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.GRAY);
+		    	lst.getInscrit().setVisible(false);
+		    		int idUvInt=Integer.parseInt(idUv);
+		    		GererUvs.get((long)idUvInt).getInscrit().add(lst);
+		    	
+		    
+		    	lst.getRetenu().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="retenu";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="inscrit";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});
+		    	lst.getLstDa().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="listeAttente";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="inscrit";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});
+		    	lst.getRefuse().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="nonRetenu";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="inscrit";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});  
+		    	System.out.println("Display Candidat - Candidat "+nom);
+		    	
+		    }
+		}
+	}
 
 
 	@Override
-	public void DisplayRetenu(HashMap<Long, String> cand) {
-	listener = new GhostDropManagerDemo(GererUv);
-	int x=50,y=50;
-		if (cand==null){
-			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
-			    y=y+120;
-			    GererUv.getRetenu().add(vide);
-						}							
-			else {
-		for(Entry<Long, String> entry : cand.entrySet()) {
-
-		    	final Long cle = entry.getKey();
+	public void DisplayRetenu(final String idUv, HashMap<Long, String> cand) {	
+	if (cand==null){
+			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat ");
+			    vide.getInscrit().setVisible(false);
+			    vide.getRetenu().setVisible(false);
+			    vide.getLstDa().setVisible(false);
+			    vide.getRefuse().setVisible(false);	    
+			    int idUvInt=Integer.parseInt(idUv);
+			    GererUvs.get((long)idUvInt).getRetenu().add(vide);
+			  
+		}							
+		else {
+			for(final Entry<Long, String> entry : cand.entrySet()) {
+				
 		    	String nom = entry.getValue();
-		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.green);
-		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
-		        componentAdapter.addGhostDropListener(listener);
-		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
+		    	SapforListeCandidat lst=new SapforListeCandidat(nom,  Color.green);
+		    	lst.getRetenu().setVisible(false);
+		    	 	int idUvInt=Integer.parseInt(idUv);
+				    GererUvs.get((long)idUvInt).getRetenu().add(lst);
+		     
+		    	lst.getInscrit().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="inscrit";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="retenu";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});
+		      	lst.getLstDa().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="listeAttente";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="retenu";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});
+		     	lst.getRefuse().addMouseListener(new MouseAdapter() {
+		    		@Override
+		    		public void mouseClicked(MouseEvent e) {
+
+		    			DefaultCommandContext ctx = new DefaultCommandContext();
+		    			List<String> infoTraitmt=new LinkedList<String>();
+		    			infoTraitmt.add(idUv);
+		    			infoTraitmt.add(entry.getKey().toString());
+		    			String nouvelEtat="nonRetenu";
+		    			infoTraitmt.add(nouvelEtat);
+		    			String ancienEtat="retenu";
+		    			infoTraitmt.add(ancienEtat);
+		    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+		    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+		    			cmd.execute(ctx);
+		    			System.out.println("OK traitement candidat ");				
+		    		}
+		    	});
+		
 		        System.out.println("Display Candidat - Candidat "+nom);
-		    	y=y+120;
-		    	GererUv.getRetenu().add(lst);
-		    											}
-					}
-																	}
+		   
+		    }
+		}
+	}
 		
 	
 
 
 	@Override
-	public void DisplayNonRetenu(HashMap<Long, String> cand) {
-	listener = new GhostDropManagerDemo(GererUv);
-		int x=50,y=50;
-		if (cand==null){
-			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
-			    y=y+120;
-			    GererUv.getRefuse().add(vide);
-						}							
-			else {
-		for(Entry<Long, String> entry : cand.entrySet()) {
+	public void DisplayNonRetenu(final String idUv, HashMap<Long, String> cand) {
+	if (cand==null){
+			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat ");
+			    vide.getInscrit().setVisible(false);
+			    vide.getRetenu().setVisible(false);
+			    vide.getLstDa().setVisible(false);
+			    vide.getRefuse().setVisible(false);
+			    int idUvInt=Integer.parseInt(idUv);
+			    GererUvs.get((long)idUvInt).getRefuse().add(vide);
+		}							
+		else {
+			for(final Entry<Long, String> entry : cand.entrySet()) {
+			    	String nom = entry.getValue();
+			    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.red);
+			    	lst.getRefuse().setVisible(false);
+			    		int idUvInt=Integer.parseInt(idUv);
+			    		GererUvs.get((long)idUvInt).getRefuse().add(lst);
+			    	
+			    	lst.getInscrit().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
 
-		    	final Long cle = entry.getKey();
-		    	String nom = entry.getValue();
-		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.red);
-		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
-		        componentAdapter.addGhostDropListener(listener);
-		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
-		        System.out.println("Display Non retenu - Candidat "+nom);
-		    	y=y+120;
-		    	GererUv.getRefuse().add(lst);
-		    											}
-					}
-																	}
-		
-	
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="inscrit";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="nonRetenu";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+			    	lst.getRetenu().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
 
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="retenu";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="nonRetenu";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+			    	lst.getLstDa().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
 
-	@Override
-	public void DisplayListA(HashMap<Long, String> cand) {
-	listener = new GhostDropManagerDemo(GererUv);
-		int x=50,y=50;
-		if (cand==null){
-			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat");
-			    y=y+120;
-			    GererUv.getListeDA().add(vide);
-						}							
-			else {
-		for(Entry<Long, String> entry : cand.entrySet()) {
-
-		    	final Long cle = entry.getKey();
-		    	String nom = entry.getValue();
-		    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.orange);
-		    	lst.addMouseListener(componentAdapter = new GhostComponentAdapter(glassPane, "button1"));
-		        componentAdapter.addGhostDropListener(listener);
-		        lst.addMouseMotionListener(new GhostMotionAdapter(glassPane));
-		        System.out.println("Display Liste A - Candidat "+nom);
-		    	y=y+120;
-		    	GererUv.getListeDA().add(lst);
-		    											}
-					}
-																	}
-		public void Rafraichir(Integer idUv){
-			DefaultCommandContext ctx = new DefaultCommandContext();
-        	
-        	System.out.println("avant l'affichage");
-        	
-        	ctx.put(ICommandContextKey.Key_Cand, idUv.toString());
-            ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
-    		cmd.execute(ctx);
-    		System.out.println("apres l'affichage");
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="listeAttente";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="nonRetenu";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+				   
 			}
-	
-
-
-
-
-
-		
+		}
+	}
 		
 	
+
+
+	@Override
+	public void DisplayListA(final String idUv, HashMap<Long, String> cand) {
+			System.out.println(cand);
+		if (cand==null){
+			    SapforListeCandidat vide=new SapforListeCandidat ("Pas de candidat ");
+			    vide.getInscrit().setVisible(false);
+			    vide.getRetenu().setVisible(false);
+			    vide.getLstDa().setVisible(false);
+			    vide.getRefuse().setVisible(false);
+			    int idUvInt=Integer.parseInt(idUv);
+	    		GererUvs.get((long)idUvInt).getListeDA().add(vide);
+			  
+		}							
+		else {
+			for(final Entry<Long, String> entry : cand.entrySet()) {
+			    	String nom = entry.getValue();
+			    	SapforListeCandidat lst=new SapforListeCandidat(nom, Color.orange);
+			    	lst.getLstDa().setVisible(false);
+			    	System.out.println("Display Liste A - Candidat "+nom);
+			    		int idUvInt=Integer.parseInt(idUv);
+			    		GererUvs.get((long)idUvInt).getListeDA().add(lst);
+			    	
+			    	
+			      	lst.getInscrit().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
+
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="inscrit";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="listeAttente";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+			    	lst.getRetenu().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
+
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="retenu";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="listeAttente";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+			    	lst.getRefuse().addMouseListener(new MouseAdapter() {
+			    		@Override
+			    		public void mouseClicked(MouseEvent e) {
+
+			    			DefaultCommandContext ctx = new DefaultCommandContext();
+			    			List<String> infoTraitmt=new LinkedList<String>();
+			    			infoTraitmt.add(idUv);
+			    			infoTraitmt.add(entry.getKey().toString());
+			    			String nouvelEtat="nonRetenu";
+			    			infoTraitmt.add(nouvelEtat);
+			    			String ancienEtat="listeAttente";
+			    			infoTraitmt.add(ancienEtat);
+			    			ctx.put(ICommandContextKey.Key_Trait,infoTraitmt );
+			    			ICommand cmd = (ICommand) context.getBean("cmdTraitement");
+			    			cmd.execute(ctx);
+			    			System.out.println("OK traitement candidat ");				
+			    		}
+			    	});
+			    	
+			}
+		}
+	}
+	
+	//id envoyé ici n'est pas le bon juste pour l'affichage appart pour le dernier uv
+	//avec essai on vois que seul le dernier uv se rafraichie correctement on est auto dans le dernier uv
+		public void Rafraichir(){
+			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
+				entry.getValue().getListeDA().removeAll();
+				entry.getValue().getRefuse().removeAll();
+				entry.getValue().getRetenu().removeAll();
+				entry.getValue().getInscrit().removeAll();
+			}
+			
+			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
+				DefaultCommandContext ctx = new DefaultCommandContext();
+				ctx.put(ICommandContextKey.Key_Cand, entry.getKey().toString());
+				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
+				cmd.execute(ctx);
+			}
+			}
 		
 }
 	

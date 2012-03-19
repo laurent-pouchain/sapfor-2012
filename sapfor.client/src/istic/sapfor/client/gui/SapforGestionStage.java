@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 public class SapforGestionStage extends JPanel{
@@ -16,19 +18,23 @@ private JPanel classer;
 private JPanel retenu;	
 private JPanel listeDA;	
 private JPanel refuse;	
-//MODIFICATION EN COURS - Antoine R. - Pannel Admin Gestion Stage	
+
 	public SapforGestionStage(String titre) {
 		super();
-	
-		
-	
+
 		JPanel main = new JPanel();
 		GridLayout paneGestionStage = new GridLayout(0,2);
 		main.setLayout(paneGestionStage);
 		inscrit=new JPanel();
-	
+		//inscrit.setLayout(new BoxLayout(inscrit, BoxLayout.Y_AXIS ));
+
 		inscrit.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		//JScrollPane jsp = new JScrollPane(inscrit,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
 		main.add(inscrit);
+		//main.add(jsp);
+		
+		
 		classer=new JPanel();
 		//classer.add(new JLabel("TODO afficher candidats classés"));
 		classer.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
@@ -37,38 +43,40 @@ private JPanel refuse;
 		retenu = new JPanel();
 		listeDA = new JPanel();
 		refuse = new JPanel();
+	
+
+	
 
 		retenu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		listeDA.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		refuse.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		
 		classer.setLayout(classerLayout);
+		
 		classer.add(retenu);
 		classer.add(listeDA);
 		classer.add(refuse);
+	/*	classer.add(new JScrollPane(retenu));
+		classer.add(new JScrollPane(listeDA));
+		classer.add(new JScrollPane(refuse));*/
 		main.add(classer);
-		
-	
+			
 		BorderLayout ongletLayout= new BorderLayout();
 		this.setLayout(ongletLayout);
-		//main.setPreferredSize(new Dimension(100, 50));
 		this.add(main, BorderLayout.CENTER);
 
-	
 		JPanel validPanel= new JPanel();
 		validPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		JButton valid = new JButton("Valider");
 		JButton clore = new JButton("Clore");
+
 		validPanel.add(valid);
 		validPanel.add(clore);
-		//validPanel.setPreferredSize(new Dimension(60, 50));
+
 		this.add(validPanel, BorderLayout.PAGE_END);
-		
-		
-	
-		
-	
-		// TODO Auto-generated constructor stub
+
 	}
+	
 	public JPanel getInscrit() {
 		return inscrit;
 	}

@@ -122,5 +122,11 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="client" ref="ServiceAgentClient" />
 	</bean>
 	
+	<bean id="cmdTraitement" class="istic.sapfor.client.command.impl.TraitementCandidat">
+		<property name="ihmAdmin" ref="uiAdmin" />
+		<property name="clientU" ref="ServiceUvClient" />
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
 </beans>
 <!-- END SNIPPET: beans -->

@@ -16,9 +16,12 @@ public class TraitementCandidat implements ICommand {
 	private ServiceAgent client;
 	private ServiceUv clientU;
 	private IHMAdmin ihmAdmin;
+
 	
 	
 	
+
+
 	public ServiceAgent getClient() {
 		return client;
 	}
@@ -59,17 +62,22 @@ public class TraitementCandidat implements ICommand {
 	public Boolean execute(ICommandContext ctx) {
 		boolean effectif=false;
 		List<String> Temp=new LinkedList<String>();
-		Temp=ctx.getList(ICommandContextKey.Key_Insct);
+		Temp=ctx.getList(ICommandContextKey.Key_Trait);
+
 		Integer idUv=Integer.parseInt(Temp.get(0));
 		Integer idCand=Integer.parseInt(Temp.get(1));
 		String nouvelEtat=Temp.get(2);
 	    String ancienEtat=Temp.get(3);
 	    effectif= client.setStatut((long)idUv,(long)idCand,EtatCandidatureDTO.valueOf(nouvelEtat),EtatCandidatureDTO.valueOf(ancienEtat));
+	    
 		if (effectif==true) {
-        System.out.println("avant l'affichage");
-        ihmAdmin.Rafraichir(idUv);
+	/*		System.out.println("ou suis je? ");
+		List<String> idUvsTemp=new LinkedList<String>();
+		idUvsTemp=ctx.getList(ICommandContextKey.Key_Maj);
+		System.out.println("la listes des uv "+idUvsTemp.get(0));*/
+        ihmAdmin.Rafraichir();
         	return true;}
-		else {	return false;}
+		else { ihmAdmin.Rafraichir();	return false;}
 							
 	}
 }
