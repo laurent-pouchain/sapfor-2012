@@ -17,11 +17,13 @@ public class ServiceUvImpl extends StatefullService implements ServiceUv {
 
 	@Override
 	public boolean setCandCloses(long id) {
+		logger.info("setCandCloses Called with param : "+id);
         return dataStore.setCandCloses(id);
 	}
 
 	@Override
 	public boolean setCandValids(long id) {
+		logger.info("setCandValids Called with param : "+id);
 		return dataStore.setCandValids(id);
 	}
 
