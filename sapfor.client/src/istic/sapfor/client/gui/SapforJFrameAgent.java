@@ -28,6 +28,7 @@ public class SapforJFrameAgent extends SapforJFrame {
 		//Panneau de l'utilisateur
 		paneWestInfoAgent = new JPanel();
 		paneWestInfoAgent.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		paneWestInfoAgent.setLayout(new GridLayout(15,0));
 		accueilLabel= new SapforLabel();
 		paneWestInfoAgent.add(accueilLabel);
 		

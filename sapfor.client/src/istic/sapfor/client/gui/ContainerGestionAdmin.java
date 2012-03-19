@@ -150,14 +150,15 @@ public void setOnglets(JTabbedPane onglets) {
 					    		@Override
 					    		public void mouseClicked(MouseEvent e) {
 					    			frameGestionStage.setVisible(false);
-					    			frame.getBts().setVisible(true);
+					    			
 					    			
 					    			//bidouille d'affichage
-					    			/*frame.getPaneStage().setVisible(false);
-					    			frame.getPaneStage().setVisible(true);
-					    			frame.getPaneStage().removeAll();*/
-					    			frame.setVisible(true);
 					    			
+					    			frame.getPaneStage().removeAll();
+					    			frame.getPaneStage().setVisible(false);
+					    			
+					    			frame.setVisible(true);
+					    			frame.getBts().setVisible(true);
 
 					    		}
 					    	});			
