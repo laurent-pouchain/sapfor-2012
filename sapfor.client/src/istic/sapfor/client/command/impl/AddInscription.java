@@ -17,8 +17,6 @@ public class AddInscription implements ICommand {
 	
 	@Override
 	public Boolean execute(ICommandContext ctx) {
-		//en attandant le loggin
-		
 		
 		List<String> idUvTemp=new LinkedList<String>();
 		List<Long> idUv=new LinkedList<Long>();

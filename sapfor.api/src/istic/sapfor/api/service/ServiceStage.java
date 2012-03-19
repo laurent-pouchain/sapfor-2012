@@ -1,7 +1,5 @@
 package istic.sapfor.api.service;
 
-//import java.util.Collection;
-
 import istic.sapfor.api.dto.*;
 
 import javax.jws.WebService;
@@ -10,8 +8,11 @@ import javax.jws.WebService;
 @WebService
 public interface ServiceStage {
 	
-	StageDTO getStage(long id);
+	/**
+	 * Renvois le StageDTO correspondant à l'identificateur passé en paramètre.
+	 * @param idStage
+	 * @return objet de type StageDTO avec les attributs du stage.
+	 */
+	StageDTO getStage(long idStage);
 	
-	//Collection<Long> getListStages(long idAgent);
-
 }

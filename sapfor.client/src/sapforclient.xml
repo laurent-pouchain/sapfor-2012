@@ -55,28 +55,13 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 	
 	
 	
-	
 
-	
-	<bean id="ui" class="istic.sapfor.client.gui.MainContainer"></bean>
  	<bean id="ui1" class="istic.sapfor.client.gui.ContainerGestionStage"></bean>
  	<bean id="uiAdmin" class="istic.sapfor.client.gui.ContainerGestionAdmin"></bean>
+ 	<bean id="uiAgent" class="istic.sapfor.client.gui.ContainerGestionAgent"></bean>
 	<bean id="ctx" class="istic.sapfor.client.command.impl.DefaultCommandContext"></bean>
 
 
-
-
-
-	<bean id="cmdDisplayAgents" class="istic.sapfor.client.command.impl.AfficherAgent">
-		<property name="ihm" ref="ui" />
-		<property name="client" ref="ServiceAgentClient" />
-	</bean>
-	
-	<bean id="cmdAddAgents" class="istic.sapfor.client.command.impl.AjouterAgent">
-		<property name="ihm" ref="ui" />
-		<property name="client" ref="ServiceAgentClient" />
-	</bean>
-	
 	<bean id="cmdDisplayStageDispo" class="istic.sapfor.client.command.impl.AfficherStageDispo">
 		<property name="ihmgstage" ref="ui1" />
 		<property name="clientS" ref="ServiceStageClient" />
@@ -127,6 +112,30 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
 		<property name="clientU" ref="ServiceUvClient" />
 		<property name="client" ref="ServiceAgentClient" />
 	</bean>
+	
+	<bean id="cmdClore" class="istic.sapfor.client.command.impl.CloreUv">
+		<property name="clientU" ref="ServiceUvClient" />
+	</bean>
+	
+	<bean id="cmdValid" class="istic.sapfor.client.command.impl.ValideUv">
+		<property name="clientU" ref="ServiceUvClient" />
+	</bean>
+	
+	<bean id="cmdAddAgent" class="istic.sapfor.client.command.impl.AddAgent">
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
+	<bean id="cmdSupAgent" class="istic.sapfor.client.command.impl.SupprimerAgent">
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
+	<bean id="cmdDisplayAgent" class="istic.sapfor.client.command.impl.AfficherAgent">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
 	
 </beans>
 <!-- END SNIPPET: beans -->

@@ -156,4 +156,22 @@ public class ServiceStageStub implements istic.sapfor.api.service.ServiceAgent, 
 		return null;
 	}
 
+	@Override
+	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addAgent(AgentDTO agent) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delAgent(Long idAgent) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

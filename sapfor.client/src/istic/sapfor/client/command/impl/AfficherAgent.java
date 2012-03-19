@@ -1,66 +1,87 @@
 package istic.sapfor.client.command.impl;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import istic.sapfor.api.dto.AgentDTO;
-
-
-import java.util.LinkedList;
-import java.util.List;
 
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
-import istic.sapfor.client.gui.IHM;
+import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherAgent implements ICommand {
 
 	private ServiceAgent client;
+	//j'ai mis IHMGStage mais il faudra remplacer par L'IHMAgent et dans le sapfor.xml aussi (juste le name="ihmgstage")
+	private IHMGStage ihmgstage ;
+	private ICommandContext context;
 	
-	private IHM ihm ;
 	
+	
+
 	@Override
-	public Boolean execute(ICommandContext ctx) {
-		//creer la liste
-		
-		
-		
-		List<AgentDTO> l = new LinkedList<AgentDTO>();
-		for (int i=0;i<3;i++){
-	    System.out.println("dans la boucle avant le getAgent");
-	    long idAgent = (long)i;
-		AgentDTO agt = client.getAgent((Long)idAgent);
-		System.out.println("dans la boucle après le getAgent");
-	     l.add(agt);
+	public Boolean execute(ICommandContext ctx) {//rien a envoyer dans le ctx
+		Long idDir=context.getIdAgent();
+		Collection<Long> idAgent=client.getAllIdsAgent(idDir);
+		Map<Long,String> NomAgent=new HashMap<Long,String>();
+		for (long id : idAgent ){
+			System.out.println(id);
+			AgentDTO a= client.getAgent(id);
+			String prenomNom=a.getFirstName()+"  "+a.getName();
+			NomAgent.put(id, prenomNom);
 		}
-		System.out.println("Liste remplie");
-	 
-	   //AgentDTO ag= new AgentDTO();
-	   //ag.setName("pierre");
-	   
-	      //TODO
-		//afficher (implémentée dans mainComtaineur)
-		ihm.displayAgent(l);
+		//j'envoie une hash map avec en clé l'id de l'agent et en valeur une string avec prenom nom				
+		//la methode displayAgent a mettre dans le cotainerGestion agent et dans l'interface qu'il implemente
 		
-		return true;
+		System.out.println(NomAgent);
+		ihmgstage.displayAgent(NomAgent);
+
+		
+		return null;
+	}
+	
+	
+	
+	
+	public IHMGStage getIhmgstage() {
+		return ihmgstage;
 	}
 
-	
+
+
+
+	public void setIhmgstage(IHMGStage ihmgstage) {
+		this.ihmgstage = ihmgstage;
+	}
+
+
+
+
 	public ServiceAgent getClient() {
 		return client;
 	}
+
 
 	public void setClient(ServiceAgent client) {
 		this.client = client;
 	}
 
-	public IHM getIhm() {
-		return ihm;
+
+
+
+
+	public ICommandContext getContext() {
+		return context;
 	}
 
-	public void setIhm(IHM ihm) {
-		this.ihm = ihm;
+
+	public void setContext(ICommandContext context) {
+		this.context = context;
 	}
 	
-	
-	
+
 
 
 }

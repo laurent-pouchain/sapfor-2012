@@ -13,9 +13,12 @@ public class SapforJFrameAgent extends SapforJFrame {
 	private SapforLabel accueilLabel;
 	private SapforButton bts;
 	private SapforButton buttonAdmin;
+	private SapforButton buttonAddAgent;
 	private JPanel paneStage; 
 	private JPanel paneUV;
 	private SapforJPanelUV infoStageUv;
+	
+	
 	
 
 	public SapforJFrameAgent(String titre) throws HeadlessException {
@@ -28,6 +31,7 @@ public class SapforJFrameAgent extends SapforJFrame {
 		//Panneau de l'utilisateur
 		paneWestInfoAgent = new JPanel();
 		paneWestInfoAgent.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		paneWestInfoAgent.setLayout(new GridLayout(15,0));
 		accueilLabel= new SapforLabel();
 		paneWestInfoAgent.add(accueilLabel);
 		
@@ -37,8 +41,11 @@ public class SapforJFrameAgent extends SapforJFrame {
 		
 		//Bouton disponible pour les administrateurs (visible lors du loggage)
 		buttonAdmin = new SapforButton("Gérer Stage");
+		buttonAddAgent= new SapforButton("Ajouter Agent");
 		buttonAdmin.setVisible(false);
 		paneWestInfoAgent.add(buttonAdmin);
+		paneWestInfoAgent.add(buttonAddAgent);
+
 		
 		
 		//Panneau affichant les stages disponibles pour l'utilisateur
@@ -111,6 +118,12 @@ public class SapforJFrameAgent extends SapforJFrame {
 
 	public void setInfoStageUv(SapforJPanelUV infoStageUv) {
 		this.infoStageUv = infoStageUv;
+	}
+	public SapforButton getButtonAddAgent() {
+		return buttonAddAgent;
+	}
+	public void setButtonAddAgent(SapforButton buttonAddAgent) {
+		this.buttonAddAgent = buttonAddAgent;
 	}
 
 }

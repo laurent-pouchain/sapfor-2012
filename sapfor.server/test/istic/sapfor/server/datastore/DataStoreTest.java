@@ -554,5 +554,11 @@ public class DataStoreTest {
 		public boolean setCandValids(long id) {
 			return false;
 		}
+
+		@Override
+		public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+			// TODO Auto-generated method stub
+			return null;
+		}
     }
 }

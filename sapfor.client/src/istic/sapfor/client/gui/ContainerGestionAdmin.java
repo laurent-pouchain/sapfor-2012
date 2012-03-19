@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
@@ -19,6 +21,7 @@ public class ContainerGestionAdmin implements IHMAdmin {
 	
 private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
+private SapforJFrameAgent frame;
 private JTabbedPane Onglets = null;
 private Map<Long,SapforGestionStage> GererUvs;
 
@@ -45,8 +48,6 @@ public void setContext(ClassPathXmlApplicationContext context) {
 }
 
 	
-
-
 	public JTabbedPane getOnglets() {
 	return Onglets;
 }
@@ -57,13 +58,12 @@ public void setOnglets(JTabbedPane onglets) {
 }
 
 
-	public void showUI(ClassPathXmlApplicationContext ctx, DefaultCommandContext cont ) {
+	public void showUI(ClassPathXmlApplicationContext ctx, DefaultCommandContext cont, SapforJFrameAgent frame ) {
 		
 		context = ctx;
-		
+		this.frame= frame;
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
-		cmd.execute(cont);
-			
+		cmd.execute(cont);	
 		
 	
 	}
@@ -109,7 +109,7 @@ public void setOnglets(JTabbedPane onglets) {
 			            i++;
 					}
 					setGererUvs(GererUvs);
-						for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
+						for(final Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
 							DefaultCommandContext ctx = new DefaultCommandContext();
 							System.out.println("avant l'affichage");
 							System.out.println("------------------------------------------------");
@@ -119,6 +119,69 @@ public void setOnglets(JTabbedPane onglets) {
 							cmd.execute(ctx);
 							System.out.println("------------------------------------------------");
 							System.out.println("apres l'affichage");
+
+							entry.getValue().getClore().addMouseListener(new MouseAdapter() {
+					    		@Override
+					    		public void mouseClicked(MouseEvent e) {
+					    	
+					    			DefaultCommandContext ctx1 = new DefaultCommandContext();
+					    			ctx1.put(ICommandContextKey.Key_Clor, entry.getKey().toString());
+									ICommand cmd = (ICommand) context.getBean("cmdClore");
+									boolean reussi= cmd.execute(ctx1);
+									if (reussi) { JOptionPane.showMessageDialog(null,"Inscription close", "Confirmation",JOptionPane.PLAIN_MESSAGE);}
+									else {JOptionPane.showMessageDialog(null, "erreur de la cloture", "Error", JOptionPane.ERROR_MESSAGE);}
+					    		}
+					    	});
+						
+							entry.getValue().getValid().addMouseListener(new MouseAdapter() {
+					    		@Override
+					    		public void mouseClicked(MouseEvent e) {
+					    	
+					    			DefaultCommandContext ctx1 = new DefaultCommandContext();
+					    			ctx1.put(ICommandContextKey.Key_Valid, entry.getKey().toString());
+									ICommand cmd = (ICommand) context.getBean("cmdValid");
+									boolean reussi= cmd.execute(ctx1);
+									if (reussi) { 
+										JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+										/*frameGestionStage.setVisible(false);
+										frame.getBts().setVisible(true);
+					    			
+										//bidouille d'affichage
+										frame.getPaneStage().setVisible(false);
+					    				frame.getPaneStage().setVisible(true);
+					    				frame.getPaneStage().removeAll();*/
+										frame.setVisible(true);}
+									else {
+										JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);
+										/*frameGestionStage.setVisible(false);
+						    			frame.getBts().setVisible(true);
+						    			
+						    			//bidouille d'affichage
+						    			frame.getPaneStage().setVisible(false);
+						    			frame.getPaneStage().setVisible(true);
+						    			frame.getPaneStage().removeAll();*/
+						    			frame.setVisible(true);
+									}
+					    		}
+					    	});
+
+							entry.getValue().getAccueil().addMouseListener(new MouseAdapter() {
+					    		@Override
+					    		public void mouseClicked(MouseEvent e) {
+					    			frameGestionStage.setVisible(false);
+					    			
+					    			
+					    			//bidouille d'affichage
+					    			
+					    			frame.getPaneStage().removeAll();
+					    			frame.getPaneStage().setVisible(false);
+					    			frame.getPaneStage().setVisible(true);
+					    			frame.setVisible(true);
+					    			frame.getBts().setVisible(true);
+
+					    		}
+					    	});			
+
 						}
 					}
 
@@ -471,7 +534,9 @@ public void setOnglets(JTabbedPane onglets) {
 				entry.getValue().getRefuse().removeAll();
 				entry.getValue().getRetenu().removeAll();
 				entry.getValue().getInscrit().removeAll();
-				
+
+				entry.getValue().setVisible(false);
+
 			}
 			
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
@@ -479,7 +544,9 @@ public void setOnglets(JTabbedPane onglets) {
 				ctx.put(ICommandContextKey.Key_Cand, entry.getKey().toString());
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 				cmd.execute(ctx);
+				entry.getValue().setVisible(true);
 			}
+			
 			}
 		
 }

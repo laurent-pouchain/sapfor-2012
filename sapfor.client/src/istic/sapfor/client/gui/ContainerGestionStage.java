@@ -101,11 +101,25 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 	});
 	
-
+	frame.getButtonAddAgent().addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			
+			ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			cmd.execute(ctx);
+			
+			System.out.println("OK");
+						
+		}
+	});
 	}
 
 	public void displayStageDir(HashMap<Long,String> stDir) {
 	int x=50,y=50;
+		frame.getPaneStage().removeAll();
+		frame.getPaneStage().setVisible(false);
+		frame.getPaneStage().setVisible(true);
 		
 		if (stDir==null){
 			    SapforListeStage sdir=new SapforListeStage ("Pas de stage disponible");
@@ -135,7 +149,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 						DefaultCommandContext ctx = new DefaultCommandContext();
 						ctx.put(ICommandContextKey.Key_Stage, idS);
 		    			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
-		    			rootUI.showUI(context,ctx);
+		    			rootUI.showUI(context,ctx,frame);
 		    			frame.setVisible(false);
 		    			
 
@@ -356,6 +370,15 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Mauvais Login/Mot de passe", "Error", JOptionPane.ERROR_MESSAGE);
 	}
+	public void displayAgent(Map<Long, String> nomAgent) {
+		
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		ctx.put(ICommandContextKey.Key_DisplayAgent, nomAgent);
+		ContainerGestionAgent rootUI = (ContainerGestionAgent) context.getBean("uiAgent");
+		rootUI.showUI(context,ctx,frame);
+		frame.setVisible(false);
+	}
+
 
 	
 

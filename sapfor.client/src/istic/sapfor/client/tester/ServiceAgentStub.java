@@ -126,6 +126,24 @@ public Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage) {
 	return null;
 }
 
+@Override
+public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean addAgent(AgentDTO agent) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean delAgent(Long idAgent) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 
 }

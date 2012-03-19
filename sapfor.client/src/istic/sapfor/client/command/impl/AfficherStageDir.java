@@ -8,7 +8,6 @@ import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
-import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDir implements ICommand{
@@ -54,7 +53,7 @@ public class AfficherStageDir implements ICommand{
 		
 		long idAgent=context.getIdAgent();
 		Collection<Long> stDir = client.getIdStageDir(idAgent);
-		if (client.getIdStageDir(idAgent).isEmpty()==true){ 
+		if (client.getIdStageDir(idAgent)==null){ 
 
 			ihmgstage.displayStageDir(null);
 			return true;
