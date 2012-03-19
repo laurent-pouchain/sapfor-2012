@@ -18,6 +18,8 @@ public class SupprimerAgent implements ICommand {
 		if ((long)idAgentSupp==context.getIdAgent()){ return false;}
 		else {
 			boolean effectue=client.delAgent((long)idAgentSupp);
+			//Le boolean est toujours à false donc aucune suppresion...
+			System.out.print("Suppression:"+ effectue);
 			return effectue;
 		//	je te renvoie juste le boolean de execute donc pas besoin d'injection de dépendance avec ihmagent
 		// en fonction du booleen  un petite fenetre de confirmation classique 

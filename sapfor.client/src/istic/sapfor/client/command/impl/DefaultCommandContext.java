@@ -8,7 +8,7 @@ import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 
 public class DefaultCommandContext implements ICommandContext{
-
+	
 	private Map<ICommandContextKey,String> contextMap = new HashMap<ICommandContextKey,String>();
 	private Map<ICommandContextKey,List<String>> contextMapList = new HashMap<ICommandContextKey,List<String>>();
 	private Map<ICommandContextKey,Map<Long, String>> contextMapHash = new HashMap<ICommandContextKey,Map<Long, String>>();
@@ -22,7 +22,7 @@ public class DefaultCommandContext implements ICommandContext{
 		return contextMapList.get(key); 
 	}
 	
-	public Map<Long, String> get(Object key) {
+	public Map<Long, String> getMap(ICommandContextKey key) {
 		return contextMapHash.get(key);
 	}
 	public Map<Long, String> put(ICommandContextKey key, Map<Long, String> value) {
@@ -43,6 +43,7 @@ public class DefaultCommandContext implements ICommandContext{
 		idAgent=id;
 		
 	}
+
 
 	//shared context
 	
