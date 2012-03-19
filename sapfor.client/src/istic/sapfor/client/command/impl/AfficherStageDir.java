@@ -53,7 +53,7 @@ public class AfficherStageDir implements ICommand{
 		
 		long idAgent=context.getIdAgent();
 		Collection<Long> stDir = client.getIdStageDir(idAgent);
-		if (client.getIdStageDir(idAgent).isEmpty()==true){ 
+		if (client.getIdStageDir(idAgent)==null){ 
 
 			ihmgstage.displayStageDir(null);
 			return true;
