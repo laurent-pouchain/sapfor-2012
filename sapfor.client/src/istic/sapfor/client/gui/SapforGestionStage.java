@@ -8,6 +8,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
@@ -21,6 +22,8 @@ private JPanel refuse;
 private SapforButton valid;
 private SapforButton clore;
 private SapforButton accueil;
+
+
 
 
 
@@ -48,7 +51,6 @@ public SapforButton getAccueil() {
 public void setAccueil(SapforButton accueil) {
 	this.accueil = accueil;
 }
-
 
 	public SapforGestionStage(String titre) {
 		super();
@@ -87,9 +89,11 @@ public void setAccueil(SapforButton accueil) {
 		classer.add(retenu);
 		classer.add(listeDA);
 		classer.add(refuse);
-	/*	classer.add(new JScrollPane(retenu));
-		classer.add(new JScrollPane(listeDA));
-		classer.add(new JScrollPane(refuse));*/
+		
+		/*JScrollBar ret=new JScrollPane(retenu).createVerticalScrollBar();
+		classer.add(ret);
+		classer.add(new JScrollPane(listeDA).createVerticalScrollBar());
+		classer.add(new JScrollPane(refuse).createVerticalScrollBar());*/
 		main.add(classer);
 			
 		BorderLayout ongletLayout= new BorderLayout();
@@ -99,12 +103,13 @@ public void setAccueil(SapforButton accueil) {
 		JPanel validPanel= new JPanel();
 		validPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		valid = new SapforButton("Valider");
+
 		clore = new SapforButton ("Clore");
 		accueil = new SapforButton ("accueil");
 		
 		validPanel.add(valid);
 		validPanel.add(clore);
-
+		validPanel.add(accueil);
 		this.add(validPanel, BorderLayout.PAGE_END);
 
 	}
