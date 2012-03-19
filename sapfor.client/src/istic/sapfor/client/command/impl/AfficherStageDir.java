@@ -8,7 +8,6 @@ import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
-import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDir implements ICommand{

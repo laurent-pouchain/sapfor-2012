@@ -18,6 +18,37 @@ private JPanel classer;
 private JPanel retenu;	
 private JPanel listeDA;	
 private JPanel refuse;	
+private SapforButton valid;
+private SapforButton clore;
+private SapforButton accueil;
+
+
+
+
+public SapforButton getValid() {
+	return valid;
+}
+
+public void setValid(SapforButton valid) {
+	this.valid = valid;
+}
+
+public SapforButton getClore() {
+	return clore;
+}
+
+public void setClore(SapforButton clore) {
+	this.clore = clore;
+}
+
+public SapforButton getAccueil() {
+	return accueil;
+}
+
+public void setAccueil(SapforButton accueil) {
+	this.accueil = accueil;
+}
+
 
 	public SapforGestionStage(String titre) {
 		super();
@@ -67,9 +98,10 @@ private JPanel refuse;
 
 		JPanel validPanel= new JPanel();
 		validPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		JButton valid = new JButton("Valider");
-		JButton clore = new JButton("Clore");
-
+		valid = new SapforButton("Valider");
+		clore = new SapforButton ("Clore");
+		accueil = new SapforButton ("accueil");
+		
 		validPanel.add(valid);
 		validPanel.add(clore);
 

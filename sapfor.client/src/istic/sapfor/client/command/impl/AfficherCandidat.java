@@ -2,7 +2,7 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
+
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.dto.EtatCandidatureDTO;
