@@ -67,12 +67,13 @@ private JPanel refuse;
 
 		JPanel validPanel= new JPanel();
 		validPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		JButton valid = new JButton("Valider");
-		JButton clore = new JButton("Clore");
+		SapforButton valid = new SapforButton("Valider");
+		SapforButton clore = new SapforButton("Clore");
+		SapforButton accueil = new SapforButton("Accueil");
 
 		validPanel.add(valid);
 		validPanel.add(clore);
-
+		validPanel.add(accueil);
 		this.add(validPanel, BorderLayout.PAGE_END);
 
 	}

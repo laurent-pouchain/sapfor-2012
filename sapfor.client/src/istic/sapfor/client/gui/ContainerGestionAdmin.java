@@ -471,6 +471,7 @@ public void setOnglets(JTabbedPane onglets) {
 				entry.getValue().getRefuse().removeAll();
 				entry.getValue().getRetenu().removeAll();
 				entry.getValue().getInscrit().removeAll();
+				entry.getValue().setVisible(false);
 			}
 			
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
@@ -478,7 +479,9 @@ public void setOnglets(JTabbedPane onglets) {
 				ctx.put(ICommandContextKey.Key_Cand, entry.getKey().toString());
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 				cmd.execute(ctx);
+				entry.getValue().setVisible(true);
 			}
+			
 			}
 		
 }
