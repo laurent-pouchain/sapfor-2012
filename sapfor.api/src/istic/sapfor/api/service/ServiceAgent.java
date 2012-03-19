@@ -73,7 +73,7 @@ public interface ServiceAgent {
     * Met à jour l'état d'une candidature en fonction du classement choisi par le
     * directeur ou permet à un agent d'annuler sa candidature à une UV.
     * @pre l'agent est directeur pour le cas d'usage "classer candidature"
-    * ou met à jour l'état d'une candidature d'un agent qui peut annuler sa candidature
+    * ou
     * @pre l'agent est inscrit à une UV
     * @pre les candidatures ne sont pas closes ou elles sont validées
     * @param idUv
@@ -85,18 +85,43 @@ public interface ServiceAgent {
 	boolean setStatut(Long idUv, Long idCandidat, EtatCandidatureDTO nouvelEtat, EtatCandidatureDTO ancienEtat);
 
 	/**
-	 * 
+	 * Retourne la liste des identificateurs des stages auxquels est inscrit l'agent dont
+	 * l'identificateur est passé en paramètre
 	 * @param idAgent
-	 * @return
+	 * @return une collection d'identificateurs de stages auxquels est inscrit l'agent.
 	 */
 	Collection<Long> getIdStageInscrit(Long idAgent);
 	
+	/**
+	 * Retourne la liste des identificateurs des UVs d'un stage donné auxquels
+	 * est inscrit l'agent dont l'identificateur est passé en paramètre
+	 * @param idAgent
+	 * @param idStage
+	 * @return une collection d'identificateurs d'UVs auxquelles est inscrit l'agent.
+	 */
 	Collection<Long> getIdUvStageInscrit(Long idAgent, Long idStage);
 	
+	/**
+	 * Retourne la liste de tous les agents a fin de gestion administrative, ne peut être appelée
+	 * que par un Directeur/Admin
+	 * @param idDirecteur
+	 * @return la collection de tous les identificateurs d'agents présent dans la base de donnée.
+	 */
 	Collection<Long> getAllIdsAgent(Long idDirecteur);
 	
+	/**
+	 * Ajoute à la base de données l'agent passé en paramètre
+	 * @param agent  AgentDTO dont tous les champs sont renseignés à l'exception de l'id qui sera généré 
+	 * automatiquement.
+	 * @return un boolean statuant sur la réussite de l'ajout.
+	 */
 	boolean addAgent(AgentDTO agent);
 	
+	/**
+	 * Supprime de la base de données l'agent dont l'identificateur est passé en paramètre
+	 * @param idAgent  identificateur de l'agent que l'on veut supprimer de la base de donnée
+	 * @return un boolean statuant sur la réussite de la suppression.
+	 */
 	boolean delAgent(Long idAgent);
 	
 }
