@@ -101,7 +101,20 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		}
 	});
 	
-
+	frame.getButtonAddAgent().addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			SapforJPanelAddAgent addAgent= new SapforJPanelAddAgent();
+			frame.getPaneStage().add(addAgent);
+			frame.getPaneStage().setVisible(true);
+			/*ICommand cmd = (ICommand) context.getBean("cmdAddAgent");
+			DefaultCommandContext ctx = new DefaultCommandContext();
+			cmd.execute(ctx);
+			*/
+			System.out.println("OK");
+						
+		}
+	});
 	}
 
 	public void displayStageDir(HashMap<Long,String> stDir) {
