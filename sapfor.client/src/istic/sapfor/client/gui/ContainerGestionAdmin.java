@@ -141,8 +141,27 @@ public void setOnglets(JTabbedPane onglets) {
 					    			ctx1.put(ICommandContextKey.Key_Valid, entry.getKey().toString());
 									ICommand cmd = (ICommand) context.getBean("cmdValid");
 									boolean reussi= cmd.execute(ctx1);
-									if (reussi) { JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);}
-									else {JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);}
+									if (reussi) { 
+										JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+										frameGestionStage.setVisible(false);
+										frame.getBts().setVisible(true);
+					    			
+										//bidouille d'affichage
+										/*frame.getPaneStage().setVisible(false);
+					    				frame.getPaneStage().setVisible(true);
+					    				frame.getPaneStage().removeAll();*/
+										frame.setVisible(true);}
+									else {
+										JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);
+										frameGestionStage.setVisible(false);
+						    			frame.getBts().setVisible(true);
+						    			
+						    			//bidouille d'affichage
+						    			/*frame.getPaneStage().setVisible(false);
+						    			frame.getPaneStage().setVisible(true);
+						    			frame.getPaneStage().removeAll();*/
+						    			frame.setVisible(true);
+									}
 					    		}
 					    	});
 
