@@ -143,21 +143,21 @@ public void setOnglets(JTabbedPane onglets) {
 									boolean reussi= cmd.execute(ctx1);
 									if (reussi) { 
 										JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
-										frameGestionStage.setVisible(false);
+										/*frameGestionStage.setVisible(false);
 										frame.getBts().setVisible(true);
 					    			
 										//bidouille d'affichage
-										/*frame.getPaneStage().setVisible(false);
+										frame.getPaneStage().setVisible(false);
 					    				frame.getPaneStage().setVisible(true);
 					    				frame.getPaneStage().removeAll();*/
 										frame.setVisible(true);}
 									else {
 										JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);
-										frameGestionStage.setVisible(false);
+										/*frameGestionStage.setVisible(false);
 						    			frame.getBts().setVisible(true);
 						    			
 						    			//bidouille d'affichage
-						    			/*frame.getPaneStage().setVisible(false);
+						    			frame.getPaneStage().setVisible(false);
 						    			frame.getPaneStage().setVisible(true);
 						    			frame.getPaneStage().removeAll();*/
 						    			frame.setVisible(true);
@@ -175,7 +175,7 @@ public void setOnglets(JTabbedPane onglets) {
 					    			
 					    			frame.getPaneStage().removeAll();
 					    			frame.getPaneStage().setVisible(false);
-					    			
+					    			frame.getPaneStage().setVisible(true);
 					    			frame.setVisible(true);
 					    			frame.getBts().setVisible(true);
 

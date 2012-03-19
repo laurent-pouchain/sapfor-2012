@@ -1,8 +1,12 @@
 package istic.sapfor.client.gui;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -10,6 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
 
 public class SapforGestionStage extends JPanel{
@@ -73,27 +80,42 @@ public void setAccueil(SapforButton accueil) {
 		classer.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		
 		GridLayout classerLayout=new GridLayout(3,0);
+		classer.setLayout(classerLayout);
 		retenu = new JPanel();
 		listeDA = new JPanel();
 		refuse = new JPanel();
-	
-
-	
-
+		GridLayout listeclasse = new GridLayout(8,0);
+		retenu.setLayout(listeclasse);
+		listeDA.setLayout(listeclasse);
+		refuse.setLayout(listeclasse);
+		JScrollPane retScroll= new JScrollPane(retenu,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	    classer.add(retScroll);
+	    classer.add(new JScrollPane(listeDA,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
+	    classer.add(new JScrollPane(refuse,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
+	    
 		retenu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		listeDA.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		refuse.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		
-		classer.setLayout(classerLayout);
 		
-		classer.add(retenu);
-		classer.add(listeDA);
-		classer.add(refuse);
+
 		
-		/*JScrollBar ret=new JScrollPane(retenu).createVerticalScrollBar();
-		classer.add(ret);
-		classer.add(new JScrollPane(listeDA).createVerticalScrollBar());
-		classer.add(new JScrollPane(refuse).createVerticalScrollBar());*/
+
+				
+		
+		/*class MyAction implements AdjustmentListener{
+		public void adjustmentValueChanged(AdjustmentEvent ae){
+		int value = ae.getValue();
+		String st = Integer.toString(value);
+		field.setText(st);
+		}
+		 }*/
+		//JScrollPane ret=new JScrollPane(retenu);
+		//ret.getVerticalScrollBar();
+		//retenu.add(ret);
+		//classer.add(ret);
+		//classer.add(new JScrollPane(listeDA).createVerticalScrollBar());
+		//classer.add(new JScrollPane(refuse).createVerticalScrollBar());
 		main.add(classer);
 			
 		BorderLayout ongletLayout= new BorderLayout();
