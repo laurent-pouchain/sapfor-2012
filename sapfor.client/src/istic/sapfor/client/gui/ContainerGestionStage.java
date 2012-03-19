@@ -5,11 +5,7 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,12 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTabbedPane;
-import javax.swing.border.BevelBorder;
+
 
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -114,6 +106,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	public void displayStageDir(HashMap<Long,String> stDir) {
 	int x=50,y=50;
+		frame.getPaneStage().removeAll();
+		frame.getPaneStage().setVisible(false);
+		frame.getPaneStage().setVisible(true);
 		
 		if (stDir==null){
 			    SapforListeStage sdir=new SapforListeStage ("Pas de stage disponible");
@@ -143,7 +138,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 						DefaultCommandContext ctx = new DefaultCommandContext();
 						ctx.put(ICommandContextKey.Key_Stage, idS);
 		    			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
-		    			rootUI.showUI(context,ctx);
+		    			rootUI.showUI(context,ctx,frame);
 		    			frame.setVisible(false);
 		    			
 

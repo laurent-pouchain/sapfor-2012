@@ -30,7 +30,7 @@ public class SapforJFramAdmin extends SapforJFrame {
 		setMain(main);
 		main.setPreferredSize(new Dimension(600, 600));
 		this.add(main, BorderLayout.CENTER);
-
+		
 		
 
 		JPanel validPanel= new JPanel();

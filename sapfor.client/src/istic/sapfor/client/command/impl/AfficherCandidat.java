@@ -2,7 +2,7 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
+
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.dto.EtatCandidatureDTO;
@@ -49,10 +49,8 @@ public class AfficherCandidat implements ICommand {
 	@Override
 	public Boolean execute(ICommandContext ctx) {
 		String idTemp=ctx.get(ICommandContextKey.Key_Cand);
-		
 		int idUv=Integer.parseInt(idTemp);
 		
-		//probleme getCandidat rend une liste vide
 		Collection<Long> idCand =client.getIdCandidat((long)idUv, EtatCandidatureDTO.inscrit);
 		Collection<Long> idRet =client.getIdCandidat((long)idUv, EtatCandidatureDTO.retenu);
 		Collection<Long> idNonRet =client.getIdCandidat((long)idUv, EtatCandidatureDTO.nonRetenu);
@@ -69,9 +67,11 @@ public class AfficherCandidat implements ICommand {
 		//j'ai divisé le bloc en 4 méthodes pour la lisibilité
 		
 		if (idCand==null){ 
-			ihmAdmin.DisplayCandidat(null);
-			retenu(idRet,idNonRet,idAtt);}
-			else {
+
+			ihmAdmin.DisplayCandidat(idTemp,null);
+			retenu(idTemp, idRet,idNonRet,idAtt);}
+			else { 			
+
 				System.out.println(idCand);
 				HashMap<Long,String> cand = new HashMap<Long,String>();
 				for (long id : idCand ){
@@ -80,8 +80,8 @@ public class AfficherCandidat implements ICommand {
 					String nom=a.getFirstName()+" "+a.getName();
 					cand.put(id, nom);
 					System.out.println(nom);}
-				ihmAdmin.DisplayCandidat(cand);
-				retenu(idRet,idNonRet,idAtt);}
+				ihmAdmin.DisplayCandidat(idTemp, cand);
+				retenu(idTemp, idRet,idNonRet,idAtt);}
 		
 			
 	return true;
@@ -89,10 +89,10 @@ public class AfficherCandidat implements ICommand {
 	
 	
 	
-	void retenu(Collection<Long> idRet,Collection<Long> idNonRet,Collection<Long> idAtt){
+	void retenu(String idTemp, Collection<Long> idRet,Collection<Long> idNonRet,Collection<Long> idAtt){
 		if (idRet==null){ 
-			ihmAdmin.DisplayRetenu(null);
-			nonRetenu(idNonRet,idAtt);}
+			ihmAdmin.DisplayRetenu(idTemp,null);
+			nonRetenu(idTemp, idNonRet,idAtt);}
 			else {
 				System.out.println(idRet);
 				HashMap<Long,String> ret = new HashMap<Long,String>();
@@ -102,15 +102,15 @@ public class AfficherCandidat implements ICommand {
 					String nom=a.getFirstName()+" "+a.getName();
 					ret.put(id, nom);
 					System.out.println(nom);}
-				ihmAdmin.DisplayRetenu(ret);
+				ihmAdmin.DisplayRetenu(idTemp,ret);
 			
-				nonRetenu(idNonRet,idAtt);	}
+				nonRetenu(idTemp, idNonRet,idAtt);	}
 			}
 		
-	void nonRetenu(Collection<Long> idNonRet, Collection<Long> idAtt){	
+	void nonRetenu(String idTemp, Collection<Long> idNonRet, Collection<Long> idAtt){	
 		if (idNonRet==null){ 
-			ihmAdmin.DisplayNonRetenu(null);
-			ListeDa(idAtt);	}
+			ihmAdmin.DisplayNonRetenu(idTemp, null);
+			ListeDa(idTemp, idAtt);	}
 			else {
 				System.out.println(idNonRet);
 				HashMap<Long,String> nonRet = new HashMap<Long,String>();
@@ -120,13 +120,13 @@ public class AfficherCandidat implements ICommand {
 					String nom=a.getFirstName()+" "+a.getName();
 					nonRet.put(id, nom);
 					System.out.println(nom);}
-				ihmAdmin.DisplayNonRetenu(nonRet);
-				ListeDa(idAtt);}
+				ihmAdmin.DisplayNonRetenu(idTemp, nonRet);
+				ListeDa(idTemp, idAtt);}
 														}
 		
-	void ListeDa(Collection<Long> idAtt){
+	void ListeDa(String idTemp, Collection<Long> idAtt){
 		if (idAtt==null){ 
-			ihmAdmin.DisplayListA(null);}
+			ihmAdmin.DisplayListA(idTemp, null);}
 			else {
 				System.out.println(idAtt);
 				HashMap<Long,String> att = new HashMap<Long,String>();
@@ -136,7 +136,7 @@ public class AfficherCandidat implements ICommand {
 					String nom=a.getFirstName()+" "+a.getName();
 					att.put(id, nom);
 					System.out.println(nom);}
-				ihmAdmin.DisplayListA(att);}
+				ihmAdmin.DisplayListA(idTemp,att);}
 												}
 		
 	

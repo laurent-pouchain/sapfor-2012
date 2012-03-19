@@ -27,11 +27,10 @@ public class AddInscription implements ICommand {
 		idUvTemp=ctx.getList(ICommandContextKey.Key_Insct);
 		long idAgent=context.getIdAgent();
 		
-		System.out.println(idAgent+" ID agent qui veut s'inscrire");
+	
 		for (int i=0;i<idUvTemp.size();i++){
 			temp=idUvTemp.get(i);
 			id= Integer.parseInt(temp); 
-			System.out.println(temp+" id de UV validée");
 			idUv.add((long)id);	
 											}
 		if (client.addInscrip( idAgent,idUv)==true){System.out.println("inscription ok"); return true; }

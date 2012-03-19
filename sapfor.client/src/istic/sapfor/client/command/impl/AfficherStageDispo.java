@@ -2,16 +2,14 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
-import istic.sapfor.api.dto.AgentDTO;
+
+
 import istic.sapfor.api.dto.StageDTO;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
-import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
 public class AfficherStageDispo implements ICommand {
@@ -55,15 +53,10 @@ public class AfficherStageDispo implements ICommand {
 
 	@Override
 	public Boolean execute(ICommandContext ctx) {
-		//creer la liste
-		
-		//TODO recuperer l'id de l'agent (suite à sa connexion) pour pouvoir obtenir la liste des stages disponibles pour cet agent
-		//long idAgent = (long)0;			//à modifier
-
-		String idA=ctx.get(ICommandContextKey.Key_Agent);
+				
 		long idAgent=context.getIdAgent();
 		Collection<Long> stDispo = client.getIdStageDispo(idAgent);
-		if (client.getIdStageDispo(idAgent).isEmpty()==true){ 
+		if (client.getIdStageDispo(idAgent)==null){ 
 
 			ihmgstage.displayStageDispo(null);
 			return true;
