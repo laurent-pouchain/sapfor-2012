@@ -56,7 +56,7 @@ public class AfficherStageDispo implements ICommand {
 				
 		long idAgent=context.getIdAgent();
 		Collection<Long> stDispo = client.getIdStageDispo(idAgent);
-		if (client.getIdStageDispo(idAgent).isEmpty()==true){ 
+		if (client.getIdStageDispo(idAgent)==null){ 
 
 			ihmgstage.displayStageDispo(null);
 			return true;
