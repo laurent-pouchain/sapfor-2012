@@ -106,6 +106,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 
 	public void displayStageDir(HashMap<Long,String> stDir) {
 	int x=50,y=50;
+		frame.getPaneStage().removeAll();
+		frame.getPaneStage().setVisible(false);
+		frame.getPaneStage().setVisible(true);
 		
 		if (stDir==null){
 			    SapforListeStage sdir=new SapforListeStage ("Pas de stage disponible");
@@ -135,7 +138,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 						DefaultCommandContext ctx = new DefaultCommandContext();
 						ctx.put(ICommandContextKey.Key_Stage, idS);
 		    			ContainerGestionAdmin rootUI = (ContainerGestionAdmin) context.getBean("uiAdmin");
-		    			rootUI.showUI(context,ctx);
+		    			rootUI.showUI(context,ctx,frame);
 		    			frame.setVisible(false);
 		    			
 

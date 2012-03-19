@@ -8,6 +8,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
@@ -18,6 +19,33 @@ private JPanel classer;
 private JPanel retenu;	
 private JPanel listeDA;	
 private JPanel refuse;	
+private SapforButton valid;
+private SapforButton clore;
+private SapforButton accueil;
+
+public SapforButton getValid() {
+	return valid;
+}
+
+public void setValid(SapforButton valid) {
+	this.valid = valid;
+}
+
+public SapforButton getClore() {
+	return clore;
+}
+
+public void setClore(SapforButton clore) {
+	this.clore = clore;
+}
+
+public SapforButton getAccueil() {
+	return accueil;
+}
+
+public void setAccueil(SapforButton accueil) {
+	this.accueil = accueil;
+}
 
 	public SapforGestionStage(String titre) {
 		super();
@@ -56,9 +84,11 @@ private JPanel refuse;
 		classer.add(retenu);
 		classer.add(listeDA);
 		classer.add(refuse);
-	/*	classer.add(new JScrollPane(retenu));
-		classer.add(new JScrollPane(listeDA));
-		classer.add(new JScrollPane(refuse));*/
+		
+		/*JScrollBar ret=new JScrollPane(retenu).createVerticalScrollBar();
+		classer.add(ret);
+		classer.add(new JScrollPane(listeDA).createVerticalScrollBar());
+		classer.add(new JScrollPane(refuse).createVerticalScrollBar());*/
 		main.add(classer);
 			
 		BorderLayout ongletLayout= new BorderLayout();
@@ -67,9 +97,9 @@ private JPanel refuse;
 
 		JPanel validPanel= new JPanel();
 		validPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		SapforButton valid = new SapforButton("Valider");
-		SapforButton clore = new SapforButton("Clore");
-		SapforButton accueil = new SapforButton("Accueil");
+		valid = new SapforButton("Valider");
+		clore = new SapforButton("Clore");
+		accueil = new SapforButton("Accueil");
 
 		validPanel.add(valid);
 		validPanel.add(clore);

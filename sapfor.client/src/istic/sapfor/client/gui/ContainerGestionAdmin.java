@@ -19,6 +19,7 @@ public class ContainerGestionAdmin implements IHMAdmin {
 	
 private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
+private SapforJFrameAgent frame;
 private JTabbedPane Onglets = null;
 private Map<Long,SapforGestionStage> GererUvs;
 
@@ -45,8 +46,6 @@ public void setContext(ClassPathXmlApplicationContext context) {
 }
 
 	
-
-
 	public JTabbedPane getOnglets() {
 	return Onglets;
 }
@@ -57,13 +56,12 @@ public void setOnglets(JTabbedPane onglets) {
 }
 
 
-	public void showUI(ClassPathXmlApplicationContext ctx, DefaultCommandContext cont ) {
+	public void showUI(ClassPathXmlApplicationContext ctx, DefaultCommandContext cont, SapforJFrameAgent frame ) {
 		
 		context = ctx;
-		
+		this.frame= frame;
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
-		cmd.execute(cont);
-			
+		cmd.execute(cont);	
 		
 	
 	}
@@ -119,6 +117,21 @@ public void setOnglets(JTabbedPane onglets) {
 							cmd.execute(ctx);
 							System.out.println("------------------------------------------------");
 							System.out.println("apres l'affichage");
+							entry.getValue().getAccueil().addMouseListener(new MouseAdapter() {
+					    		@Override
+					    		public void mouseClicked(MouseEvent e) {
+					    			frameGestionStage.setVisible(false);
+					    			frame.getBts().setVisible(true);
+					    			
+					    			//bidouille d'affichage
+					    			/*frame.getPaneStage().setVisible(false);
+					    			frame.getPaneStage().setVisible(true);
+					    			frame.getPaneStage().removeAll();*/
+					    			frame.setVisible(true);
+					    			
+
+					    		}
+					    	});			
 						}
 					}
 
