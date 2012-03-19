@@ -656,5 +656,10 @@ public class FakeDataStoreImpl implements DataStore {
 		return true;
 	}
 
+	@Override
+	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+		return agentsMap.keySet();
+	}
+
 
 }

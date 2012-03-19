@@ -82,7 +82,7 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 	
 	@Override
 	public Collection<Long> getIdStageInscrit(Long idAgent) {
-		logger.info("getIdStageInscrit Called with param : "+idAgent);
+		
 		return dataStore.getIdStageInscrit(idAgent);
 	}
 
@@ -94,20 +94,20 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 
 	@Override
 	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("getAllIdsAgent Called with param : "+idDirecteur);
+		return dataStore.getAllIdsAgent(idDirecteur);
 	}
 
 	@Override
 	public boolean addAgent(AgentDTO agent) {
-		// TODO Auto-generated method stub
-		return false;
+        logger.info("addAgent Called with param : "+agent);
+		return dataStore.addAgent(agent);
 	}
 
 	@Override
 	public boolean delAgent(Long idAgent) {
-		// TODO Auto-generated method stub
-		return false;
+		logger.info("delAgent Called with param : "+idAgent);
+		return dataStore.delAgent(idAgent);
 	}
 
 

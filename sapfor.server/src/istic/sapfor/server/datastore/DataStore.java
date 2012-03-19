@@ -69,6 +69,7 @@ public interface DataStore {
 	public Collection<Long> getIdStageDispo(Long idAgent);
 	public boolean setCandCloses(long id);
 	public boolean setCandValids(long id);
+	public Collection<Long> getAllIdsAgent(Long idDirecteur);
 
 	
 }
