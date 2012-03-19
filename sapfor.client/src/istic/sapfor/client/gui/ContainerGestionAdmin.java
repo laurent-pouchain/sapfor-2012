@@ -534,7 +534,9 @@ public void setOnglets(JTabbedPane onglets) {
 				entry.getValue().getRefuse().removeAll();
 				entry.getValue().getRetenu().removeAll();
 				entry.getValue().getInscrit().removeAll();
+
 				entry.getValue().setVisible(false);
+
 			}
 			
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
