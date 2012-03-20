@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.Box;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -34,6 +35,7 @@ public class ContainerGestionAgent implements IHMAdmin{
 	private SapforJTextArea nom; 
 	private SapforJTextArea prenom; 
 	private SapforJTextArea login;
+	private JCheckBox typeA;
 	private SapforJFrameAgent frame;
 	private SapforJFrame frameAgent;
 	private SapforButton accueil;
@@ -133,10 +135,12 @@ public class ContainerGestionAgent implements IHMAdmin{
 			SapforLabel labelprenom = new SapforLabel("Prénom:");
 			SapforLabel labelogin = new SapforLabel("Login:");
 			
+			
 			addAgent = new SapforButton("Créer Agent");
 			nom = new SapforJTextArea();
 			prenom = new SapforJTextArea();
 			login = new SapforJTextArea();
+			typeA = new JCheckBox("Directeur");
 			
 			Box addCandidat = Box.createVerticalBox();
 			addCandidat.add(Box.createVerticalStrut(100));
@@ -146,6 +150,7 @@ public class ContainerGestionAgent implements IHMAdmin{
 			addCandidat.add(prenom);			
 			addCandidat.add(labelogin);
 			addCandidat.add(login);
+			addCandidat.add(typeA);
 			addCandidat.add(addAgent);
 			addCandidat.add(Box.createVerticalStrut(350));
 			
@@ -195,6 +200,8 @@ public class ContainerGestionAgent implements IHMAdmin{
 						infoAgent.add(nom.getText());
 						infoAgent.add(prenom.getText());
 						infoAgent.add(login.getText());
+						if (getTypeA().isSelected()==true){infoAgent.add("0");}
+						else {infoAgent.add("1");}
 						ctx.put(ICommandContextKey.Key_Add, infoAgent);
 						//*************************************************************************************************
 						//    /!\ check est toujours true meme si l'agent existe déjà il est recreer à voir coté serveur
@@ -234,5 +241,14 @@ public class ContainerGestionAgent implements IHMAdmin{
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
 		DefaultCommandContext ctx = new DefaultCommandContext();
 		cmd.execute(ctx);
+	}
+	
+	
+	public JCheckBox getTypeA() {
+		return typeA;
+	}
+
+	public void setTypeA(JCheckBox typeA) {
+		this.typeA = typeA;
 	}
 }

@@ -43,6 +43,7 @@ public class SapforJFrameAgent extends SapforJFrame {
 		buttonAdmin = new SapforButton("Gérer Stage");
 		buttonAddAgent= new SapforButton("Ajouter Agent");
 		buttonAdmin.setVisible(false);
+		buttonAddAgent.setVisible(false);
 		paneWestInfoAgent.add(buttonAdmin);
 		paneWestInfoAgent.add(buttonAddAgent);
 

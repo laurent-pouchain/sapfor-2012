@@ -55,13 +55,14 @@ public class AfficherStageDispo implements ICommand {
 	public Boolean execute(ICommandContext ctx) {
 				
 		long idAgent=context.getIdAgent();
-		Collection<Long> stDispo = client.getIdStageDispo(idAgent);
+		
 		if (client.getIdStageDispo(idAgent)==null){ 
 
 			ihmgstage.displayStageDispo(null);
 			return true;
 									}
 		else{
+		Collection<Long> stDispo = client.getIdStageDispo(idAgent);
 		System.out.println(stDispo);
 		HashMap<Long,String> st= new HashMap<Long,String>();
 		for (long id : stDispo ){

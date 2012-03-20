@@ -21,10 +21,13 @@ public class AddAgent implements ICommand {
 			String nom=infoAddAgent.get(0);
 			String prenom=infoAddAgent.get(1);
 			String login=infoAddAgent.get(2);
+			String type=infoAddAgent.get(3);
+			System.out.println("c'est quoi ton type" +type);
 			AgentDTO a= new AgentDTO();
 			a.setName(nom);
 			a.setFirstName(prenom);
 			a.setLogin(login);
+			a.setIdTypeAgent(Integer.parseInt(type));
 			boolean effectif=client.addAgent(a);
 			if (effectif){return true;}
 			else {return false;}

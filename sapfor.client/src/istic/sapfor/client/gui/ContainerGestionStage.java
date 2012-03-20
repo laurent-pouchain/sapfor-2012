@@ -362,6 +362,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		frame.setVisible(true);						 //Apparition de la page d'accueil personnalisée de l'agent loggé
 		if(typeAg==0){
 			frame.getButtonAdmin().setVisible(true);
+			frame.getButtonAddAgent().setVisible(true);
 		}
 	}
 
