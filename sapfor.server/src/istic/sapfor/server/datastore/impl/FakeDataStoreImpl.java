@@ -235,8 +235,7 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean delAgent(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		return null!=agentsMap.remove(id);
 	}
 
 	@Override
