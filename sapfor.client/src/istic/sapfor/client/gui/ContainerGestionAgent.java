@@ -121,7 +121,9 @@ public class ContainerGestionAgent implements IHMAdmin{
 						boolean delAgent= cmd.execute(ctx);
 						
 						//Doit y'avoir une erreur quelque part le boolean est toujours à false...
-						if (delAgent) {JOptionPane.showMessageDialog(null,"Agent supprimé", "Confirmation",JOptionPane.PLAIN_MESSAGE);}
+						if (delAgent) {
+							JOptionPane.showMessageDialog(null,"Agent supprimé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+							Rafraichir1();}
 						else {JOptionPane.showMessageDialog(null, "Erreur lors de la suppression de l'agent", "Error", JOptionPane.ERROR_MESSAGE);}
 
 		    		}
@@ -228,8 +230,7 @@ public class ContainerGestionAgent implements IHMAdmin{
 	    			//bidouille d'affichage
 	    			
 	    			frame.getPaneStage().removeAll();
-	    			frame.getPaneStage().setVisible(false);
-	    			frame.getPaneStage().setVisible(true);
+	    			frame.getPaneStage().revalidate();
 	    			frame.setVisible(true);
 	    			frame.getBts().setVisible(true);
 

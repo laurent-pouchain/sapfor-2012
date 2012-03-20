@@ -22,7 +22,7 @@ public class ContainerGestionAdmin implements IHMAdmin {
 private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private SapforJFrameAgent frame;
-private JTabbedPane Onglets = null;
+JTabbedPane Onglets = null;
 private Map<Long,SapforGestionStage> GererUvs;
 
 public Map<Long, SapforGestionStage> getGererUvs() {
@@ -70,10 +70,8 @@ public void setOnglets(JTabbedPane onglets) {
 
 
 	public void GererInscriptionUvDir(HashMap<Long, String> uv) {
-	
-			// TODO Auto-generated method stub
-			frameGestionStage = new SapforJFrame("Gestion Stage");
-
+			System.out.println("A la recherche des uv: "+uv);
+			frameGestionStage= new SapforJFrame("Gestion Stage");
 		    getOnglets(uv);
 			frameGestionStage.add(Onglets);
 		    frameGestionStage.setVisible(true);
@@ -83,9 +81,8 @@ public void setOnglets(JTabbedPane onglets) {
 	
 	private JTabbedPane getOnglets(HashMap<Long,String> uvDir)
 
-	{
-		    if(Onglets== null)
-		    {
+	{		Onglets=null;
+		    
 		        try
 		        {if (uvDir==null){
 				    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage à gerer");
@@ -190,7 +187,7 @@ public void setOnglets(JTabbedPane onglets) {
 		        {
 		            // TODO: Something
 		        }
-		    }	    
+		    	    
 		    return Onglets;
 		}
 
