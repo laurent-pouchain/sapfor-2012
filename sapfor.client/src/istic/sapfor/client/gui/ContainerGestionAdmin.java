@@ -174,8 +174,9 @@ public void setOnglets(JTabbedPane onglets) {
 					    			//bidouille d'affichage
 					    			
 					    			frame.getPaneStage().removeAll();
-					    			frame.getPaneStage().setVisible(false);
-					    			frame.getPaneStage().setVisible(true);
+					    			//frame.getPaneStage().setVisible(false);
+					    			//frame.getPaneStage().setVisible(true);
+					    			frame.getPaneStage().revalidate();
 					    			frame.setVisible(true);
 					    			frame.getBts().setVisible(true);
 
@@ -535,8 +536,8 @@ public void setOnglets(JTabbedPane onglets) {
 				entry.getValue().getRetenu().removeAll();
 				entry.getValue().getInscrit().removeAll();
 
-				entry.getValue().setVisible(false);
-
+				//entry.getValue().setVisible(false);
+				
 			}
 			
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
@@ -544,10 +545,12 @@ public void setOnglets(JTabbedPane onglets) {
 				ctx.put(ICommandContextKey.Key_Cand, entry.getKey().toString());
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 				cmd.execute(ctx);
-				entry.getValue().setVisible(true);
+				entry.getValue().revalidate();
+				//entry.getValue().setVisible(true);
 			}
 			
-			}
+			
+		}		
 		
 }
 	

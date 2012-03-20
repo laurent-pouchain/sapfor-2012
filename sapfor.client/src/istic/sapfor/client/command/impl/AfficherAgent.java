@@ -26,6 +26,7 @@ public class AfficherAgent implements ICommand {
 		Long idDir=context.getIdAgent();
 		Collection<Long> idAgent=client.getAllIdsAgent(idDir);
 		Map<Long,String> NomAgent=new HashMap<Long,String>();
+		System.out.print(idAgent);
 		for (long id : idAgent ){
 			System.out.println(id);
 			AgentDTO a= client.getAgent(id);

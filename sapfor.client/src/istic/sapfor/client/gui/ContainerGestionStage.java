@@ -118,8 +118,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	public void displayStageDir(HashMap<Long,String> stDir) {
 	int x=50,y=50;
 		frame.getPaneStage().removeAll();
-		frame.getPaneStage().setVisible(false);
-		frame.getPaneStage().setVisible(true);
+		
 		
 		if (stDir==null){
 			    SapforListeStage sdir=new SapforListeStage ("Pas de stage disponible");
@@ -158,7 +157,8 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	
 		}
 		}
-		frame.getBts().setVisible(false);
+		frame.getPaneStage().revalidate();
+		frame.getBts().setVisible(true);
 		System.out.println("Essai sans serveur ni BD");
 		
 }//fin displayStageDir
@@ -169,13 +169,13 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	public void displayStageDispo(HashMap<Long,String> st) {
 		// TODO Auto-generated method stub
 		
-		int x=50,y=50;
+		frame.getPaneStage().removeAll();
 		
 		if (st==null){
 			    SapforListeStage s=new SapforListeStage ("Pas de stage disponible");
 			    s.getBtu().setVisible(false);
 			    
-			    y=y+120;
+			    
 			    frame.getPaneStage().add(s);		
 		}
 												
@@ -188,7 +188,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 		    	SapforListeStage s=new SapforListeStage (valeur);
 		    	//System.out.println(valeur);
 		    	//s.setBounds(x,y,200,50); 
-		    	y=y+120;
+		    	
 		    	frame.getPaneStage().add(s);
 		    	
 		    	
@@ -217,7 +217,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 	    	
 				}
 			}
-	
+			frame.getPaneStage().revalidate();
 			frame.getBts().setVisible(false);
 			System.out.println("Essai sans serveur ni BD");
 			
@@ -241,7 +241,8 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			int x=50,y=50; Integer i=0;
 
 			frame.getInfoStageUv().removeAll();
-			frame.getInfoStageUv().setVisible(false);
+			
+			//frame.getInfoStageUv().setVisible(false);
 			if(uvInscrit==null){//System.out.println("uvInscrit == null");
 			for(Entry<Long, String> entry : uv.entrySet()) {
 					Long cle = entry.getKey();
@@ -262,7 +263,9 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			    
 				    y=y+120;
 				    }
+			
 			}
+			
 			else{System.out.println("uvInscrit non null");
 			for(Entry<Long, String> entry2 : uv.entrySet()) {
 					if(uvInscrit.containsKey(entry2.getKey())==true){
@@ -280,6 +283,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 						
 						frame.getInfoStageUv().add(nuv);
 					    //infoStageUv.add(rad);
+						
 					
 					}
 					else{
@@ -297,7 +301,7 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 						
 						frame.getInfoStageUv().add(nuv);
 						frame.getInfoStageUv().add(rad);
-				    
+						
 					    y=y+120;
 					}
 				}
@@ -305,8 +309,10 @@ public void showUI(ClassPathXmlApplicationContext ctx) {
 			}//fin for	
 			SapforButton inscr= new SapforButton("s'inscrire");
 			frame.getInfoStageUv().add(inscr);
+			frame.getInfoStageUv().revalidate();
 			frame.getInfoStageUv().setVisible(true);
-
+			
+			
 			// quand on submit on regarde dans toutes les box si etat=true; on fait une list des IDuv
 		
 
