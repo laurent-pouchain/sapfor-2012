@@ -1,4 +1,4 @@
-package istic.sapfor.client.gui;
+package istic.sapfor.client.gui.sapforcomponent;
 
 
 import java.awt.Color;

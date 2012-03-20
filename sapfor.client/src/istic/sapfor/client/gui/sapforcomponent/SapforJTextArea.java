@@ -1,15 +1,14 @@
-package istic.sapfor.client.gui;
+package istic.sapfor.client.gui.sapforcomponent;
 
 import javax.swing.JTextArea;
 import javax.swing.text.Document;
 
-public class SapforJTextArea  extends JTextArea {
+public class SapforJTextArea extends JTextArea {
 
 	public SapforJTextArea() {
 		super();
-	
 
-		//setBounds(x,y,longueur,largeur);
+		// setBounds(x,y,longueur,largeur);
 		// TODO Auto-generated constructor stub
 	}
 

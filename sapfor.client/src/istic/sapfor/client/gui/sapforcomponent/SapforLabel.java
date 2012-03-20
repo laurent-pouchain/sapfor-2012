@@ -1,10 +1,10 @@
-package istic.sapfor.client.gui;
+package istic.sapfor.client.gui.sapforcomponent;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.Label;
 
-public class SapforLabel extends Label{
+public class SapforLabel extends Label {
 
 	public SapforLabel() throws HeadlessException {
 		super();

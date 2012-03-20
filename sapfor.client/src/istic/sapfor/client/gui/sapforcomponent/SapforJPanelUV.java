@@ -1,4 +1,4 @@
-package istic.sapfor.client.gui;
+package istic.sapfor.client.gui.sapforcomponent;
 
 import java.awt.LayoutManager;
 import javax.swing.JPanel;
@@ -6,14 +6,13 @@ import javax.swing.border.BevelBorder;
 
 public class SapforJPanelUV extends JPanel {
 
-
 	public SapforJPanelUV() {
 		super();
 		SapforLabel desc = new SapforLabel("Description du Stage");
 		this.add(desc);
 		this.setBounds(400, 50, 150, 300);
 		this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-		
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -32,6 +31,4 @@ public class SapforJPanelUV extends JPanel {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

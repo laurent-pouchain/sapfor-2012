@@ -14,6 +14,12 @@ import javax.swing.JTabbedPane;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.command.impl.DefaultCommandContext;
+import istic.sapfor.client.gui.sapforcomponent.SapforGestionStage;
+import istic.sapfor.client.gui.sapforcomponent.SapforJFrame;
+import istic.sapfor.client.gui.sapforcomponent.SapforJFrameAgent;
+import istic.sapfor.client.gui.sapforcomponent.SapforListeCandidat;
+import istic.sapfor.client.gui.sapforcomponent.SapforListeStage;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ContainerGestionAdmin implements IHMAdmin {
@@ -22,7 +28,7 @@ public class ContainerGestionAdmin implements IHMAdmin {
 private ClassPathXmlApplicationContext context = null;
 private SapforJFrame frameGestionStage;
 private SapforJFrameAgent frame;
-JTabbedPane Onglets = null;
+private JTabbedPane Onglets = null;
 private Map<Long,SapforGestionStage> GererUvs;
 
 public Map<Long, SapforGestionStage> getGererUvs() {
@@ -30,12 +36,9 @@ public Map<Long, SapforGestionStage> getGererUvs() {
 }
 
 
-
-
 public void setGererUvs(Map<Long, SapforGestionStage> gererUvs) {
 	GererUvs = gererUvs;
 }
-
 
 
 public ClassPathXmlApplicationContext getContext() {
@@ -64,13 +67,11 @@ public void setOnglets(JTabbedPane onglets) {
 		this.frame= frame;
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayGestionStage");
 		cmd.execute(cont);	
-		
-	
+			
 	}
 
-
+	//Création du pannel admin et appel de la méthode de création des onglets
 	public void GererInscriptionUvDir(HashMap<Long, String> uv) {
-			System.out.println("A la recherche des uv: "+uv);
 			frameGestionStage= new SapforJFrame("Gestion Stage");
 		    getOnglets(uv);
 			frameGestionStage.add(Onglets);
@@ -78,9 +79,9 @@ public void setOnglets(JTabbedPane onglets) {
 		   
 		}
 	
-	
+	//Génération des onglets du panel admin (un onglets par UV du stage géré)
 	private JTabbedPane getOnglets(HashMap<Long,String> uvDir)
-
+	//Réinitialisation des onglets
 	{		Onglets=null;
 		    
 		        try
@@ -140,39 +141,19 @@ public void setOnglets(JTabbedPane onglets) {
 									boolean reussi= cmd.execute(ctx1);
 									if (reussi) { 
 										JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
-										/*frameGestionStage.setVisible(false);
-										frame.getBts().setVisible(true);
-					    			
-										//bidouille d'affichage
-										frame.getPaneStage().setVisible(false);
-					    				frame.getPaneStage().setVisible(true);
-					    				frame.getPaneStage().removeAll();*/
 										frame.setVisible(true);}
 									else {
 										JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);
-										/*frameGestionStage.setVisible(false);
-						    			frame.getBts().setVisible(true);
-						    			
-						    			//bidouille d'affichage
-						    			frame.getPaneStage().setVisible(false);
-						    			frame.getPaneStage().setVisible(true);
-						    			frame.getPaneStage().removeAll();*/
 						    			frame.setVisible(true);
 									}
 					    		}
 					    	});
-
+							//Listener bouton retour accueil
 							entry.getValue().getAccueil().addMouseListener(new MouseAdapter() {
 					    		@Override
 					    		public void mouseClicked(MouseEvent e) {
 					    			frameGestionStage.setVisible(false);
-					    			
-					    			
-					    			//bidouille d'affichage
-					    			
 					    			frame.getPaneStage().removeAll();
-					    			//frame.getPaneStage().setVisible(false);
-					    			//frame.getPaneStage().setVisible(true);
 					    			frame.getPaneStage().revalidate();
 					    			frame.setVisible(true);
 					    			frame.getBts().setVisible(true);
@@ -524,17 +505,13 @@ public void setOnglets(JTabbedPane onglets) {
 		}
 	}
 	
-	//id envoyé ici n'est pas le bon juste pour l'affichage appart pour le dernier uv
-	//avec essai on vois que seul le dernier uv se rafraichie correctement on est auto dans le dernier uv
+
 		public void Rafraichir(){
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
 				entry.getValue().getListeDA().removeAll();
 				entry.getValue().getRefuse().removeAll();
 				entry.getValue().getRetenu().removeAll();
-				entry.getValue().getInscrit().removeAll();
-
-				//entry.getValue().setVisible(false);
-				
+				entry.getValue().getInscrit().removeAll();				
 			}
 			
 			for(Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
@@ -543,12 +520,8 @@ public void setOnglets(JTabbedPane onglets) {
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 				cmd.execute(ctx);
 				entry.getValue().revalidate();
-				//entry.getValue().setVisible(true);
 			}
-			
-			
 		}		
-		
 }
 	
 

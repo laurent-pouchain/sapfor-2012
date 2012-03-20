@@ -1,4 +1,4 @@
-package istic.sapfor.client.gui;
+package istic.sapfor.client.gui.sapforcomponent;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class SapforJFramAdmin extends SapforJFrame {
 
 	private SapforGestionStage main;
-	
+
 	public SapforGestionStage getMain() {
 		return main;
 	}
@@ -20,27 +20,21 @@ public class SapforJFramAdmin extends SapforJFrame {
 
 	public SapforJFramAdmin(String ch) throws HeadlessException {
 		super(ch);
-		
-		BorderLayout framLayout= new BorderLayout();
+
+		BorderLayout framLayout = new BorderLayout();
 		this.setLayout(framLayout);
 
-		//Make the center component big, since that's the
-		//typical usage of BorderLayout.
+		// Make the center component big, since that's the
+		// typical usage of BorderLayout.
 		SapforGestionStage main = new SapforGestionStage("main");
 		setMain(main);
 		main.setPreferredSize(new Dimension(600, 600));
 		this.add(main, BorderLayout.CENTER);
-		
-		
 
-		JPanel validPanel= new JPanel();
+		JPanel validPanel = new JPanel();
 		main.setPreferredSize(new Dimension(200, 600));
 		this.add(validPanel, BorderLayout.PAGE_END);
 
-		
-		
-		
-		
 	}
 
 }
