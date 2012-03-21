@@ -235,6 +235,16 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean delAgent(long id) {
+		sessionsMap.remove((long)agentsMap.get(id).getLogin().hashCode());
+		logger.info("delAgent called with param "+id);
+		for (Long u : uvMap.keySet()){
+			logger.info("delAgent running through etatMap for Uv : "+u);
+			inscritMap.get(u).remove((Long)id);
+			retenuMap.get(u).remove((Long)id);
+			nonRetenuMap.get(u).remove((Long)id);
+			listeAttenteMap.get(u).remove((Long)id);
+			annuleMap.get(u).remove((Long)id);
+		}
 		return null!=agentsMap.remove(id);
 	}
 
@@ -645,14 +655,20 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean setCandCloses(long id) {
+		if (inscritMap.get(id).isEmpty()){
         uvMap.get(id).setCandCloses(true);
 		return true;
+		}
+		else return false;
 	}
 
 	@Override
 	public boolean setCandValids(long id) {
+		if (uvMap.get(id).isCandCloses()){
 		uvMap.get(id).setCandValids(true);
 		return true;
+		}
+		else return false;
 	}
 
 	@Override
