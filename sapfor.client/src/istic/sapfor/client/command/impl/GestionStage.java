@@ -2,18 +2,13 @@ package istic.sapfor.client.command.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-
-import istic.sapfor.api.dto.StageDTO;
 import istic.sapfor.api.dto.UvDTO;
 import istic.sapfor.api.service.ServiceAgent;
-import istic.sapfor.api.service.ServiceStage;
 import istic.sapfor.api.service.ServiceUv;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMAdmin;
-import istic.sapfor.client.gui.IHMGStage;
 
 public class GestionStage implements ICommand {
 	private ServiceAgent client;

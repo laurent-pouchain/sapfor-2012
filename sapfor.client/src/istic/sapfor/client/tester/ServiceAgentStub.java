@@ -3,10 +3,8 @@ package istic.sapfor.client.tester;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.dto.EtatCandidatureDTO;
-import istic.sapfor.api.dto.StageDTO;
 
 public class ServiceAgentStub implements istic.sapfor.api.service.ServiceAgent {
 
