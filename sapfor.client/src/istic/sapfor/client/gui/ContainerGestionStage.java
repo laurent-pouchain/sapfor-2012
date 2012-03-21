@@ -94,7 +94,7 @@ public class ContainerGestionStage implements IHMGStage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				DefaultCommandContext ctx = new DefaultCommandContext();
+				
 				frame.getPaneUV().setVisible(false);
 				ContainerGestionAgent rootUI = (ContainerGestionAgent) context
 						.getBean("uiAgent");
