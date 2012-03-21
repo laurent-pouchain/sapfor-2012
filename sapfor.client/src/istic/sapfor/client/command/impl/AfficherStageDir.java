@@ -10,13 +10,13 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.gui.IHMGStage;
 
-public class AfficherStageDir implements ICommand{
-	
+public class AfficherStageDir implements ICommand {
+
 	private ServiceStage clientS;
 	private ServiceAgent client;
-	private IHMGStage ihmgstage ;
+	private IHMGStage ihmgstage;
 	private ICommandContext context;
-	
+
 	public ServiceStage getClientS() {
 		return clientS;
 	}
@@ -48,31 +48,31 @@ public class AfficherStageDir implements ICommand{
 	public void setIhmgstage(IHMGStage ihmgstage) {
 		this.ihmgstage = ihmgstage;
 	}
+
 	@Override
 	public Boolean execute(ICommandContext ctx) {
-		
-		long idAgent=context.getIdAgent();
+
+		long idAgent = context.getIdAgent();
 		Collection<Long> stDir = client.getIdStageDir(idAgent);
-		if (client.getIdStageDir(idAgent)==null){ 
+		if (client.getIdStageDir(idAgent) == null) {
 
 			ihmgstage.displayStageDir(null);
 			return true;
-									}
-		else{
-		System.out.println(stDir);
-		HashMap<Long,String> st= new HashMap<Long,String>();
-		for (long id : stDir ){
-			System.out.println(id);
-			StageDTO s= clientS.getStage(id);
-			st.put(id, s.getTitle());
-			System.out.println(s.getTitle());
-								}
-		
-		ihmgstage.displayStageDir(st);
-		
-		return true;
-	
-	}
+		} else {
+			System.out.println(stDir);
+			HashMap<Long, String> st = new HashMap<Long, String>();
+			for (long id : stDir) {
+				System.out.println(id);
+				StageDTO s = clientS.getStage(id);
+				st.put(id, s.getTitle());
+				System.out.println(s.getTitle());
+			}
+
+			ihmgstage.displayStageDir(st);
+
+			return true;
+
+		}
 
 	}
 }
