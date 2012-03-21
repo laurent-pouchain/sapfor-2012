@@ -93,12 +93,14 @@ public class ContainerGestionStage implements IHMGStage {
 		frame.getButtonAddAgent().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+				
 				DefaultCommandContext ctx = new DefaultCommandContext();
-				cmd.execute(ctx);
 				frame.getPaneUV().setVisible(false);
-				System.out.println("OK");
+				ContainerGestionAgent rootUI = (ContainerGestionAgent) context
+						.getBean("uiAgent");
+				rootUI.showUI(context,frame);
+				frame.setVisible(false);
+
 
 			}
 		});
@@ -356,14 +358,5 @@ public class ContainerGestionStage implements IHMGStage {
 				"Error", JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void displayAgent(Map<Long, String> nomAgent) {
-
-		DefaultCommandContext ctx = new DefaultCommandContext();
-		ctx.put(ICommandContextKey.Key_DisplayAgent, nomAgent);
-		ContainerGestionAgent rootUI = (ContainerGestionAgent) context
-				.getBean("uiAgent");
-		rootUI.showUI(context, ctx, frame);
-		frame.setVisible(false);
-	}
 
 }

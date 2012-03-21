@@ -30,7 +30,7 @@ import javax.swing.border.BevelBorder;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContainerGestionAgent implements IHMAdmin {
+public class ContainerGestionAgent implements IHMAgent {
 	private ClassPathXmlApplicationContext context = null;
 	private SapforJFrame frameGestionStage;
 	private SapforJTextArea nom;
@@ -42,47 +42,34 @@ public class ContainerGestionAgent implements IHMAdmin {
 	private SapforButton accueil;
 	private SapforButton addAgent;
 
-	@Override
-	public void GererInscriptionUvDir(HashMap<Long, String> st) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayCandidat(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayRetenu(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayNonRetenu(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayListA(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void Rafraichir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void showUI(ClassPathXmlApplicationContext context2,
-			DefaultCommandContext ctx, final SapforJFrameAgent frame) {
+	public void showUI(ClassPathXmlApplicationContext context2, final SapforJFrameAgent frame) {
 		context = context2;
 		this.frame = frame;
 		frame.setVisible(false);
+		// addcandidat.setBorder(new
+		// javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		cmd.execute(ctx);
+	}
+	
+	
+	//Rafraichir la page (à améliorer, actuellement réexecute la commande DisplayAgent
+	public void Rafraichir1() {
+		frameAgent.setVisible(false);
+		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		cmd.execute(ctx);
+	}
+
+	public JCheckBox getTypeA() {
+		return typeA;
+	}
+
+	public void setTypeA(JCheckBox typeA) {
+		this.typeA = typeA;
+	}
+	public void displayAgent(Map<Long, String> nomAgent) {
 		frameAgent = new SapforJFrame("Gestion Agent");
 		JPanel main = new JPanel();
 		GridLayout mainLayout = new GridLayout(0, 2);
@@ -92,17 +79,14 @@ public class ContainerGestionAgent implements IHMAdmin {
 		addcandidat.setLayout(mainLayout);
 		candidat.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		// addcandidat.setBorder(new
-		// javax.swing.border.BevelBorder(BevelBorder.RAISED));
-
-		Map<Long, String> ag = ctx.getMap(ICommandContextKey.Key_DisplayAgent);
-		int nbAgent = ag.size();
+		
+		int nbAgent =  nomAgent.size();
 		System.out.println("nbagent " + nbAgent);
 		GridLayout laycandidats = new GridLayout(nbAgent, 0);
 		candidat.setLayout(laycandidats);
-		System.out.println(ag.keySet().toString());
+		System.out.println( nomAgent.keySet().toString());
 
-		for (final Entry<Long, String> entry : ag.entrySet()) {
+		for (final Entry<Long, String> entry :  nomAgent.entrySet()) {
 			String idAgent = (String) entry.getValue();
 			System.out.println("id " + entry);
 			SapforListeCandidat cand = new SapforListeCandidat(idAgent);
@@ -266,19 +250,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 			}
 		});
 	}
-	//Rafraichir la page (à améliorer, actuellement réexecute la commande DisplayAgent
-	public void Rafraichir1() {
-		frameAgent.setVisible(false);
-		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
-		DefaultCommandContext ctx = new DefaultCommandContext();
-		cmd.execute(ctx);
+		
 	}
 
-	public JCheckBox getTypeA() {
-		return typeA;
-	}
 
-	public void setTypeA(JCheckBox typeA) {
-		this.typeA = typeA;
-	}
-}
