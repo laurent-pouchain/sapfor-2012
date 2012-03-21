@@ -126,7 +126,9 @@ public void setOnglets(JTabbedPane onglets) {
 					    			ctx1.put(ICommandContextKey.Key_Clor, entry.getKey().toString());
 									ICommand cmd = (ICommand) context.getBean("cmdClore");
 									boolean reussi= cmd.execute(ctx1);
-									if (reussi) { JOptionPane.showMessageDialog(null,"Inscription close", "Confirmation",JOptionPane.PLAIN_MESSAGE);}
+									if (reussi) { JOptionPane.showMessageDialog(null,"Inscription close", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+									entry.getValue().getValid().setEnabled(true);
+									entry.getValue().getClore().setEnabled(false);}
 									else {JOptionPane.showMessageDialog(null, "erreur de la cloture", "Error", JOptionPane.ERROR_MESSAGE);}
 					    		}
 					    	});
@@ -140,11 +142,12 @@ public void setOnglets(JTabbedPane onglets) {
 									ICommand cmd = (ICommand) context.getBean("cmdValid");
 									boolean reussi= cmd.execute(ctx1);
 									if (reussi) { 
-										JOptionPane.showMessageDialog(null,"Inscription validé", "Confirmation",JOptionPane.PLAIN_MESSAGE);
-										frame.setVisible(true);}
+										JOptionPane.showMessageDialog(null,"Inscription validée", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+										entry.getValue().getValid().setEnabled(false);
+										}
 									else {
 										JOptionPane.showMessageDialog(null, "erreur de la ", "Error", JOptionPane.ERROR_MESSAGE);
-						    			frame.setVisible(true);
+						    			//frame.setVisible(true);
 									}
 					    		}
 					    	});

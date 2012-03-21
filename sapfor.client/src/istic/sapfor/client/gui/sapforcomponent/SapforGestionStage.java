@@ -109,7 +109,7 @@ public class SapforGestionStage extends JPanel {
 		validPanel.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
 		valid = new SapforButton("Valider");
-
+		valid.setEnabled(false);
 		clore = new SapforButton("Clore");
 		accueil = new SapforButton("accueil");
 
