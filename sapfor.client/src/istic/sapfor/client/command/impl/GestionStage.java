@@ -10,6 +10,7 @@ import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMAdmin;
 
+
 public class GestionStage implements ICommand {
 	private ServiceAgent client;
 	private ServiceUv clientU;
