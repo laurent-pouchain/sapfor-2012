@@ -30,7 +30,7 @@ import javax.swing.border.BevelBorder;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContainerGestionAgent implements IHMAdmin {
+public class ContainerGestionAgent implements IHMAgent {
 	private ClassPathXmlApplicationContext context = null;
 	private SapforJFrame frameGestionStage;
 	private SapforJTextArea nom;
@@ -42,47 +42,34 @@ public class ContainerGestionAgent implements IHMAdmin {
 	private SapforButton accueil;
 	private SapforButton addAgent;
 
-	@Override
-	public void GererInscriptionUvDir(HashMap<Long, String> st) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayCandidat(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayRetenu(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayNonRetenu(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void DisplayListA(String idTemp, HashMap<Long, String> cand) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void Rafraichir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void showUI(ClassPathXmlApplicationContext context2,
-			DefaultCommandContext ctx, final SapforJFrameAgent frame) {
+	public void showUI(ClassPathXmlApplicationContext context2, final SapforJFrameAgent frame) {
 		context = context2;
 		this.frame = frame;
 		frame.setVisible(false);
+		// addcandidat.setBorder(new
+		// javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		cmd.execute(ctx);
+	}
+	
+	
+	//Rafraichir la page (à améliorer, actuellement réexecute la commande DisplayAgent
+	public void Rafraichir1() {
+		frameAgent.setVisible(false);
+		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
+		DefaultCommandContext ctx = new DefaultCommandContext();
+		cmd.execute(ctx);
+	}
+
+	public JCheckBox getTypeA() {
+		return typeA;
+	}
+
+	public void setTypeA(JCheckBox typeA) {
+		this.typeA = typeA;
+	}
+	public void displayAgent(Map<Long, String> nomAgent) {
 		frameAgent = new SapforJFrame("Gestion Agent");
 		JPanel main = new JPanel();
 		GridLayout mainLayout = new GridLayout(0, 2);
@@ -92,17 +79,14 @@ public class ContainerGestionAgent implements IHMAdmin {
 		addcandidat.setLayout(mainLayout);
 		candidat.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		// addcandidat.setBorder(new
-		// javax.swing.border.BevelBorder(BevelBorder.RAISED));
-
-		Map<Long, String> ag = ctx.getMap(ICommandContextKey.Key_DisplayAgent);
-		int nbAgent = ag.size();
+		
+		int nbAgent =  nomAgent.size();
 		System.out.println("nbagent " + nbAgent);
 		GridLayout laycandidats = new GridLayout(nbAgent, 0);
 		candidat.setLayout(laycandidats);
-		System.out.println(ag.keySet().toString());
+		System.out.println( nomAgent.keySet().toString());
 
-		for (final Entry<Long, String> entry : ag.entrySet()) {
+		for (final Entry<Long, String> entry :  nomAgent.entrySet()) {
 			String idAgent = (String) entry.getValue();
 			System.out.println("id " + entry);
 			SapforListeCandidat cand = new SapforListeCandidat(idAgent);
@@ -124,7 +108,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 					boolean delAgent = cmd.execute(ctx);
 
 					if (delAgent) {
-						JOptionPane.showMessageDialog(null, "Agent supprimé",
+						JOptionPane.showMessageDialog(null, "Agent supprimï¿½",
 								"Confirmation", JOptionPane.PLAIN_MESSAGE);
 						Rafraichir1();
 					} else {
@@ -136,30 +120,30 @@ public class ContainerGestionAgent implements IHMAdmin {
 				}
 			});
 		}
-		//Création des composants du panel admin "Gestion Agent"
+		//Crï¿½ation des composants du panel admin "Gestion Agent"
 		
 		//ScrollBar
 		JScrollPane retScroll = new JScrollPane(candidat,
 		ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		//Label nom/prenom/login (pour la création d'agent)
+		//Label nom/prenom/login (pour la crï¿½ation d'agent)
 		SapforLabel labelnom = new SapforLabel("Nom:");
-		SapforLabel labelprenom = new SapforLabel("Prénom:");
+		SapforLabel labelprenom = new SapforLabel("PrÃ©nom:");
 		SapforLabel labelogin = new SapforLabel("Login:");
 	
 		//JTextArea nom/prenom/login
 		nom = new SapforJTextArea();
 		prenom = new SapforJTextArea();
 		login = new SapforJTextArea();
-		//Checkbox (spécification du type de l'agent créer (directeur ou non)).
+		//Checkbox (spï¿½cification du type de l'agent crï¿½er (directeur ou non)).
 		typeA = new JCheckBox("Directeur");
 		
-		//Bouton pour la création de l'agent
-		addAgent = new SapforButton("Créer Agent");
+		//Bouton pour la crï¿½ation de l'agent
+		addAgent = new SapforButton("CrÃ©er Agent");
 		
 		Box addCandidat = Box.createVerticalBox();
-		//Espace vertical supérieur (mise en page)
+		//Espace vertical supÃ©rieur (mise en page)
 		addCandidat.add(Box.createVerticalStrut(100));
 		addCandidat.add(labelnom);
 		addCandidat.add(nom);
@@ -169,7 +153,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 		addCandidat.add(login);
 		addCandidat.add(typeA);
 		addCandidat.add(addAgent);
-		//Espace vertical inférieur (mise en page)
+		//Espace vertical infÃ©rieur (mise en page)
 		addCandidat.add(Box.createVerticalStrut(350));
 		addcandidat.add(addCandidat);
 		addcandidat.add(new JPanel());
@@ -190,7 +174,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 		frameAgent.add(validPanel, BorderLayout.PAGE_END);
 		frameAgent.setVisible(true);
 		
-		//Listener du bouton ajouter agent (création d'un agent)
+		//Listener du bouton ajouter agent (crÃ©ation d'un agent)
 		addAgent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -199,7 +183,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 				String prenomSend = prenom.getText();
 				String loginSend = login.getText();
 				
-				//Vérification que les 3 champs nom/prenom/login ne sont pas vide
+				//VÃ©rification que les 3 champs nom/prenom/login ne sont pas vide
 				
 				if (nomSend.length() == 0) {
 					System.out.println("nom null");
@@ -209,7 +193,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 				} else if (prenomSend.length() == 0) {
 					System.out.println("prenom null");
 					JOptionPane.showMessageDialog(null,
-							"Veuillez entrer un prénom", "Error",
+							"Veuillez entrer un prÃ©nom", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else if (loginSend.length() == 0) {
 					System.out.println("login null");
@@ -219,7 +203,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 				}
 				// Si les 3 champs remplis requis sont remplis on execute la
 				// commande addAgent et on renvois un message de confirmation
-				// de la création de l'agent (ou un message d'erreur)
+				// de la crÃ©ation de l'agent (ou un message d'erreur)
 				else {
 					ICommand cmd = (ICommand) context.getBean("cmdAddAgent");
 					DefaultCommandContext ctx = new DefaultCommandContext();
@@ -234,8 +218,8 @@ public class ContainerGestionAgent implements IHMAdmin {
 					}
 					ctx.put(ICommandContextKey.Key_Add, infoAgent);
 					// *************************************************************************************************
-					// /!\ check est toujours true meme si l'agent existe déjà
-					// il est recreer à voir coté serveur
+					// /!\ check est toujours true meme si l'agent existe dÃ©jï¿½
+					// il est recreer ï¿½ voir cotÃ© serveur
 					// *************************************************************************************************
 					boolean check = cmd.execute(ctx);
 					System.out.println(check);
@@ -246,7 +230,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"Erreur lors de l'inscription (déjà inscrit?)",
+								"Erreur lors de l'inscription (dÃ©jÃ  inscrit?)",
 								"Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -256,7 +240,7 @@ public class ContainerGestionAgent implements IHMAdmin {
 		accueil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//On réaffiche la page d'accueil en la réinitiallisant et on désactive la page actuelle
+				//On rï¿½affiche la page d'accueil en la rï¿½initiallisant et on dï¿½sactive la page actuelle
 				frameAgent.setVisible(false);
 				frame.getPaneStage().removeAll();
 				frame.getPaneStage().revalidate();
@@ -265,20 +249,8 @@ public class ContainerGestionAgent implements IHMAdmin {
 
 			}
 		});
-	}
-	//Rafraichir la page (à améliorer, actuellement réexecute la commande DisplayAgent
-	public void Rafraichir1() {
-		frameAgent.setVisible(false);
-		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
-		DefaultCommandContext ctx = new DefaultCommandContext();
-		cmd.execute(ctx);
-	}
+	
 
-	public JCheckBox getTypeA() {
-		return typeA;
-	}
 
-	public void setTypeA(JCheckBox typeA) {
-		this.typeA = typeA;
-	}
-}
+
+}}

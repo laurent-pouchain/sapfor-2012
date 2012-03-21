@@ -1,6 +1,8 @@
 package istic.sapfor.client.command.impl;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 
 import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.service.ServiceAgent;
@@ -22,11 +24,13 @@ public class AddAgent implements ICommand {
 		String login = infoAddAgent.get(2);
 		String type = infoAddAgent.get(3);
 		System.out.println("c'est quoi ton type" + type);
+		Collection<Long> idUv=new Vector<Long>();
 		AgentDTO a = new AgentDTO();
 		a.setName(nom);
 		a.setFirstName(prenom);
 		a.setLogin(login);
 		a.setIdTypeAgent(Integer.parseInt(type));
+		a.setListIdUvOwned(idUv);
 		boolean effectif = client.addAgent(a);
 		if (effectif) {
 			return true;

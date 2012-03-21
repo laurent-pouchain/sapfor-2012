@@ -1,7 +1,6 @@
 package istic.sapfor.client.gui;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public interface IHMGStage {
@@ -18,6 +17,6 @@ public interface IHMGStage {
 
 	public void errorLogin();
 
-	public void displayAgent(Map<Long, String> nomAgent);
+	
 
 }

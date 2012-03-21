@@ -185,6 +185,7 @@ public class FakeDataStoreImpl implements DataStore {
 	@Override
 	public boolean addAgent(AgentDTO agent) {
 		agent.setIdAgent(keyAgent);
+		if (agent.getListIdUvOwned()==null) {agent.setListIdUvOwned(new Vector<Long>());}
 		agentsMap.put(keyAgent,agent);
 		sessionsMap.put((long)agent.getLogin().hashCode(),"motdepasse");
 		keyAgent++;
@@ -235,6 +236,16 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean delAgent(long id) {
+		sessionsMap.remove((long)agentsMap.get(id).getLogin().hashCode());
+		logger.info("delAgent called with param "+id);
+		for (Long u : uvMap.keySet()){
+			logger.info("delAgent running through etatMap for Uv : "+u);
+			inscritMap.get(u).remove((Long)id);
+			retenuMap.get(u).remove((Long)id);
+			nonRetenuMap.get(u).remove((Long)id);
+			listeAttenteMap.get(u).remove((Long)id);
+			annuleMap.get(u).remove((Long)id);
+		}
 		return null!=agentsMap.remove(id);
 	}
 
@@ -410,6 +421,30 @@ public class FakeDataStoreImpl implements DataStore {
 		}
 		System.out.println(listeUvInscrit+"SERVEUR LOG");
 		return listeUvInscrit;
+	}
+	
+
+	@Override
+	public boolean setCandCloses(long id) {
+		if (inscritMap.get(id).isEmpty()){
+        uvMap.get(id).setCandCloses(true);
+		return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public boolean setCandValids(long id) {
+		if (uvMap.get(id).isCandCloses()){
+		uvMap.get(id).setCandValids(true);
+		return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+		return agentsMap.keySet();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -642,23 +677,5 @@ public class FakeDataStoreImpl implements DataStore {
 		catch (FileNotFoundException e) {e.printStackTrace();}
 		catch (IOException e) {e.printStackTrace();}
 	}
-
-	@Override
-	public boolean setCandCloses(long id) {
-        uvMap.get(id).setCandCloses(true);
-		return true;
-	}
-
-	@Override
-	public boolean setCandValids(long id) {
-		uvMap.get(id).setCandValids(true);
-		return true;
-	}
-
-	@Override
-	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
-		return agentsMap.keySet();
-	}
-
 
 }
