@@ -108,7 +108,7 @@ public class ContainerGestionAgent implements IHMAgent {
 					boolean delAgent = cmd.execute(ctx);
 
 					if (delAgent) {
-						JOptionPane.showMessageDialog(null, "Agent supprimé",
+						JOptionPane.showMessageDialog(null, "Agent supprimï¿½",
 								"Confirmation", JOptionPane.PLAIN_MESSAGE);
 						Rafraichir1();
 					} else {
@@ -120,30 +120,30 @@ public class ContainerGestionAgent implements IHMAgent {
 				}
 			});
 		}
-		//Création des composants du panel admin "Gestion Agent"
+		//Crï¿½ation des composants du panel admin "Gestion Agent"
 		
 		//ScrollBar
 		JScrollPane retScroll = new JScrollPane(candidat,
 		ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		//Label nom/prenom/login (pour la création d'agent)
+		//Label nom/prenom/login (pour la crï¿½ation d'agent)
 		SapforLabel labelnom = new SapforLabel("Nom:");
-		SapforLabel labelprenom = new SapforLabel("Prénom:");
+		SapforLabel labelprenom = new SapforLabel("PrÃ©nom:");
 		SapforLabel labelogin = new SapforLabel("Login:");
 	
 		//JTextArea nom/prenom/login
 		nom = new SapforJTextArea();
 		prenom = new SapforJTextArea();
 		login = new SapforJTextArea();
-		//Checkbox (spécification du type de l'agent créer (directeur ou non)).
+		//Checkbox (spï¿½cification du type de l'agent crï¿½er (directeur ou non)).
 		typeA = new JCheckBox("Directeur");
 		
-		//Bouton pour la création de l'agent
-		addAgent = new SapforButton("Créer Agent");
+		//Bouton pour la crï¿½ation de l'agent
+		addAgent = new SapforButton("CrÃ©er Agent");
 		
 		Box addCandidat = Box.createVerticalBox();
-		//Espace vertical supérieur (mise en page)
+		//Espace vertical supÃ©rieur (mise en page)
 		addCandidat.add(Box.createVerticalStrut(100));
 		addCandidat.add(labelnom);
 		addCandidat.add(nom);
@@ -153,7 +153,7 @@ public class ContainerGestionAgent implements IHMAgent {
 		addCandidat.add(login);
 		addCandidat.add(typeA);
 		addCandidat.add(addAgent);
-		//Espace vertical inférieur (mise en page)
+		//Espace vertical infÃ©rieur (mise en page)
 		addCandidat.add(Box.createVerticalStrut(350));
 		addcandidat.add(addCandidat);
 		addcandidat.add(new JPanel());
@@ -174,7 +174,7 @@ public class ContainerGestionAgent implements IHMAgent {
 		frameAgent.add(validPanel, BorderLayout.PAGE_END);
 		frameAgent.setVisible(true);
 		
-		//Listener du bouton ajouter agent (création d'un agent)
+		//Listener du bouton ajouter agent (crÃ©ation d'un agent)
 		addAgent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -183,7 +183,7 @@ public class ContainerGestionAgent implements IHMAgent {
 				String prenomSend = prenom.getText();
 				String loginSend = login.getText();
 				
-				//Vérification que les 3 champs nom/prenom/login ne sont pas vide
+				//VÃ©rification que les 3 champs nom/prenom/login ne sont pas vide
 				
 				if (nomSend.length() == 0) {
 					System.out.println("nom null");
@@ -193,7 +193,7 @@ public class ContainerGestionAgent implements IHMAgent {
 				} else if (prenomSend.length() == 0) {
 					System.out.println("prenom null");
 					JOptionPane.showMessageDialog(null,
-							"Veuillez entrer un prénom", "Error",
+							"Veuillez entrer un prÃ©nom", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else if (loginSend.length() == 0) {
 					System.out.println("login null");
@@ -203,7 +203,7 @@ public class ContainerGestionAgent implements IHMAgent {
 				}
 				// Si les 3 champs remplis requis sont remplis on execute la
 				// commande addAgent et on renvois un message de confirmation
-				// de la création de l'agent (ou un message d'erreur)
+				// de la crÃ©ation de l'agent (ou un message d'erreur)
 				else {
 					ICommand cmd = (ICommand) context.getBean("cmdAddAgent");
 					DefaultCommandContext ctx = new DefaultCommandContext();
@@ -218,8 +218,8 @@ public class ContainerGestionAgent implements IHMAgent {
 					}
 					ctx.put(ICommandContextKey.Key_Add, infoAgent);
 					// *************************************************************************************************
-					// /!\ check est toujours true meme si l'agent existe déjà
-					// il est recreer à voir coté serveur
+					// /!\ check est toujours true meme si l'agent existe dÃ©jï¿½
+					// il est recreer ï¿½ voir cotÃ© serveur
 					// *************************************************************************************************
 					boolean check = cmd.execute(ctx);
 					System.out.println(check);
@@ -230,7 +230,7 @@ public class ContainerGestionAgent implements IHMAgent {
 
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"Erreur lors de l'inscription (déjà inscrit?)",
+								"Erreur lors de l'inscription (dÃ©jÃ  inscrit?)",
 								"Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -240,7 +240,7 @@ public class ContainerGestionAgent implements IHMAgent {
 		accueil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//On réaffiche la page d'accueil en la réinitiallisant et on désactive la page actuelle
+				//On rï¿½affiche la page d'accueil en la rï¿½initiallisant et on dï¿½sactive la page actuelle
 				frameAgent.setVisible(false);
 				frame.getPaneStage().removeAll();
 				frame.getPaneStage().revalidate();
@@ -249,8 +249,8 @@ public class ContainerGestionAgent implements IHMAgent {
 
 			}
 		});
-	}
-		
-	}
+	
 
 
+
+}}
