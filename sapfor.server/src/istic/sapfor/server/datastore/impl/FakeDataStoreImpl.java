@@ -185,6 +185,7 @@ public class FakeDataStoreImpl implements DataStore {
 	@Override
 	public boolean addAgent(AgentDTO agent) {
 		agent.setIdAgent(keyAgent);
+		if (agent.getListIdUvOwned()==null) {agent.setListIdUvOwned(new Vector<Long>());}
 		agentsMap.put(keyAgent,agent);
 		sessionsMap.put((long)agent.getLogin().hashCode(),"motdepasse");
 		keyAgent++;
@@ -422,6 +423,30 @@ public class FakeDataStoreImpl implements DataStore {
 		return listeUvInscrit;
 	}
 	
+
+	@Override
+	public boolean setCandCloses(long id) {
+		if (inscritMap.get(id).isEmpty()){
+        uvMap.get(id).setCandCloses(true);
+		return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public boolean setCandValids(long id) {
+		if (uvMap.get(id).isCandCloses()){
+		uvMap.get(id).setCandValids(true);
+		return true;
+		}
+		else return false;
+	}
+
+	@Override
+	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
+		return agentsMap.keySet();
+	}
+	
 	@SuppressWarnings("deprecation")
 	private void remplir_fichier(String f) {
 		try {
@@ -652,29 +677,5 @@ public class FakeDataStoreImpl implements DataStore {
 		catch (FileNotFoundException e) {e.printStackTrace();}
 		catch (IOException e) {e.printStackTrace();}
 	}
-
-	@Override
-	public boolean setCandCloses(long id) {
-		if (inscritMap.get(id).isEmpty()){
-        uvMap.get(id).setCandCloses(true);
-		return true;
-		}
-		else return false;
-	}
-
-	@Override
-	public boolean setCandValids(long id) {
-		if (uvMap.get(id).isCandCloses()){
-		uvMap.get(id).setCandValids(true);
-		return true;
-		}
-		else return false;
-	}
-
-	@Override
-	public Collection<Long> getAllIdsAgent(Long idDirecteur) {
-		return agentsMap.keySet();
-	}
-
 
 }

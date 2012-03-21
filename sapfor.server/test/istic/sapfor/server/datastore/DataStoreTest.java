@@ -57,258 +57,7 @@ public class DataStoreTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getAgent method, of class DataStore.
-     */
-    @Test
-    public void testGetAgent() {
-        System.out.println("getAgent");
-        Long id = null;
-        DataStore instance = new DataStoreImpl();
-        AgentDTO expResult = null;
-        AgentDTO result = instance.getAgent(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUv method, of class DataStore.
-     */
-    @Test
-    public void testGetUv() {
-        System.out.println("getUv");
-        Long id = null;
-        DataStore instance = new DataStoreImpl();
-        UvDTO expResult = null;
-        UvDTO result = instance.getUv(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getStage method, of class DataStore.
-     */
-    @Test
-    public void testGetStage() {
-        System.out.println("getStage");
-        Long id = null;
-        DataStore instance = new DataStoreImpl();
-        StageDTO expResult = null;
-        StageDTO result = instance.getStage(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTypeUv method, of class DataStore.
-     */
-    @Test
-    public void testGetTypeUv() {
-        System.out.println("getTypeUv");
-        Long id = null;
-        DataStore instance = new DataStoreImpl();
-        TypeUvDTO expResult = null;
-        TypeUvDTO result = instance.getTypeUv(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIdCandidat method, of class DataStore.
-     */
-    @Test
-    public void testGetIdCandidat() {
-        System.out.println("getIdCandidat");
-        Long idUv = null;
-        EtatCandidatureDTO etat = null;
-        DataStore instance = new DataStoreImpl();
-        Collection expResult = null;
-        Collection result = instance.getIdCandidat(idUv, etat);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of nbUvs method, of class DataStore.
-     */
-    @Test
-    public void testNbUvs() {
-        System.out.println("nbUvs");
-        DataStore instance = new DataStoreImpl();
-        int expResult = 0;
-        int result = instance.nbUvs();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of nbAgents method, of class DataStore.
-     */
-    @Test
-    public void testNbAgents() {
-        System.out.println("nbAgents");
-        DataStore instance = new DataStoreImpl();
-        int expResult = 0;
-        int result = instance.nbAgents();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of nbTypeUvs method, of class DataStore.
-     */
-    @Test
-    public void testNbTypeUvs() {
-        System.out.println("nbTypeUvs");
-        DataStore instance = new DataStoreImpl();
-        int expResult = 0;
-        int result = instance.nbTypeUvs();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of nbStages method, of class DataStore.
-     */
-    @Test
-    public void testNbStages() {
-        System.out.println("nbStages");
-        DataStore instance = new DataStoreImpl();
-        int expResult = 0;
-        int result = instance.nbStages();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addUv method, of class DataStore.
-     */
-    @Test
-    public void testAddUv() {
-        System.out.println("addUv");
-        UvDTO uv = null;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.addUv(uv);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addAgent method, of class DataStore.
-     */
-    @Test
-    public void testAddAgent() {
-        System.out.println("addAgent");
-        AgentDTO agent = null;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.addAgent(agent);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addTypeUv method, of class DataStore.
-     */
-    @Test
-    public void testAddTypeUv() {
-        System.out.println("addTypeUv");
-        TypeUvDTO typeUv = null;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.addTypeUv(typeUv);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addStage method, of class DataStore.
-     */
-    @Test
-    public void testAddStage() {
-        System.out.println("addStage");
-        StageDTO stage = null;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.addStage(stage);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of delUv method, of class DataStore.
-     */
-    @Test
-    public void testDelUv() {
-        System.out.println("delUv");
-        long id = 0L;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.delUv(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of delAgent method, of class DataStore.
-     */
-    @Test
-    public void testDelAgent() {
-        System.out.println("delAgent");
-        long id = 0L;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.delAgent(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of delTypeUv method, of class DataStore.
-     */
-    @Test
-    public void testDelTypeUv() {
-        System.out.println("delTypeUv");
-        long id = 0L;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.delTypeUv(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of delStage method, of class DataStore.
-     */
-    @Test
-    public void testDelStage() {
-        System.out.println("delStage");
-        long id = 0L;
-        DataStore instance = new DataStoreImpl();
-        boolean expResult = false;
-        boolean result = instance.delStage(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of getIdStageDir method, of class DataStore.
@@ -327,10 +76,263 @@ public class DataStoreTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+/*
+    *//**
+     * Test of getAgent method, of class DataStore.
+     *//*
+    @Test
+    public void testGetAgent() {
+        System.out.println("getAgent");
+        Long id = null;
+        DataStore instance = new DataStoreImpl();
+        AgentDTO expResult = null;
+        AgentDTO result = instance.getAgent(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
-    /**
+    *//**
+     * Test of getUv method, of class DataStore.
+     *//*
+    @Test
+    public void testGetUv() {
+        System.out.println("getUv");
+        Long id = null;
+        DataStore instance = new DataStoreImpl();
+        UvDTO expResult = null;
+        UvDTO result = instance.getUv(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of getStage method, of class DataStore.
+     *//*
+    @Test
+    public void testGetStage() {
+        System.out.println("getStage");
+        Long id = null;
+        DataStore instance = new DataStoreImpl();
+        StageDTO expResult = null;
+        StageDTO result = instance.getStage(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of getTypeUv method, of class DataStore.
+     *//*
+    @Test
+    public void testGetTypeUv() {
+        System.out.println("getTypeUv");
+        Long id = null;
+        DataStore instance = new DataStoreImpl();
+        TypeUvDTO expResult = null;
+        TypeUvDTO result = instance.getTypeUv(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of getIdCandidat method, of class DataStore.
+     *//*
+    @Test
+    public void testGetIdCandidat() {
+        System.out.println("getIdCandidat");
+        Long idUv = null;
+        EtatCandidatureDTO etat = null;
+        DataStore instance = new DataStoreImpl();
+        Collection expResult = null;
+        Collection result = instance.getIdCandidat(idUv, etat);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of nbUvs method, of class DataStore.
+     *//*
+    @Test
+    public void testNbUvs() {
+        System.out.println("nbUvs");
+        DataStore instance = new DataStoreImpl();
+        int expResult = 0;
+        int result = instance.nbUvs();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of nbAgents method, of class DataStore.
+     *//*
+    @Test
+    public void testNbAgents() {
+        System.out.println("nbAgents");
+        DataStore instance = new DataStoreImpl();
+        int expResult = 0;
+        int result = instance.nbAgents();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of nbTypeUvs method, of class DataStore.
+     *//*
+    @Test
+    public void testNbTypeUvs() {
+        System.out.println("nbTypeUvs");
+        DataStore instance = new DataStoreImpl();
+        int expResult = 0;
+        int result = instance.nbTypeUvs();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of nbStages method, of class DataStore.
+     *//*
+    @Test
+    public void testNbStages() {
+        System.out.println("nbStages");
+        DataStore instance = new DataStoreImpl();
+        int expResult = 0;
+        int result = instance.nbStages();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of addUv method, of class DataStore.
+     *//*
+    @Test
+    public void testAddUv() {
+        System.out.println("addUv");
+        UvDTO uv = null;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.addUv(uv);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of addAgent method, of class DataStore.
+     *//*
+    @Test
+    public void testAddAgent() {
+        System.out.println("addAgent");
+        AgentDTO agent = null;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.addAgent(agent);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of addTypeUv method, of class DataStore.
+     *//*
+    @Test
+    public void testAddTypeUv() {
+        System.out.println("addTypeUv");
+        TypeUvDTO typeUv = null;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.addTypeUv(typeUv);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of addStage method, of class DataStore.
+     *//*
+    @Test
+    public void testAddStage() {
+        System.out.println("addStage");
+        StageDTO stage = null;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.addStage(stage);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of delUv method, of class DataStore.
+     *//*
+    @Test
+    public void testDelUv() {
+        System.out.println("delUv");
+        long id = 0L;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.delUv(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of delAgent method, of class DataStore.
+     *//*
+    @Test
+    public void testDelAgent() {
+        System.out.println("delAgent");
+        long id = 0L;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.delAgent(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of delTypeUv method, of class DataStore.
+     *//*
+    @Test
+    public void testDelTypeUv() {
+        System.out.println("delTypeUv");
+        long id = 0L;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.delTypeUv(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    *//**
+     * Test of delStage method, of class DataStore.
+     *//*
+    @Test
+    public void testDelStage() {
+        System.out.println("delStage");
+        long id = 0L;
+        DataStore instance = new DataStoreImpl();
+        boolean expResult = false;
+        boolean result = instance.delStage(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+
+    *//**
      * Test of getIdUvStageDir method, of class DataStore.
-     */
+     *//*
     @Test
     public void testGetIdUvStageDir() {
         System.out.println("getIdUvStageDir");
@@ -343,9 +345,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of getIdUvStageDispo method, of class DataStore.
-     */
+     *//*
     @Test
     public void testGetIdUvStageDispo() {
         System.out.println("getIdUvStageDispo");
@@ -359,9 +361,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of getIdStageInscrit method, of class DataStore.
-     */
+     *//*
     @Test
     public void testGetIdStageInscrit() {
         System.out.println("getIdStageInscrit");
@@ -374,9 +376,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of getIdUvStageInscrit method, of class DataStore.
-     */
+     *//*
     @Test
     public void testGetIdUvStageInscrit() {
         System.out.println("getIdUvStageInscrit");
@@ -390,9 +392,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of addInscrip method, of class DataStore.
-     */
+     *//*
     @Test
     public void testAddInscrip() {
         System.out.println("addInscrip");
@@ -406,9 +408,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of setStatut method, of class DataStore.
-     */
+     *//*
     @Test
     public void testSetStatut() {
         System.out.println("setStatut");
@@ -424,9 +426,9 @@ public class DataStoreTest {
         fail("The test case is a prototype.");
     }
 
-    /**
+    *//**
      * Test of getIdStageDispo method, of class DataStore.
-     */
+     *//*
     @Test
     public void testGetIdStageDispo() {
         System.out.println("getIdStageDispo");
@@ -437,7 +439,7 @@ public class DataStoreTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     public class DataStoreImpl implements DataStore {
 
