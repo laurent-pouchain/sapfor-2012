@@ -38,7 +38,7 @@ public class SapforJFrameAgent extends SapforJFrame {
 		paneWestInfoAgent.add(bts);
 
 		// Bouton disponible pour les administrateurs (visible lors du loggage)
-		buttonAdmin = new SapforButton("Gérer Stage");
+		buttonAdmin = new SapforButton("GÃ©rer Stage");
 		buttonAddAgent = new SapforButton("Ajouter Agent");
 		buttonAdmin.setVisible(false);
 		buttonAddAgent.setVisible(false);

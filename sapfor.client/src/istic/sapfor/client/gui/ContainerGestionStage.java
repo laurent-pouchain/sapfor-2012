@@ -31,10 +31,10 @@ public class ContainerGestionStage implements IHMGStage {
 	public void showUI(ClassPathXmlApplicationContext ctx) {
 
 		context = ctx;
-		// Partie à modifier car trop lourde, mettre ça dans une méthode ou
+		// Partie Ã  modifier car trop lourde, mettre Ã§a dans une mï¿½thode ou
 		// autre...
 
-		// Création de la boite de dialogue de connexion.
+		// Crï¿½ation de la boite de dialogue de connexion.
 		Jlogin = new SapforJDialogConnection();
 
 		// Listener du bouton "connexion"
@@ -57,7 +57,7 @@ public class ContainerGestionStage implements IHMGStage {
 			}
 		});
 
-		// Fenêtre principale
+		// FenÃªtre principale
 
 		frame = new SapforJFrameAgent("page stage dispo");
 		frame.getBts().setPreferredSize(Jlogin.getStd());
@@ -298,7 +298,7 @@ public class ContainerGestionStage implements IHMGStage {
 
 					if (idUv.size() == 0) {
 						JOptionPane.showMessageDialog(null,
-								"Vous n'avez selectionné aucune Uv", "Error",
+								"Vous n'avez selectionnÃ© aucune Uv", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
 
@@ -310,11 +310,11 @@ public class ContainerGestionStage implements IHMGStage {
 						System.out.println("OK2");
 						if (etat == true) {
 							JOptionPane.showMessageDialog(null,
-									"Inscription réussie", "Confirmation",
+									"Inscription rÃ©ussie", "Confirmation",
 									JOptionPane.PLAIN_MESSAGE);
 						} else {
 							JOptionPane.showMessageDialog(null,
-									"erreur inscription (déjà inscrit)",
+									"erreur inscription (dÃ©jÃ  inscrit)",
 									"Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
@@ -333,15 +333,15 @@ public class ContainerGestionStage implements IHMGStage {
 		String infoAgent = fNameA + " " + nameA;
 		frame.getAccueilLabel().setText("Bonjour " + infoAgent);// Edition du
 																// message
-																// personnalisé
-																// (Nom+prénom
+																// personnalisÃ©
+																// (Nom+prÃ©nom
 																// de l'agent
-																// loggé)
+																// loggï¿½)
 
 		Jlogin.setVisible(false); // Disparition de la boite de dialogue de
 									// connexion
-		frame.setVisible(true); // Apparition de la page d'accueil personnalisée
-								// de l'agent loggé
+		frame.setVisible(true); // Apparition de la page d'accueil personnalisÃ©e
+								// de l'agent loggÃ©
 		if (typeAg == 0) {
 			frame.getButtonAdmin().setVisible(true);
 			frame.getButtonAddAgent().setVisible(true);

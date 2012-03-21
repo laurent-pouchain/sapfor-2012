@@ -158,6 +158,7 @@ public void setOnglets(JTabbedPane onglets) {
 					    			frameGestionStage.setVisible(false);
 					    			frame.getPaneStage().removeAll();
 					    			frame.getPaneStage().revalidate();
+					    			frame.getPaneStage().repaint();
 					    			frame.setVisible(true);
 					    			frame.getBts().setVisible(true);
 
@@ -523,6 +524,7 @@ public void setOnglets(JTabbedPane onglets) {
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayCandidat");
 				cmd.execute(ctx);
 				entry.getValue().revalidate();
+				entry.getValue().repaint();
 			}
 		}		
 }
