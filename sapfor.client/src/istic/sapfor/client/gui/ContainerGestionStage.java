@@ -84,7 +84,7 @@ public class ContainerGestionStage implements IHMGStage {
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayStageDir");
 				DefaultCommandContext ctx = new DefaultCommandContext();
 				cmd.execute(ctx);
-
+				frame.getPaneUV().setVisible(false);
 				System.out.println("OK");
 
 			}
@@ -97,7 +97,7 @@ public class ContainerGestionStage implements IHMGStage {
 				ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");
 				DefaultCommandContext ctx = new DefaultCommandContext();
 				cmd.execute(ctx);
-
+				frame.getPaneUV().setVisible(false);
 				System.out.println("OK");
 
 			}
@@ -157,6 +157,7 @@ public class ContainerGestionStage implements IHMGStage {
 			s.getBtu().setVisible(false);
 
 			frame.getPaneStage().add(s);
+			
 		}
 
 		else {
@@ -173,7 +174,7 @@ public class ContainerGestionStage implements IHMGStage {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						// String idA = accueilLabel.getText().split(" ")[3];
-
+						
 						ICommand cmd = (ICommand) context
 								.getBean("cmdDisplayUvDispo");
 						DefaultCommandContext ctx = new DefaultCommandContext();
@@ -184,7 +185,7 @@ public class ContainerGestionStage implements IHMGStage {
 						ctx.put(ICommandContextKey.Key_Stage, stageDisp);
 
 						cmd.execute(ctx);
-
+						frame.getPaneUV().setVisible(true);
 						System.out.println("OK2");
 					}
 				});
