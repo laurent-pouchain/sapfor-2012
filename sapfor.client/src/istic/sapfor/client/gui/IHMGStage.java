@@ -17,6 +17,6 @@ public interface IHMGStage {
 
 	public void errorLogin();
 
-	public void displayAgent(Map<Long, String> nomAgent);
+	
 
 }

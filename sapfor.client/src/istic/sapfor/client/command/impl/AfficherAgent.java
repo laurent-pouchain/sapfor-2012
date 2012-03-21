@@ -9,14 +9,12 @@ import istic.sapfor.api.dto.AgentDTO;
 import istic.sapfor.api.service.ServiceAgent;
 import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
-import istic.sapfor.client.gui.IHMGStage;
+import istic.sapfor.client.gui.IHMAgent;
 
 public class AfficherAgent implements ICommand {
 
 	private ServiceAgent client;
-	// j'ai mis IHMGStage mais il faudra remplacer par L'IHMAgent et dans le
-	// sapfor.xml aussi (juste le name="ihmgstage")
-	private IHMGStage ihmgstage;
+	private IHMAgent ihmagent;
 	private ICommandContext context;
 
 	@Override
@@ -37,18 +35,12 @@ public class AfficherAgent implements ICommand {
 		// dans l'interface qu'il implemente
 
 		System.out.println(NomAgent);
-		ihmgstage.displayAgent(NomAgent);
+		ihmagent.displayAgent(NomAgent);
 
 		return null;
 	}
 
-	public IHMGStage getIhmgstage() {
-		return ihmgstage;
-	}
-
-	public void setIhmgstage(IHMGStage ihmgstage) {
-		this.ihmgstage = ihmgstage;
-	}
+	
 
 	public ServiceAgent getClient() {
 		return client;
@@ -64,6 +56,14 @@ public class AfficherAgent implements ICommand {
 
 	public void setContext(ICommandContext context) {
 		this.context = context;
+	}
+
+	public IHMAgent getIhmagent() {
+		return ihmagent;
+	}
+
+	public void setIhmagent(IHMAgent ihmagent) {
+		this.ihmagent = ihmagent;
 	}
 
 }
