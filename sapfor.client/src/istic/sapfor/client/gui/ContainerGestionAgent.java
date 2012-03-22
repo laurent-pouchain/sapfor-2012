@@ -30,8 +30,7 @@ import javax.swing.border.BevelBorder;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContainerGestionAgent implements IHMAgent {
-	private ClassPathXmlApplicationContext context = null;
+public class ContainerGestionAgent extends ContainerAbstract implements IHMAgent {
 	private SapforJFrame frameGestionStage;
 	private SapforJTextArea nom;
 	private SapforJTextArea prenom;
@@ -54,7 +53,7 @@ public class ContainerGestionAgent implements IHMAgent {
 	}
 	
 	
-	//Rafraichir la page (à améliorer, actuellement réexecute la commande DisplayAgent
+	//Rafraichir la page (ï¿½ amï¿½liorer, actuellement rï¿½execute la commande DisplayAgent
 	public void Rafraichir1() {
 		frameAgent.setVisible(false);
 		ICommand cmd = (ICommand) context.getBean("cmdDisplayAgent");

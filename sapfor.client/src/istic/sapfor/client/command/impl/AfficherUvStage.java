@@ -13,25 +13,17 @@ import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
-public class AfficherUvStage implements ICommand {
+public class AfficherUvStage extends ContextAbstract implements ICommand {
 
 	private ServiceUv clientU;
 	private ServiceAgent client;
 	private IHMGStage ihmgstage;
-	private ICommandContext context;
 
-	public ICommandContext getContext() {
-		return context;
-	}
-
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
 
 	public Boolean execute(ICommandContext ctx) {
 		// TODO Auto-generated method stub
 
-		// récuperation des id
+		// rï¿½cuperation des id
 		List<String> idTemp = new LinkedList<String>();
 		idTemp = ctx.getList(ICommandContextKey.Key_Stage);
 
