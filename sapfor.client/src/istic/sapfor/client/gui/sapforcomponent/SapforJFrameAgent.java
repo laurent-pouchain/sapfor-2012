@@ -53,8 +53,9 @@ public class SapforJFrameAgent extends SapforJFrame {
 		// Panneau affichant les UV disponibles pour l'utilisateur (visible en
 		// cliquant sur un stage)
 		paneUV = new JPanel();
-		paneUV.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+		//paneUV.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
 		infoStageUv = new SapforJPanelUV();
+		infoStageUv.setLayout(new GridLayout(15,0));
 		infoStageUv.setVisible(false);
 		paneUV.add(infoStageUv);
 

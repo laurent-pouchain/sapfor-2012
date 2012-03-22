@@ -9,6 +9,7 @@ import istic.sapfor.client.gui.sapforcomponent.SapforJFrameAgent;
 import istic.sapfor.client.gui.sapforcomponent.SapforLabel;
 import istic.sapfor.client.gui.sapforcomponent.SapforListeStage;
 
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,6 +20,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -233,8 +236,11 @@ public class ContainerGestionStage implements IHMGStage {
 					lstbox.put(i, rad);
 					i++;
 
-					frame.getInfoStageUv().add(nuv);
-					frame.getInfoStageUv().add(rad);
+					JPanel blocUvChek = new JPanel();
+					blocUvChek.add(nuv);
+					blocUvChek.add(rad);
+					//blocUvChek.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+					frame.getInfoStageUv().add(blocUvChek);
 				}
 
 			}
@@ -254,8 +260,10 @@ public class ContainerGestionStage implements IHMGStage {
 
 						lstbox.put(i, rad);
 						i++;
-
-						frame.getInfoStageUv().add(nuv);
+						JPanel blocUvChek = new JPanel();
+						blocUvChek.add(nuv);
+						//blocUvChek.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+						frame.getInfoStageUv().add(blocUvChek);
 						// infoStageUv.add(rad);
 
 					} else {
@@ -270,9 +278,12 @@ public class ContainerGestionStage implements IHMGStage {
 						// keyset
 						lstbox.put(i, rad);
 						i++;
-
-						frame.getInfoStageUv().add(nuv);
-						frame.getInfoStageUv().add(rad);
+						JPanel blocUvChek = new JPanel();
+						//blocUvChek.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+						blocUvChek.add(nuv);
+						blocUvChek.add(rad);
+						frame.getInfoStageUv().add(blocUvChek);
+						
 					}
 				}
 
