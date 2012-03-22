@@ -1,12 +1,12 @@
 A admin Doe John 0 $
 A agent1 Dupont Jean 1 0,6,$
 A agent2 Dupond Jeanne 1 3,4,6,$
-A agent3 Darwin Charles 1 2,4,5,$
-A agent4 Pascal Blaise 1 0,$
+A agent3 Darwin Charles 1 0,2,4,5,$
+A agent4 Pascal Blaise 1 0,5,$
 A agent5 Hugo Victor 1 $
 A agent6 Vincent Francky 1 $
 A agent7 Stark Ned 1 3,$
-A agent8 Connor Sarah 1 $
+A agent8 Connor Sarah 1 0,5,$
 A agent9 Kiddo Beatrix 1 $
 A agent10 Black Sirius 1 $
 A agent11 Covert Harry 1 $
@@ -16,23 +16,24 @@ T 0, Sap-FF1$      1
 T 0,1, Sap-FF2$    2
 T 0, Sap-PS1$      3
 T 0,3, Sap-PS2$    4
+T  Initiation$     5
 *
 U 0 Basics-M-09.12.11 Monfort 1/12/2011 9/12/2011,$
 U 1 FF1-F-01.01.12 Fougères 15/12/2011 1/1/2012,2/1/2012,$
 U 1 FF1-F-07.01.12 Fougères 15/12/2011 7/1/2012,8/1/2012,$
 U 0 Basics-R-06.02.15 Rennes 15/1/2012 6/2/2012,$
 U 1 FF1-R-07.02.12 Rennes 15/1/2012 7/2/2012,8/2/2012,$
-U 0 Basics-R-06.09.15 Bain-de-Bretagne 21/2/2012 7/3/2012,$         
+U 5 Initiation-R-06.09.15 Bain-de-Bretagne 21/2/2012 7/3/2012,$         
 U 3 PS1-R-15.03.12 Rennes 1/3/2012 15/3/2012,$                      
-U 0 Basics-F-06.05.12 Fougères 1/5/2012 6/5/2012,$                  7
-U 3 PS1-F-07.05.12 Fougères 1/5/2012 7/5/2012,8/5/2012,$            8
+U 5 Initiation-F-06.05.12 Fougères 1/5/2012 6/5/2012,$              7
+U 0 Basics-F-07.05.12 Fougères 1/5/2012 7/5/2012,$                  8
 U 2 FF2-M-07.05.12 Monfort 1/5/2012 7/5/2012,8/5/2012,$             9
 U 2 FF2-R-14.05.12 Rennes 1/5/2012 14/5/2012,15/5/2012,$           10
 U 4 PS2-BB-01.06.12 Bain-de-Bretagne 15/5/2012 1/6/2012,2/6/2012,$ 11
 U 1 FF1-R-01.07.12 Rennes 15/6/2012 1/7/2012,2/7/2012,$            12
 U 3 PS1-R-03.07.12 Rennes 15/6/2012 3/7/2012,4/7/2012,$            13 
 *
-S 7,8, Fougères Base et Premiers Secours 1$               0
+S 7,8, Fougères Initiation et Stage de Base 1$            0
 S 9, Monfort Feux de Forêt 2$                             1
 S 10, Rennes Feux de Forêt niveau 2$                      2
 S 11, Bain-de-Bretagne Premiers Secours niveau 2$         3

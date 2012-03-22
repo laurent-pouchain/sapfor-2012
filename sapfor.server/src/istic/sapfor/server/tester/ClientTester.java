@@ -34,8 +34,8 @@ public class ClientTester extends StatefullService implements InitializingBean {
 		for (int i = 0; i < dataStore.nbStages(); i++) {
 			StageDTO s = dataStore.getStage((long) i);
 			System.out.print("Nom du Stage : ");
-			System.out.println(s.getTitle() + " (� " + s.getLocality() + ")");
-			System.out.println("Compos� des Uvs suivantes : ");
+			System.out.println(s.getTitle() + " (à " + s.getLocality() + ")");
+			System.out.println("Composé des Uvs suivantes : ");
 			for (Long idUv : s.getListIdUv()) {
 				System.out.println(dataStore.getUv(idUv).getTitle());
 			}
@@ -45,7 +45,7 @@ public class ClientTester extends StatefullService implements InitializingBean {
 		for (int i = 0; i < dataStore.nbUvs(); i++) {
 			UvDTO u = dataStore.getUv((long) i);
 			System.out.print("Nom de l'UV : ");
-			System.out.println(u.getTitle() + " (� " + u.getLocality() + ")");
+			System.out.println(u.getTitle() + " (à " + u.getLocality() + ")");
 			System.out.println("");
 		}
 
@@ -54,7 +54,7 @@ public class ClientTester extends StatefullService implements InitializingBean {
 		UvDTO uv = new UvDTO();
 
 		uv.setIdTypeUv(1);
-		uv.setTitle("Basics-Essai-Entr�e");
+		uv.setTitle("Basics-Essai-Entrée");
 		uv.setLocality("Paris");
 		Collection<Date> dates = new Vector<Date>();
 		uv.setDates(dates);
@@ -70,7 +70,7 @@ public class ClientTester extends StatefullService implements InitializingBean {
 			if (dataStore.getUv((long)i)!=null){
 			  UvDTO u = dataStore.getUv((long)i);
 		      System.out.print("Nom de l'UV (id : "+i+") : ");
-			  System.out.println(u.getTitle()+" (� "+u.getLocality()+")");
+			  System.out.println(u.getTitle()+" (à "+u.getLocality()+")");
 			  System.out.println("");
 			}
 		}
@@ -83,8 +83,8 @@ public class ClientTester extends StatefullService implements InitializingBean {
 			if (dataStore.getStage((long)i)!=null){
 				StageDTO s = dataStore.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (� "+s.getLocality()+")");
-				System.out.println("Compos� des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
+				System.out.println("Composé des Uvs suivantes : ");
 					for (Long idUv :  dataStore.getIdUvStageDispo((long)0,s.getIdStage())) {
 						System.out.println(dataStore.getUv(idUv).getTitle());
 					}
@@ -100,8 +100,8 @@ public class ClientTester extends StatefullService implements InitializingBean {
 			if (dataStore.getStage((long)i)!=null){
 				StageDTO s = dataStore.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (� "+s.getLocality()+")");
-				System.out.println("Compos� des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
+				System.out.println("Composé des Uvs suivantes : ");
 					for (Long idUv :  dataStore.getIdUvStageDispo((long)1,s.getIdStage())) {
 						System.out.println(dataStore.getUv(idUv).getTitle());
 					}
@@ -117,8 +117,8 @@ public class ClientTester extends StatefullService implements InitializingBean {
 			if (dataStore.getStage((long)i)!=null){
 				StageDTO s = dataStore.getStage((long)i);	
 				System.out.print("Nom du Stage : ");
-				System.out.println(s.getTitle()+" (� "+s.getLocality()+")");
-				System.out.println("Compos� des Uvs suivantes : ");
+				System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
+				System.out.println("Composé des Uvs suivantes : ");
 					for (Long idUv :  dataStore.getIdUvStageDispo((long)2,s.getIdStage())) {
 						System.out.println(dataStore.getUv(idUv).getTitle());
 					}
@@ -126,13 +126,13 @@ public class ClientTester extends StatefullService implements InitializingBean {
 				}
 			}
 		
-		System.out.println("-------Liste des Stages dirig�s par John Doe------------");
+		System.out.println("-------Liste des Stages dirigés par John Doe------------");
 
 		for (Long is : dataStore.getIdStageDir((long)0)) {
 			StageDTO s = dataStore.getStage((long)is);	
 			System.out.print("Nom du Stage : ");
-			System.out.println(s.getTitle()+" (� "+s.getLocality()+")");
-			System.out.println("Compos� des Uvs suivantes : ");
+			System.out.println(s.getTitle()+" (à "+s.getLocality()+")");
+			System.out.println("Composé des Uvs suivantes : ");
 			for (Long idUv :  dataStore.getIdUvStageDir(s.getIdStage())) {
 				System.out.println(dataStore.getUv(idUv).getTitle());
 			}
@@ -148,6 +148,8 @@ public class ClientTester extends StatefullService implements InitializingBean {
 		idsUv0.add((long)7);
 		idsUv5.add((long)7);
 		idsUv6.add((long)7);
+		idsUv5.add((long)8);
+		idsUv6.add((long)8);
 
 		
 		dataStore.addInscrip((long)0, idsUv0);

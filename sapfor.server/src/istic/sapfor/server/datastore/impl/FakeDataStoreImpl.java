@@ -499,8 +499,6 @@ public class FakeDataStoreImpl implements DataStore {
 						idsUv.add(idUv_l);
 						pt++;
 					}
-					System.out.println("Ajout de l'agent "+firstName+" "+name+" de type "+idTypeAgent);
-					System.out.print("Possedant les Uv N : ");
 					for (Long idUv : idsUv){
 						System.out.print(" "+idUv);
 					}
