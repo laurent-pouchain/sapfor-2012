@@ -71,6 +71,7 @@ public class DataStoreTest {
         expResult.add((long)1);
         expResult.add((long)2);
         expResult.add((long)3);
+        expResult.add((long)4);
         Collection<Long> result = instance.getIdStageDir(idAgent);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
