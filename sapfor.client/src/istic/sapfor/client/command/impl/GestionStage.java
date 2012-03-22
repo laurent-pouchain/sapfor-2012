@@ -50,19 +50,24 @@ public class GestionStage implements ICommand {
 		Collection<Long> UvDir = client.getIdUvStageDir((long) idS);
 		if (client.getIdUvStageDir((long) idS).isEmpty() == true) {
 
-			ihmAdmin.GererInscriptionUvDir(null);
+			ihmAdmin.GererInscriptionUvDir(null,null,null);
 			return true;
 		} else {
 			System.out.println(UvDir);
 			HashMap<Long, String> uv = new HashMap<Long, String>();
+			HashMap<Long, Boolean> uvClore = new HashMap<Long, Boolean>();
+			HashMap<Long, Boolean> uvValide = new HashMap<Long, Boolean>();
+
 			for (long id : UvDir) {
 				System.out.println(id);
 				UvDTO u = clientU.getUv(id);
+				uvClore.put(id, u.isCandCloses());
+				uvValide.put(id, u.isCandValids());
 				uv.put(id, u.getTitle());
 				System.out.println(u.getTitle());
 			}
 
-			ihmAdmin.GererInscriptionUvDir(uv);
+			ihmAdmin.GererInscriptionUvDir(uv,uvClore,uvValide);
 
 			return true;
 
