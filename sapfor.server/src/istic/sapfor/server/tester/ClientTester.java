@@ -142,26 +142,26 @@ public class ClientTester extends StatefullService implements InitializingBean {
 		System.out.println("-------Essai d'inscription et Validation------------");
 		
 		Collection<Long> idsUv0 = new Vector<Long>();
-		Collection<Long> idsUv1 = new Vector<Long>();
-		Collection<Long> idsUv2 = new Vector<Long>();
+		Collection<Long> idsUv5 = new Vector<Long>();
+		Collection<Long> idsUv6 = new Vector<Long>();
 		
-		idsUv0.add((long)6);
-		idsUv1.add((long)6);
-		idsUv2.add((long)6);
+		idsUv0.add((long)7);
+		idsUv5.add((long)7);
+		idsUv6.add((long)7);
 
 		
 		dataStore.addInscrip((long)0, idsUv0);
-		dataStore.addInscrip((long)1, idsUv1);
-		dataStore.addInscrip((long)2, idsUv2);
+		dataStore.addInscrip((long)5, idsUv5);
+		dataStore.addInscrip((long)6, idsUv6);
 		
-		System.out.println("Liste des candidats inscrit � l'Uv 6");
-		for (Long ic : dataStore.getIdCandidat((long)6,EtatCandidatureDTO.inscrit)){
+		System.out.println("Liste des candidats inscrit à l'Uv 7");
+		for (Long ic : dataStore.getIdCandidat((long)7,EtatCandidatureDTO.inscrit)){
 			System.out.println(dataStore.getAgent(ic).getFirstName()+" "+dataStore.getAgent(ic).getName());
 		}
 			
 
 
-		System.out.println("----------------Tests rajout�s par Laurent le 12/03/2012-----------------");
+		System.out.println("----------------Tests rajoutés par Laurent le 12/03/2012-----------------");
 		System.out.println();
 		
 		for (int i = 0; i < 100; i++) {
