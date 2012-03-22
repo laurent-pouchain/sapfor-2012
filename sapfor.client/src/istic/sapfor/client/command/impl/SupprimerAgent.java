@@ -5,10 +5,10 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 
-public class SupprimerAgent implements ICommand {
+public class SupprimerAgent extends ContextAbstract implements ICommand {
 
 	private ServiceAgent client;
-	private ICommandContext context;
+
 
 	@Override
 	public Boolean execute(ICommandContext ctx) {
@@ -31,12 +31,5 @@ public class SupprimerAgent implements ICommand {
 		this.client = client;
 	}
 
-	public ICommandContext getContext() {
-		return context;
-	}
-
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
 
 }

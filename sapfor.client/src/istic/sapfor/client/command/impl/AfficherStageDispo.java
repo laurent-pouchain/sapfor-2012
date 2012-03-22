@@ -10,24 +10,18 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.gui.IHMGStage;
 
-public class AfficherStageDispo implements ICommand {
+public class AfficherStageDispo extends ContextAbstract implements ICommand {
 
 	private ServiceStage clientS;
 	private ServiceAgent client;
 	private IHMGStage ihmgstage;
-	private ICommandContext context;
+
 
 	public ServiceStage getClientS() {
 		return clientS;
 	}
 
-	public ICommandContext getContext() {
-		return context;
-	}
 
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
 
 	public void setClientS(ServiceStage client) {
 		this.clientS = client;

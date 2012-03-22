@@ -22,10 +22,10 @@ import istic.sapfor.client.gui.sapforcomponent.SapforListeStage;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContainerGestionAdmin implements IHMAdmin {
+public class ContainerGestionAdmin extends ContainerAbstract implements IHMAdmin {
 
 	
-private ClassPathXmlApplicationContext context = null;
+
 private SapforJFrame frameGestionStage;
 private SapforJFrameAgent frame;
 private JTabbedPane Onglets = null;
@@ -39,16 +39,6 @@ public Map<Long, SapforGestionStage> getGererUvs() {
 
 public void setGererUvs(Map<Long, SapforGestionStage> gererUvs) {
 	GererUvs = gererUvs;
-}
-
-
-public ClassPathXmlApplicationContext getContext() {
-	return context;
-}
-
-
-public void setContext(ClassPathXmlApplicationContext context) {
-	this.context = context;
 }
 
 	
@@ -71,7 +61,7 @@ public void setOnglets(JTabbedPane onglets) {
 			
 	}
 
-	//Création du pannel admin et appel de la méthode de création des onglets
+	//Crï¿½ation du pannel admin et appel de la mï¿½thode de crï¿½ation des onglets
 	public void GererInscriptionUvDir(HashMap<Long, String> uv, HashMap<Long, Boolean> uvClore, HashMap<Long, Boolean> uvValide) {
 			frameGestionStage= new SapforJFrame("Gestion Stage");
 		    getOnglets(uv,uvClore,uvValide);
@@ -80,14 +70,14 @@ public void setOnglets(JTabbedPane onglets) {
 		   
 		}
 	
-	//Génération des onglets du panel admin (un onglets par UV du stage géré)
+	//Gï¿½nï¿½ration des onglets du panel admin (un onglets par UV du stage gï¿½rï¿½)
 	private JTabbedPane getOnglets(HashMap<Long,String> uvDir,HashMap<Long, Boolean> uvClore, HashMap<Long, Boolean> uvValide)
-	//Réinitialisation des onglets
+	//Rï¿½initialisation des onglets
 	{		Onglets=null;
 		    
 		        try
 		        {if (uvDir==null){
-				    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage à gerer");
+				    SapforListeStage s=new SapforListeStage ("Vous n'avez pas de stage ï¿½ gerer");
 				    s.getBtu().setVisible(false);
 				  		
 		        }
@@ -100,7 +90,7 @@ public void setOnglets(JTabbedPane onglets) {
 					Map<Long,SapforGestionStage> GererUvs=new HashMap<Long,SapforGestionStage>();
 	    			for(Entry<Long, String> entry : uvDir.entrySet()) {
 						String idOnglet="Onglet "+i;
-						System.out.println("repère recherche de l'id perdu");
+						System.out.println("repï¿½re recherche de l'id perdu");
 						System.out.println(idOnglet);
 						SapforGestionStage GererUv=new SapforGestionStage(entry.getValue());
 						GererUvs.put(entry.getKey(), GererUv);
@@ -146,7 +136,7 @@ public void setOnglets(JTabbedPane onglets) {
 									ICommand cmd = (ICommand) context.getBean("cmdValid");
 									boolean reussi= cmd.execute(ctx1);
 									if (reussi) { 
-										JOptionPane.showMessageDialog(null,"Inscription validée", "Confirmation",JOptionPane.PLAIN_MESSAGE);
+										JOptionPane.showMessageDialog(null,"Inscription validï¿½e", "Confirmation",JOptionPane.PLAIN_MESSAGE);
 										entry.getValue().getValid().setEnabled(false);
 										}
 									else {

@@ -11,19 +11,11 @@ import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.command.ICommandContextKey;
 import istic.sapfor.client.gui.IHMGStage;
 
-public class Login implements ICommand {
+public class Login extends ContextAbstract implements ICommand {
 	private ServiceSession clientS;
 	private IHMGStage ihmgstage;
 	private ServiceAgent client;
-	private ICommandContext context;
-
-	public ICommandContext getContext() {
-		return context;
-	}
-
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
+	
 
 	public ServiceAgent getClient() {
 		return client;

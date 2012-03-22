@@ -11,11 +11,10 @@ import istic.sapfor.client.command.ICommand;
 import istic.sapfor.client.command.ICommandContext;
 import istic.sapfor.client.gui.IHMAgent;
 
-public class AfficherAgent implements ICommand {
+public class AfficherAgent extends ContextAbstract implements ICommand {
 
 	private ServiceAgent client;
 	private IHMAgent ihmagent;
-	private ICommandContext context;
 
 	@Override
 	public Boolean execute(ICommandContext ctx) {// rien a envoyer dans le ctx
@@ -29,7 +28,7 @@ public class AfficherAgent implements ICommand {
 			String prenomNom = a.getFirstName() + "  " + a.getName();
 			NomAgent.put(id, prenomNom);
 		}
-		// j'envoie une hash map avec en clé l'id de l'agent et en valeur une
+		// j'envoie une hash map avec en clï¿½ l'id de l'agent et en valeur une
 		// string avec prenom nom
 		// la methode displayAgent a mettre dans le cotainerGestion agent et
 		// dans l'interface qu'il implemente
@@ -50,13 +49,7 @@ public class AfficherAgent implements ICommand {
 		this.client = client;
 	}
 
-	public ICommandContext getContext() {
-		return context;
-	}
 
-	public void setContext(ICommandContext context) {
-		this.context = context;
-	}
 
 	public IHMAgent getIhmagent() {
 		return ihmagent;

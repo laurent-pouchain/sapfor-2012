@@ -25,9 +25,8 @@ import javax.swing.border.BevelBorder;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContainerGestionStage implements IHMGStage {
+public class ContainerGestionStage extends ContainerAbstract implements IHMGStage {
 
-	private ClassPathXmlApplicationContext context = null;
 	private SapforJFrameAgent frame;
 	private SapforJDialogConnection Jlogin;
 
