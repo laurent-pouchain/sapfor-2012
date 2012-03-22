@@ -157,7 +157,7 @@ msg 136469 synchronous
 msg 136725 synchronous
   from durationcanvas_ref 136341
   to durationcanvas_ref 136597
-  yz 669 2025 explicitmsg "CandValids : nool"
+  yz 669 2025 explicitmsg "CandValids : bool"
   show_full_operations_definition default drawing_language default show_context_mode default
   label_xy 584 655
 msg 136981 synchronous
