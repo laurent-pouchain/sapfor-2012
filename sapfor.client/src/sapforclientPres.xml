@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<!-- START SNIPPET: beans -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:simple="http://cxf.apache.org/simple"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
+http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
+	
+	<bean id="ServiceSessionClient" class="istic.sapfor.api.service.ServiceSession"
+		factory-bean="ServiceSessionFactory" factory-method="create" />
+
+	<bean id="ServiceSessionFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceSession" />
+		<property name="address" value="http://i214m03:9086/ws/ServiceSession" />
+	</bean>
+ 
+  	<bean id="ServiceAgentClient" class="istic.sapfor.api.service.ServiceAgent"
+		factory-bean="ServiceAgentFactory" factory-method="create" />
+
+	<bean id="ServiceAgentFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceAgent" />
+		<property name="address" value="http://i214m03:9085/ws/ServiceAgent" />
+	</bean>
+
+ 	<bean id="ServiceStageClient" class="istic.sapfor.api.service.ServiceStage"
+		factory-bean="ServiceStageFactory" factory-method="create" />
+		
+	<bean id="ServiceStageFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceStage" />
+		<property name="address" value="http://i214m03:9088/ws/ServiceStage" />
+	</bean>
+ 
+ 	<bean id="ServiceUvClient" class="istic.sapfor.api.service.ServiceUv"
+		factory-bean="ServiceUvFactory" factory-method="create" />
+		
+	<bean id="ServiceUvFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="istic.sapfor.api.service.ServiceUv" />
+		<property name="address" value="http://i214m03:9087/ws/ServiceUv" />
+	</bean>
+	
+	
+	
+
+ 	<bean id="ui1" class="istic.sapfor.client.gui.ContainerGestionStage"></bean>
+ 	<bean id="uiAdmin" class="istic.sapfor.client.gui.ContainerGestionAdmin"></bean>
+ 	<bean id="uiAgent" class="istic.sapfor.client.gui.ContainerGestionAgent"></bean>
+	<bean id="ctx" class="istic.sapfor.client.command.impl.DefaultCommandContext"></bean>
+
+
+	<bean id="cmdDisplayStageDispo" class="istic.sapfor.client.command.impl.AfficherStageDispo">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="clientS" ref="ServiceStageClient" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
+	<bean id="cmdDisplayUvDispo" class="istic.sapfor.client.command.impl.AfficherUvStage">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="clientU" ref="ServiceUvClient" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	<bean id="cmdAddInscrition" class="istic.sapfor.client.command.impl.AddInscription">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	<bean id="cmdLogin" class="istic.sapfor.client.command.impl.Login">
+		<property name="clientS" ref="ServiceSessionClient" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="ihmgstage" ref="ui1" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
+	<bean id="cmdDisplayGestionStage" class="istic.sapfor.client.command.impl.GestionStage">
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="clientU" ref="ServiceUvClient" />
+		<property name="ihmAdmin" ref="uiAdmin" />
+	
+	</bean>
+	
+	<bean id="cmdDisplayStageDir" class="istic.sapfor.client.command.impl.AfficherStageDir">
+		<property name="ihmgstage" ref="ui1" />
+		<property name="clientS" ref="ServiceStageClient" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+		
+	<bean id="cmdDisplayCandidat" class="istic.sapfor.client.command.impl.AfficherCandidat">
+		<property name="ihmAdmin" ref="uiAdmin" />
+		<property name="clientU" ref="ServiceUvClient" />
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
+	<bean id="cmdTraitement" class="istic.sapfor.client.command.impl.TraitementCandidat">
+		<property name="ihmAdmin" ref="uiAdmin" />
+		<property name="clientU" ref="ServiceUvClient" />
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
+	<bean id="cmdClore" class="istic.sapfor.client.command.impl.CloreUv">
+		<property name="clientU" ref="ServiceUvClient" />
+	</bean>
+	
+	<bean id="cmdValid" class="istic.sapfor.client.command.impl.ValideUv">
+		<property name="clientU" ref="ServiceUvClient" />
+	</bean>
+	
+	<bean id="cmdAddAgent" class="istic.sapfor.client.command.impl.AddAgent">
+		<property name="client" ref="ServiceAgentClient" />
+	</bean>
+	
+	<bean id="cmdSupAgent" class="istic.sapfor.client.command.impl.SupprimerAgent">
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
+	<bean id="cmdDisplayAgent" class="istic.sapfor.client.command.impl.AfficherAgent">
+		<property name="ihmagent" ref="uiAgent" />
+		<property name="client" ref="ServiceAgentClient" />
+		<property name="context" ref="ctx"/>
+	</bean>
+	
+	
+</beans>
+<!-- END SNIPPET: beans -->
