@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public interface IHMAdmin {
 
-	void GererInscriptionUvDir(HashMap<Long, String> st);
+	void GererInscriptionUvDir(HashMap<Long, String> st, HashMap<Long, Boolean> uvClore, HashMap<Long, Boolean> uvValide);
 
 	void DisplayCandidat(String idTemp, HashMap<Long, String> cand);
 

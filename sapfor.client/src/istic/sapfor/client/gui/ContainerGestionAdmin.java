@@ -31,6 +31,7 @@ private SapforJFrameAgent frame;
 private JTabbedPane Onglets = null;
 private Map<Long,SapforGestionStage> GererUvs;
 
+
 public Map<Long, SapforGestionStage> getGererUvs() {
 	return GererUvs;
 }
@@ -71,16 +72,16 @@ public void setOnglets(JTabbedPane onglets) {
 	}
 
 	//Création du pannel admin et appel de la méthode de création des onglets
-	public void GererInscriptionUvDir(HashMap<Long, String> uv) {
+	public void GererInscriptionUvDir(HashMap<Long, String> uv, HashMap<Long, Boolean> uvClore, HashMap<Long, Boolean> uvValide) {
 			frameGestionStage= new SapforJFrame("Gestion Stage");
-		    getOnglets(uv);
+		    getOnglets(uv,uvClore,uvValide);
 			frameGestionStage.add(Onglets);
 		    frameGestionStage.setVisible(true);
 		   
 		}
 	
 	//Génération des onglets du panel admin (un onglets par UV du stage géré)
-	private JTabbedPane getOnglets(HashMap<Long,String> uvDir)
+	private JTabbedPane getOnglets(HashMap<Long,String> uvDir,HashMap<Long, Boolean> uvClore, HashMap<Long, Boolean> uvValide)
 	//Réinitialisation des onglets
 	{		Onglets=null;
 		    
@@ -105,6 +106,7 @@ public void setOnglets(JTabbedPane onglets) {
 						GererUvs.put(entry.getKey(), GererUv);
 			            Onglets.addTab(entry.getValue(), null, GererUv, null); 
 			            i++;
+			           
 					}
 					setGererUvs(GererUvs);
 						for(final Entry<Long, SapforGestionStage> entry : GererUvs.entrySet()) {
@@ -117,7 +119,8 @@ public void setOnglets(JTabbedPane onglets) {
 							cmd.execute(ctx);
 							System.out.println("------------------------------------------------");
 							System.out.println("apres l'affichage");
-
+							entry.getValue().getClore().setEnabled(!uvClore.get(entry.getKey()));
+							entry.getValue().getValid().setEnabled(uvClore.get(entry.getKey())&!uvValide.get(entry.getKey()));
 							entry.getValue().getClore().addMouseListener(new MouseAdapter() {
 					    		@Override
 					    		public void mouseClicked(MouseEvent e) {
@@ -128,7 +131,8 @@ public void setOnglets(JTabbedPane onglets) {
 									boolean reussi= cmd.execute(ctx1);
 									if (reussi) { JOptionPane.showMessageDialog(null,"Inscription close", "Confirmation",JOptionPane.PLAIN_MESSAGE);
 									entry.getValue().getValid().setEnabled(true);
-									entry.getValue().getClore().setEnabled(false);}
+									entry.getValue().getClore().setEnabled(false);
+								}
 									else {JOptionPane.showMessageDialog(null, "erreur de la cloture", "Error", JOptionPane.ERROR_MESSAGE);}
 					    		}
 					    	});
@@ -161,7 +165,7 @@ public void setOnglets(JTabbedPane onglets) {
 					    			frame.getPaneStage().repaint();
 					    			frame.setVisible(true);
 					    			frame.getBts().setVisible(true);
-
+					    			
 					    		}
 					    	});			
 
