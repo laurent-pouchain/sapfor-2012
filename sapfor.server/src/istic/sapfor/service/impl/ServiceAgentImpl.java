@@ -73,7 +73,8 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 			else {return false;}
 		}
 		else {
-			if (nouvelEtat != EtatCandidatureDTO.annule && dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat)) {
+			if (nouvelEtat != EtatCandidatureDTO.annule && dataStore.getIdCandidat(idUv, ancienEtat).contains(idCandidat) &&
+					(dataStore.getUv(idUv).isCandCloses()&!dataStore.getUv(idUv).isCandValids())) {
 				return dataStore.setStatut(idUv,idCandidat,nouvelEtat,ancienEtat);
 			}
 			else {return false;}
