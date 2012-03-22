@@ -239,7 +239,6 @@ public class FakeDataStoreImpl implements DataStore {
 		sessionsMap.remove((long)agentsMap.get(id).getLogin().hashCode());
 		logger.info("delAgent called with param "+id);
 		for (Long u : uvMap.keySet()){
-			logger.info("delAgent running through etatMap for Uv : "+u);
 			inscritMap.get(u).remove((Long)id);
 			retenuMap.get(u).remove((Long)id);
 			nonRetenuMap.get(u).remove((Long)id);

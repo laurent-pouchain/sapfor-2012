@@ -83,7 +83,7 @@ public class ServiceAgentImpl extends StatefullService implements ServiceAgent {
 	
 	@Override
 	public Collection<Long> getIdStageInscrit(Long idAgent) {
-		
+		logger.info("getIdStageInscrit Called with param : "+idAgent);
 		return dataStore.getIdStageInscrit(idAgent);
 	}
 
