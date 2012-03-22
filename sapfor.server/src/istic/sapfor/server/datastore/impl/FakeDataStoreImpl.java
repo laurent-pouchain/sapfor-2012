@@ -426,16 +426,13 @@ public class FakeDataStoreImpl implements DataStore {
 
 	@Override
 	public boolean setCandCloses(long id) {
-		if (inscritMap.get(id).isEmpty()){
-        uvMap.get(id).setCandCloses(true);
+		uvMap.get(id).setCandCloses(true);
 		return true;
-		}
-		else return false;
 	}
 
 	@Override
 	public boolean setCandValids(long id) {
-		if (uvMap.get(id).isCandCloses()){
+		if (inscritMap.get(id).isEmpty()&uvMap.get(id).isCandCloses()){
 		uvMap.get(id).setCandValids(true);
 		return true;
 		}
